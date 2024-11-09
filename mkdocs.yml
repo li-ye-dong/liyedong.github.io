@@ -12,11 +12,11 @@ nav:
     - redis/Redis学习.md
     #- 设计模式: java/设计模式/index.md
   - Dokcer:
-    - docker/index.md
+    - docker/docker笔记.md
  #   - Installation: guide/installation.md
  #   - Basics: guide/basics.md
  #   - Configuration: guide/config.md
-  - nginx:
+  - Nginx:
     - nginx/Nginx学习.md
 
 #[UI]
