@@ -1,0 +1,1945 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by liyedong">
+      
+      
+        <meta name="author" content="liyedong">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/docker/docker%E7%AC%94%E8%AE%B0/">
+      
+      
+        <link rel="prev" href="../../redis/Redis%E5%AD%A6%E4%B9%A0/">
+      
+      
+        <link rel="next" href="../../nginx/Nginx%E5%AD%A6%E4%B9%A0/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Docker笔记 - liyedong Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="liyedong Docs" class="md-header__button md-logo" aria-label="liyedong Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            liyedong Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../redis/Redis%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  Redis
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  Dokcer
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  Nginx
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="liyedong Docs" class="md-nav__button md-logo" aria-label="liyedong Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    liyedong Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../redis/Redis%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Dokcer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Dokcer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Docker笔记
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Docker笔记
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.基础命令
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.镜像
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.镜像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      获取镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      搜索
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1510ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      用版本为15.10的ubuntu系统镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      构建镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置镜像标签
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.容器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.容器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动已停止运行的容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      后台运行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      后台运行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      进入容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      导出和导入容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.文件拷贝
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.目录挂载
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6json" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.查看一个json信息
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.查看一个json信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      过滤（查看IP）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.mysql部署
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.mysql部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      拉取镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      进入mysql容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      登录mysql
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.tomcat部署
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.tomcat部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      拉取镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.Nginx部署
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.Nginx部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      拉取镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.Redis部署
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.Redis部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      拉取镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.备份和迁移
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.备份和迁移">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      容器保存为镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像备份
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像恢复和迁移
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.Dockerfile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      介绍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      dockerfile 的命令摘要
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13dockerfilejdk18" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.使用dockerfile创建一个jdk1.8镜像
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.使用dockerfile创建一个jdk1.8镜像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      构建
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.Docker私有仓库
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.Docker私有仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      仓库搭建和配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      将镜像上传至私有仓库
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.下载私有仓库镜像
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.下载私有仓库镜像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      信任对应的docker地址
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看镜像仓库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      下拉镜像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      16.运行一个 web 应用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17docker-run-docker-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      17.docker run 和 docker exec 的差异
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17.docker run 和 docker exec 的差异">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker run 命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      语法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      实例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker exec 命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      语法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    <span class="md-ellipsis">
+      18.自定义镜像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19" class="md-nav__link">
+    <span class="md-ellipsis">
+      19.共享镜像
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="19.共享镜像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何把Docker镜像拷给别人
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Nginx
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Docker笔记</h1>
+
+<h2 id="1">1.基础命令<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w"> </span>yum<span class="w"> </span>update
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>yum-utils<span class="w"> </span>device-mapper-persistent-data<span class="w"> </span>lvm2
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w"> </span>yum-config-manager<span class="w"> </span>--add-repo<span class="w"> </span>http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span><span class="c1">#社区版</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w"> </span>docker<span class="w"> </span>-v
+</code></pre></div>
+<p>设置国内ustc镜像</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>vi /etc/docker/daemon.json
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>}
+</code></pre></div>
+<p>启动</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>systemctl start docker
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>systemctl restart docker
+</code></pre></div>
+<p>状态</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>systemctl status docker
+</code></pre></div>
+<p>停止</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>systemctl stop docker
+</code></pre></div>
+<p>开机自启动</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>systemctl enable docker
+</code></pre></div>
+<p>查看概要</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker info
+</code></pre></div>
+<p>帮助</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker --help
+</code></pre></div>
+<h2 id="2">2.镜像<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_1">获取镜像<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker pull ubuntu
+</code></pre></div>
+<h3 id="_2">查看镜像<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker images
+</code></pre></div>
+<p>各个选项说明:</p>
+<ul>
+<li><strong>REPOSITORY：</strong>表示镜像的仓库源</li>
+<li><strong>TAG：</strong>镜像的标签</li>
+<li><strong>IMAGE ID：</strong>镜像ID</li>
+<li><strong>CREATED：</strong>镜像创建时间</li>
+<li><strong>SIZE：</strong>镜像大小</li>
+</ul>
+<h3 id="_3">搜索<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker search xxx
+</code></pre></div>
+<p><strong>NAME:</strong> 镜像仓库源的名称</p>
+<p><strong>DESCRIPTION:</strong> 镜像的描述</p>
+<p><strong>OFFICIAL:</strong> 是否 docker 官方发布</p>
+<p><strong>stars:</strong> 类似 Github 里面的 star，表示点赞、喜欢的意思。</p>
+<p><strong>AUTOMATED:</strong> 自动构建。</p>
+<h3 id="1510ubuntu">用版本为15.10的ubuntu系统镜像<a class="headerlink" href="#1510ubuntu" title="Permanent link">&para;</a></h3>
+<p>来运行容器时，命令如下：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>runoob@runoob:~$ docker run -t -i ubuntu:15.10 /bin/bash 
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>root@d77ccb2e5cca:/#
+</code></pre></div>
+<p>参数说明：</p>
+<ul>
+<li><strong>-i</strong>: 交互式操作。</li>
+<li><strong>-t</strong>: 终端。</li>
+<li><strong>ubuntu:15.10</strong>: 这是指用 ubuntu 15.10 版本镜像为基础来启动容器。</li>
+<li><strong>/bin/bash</strong>：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 /bin/bash。</li>
+</ul>
+<h3 id="_4">删除镜像<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>镜像删除使用 <strong>docker rmi</strong> 命令，比如我们删除 hello-world 镜像：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a> docker rmi hello-world
+</code></pre></div>
+<h3 id="_5">创建镜像<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>当我们从 docker 镜像仓库中下载的镜像不能满足我们的需求时，我们可以通过以下两种方式对镜像进行更改。</p>
+<ul>
+<li>1、从已经创建的容器中更新镜像，并且提交这个镜像</li>
+<li>2、使用 Dockerfile 指令来创建一个新的镜像</li>
+</ul>
+<h3 id="_6">更新镜像<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>更新镜像之前，我们需要使用镜像来创建一个容器。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>runoob@runoob:~$ docker run -t -i ubuntu:15.10 /bin/bash
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>root@e218edb10161:/# 
+</code></pre></div>
+<p>在运行的容器内使用 <strong>apt-get update</strong> 命令进行更新。</p>
+<p>在完成操作之后，输入 exit 命令来退出这个容器。</p>
+<p>此时 ID 为 e218edb10161 的容器，是按我们的需求更改的容器。我们可以通过命令 docker commit 来提交容器副本。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>runoob@runoob:~$ docker commit -m=&quot;has update&quot; -a=&quot;runoob&quot; e218edb10161 runoob/ubuntu:v2
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sha256:70bf1840fd7c0d2d8ef0a42a817eb29f854c1af8f7c59fc03ac7bdee9545aff8
+</code></pre></div>
+<p>各个参数说明：</p>
+<ul>
+<li><strong>-m:</strong> 提交的描述信息</li>
+<li><strong>-a:</strong> 指定镜像作者</li>
+<li><strong>e218edb10161：</strong>容器 ID</li>
+<li><strong>runoob/ubuntu:v2:</strong> 指定要创建的目标镜像名</li>
+</ul>
+<h3 id="_7">构建镜像<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>我们使用命令 <strong>docker build</strong> ， 从零开始来创建一个新的镜像。为此，我们需要创建一个 Dockerfile 文件，其中包含一组指令来告诉 Docker 如何构建我们的镜像。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>runoob@runoob:~$ cat Dockerfile 
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>FROM    centos:6.7
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>MAINTAINER      Fisher &quot;fisher@sudops.com&quot;
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>RUN     /bin/echo &#39;root:123456&#39; |chpasswd
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>RUN     useradd runoob
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>RUN     /bin/echo &#39;runoob:123456&#39; |chpasswd
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>RUN     /bin/echo -e &quot;LANG=\&quot;en_US.UTF-8\&quot;&quot; &gt;/etc/default/local
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>EXPOSE  22
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>EXPOSE  80
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>CMD     /usr/sbin/sshd -D
+</code></pre></div>
+<p>每一个指令都会在镜像上创建一个新的层，每一个指令的前缀都必须是大写的。</p>
+<p>第一条FROM，指定使用哪个镜像源</p>
+<p>RUN 指令告诉docker 在镜像内执行命令，安装了什么。。。</p>
+<p>然后，我们使用 Dockerfile 文件，通过 docker build 命令来构建一个镜像。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>runoob@runoob:~$ docker build -t runoob/centos:6.7 .
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Sending build context to Docker daemon 17.92 kB
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Step 1 : FROM centos:6.7
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a> ---&amp;gt; d95b5ca17cc3
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>Step 2 : MAINTAINER Fisher &quot;fisher@sudops.com&quot;
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a> ---&amp;gt; Using cache
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a> ---&amp;gt; 0c92299c6f03
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>Step 3 : RUN /bin/echo &#39;root:123456&#39; |chpasswd
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a> ---&amp;gt; Using cache
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a> ---&amp;gt; 0397ce2fbd0a
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>Step 4 : RUN useradd runoob
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>......
+</code></pre></div>
+<p>参数说明：</p>
+<ul>
+<li><strong>-t</strong> ：指定要创建的目标镜像名</li>
+<li><strong>.</strong> ：Dockerfile 文件所在目录，可以指定Dockerfile 的绝对路径</li>
+</ul>
+<p>使用docker images 查看创建的镜像已经在列表中存在,镜像ID为860c279d2fec</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>runoob@runoob:~$ docker images 
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>runoob/centos       6.7                 860c279d2fec        About a minute ago   190.6 MB
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>runoob/ubuntu       v2                  70bf1840fd7c        17 hours ago         158.5 MB
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>ubuntu              14.04               90d5884b1ee0        6 days ago           188 MB
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>php                 5.6                 f40e9e0f10c8        10 days ago          444.8 MB
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>nginx               latest              6f8d099c3adc        12 days ago          182.7 MB
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>mysql               5.6                 f2e8d6c772c0        3 weeks ago          324.6 MB
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>httpd               latest              02ef73cf1bc0        3 weeks ago          194.4 MB
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>ubuntu              15.10               4e3b13c8a266        5 weeks ago          136.3 MB
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>hello-world         latest              690ed74de00f        6 months ago         960 B
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>centos              6.7                 d95b5ca17cc3        6 months ago         190.6 MB
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>training/webapp     latest              6fae60ef3446        12 months ago        348.8 MB
+</code></pre></div>
+<p>我们可以使用新的镜像来创建容器</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>runoob@runoob:~$ docker run -t -i runoob/centos:6.7  /bin/bash
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>[root@41c28d18b5fb /]# id runoob
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>uid=500(runoob) gid=500(runoob) groups=500(runoob)
+</code></pre></div>
+<p>从上面看到新镜像已经包含我们创建的用户 runoob。</p>
+<h3 id="_8">设置镜像标签<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>我们可以使用 docker tag 命令，为镜像添加一个新的标签。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>runoob@runoob:~$ docker tag 860c279d2fec runoob/centos:dev
+</code></pre></div>
+<p>docker tag 镜像ID，这里是 860c279d2fec ,用户名称、镜像源名(repository name)和新的标签名(tag)。</p>
+<p>使用 docker images 命令可以看到，ID为860c279d2fec的镜像多一个标签。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>runoob@runoob:~$ docker images
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>runoob/centos       6.7                 860c279d2fec        5 hours ago         190.6 MB
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>runoob/centos       dev                 860c279d2fec        5 hours ago         190.6 MB
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>runoob/ubuntu       v2                  70bf1840fd7c        22 hours ago        158.5 MB
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>ubuntu              14.04               90d5884b1ee0        6 days ago          188 MB
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>php                 5.6                 f40e9e0f10c8        10 days ago         444.8 MB
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>nginx               latest              6f8d099c3adc        13 days ago         182.7 MB
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>mysql               5.6                 f2e8d6c772c0        3 weeks ago         324.6 MB
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>httpd               latest              02ef73cf1bc0        3 weeks ago         194.4 MB
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>ubuntu              15.10               4e3b13c8a266        5 weeks ago         136.3 MB
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>hello-world         latest              690ed74de00f        6 months ago        960 B
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>centos              6.7                 d95b5ca17cc3        6 months ago        190.6 MB
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>training/webapp     latest              6fae60ef3446        12 months ago       348.8 MB
+</code></pre></div>
+<h2 id="3">3.容器<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="_9">启动容器<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker run -it ubuntu /bin/bash
+</code></pre></div>
+<p>参数说明：</p>
+<ul>
+<li><strong>-i</strong>: 交互式操作。</li>
+<li><strong>-t</strong>: 终端。</li>
+<li><strong>ubuntu</strong>: ubuntu 镜像。</li>
+<li><strong>/bin/bash</strong>：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 /bin/bash。</li>
+</ul>
+<h3 id="_10">启动已停止运行的容器<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>查看所有的容器命令如下：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker ps -a
+</code></pre></div>
+<h3 id="_11">开启容器<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker start id号
+</code></pre></div>
+<h3 id="_12">后台运行<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>在大部分的场景下，我们希望 docker 的服务是在后台运行的，我们可以过 <strong>-d</strong> 指定容器的运行模式。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker run -itd --name ubuntu-test ubuntu /bin/bash
+</code></pre></div>
+<p><strong>注：</strong>加了 <strong>-d</strong> 参数默认不会进入容器，想要进入容器需要使用指令 <strong>docker exec</strong>（下面会介绍到）。</p>
+<h3 id="_13">后台运行<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>在大部分的场景下，我们希望 docker 的服务是在后台运行的，我们可以过 <strong>-d</strong> 指定容器的运行模式。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>$ docker run -itd --name ubuntu-test ubuntu /bin/bash
+</code></pre></div>
+<p>停止的容器可以通过 docker restart 重启：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>$ docker restart &lt;容器 ID&gt;
+</code></pre></div>
+<h3 id="_14">进入容器<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>在使用 <strong>-d</strong> 参数时，容器启动后会进入后台。此时想要进入容器，可以通过以下指令进入：</p>
+<ul>
+<li><strong>docker attach</strong></li>
+<li><strong>docker exec</strong>：推荐大家使用 docker exec 命令，因为此命令会退出容器终端，但不会导致容器的停止。</li>
+</ul>
+<p><strong>attach 命令</strong></p>
+<p>下面演示了使用 docker attach 命令。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>$ docker attach 1e560fca3906 
+</code></pre></div>
+<p><strong>注意：</strong> 如果从这个容器退出，会导致容器的停止。</p>
+<p><strong>exec 命令</strong></p>
+<p>下面演示了使用 docker exec 命令。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>docker exec -it 243c32535da7 /bin/bash
+</code></pre></div>
+<p><strong>注意：</strong> 如果从这个容器退出，容器不会停止，这就是为什么推荐大家使用 <strong>docker exec</strong> 的原因。</p>
+<p>更多参数说明请使用 <strong>docker exec --help</strong> 命令查看。</p>
+<h3 id="_15">导出和导入容器<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p><strong>导出容器</strong></p>
+<p>如果要导出本地某个容器，可以使用 <strong>docker export</strong> 命令。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>$ docker export 1e560fca3906 &gt; ubuntu.tar
+</code></pre></div>
+<p>这样将导出容器快照到本地文件。</p>
+<p><strong>导入容器快照</strong></p>
+<p>可以使用 docker import 从容器快照文件中再导入为镜像，以下实例将快照文件 ubuntu.tar 导入到镜像 test/ubuntu:v1:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>$ cat docker/ubuntu.tar | docker import - test/ubuntu:v1
+</code></pre></div>
+<p>此外，也可以通过指定 URL 或者某个目录来导入，例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>$ docker import http://example.com/exampleimage.tgz example/imagerepo
+</code></pre></div>
+<h3 id="_16">删除容器<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>删除容器使用 <strong>docker rm</strong> 命令：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>$ docker rm -f 1e560fca3906
+</code></pre></div>
+<p>下面的命令可以清理掉所有处于终止状态的容器。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>$ docker container prune
+</code></pre></div>
+<h2 id="4">4.文件拷贝<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>将文件拷贝到容器内可以使用cp</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>docker cp 需要拷贝的文件或者目录  容器名称:容器目录
+</code></pre></div>
+<p>也可以将文件从容器中拷贝出来</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>docker cp 容器名称:容器目录 需要拷贝的文件或目录
+</code></pre></div>
+<h2 id="5">5.目录挂载<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>我们可以在创建容器的时候，将宿主机的目录与容器内的目录进行映射，这样我们就可以通过修改宿主机某个目录的文件从而去影响容器。
+创建容器添加-v参数后边为宿主机目录:容器目录，例如:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>docker run -di -v /usr/local/myhtml:/usr/local/myhtml --name=mycentos3 centos:7
+</code></pre></div>
+<p>如果你共享的是多级的目录，可能会出现权限不足的提示。
+这是因为CentOS7中的安全模块selinux把权限禁掉了，我们需要添加参数--privileged=true 来解决挂载的目录没有权限的问题</p>
+<h2 id="6json">6.查看一个json信息<a class="headerlink" href="#6json" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>docker inspect 容器名
+</code></pre></div>
+<h3 id="ip">过滤（查看IP）<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>docker inspect --format=&#39;{{.NetworkSettings.IPAddress}}&#39; 容器名
+</code></pre></div>
+<h2 id="7mysql">7.mysql部署<a class="headerlink" href="#7mysql" title="Permanent link">&para;</a></h2>
+<h3 id="_17">拉取镜像<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>docker pull centos/mysql-57-centos7
+</code></pre></div>
+<h3 id="_18">创建容器<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>docker run -di --name=tensquare_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 j
+</code></pre></div>
+<p>-p:端口映射   宿主机映射端口:容器运行端口</p>
+<p>-e:代表添加环境变量 MYSQL_ROOT_PASSWORD 是root用户的登录密码</p>
+<h3 id="mysql">进入mysql容器<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>docker exec -it tensquare_mysql /bin/bash
+</code></pre></div>
+<h3 id="mysql_1">登录mysql<a class="headerlink" href="#mysql_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>mysql -u root -p
+</code></pre></div>
+<h2 id="8tomcat">8.tomcat部署<a class="headerlink" href="#8tomcat" title="Permanent link">&para;</a></h2>
+<h3 id="_19">拉取镜像<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>docker pull tomcat:7-jre7
+</code></pre></div>
+<h3 id="_20">创建容器<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>docker run -di --name=mytomcat -p 9000:8080 -v /usr/local/webapps:/usr/local/tomcat/webapps tomcat:7-jre7
+</code></pre></div>
+<p>-p:端口映射   宿主机映射端口:容器运行端口</p>
+<h2 id="9nginx">9.Nginx部署<a class="headerlink" href="#9nginx" title="Permanent link">&para;</a></h2>
+<h3 id="_21">拉取镜像<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>docker pull nginx
+</code></pre></div>
+<h3 id="_22">创建容器<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>docker run -di --name=mynginx -p 80:80 nginx
+</code></pre></div>
+<h2 id="10redis">10.Redis部署<a class="headerlink" href="#10redis" title="Permanent link">&para;</a></h2>
+<h3 id="_23">拉取镜像<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>docker pull redis
+</code></pre></div>
+<h3 id="_24">创建容器<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>docker run -di --name=myredis -p 6379:6379 redis
+</code></pre></div>
+<h2 id="11">11.备份和迁移<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<h3 id="_25">容器保存为镜像<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>docker commit mynginx mynginx_img
+</code></pre></div>
+<h3 id="_26">镜像备份<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>将镜像保存为tar文件</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>docker save -o mynginx.tar mynginx_img
+</code></pre></div>
+<h3 id="_27">镜像恢复和迁移<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p>先删除mynginx_img镜像，然后执行命令恢复</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>docker load -i mynginx.tar
+</code></pre></div>
+<p>-i:输入的文件</p>
+<h2 id="12dockerfile">12.Dockerfile<a class="headerlink" href="#12dockerfile" title="Permanent link">&para;</a></h2>
+<h3 id="_28">介绍<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>Dockerfile是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。
+1、对于开发人员:可以为开发团队提供一个完全一致的开发环境;
+2、对于测试人员:可以直接拿开发时所构建的镜像或者通过Dockerfile文件构建一个新的镜像开始工作了;
+3、对于运维人员:在部署时，可以实现应用的无缝移植。</p>
+<h3 id="dockerfile">dockerfile 的命令摘要<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>FROM- 镜像从那里来</p>
+</li>
+<li>
+<p>MAINTAINER- 镜像维护者信息</p>
+</li>
+<li>
+<p>RUN- 构建镜像执行的命令，每一次RUN都会构建一层</p>
+</li>
+<li>
+<p>CMD- 容器启动的命令，如果有多个则以最后一个为准，也可以为ENTRYPOINT提供参数</p>
+</li>
+<li>
+<p>VOLUME- 定义数据卷，如果没有定义则使用默认</p>
+</li>
+<li>
+<p>USER- 指定后续执行的用户组和用户</p>
+</li>
+<li>
+<p>WORKDIR- 切换当前执行的工作目录</p>
+</li>
+<li>
+<p>HEALTHCHECH- 健康检测指令</p>
+</li>
+<li>
+<p>ARG- 变量属性值，但不在容器内部起作用</p>
+</li>
+<li>
+<p>EXPOSE- 暴露端口</p>
+</li>
+<li>
+<p>ENV- 环境变量属性值，容器内部也会起作用</p>
+</li>
+<li>
+<p>ADD- 添加文件，如果是压缩文件也解压</p>
+</li>
+<li>
+<p>COPY- 添加文件，以复制的形式</p>
+</li>
+<li>
+<p>ENTRYPOINT- 容器进入时执行的命令</p>
+</li>
+</ul>
+<h2 id="13dockerfilejdk18">13.使用dockerfile创建一个jdk1.8镜像<a class="headerlink" href="#13dockerfilejdk18" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>mkdir -p /usr/local/dockerjdk8
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>cd /usr/local/dockerjdk8/
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>vi Dockerfile
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">centos:7</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="k">MAINTAINER</span><span class="w"> </span><span class="s">liyedong </span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/usr</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>/usr/local/java
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="k">ADD</span><span class="w"> </span>jdk8xxxxx.tar.gz<span class="w"> </span>/usr/local/java/
+<a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>
+<a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a><span class="k">ENV</span><span class="w"> </span>JAVA_HOME<span class="w"> </span>/usr/local/java/jdk1.8.0_171
+<a id="__codelineno-54-8" name="__codelineno-54-8" href="#__codelineno-54-8"></a><span class="k">ENV</span><span class="w"> </span>JRE_HOME<span class="w"> </span><span class="nv">$JAVA_HOME</span>/jre
+<a id="__codelineno-54-9" name="__codelineno-54-9" href="#__codelineno-54-9"></a><span class="k">ENV</span><span class="w"> </span>CLASSPATH<span class="w"> </span><span class="nv">$JAVA_HOME</span>/bin/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar:<span class="nv">$JRE_HOME</span>/lib:<span class="nv">$CLASSPATH</span>
+<a id="__codelineno-54-10" name="__codelineno-54-10" href="#__codelineno-54-10"></a><span class="k">ENV</span><span class="w"> </span>PATH<span class="w"> </span><span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$PATH</span>
+</code></pre></div>
+<h3 id="_29">构建<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>docker build -t &#39;jdk1.8&#39; .
+</code></pre></div>
+<p>注意：. 代表在当前目录</p>
+<h2 id="14docker">14.Docker私有仓库<a class="headerlink" href="#14docker" title="Permanent link">&para;</a></h2>
+<h3 id="_30">仓库搭建和配置<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p>拉去私有仓库镜像</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>docker pull registry
+</code></pre></div>
+<p>启动私有仓库容器</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>docker run -di --name=registry -p 5000:5000 registry
+</code></pre></div>
+<p>打开浏览器输入地址</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>http://ip:5000/v2/_catalog
+</code></pre></div>
+<p>看到{"repositories":[]}表示私有仓库搭建成功并且内容为空</p>
+<p>修改daemon.json</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>vi /etc/docker/daemon.json
+</code></pre></div>
+<p>添加以下内容，保存退出(让docker信任私有仓库地址)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="p">{</span><span class="nt">&quot;insecure-registries&quot;</span><span class="p">:[</span><span class="s2">&quot;ip:5000&quot;</span><span class="p">]}</span>
+</code></pre></div>
+<p>重启docker</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>systemctl restart docker
+</code></pre></div>
+<h3 id="_31">将镜像上传至私有仓库<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<p>标记镜像为私有仓库的镜像</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>docker tag jdk1.8 ip:5000/jdk1.8
+</code></pre></div>
+<p>上传标记的镜像</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>docker push ip:5000/jdk1.8
+</code></pre></div>
+<h2 id="15">15.下载私有仓库镜像<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<h3 id="docker">信任对应的docker地址<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
+<p>修改daemon.json</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>vi /etc/docker/daemon.json
+</code></pre></div>
+<p>添加以下内容，保存退出(让docker信任私有仓库地址)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="p">{</span><span class="nt">&quot;insecure-registries&quot;</span><span class="p">:[</span><span class="s2">&quot;ip:5000&quot;</span><span class="p">]}</span>
+</code></pre></div>
+<p>重启docker</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>systemctl restart docker
+</code></pre></div>
+<h3 id="_32">查看镜像仓库<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>http://ip:5000/v2/_catalog
+</code></pre></div>
+<h3 id="_33">下拉镜像<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>docker pull ip:5000/jdk1.8
+</code></pre></div>
+<h2 id="16-web">16.运行一个 web 应用<a class="headerlink" href="#16-web" title="Permanent link">&para;</a></h2>
+<p>前面我们运行的容器并没有一些什么特别的用处。</p>
+<p>接下来让我们尝试使用 docker 构建一个 web 应用程序。</p>
+<p>我们将在docker容器中运行一个 Python Flask 应用来运行一个web应用。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>runoob@runoob:~# docker pull training/webapp  # 载入镜像
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>runoob@runoob:~# docker run -d -P training/webapp python app.py
+</code></pre></div>
+<p>参数说明:</p>
+<ul>
+<li><strong>-d:</strong>让容器在后台运行。</li>
+<li><strong>-P:</strong>将容器内部使用的网络端口随机映射到我们使用的主机上。</li>
+</ul>
+<h2 id="17docker-run-docker-exec">17.docker run 和 docker exec 的差异<a class="headerlink" href="#17docker-run-docker-exec" title="Permanent link">&para;</a></h2>
+<hr />
+<p><strong>docker run ：</strong>根据镜像创建一个容器并运行一个命令，操作的对象是 <strong>镜像</strong>；</p>
+<p><strong>docker exec ：</strong>在运行的容器中执行命令，操作的对象是 <strong>容器</strong>。</p>
+<hr />
+<h3 id="docker-run"><strong>docker run 命令</strong><a class="headerlink" href="#docker-run" title="Permanent link">&para;</a></h3>
+<h3 id="_34"><strong>语法</strong><a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+</code></pre></div>
+<p>OPTIONS说明：</p>
+<ul>
+<li><strong>-a stdin:</strong> 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；</li>
+<li><strong>-d:</strong> 后台运行容器，并返回容器ID；</li>
+<li><strong>-i:</strong> 以交互模式运行容器，通常与 -t 同时使用；</li>
+<li><strong>-P:</strong> 随机端口映射，容器内部端口<strong>随机</strong>映射到主机的高端口</li>
+<li><strong>-p:</strong> 指定端口映射，格式为：主机(宿主)端口:容器端口</li>
+<li><strong>-t:</strong> 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</li>
+<li><strong>--name="nginx-lb":</strong> 为容器指定一个名称；</li>
+<li><strong>--dns 8.8.8.8:</strong> 指定容器使用的DNS服务器，默认和宿主一致；</li>
+<li><strong>--dns-search example.com:</strong> 指定容器DNS搜索域名，默认和宿主一致；</li>
+<li><strong>-h "mars":</strong> 指定容器的hostname；</li>
+<li><strong>-e username="ritchie":</strong> 设置环境变量；</li>
+<li><strong>--env-file=[]:</strong> 从指定文件读入环境变量；</li>
+<li><strong>--cpuset="0-2" or --cpuset="0,1,2":</strong> 绑定容器到指定CPU运行；</li>
+<li><strong>-m :</strong>设置容器使用内存最大值；</li>
+<li><strong>--net="bridge":</strong> 指定容器的网络连接类型，支持 bridge/host/none/container:<name|id> 四种类型；</li>
+<li><strong>--link=[]:</strong> 添加链接到另一个容器；</li>
+<li><strong>--expose=[]:</strong> 开放一个端口或一组端口；</li>
+<li><strong>--volume , -v:</strong> 绑定一个卷</li>
+</ul>
+<h3 id="_35">实例<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<p>使用docker镜像 nginx:latest 以后台模式启动一个容器，并将容器命名为my-nginx。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>docker run --name my-nginx -p 8081:80 -d nginx:latest
+</code></pre></div>
+<p><img alt="1148440-20190630233839073-453001632" src="../docker%E7%AC%94%E8%AE%B0.assets/1148440-20190630233839073-453001632.png" /></p>
+<p>浏览器访问 http://主机IP:8081，效果如下：</p>
+<p><img alt="1148440-20190630233942493-1515149082" src="../docker%E7%AC%94%E8%AE%B0.assets/1148440-20190630233942493-1515149082.png" /></p>
+<p>使用镜像 nginx:latest 以后台模式启动一个容器，并将容器的80端口映射到主机随机端口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>docker run -P -d nginx:latest
+</code></pre></div>
+<p>使用镜像 nginx:latest 以后台模式启动一个容器，将主机的 80 端口映射到容器的 80 端口，主机的目录 /data 映射到容器的 /data：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>docker run -p 80:80 -v /data:/data -d nginx:latest
+</code></pre></div>
+<p>使用镜像 nginx:latest 以交互模式启动一个容器，在容器内执行/bin/bash命令：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>docker run -it nginx:latest /bin/bash
+</code></pre></div>
+<p><img alt="1148440-20190630234417187-735526142" src="../docker%E7%AC%94%E8%AE%B0.assets/1148440-20190630234417187-735526142.png" /></p>
+<h3 id="docker-exec"><strong>docker exec 命令</strong><a class="headerlink" href="#docker-exec" title="Permanent link">&para;</a></h3>
+<h3 id="_36"><strong>语法</strong><a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+</code></pre></div>
+<p>OPTIONS说明：</p>
+<ul>
+<li><strong>-d :</strong> 分离模式: 在后台运行</li>
+<li><strong>-i :</strong> 即使没有附加也保持STDIN 打开</li>
+<li><strong>-t :</strong> 分配一个伪终端</li>
+</ul>
+<p>在容器名称 my-nginx 中开启一个交互模式的终端：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>docker exec -it my-nginx /bin/bash
+</code></pre></div>
+<p><img alt="1148440-20190630234917321-606588265" src="../docker%E7%AC%94%E8%AE%B0.assets/1148440-20190630234917321-606588265.png" /></p>
+<p>或者使用容器ID 721eb23901ce 开启一个交互模式的终端：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>docker exec -it 721eb23901ce /bin/bash
+</code></pre></div>
+<p><img alt="1148440-20190630235318810-1018356735" src="../docker%E7%AC%94%E8%AE%B0.assets/1148440-20190630235318810-1018356735.png" /></p>
+<h2 id="18">18.自定义镜像<a class="headerlink" href="#18" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>当使用<span class="w"> </span>Docker<span class="w"> </span>构建一个包含<span class="w"> </span>CentOS、JDK<span class="w"> </span><span class="m">1</span>.8、MySQL<span class="w"> </span><span class="m">5</span>.7、Redis<span class="w"> </span>和<span class="w"> </span>Nginx<span class="w"> </span>的容器时，可以按照以下步骤进行操作：
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a>
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a><span class="m">1</span>.<span class="w"> </span>在<span class="w"> </span>Docker<span class="w"> </span>主机上安装<span class="w"> </span>Docker。
+<a id="__codelineno-78-4" name="__codelineno-78-4" href="#__codelineno-78-4"></a><span class="m">2</span>.<span class="w"> </span>创建一个<span class="w"> </span>Dockerfile，其中包含以下内容：
+<a id="__codelineno-78-5" name="__codelineno-78-5" href="#__codelineno-78-5"></a><span class="c"># 使用官方的 CentOS 作为基础镜像</span>
+<a id="__codelineno-78-6" name="__codelineno-78-6" href="#__codelineno-78-6"></a><span class="k">FROM</span><span class="w"> </span><span class="s">centos:centos7</span>
+<a id="__codelineno-78-7" name="__codelineno-78-7" href="#__codelineno-78-7"></a>
+<a id="__codelineno-78-8" name="__codelineno-78-8" href="#__codelineno-78-8"></a><span class="c"># 安装 JDK 1.8</span>
+<a id="__codelineno-78-9" name="__codelineno-78-9" href="#__codelineno-78-9"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>java-1.8.0-openjdk-devel
+<a id="__codelineno-78-10" name="__codelineno-78-10" href="#__codelineno-78-10"></a>
+<a id="__codelineno-78-11" name="__codelineno-78-11" href="#__codelineno-78-11"></a><span class="c"># 安装 MySQL 5.7</span>
+<a id="__codelineno-78-12" name="__codelineno-78-12" href="#__codelineno-78-12"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+<a id="__codelineno-78-13" name="__codelineno-78-13" href="#__codelineno-78-13"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>mysql-community-server
+<a id="__codelineno-78-14" name="__codelineno-78-14" href="#__codelineno-78-14"></a>
+<a id="__codelineno-78-15" name="__codelineno-78-15" href="#__codelineno-78-15"></a><span class="c"># 安装 Redis</span>
+<a id="__codelineno-78-16" name="__codelineno-78-16" href="#__codelineno-78-16"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>epel-release
+<a id="__codelineno-78-17" name="__codelineno-78-17" href="#__codelineno-78-17"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>redis
+<a id="__codelineno-78-18" name="__codelineno-78-18" href="#__codelineno-78-18"></a>
+<a id="__codelineno-78-19" name="__codelineno-78-19" href="#__codelineno-78-19"></a><span class="c"># 安装 Nginx</span>
+<a id="__codelineno-78-20" name="__codelineno-78-20" href="#__codelineno-78-20"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
+<a id="__codelineno-78-21" name="__codelineno-78-21" href="#__codelineno-78-21"></a>
+<a id="__codelineno-78-22" name="__codelineno-78-22" href="#__codelineno-78-22"></a><span class="c"># 设置环境变量</span>
+<a id="__codelineno-78-23" name="__codelineno-78-23" href="#__codelineno-78-23"></a><span class="k">ENV</span><span class="w"> </span>JAVA_HOME<span class="w"> </span>/usr/lib/jvm/java-1.8.0-openjdk
+<a id="__codelineno-78-24" name="__codelineno-78-24" href="#__codelineno-78-24"></a><span class="k">ENV</span><span class="w"> </span>PATH<span class="w"> </span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin
+<a id="__codelineno-78-25" name="__codelineno-78-25" href="#__codelineno-78-25"></a>
+<a id="__codelineno-78-26" name="__codelineno-78-26" href="#__codelineno-78-26"></a><span class="c"># 暴露端口</span>
+<a id="__codelineno-78-27" name="__codelineno-78-27" href="#__codelineno-78-27"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">80 3306 6379</span>
+<a id="__codelineno-78-28" name="__codelineno-78-28" href="#__codelineno-78-28"></a>
+<a id="__codelineno-78-29" name="__codelineno-78-29" href="#__codelineno-78-29"></a><span class="c"># 启动服务</span>
+<a id="__codelineno-78-30" name="__codelineno-78-30" href="#__codelineno-78-30"></a><span class="k">CMD</span><span class="w"> </span>service<span class="w"> </span>mysqld<span class="w"> </span>start<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>service<span class="w"> </span>redis<span class="w"> </span>start<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>nginx<span class="w"> </span>-g<span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span>
+<a id="__codelineno-78-31" name="__codelineno-78-31" href="#__codelineno-78-31"></a><span class="sb">```</span>
+<a id="__codelineno-78-32" name="__codelineno-78-32" href="#__codelineno-78-32"></a>
+<a id="__codelineno-78-33" name="__codelineno-78-33" href="#__codelineno-78-33"></a><span class="m">3</span>.<span class="w"> </span>在<span class="w"> </span>Dockerfile<span class="w"> </span>所在的目录下执行以下命令构建镜像：
+<a id="__codelineno-78-34" name="__codelineno-78-34" href="#__codelineno-78-34"></a>
+<a id="__codelineno-78-35" name="__codelineno-78-35" href="#__codelineno-78-35"></a><span class="sb">```</span>bash
+<a id="__codelineno-78-36" name="__codelineno-78-36" href="#__codelineno-78-36"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myimage<span class="w"> </span>.
+<a id="__codelineno-78-37" name="__codelineno-78-37" href="#__codelineno-78-37"></a><span class="sb">```</span>
+<a id="__codelineno-78-38" name="__codelineno-78-38" href="#__codelineno-78-38"></a>
+<a id="__codelineno-78-39" name="__codelineno-78-39" href="#__codelineno-78-39"></a><span class="m">4</span>.<span class="w"> </span>构建完成后，可以运行以下命令创建并启动容器：
+<a id="__codelineno-78-40" name="__codelineno-78-40" href="#__codelineno-78-40"></a>
+<a id="__codelineno-78-41" name="__codelineno-78-41" href="#__codelineno-78-41"></a><span class="sb">```</span>bash
+<a id="__codelineno-78-42" name="__codelineno-78-42" href="#__codelineno-78-42"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span>:6379<span class="w"> </span>myimage
+<a id="__codelineno-78-43" name="__codelineno-78-43" href="#__codelineno-78-43"></a><span class="sb">```</span>
+<a id="__codelineno-78-44" name="__codelineno-78-44" href="#__codelineno-78-44"></a>
+<a id="__codelineno-78-45" name="__codelineno-78-45" href="#__codelineno-78-45"></a>这将创建一个后台运行的容器，将主机的<span class="w"> </span><span class="m">80</span><span class="w"> </span>端口映射到容器的<span class="w"> </span><span class="m">80</span><span class="w"> </span>端口，3306<span class="w"> </span>端口映射到容器的<span class="w"> </span><span class="m">3306</span><span class="w"> </span>端口，6379<span class="w"> </span>端口映射到容器的<span class="w"> </span><span class="m">6379</span><span class="w"> </span>端口。
+<a id="__codelineno-78-46" name="__codelineno-78-46" href="#__codelineno-78-46"></a>
+<a id="__codelineno-78-47" name="__codelineno-78-47" href="#__codelineno-78-47"></a>关于<span class="w"> </span>Docker<span class="w"> </span>的更多信息，你可以参考以下链接：
+<a id="__codelineno-78-48" name="__codelineno-78-48" href="#__codelineno-78-48"></a>-<span class="w"> </span>Docker<span class="w"> </span>官方文档：https://docs.docker.com/
+<a id="__codelineno-78-49" name="__codelineno-78-49" href="#__codelineno-78-49"></a>-<span class="w"> </span>Docker<span class="w"> </span>教程：https://www.runoob.com/docker/docker-tutorial.html
+<a id="__codelineno-78-50" name="__codelineno-78-50" href="#__codelineno-78-50"></a>
+<a id="__codelineno-78-51" name="__codelineno-78-51" href="#__codelineno-78-51"></a>请注意，以上代码仅供参考，具体配置取决于你的需求和环境。
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>docker build -t myspringboot .
+<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a>docker run -d -p 80:80 -p 3306:3306 -p 6379:6379 myimage
+</code></pre></div>
+<h2 id="19">19.共享镜像<a class="headerlink" href="#19" title="Permanent link">&para;</a></h2>
+<h5 id="docker_1">如何把Docker镜像拷给别人<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h5>
+<p>比如本地有个名为lyhero11/springbootapp2的镜像，操作如下。
+docker save导出镜像:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>D:<span class="se">\d</span>ocker-images<span class="se">\s</span>pringbootapp2-latest.tar<span class="w"> </span>lyhero11/springbootapp2
+</code></pre></div>
+<p>在D:\docker-images\路径下会生成一个tar包springbootapp2-latest.tar，这个就是镜像，可以U盘拷给别人电脑上去。
+然后docker load这个镜像：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>D:<span class="se">\d</span>ocker-images<span class="se">\s</span>pringbootapp2-latest.tar
+</code></pre></div>
+<p>注意：
+上面的-o, -i分别代表--output和--input，save镜像的时候不加-o选项会导致load的时候报错：<code>Error processing tar file(exit status 1): archive/tar: invalid tar header</code>。而且save出来的镜像大小也不对，笔者这个镜像正常是105M，这样save出来的镜像是200多M.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../redis/Redis%E5%AD%A6%E4%B9%A0/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Redis学习">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Redis学习
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-footer__link md-footer__link--next" aria-label="下一页: Nginx学习">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Nginx学习
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 liyedong
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
