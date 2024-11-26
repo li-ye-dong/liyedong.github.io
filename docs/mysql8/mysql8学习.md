@@ -1,8 +1,8 @@
-# Mysql8 学习（黑马）
+# MySQL8
 
-# 数据类型
+## 数据类型
 
-## 1.数值类型
+### 1.数值类型
 
 | 类型         | 大小     | 有符号(SIGNED)范围                                    | 无符号(UNSIGNED)范围                                       | 描述               |
 | ------------ | -------- | ----------------------------------------------------- | ---------------------------------------------------------- | ------------------ |
@@ -15,7 +15,7 @@
 | DOUBLE       | 8  bytes | (-1.7976931348623157 E+308，1.7976931348623157 E+308) | 0 和  (2.2250738585072014 E-308，1.7976931348623157 E+308) | 双精度浮点数值     |
 | DECIMAL      |          | 依赖于M(精度)和D(标度)的值                            | 依赖于M(精度)和D(标度)的值                                 | 小数值(精确定点数) |
 
-## 2.字符串类型
+### 2.字符串类型
 
 | 类型       | 大小                  | 描述                         |
 | ---------- | --------------------- | ---------------------------- |
@@ -34,7 +34,7 @@
 
 
 
-## 3.时间类型
+### 3.时间类型
 
 | 类型      | 大小 | 范围                                       | 格式                | 描述                     |
 | --------- | ---- | ------------------------------------------ | ------------------- | ------------------------ |
@@ -44,7 +44,7 @@
 | DATETIME  | 8    | 1000-01-01 00:00:00 至 9999-12-31 23:59:59 | YYYY-MM-DD HH:MM:SS | 混合日期和时间值         |
 | TIMESTAMP | 4    | 1970-01-01 00:00:01 至 2038-01-19 03:14:07 | YYYY-MM-DD HH:MM:SS | 混合日期和时间值，时间戳 |
 
-# SQL分类
+## SQL分类
 
 | 分 类 | 全称                       | 说明                                                    |
 | ----- | -------------------------- | ------------------------------------------------------- |
@@ -53,9 +53,9 @@
 | DQL   | Data Query Language        | 数据查询语言，用来查询数据库中表的记录                  |
 | DCL   | Data Control Language      | 数据控制语言，用来创建数据库用户、控制数据库的 访问权限 |
 
-## 1.DDL
+### 1.DDL
 
-### 数据库操作
+#### 数据库操作
 
 1). 查询所有数据库
 
@@ -116,7 +116,7 @@ use 数据库名 ;
 use itcast;
 ```
 
-### 数据表操作
+#### 数据表操作
 
 1). 查询当前数据库所有表
 
@@ -170,7 +170,7 @@ gender varchar(1) comment '性别'
 
 ```
 
-#### 表操作-案例  
+##### 表操作-案例  
 
 ```
 设计一张员工信息表，要求如下：
@@ -204,7 +204,7 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 desc emp;
 ```
 
-#### 表操作-修改
+##### 表操作-修改
 
 1). 添加字段
 
@@ -268,7 +268,7 @@ ALTER TABLE 表名 RENAME TO 新表名;
 ALTER TABLE emp RENAME TO employee;
 ```
 
-#### 表操作-删除
+##### 表操作-删除
 
 1). 删除表
 
@@ -294,13 +294,13 @@ TRUNCATE TABLE 表名;
 
 注意: 在删除表的时候，表中的全部数据也都会被删除。
 
-## 2.DML
+### 2.DML
 
 DML英文全称是Data Manipulation Language(数据操作语言)，用来对数据库中表的数据记录进行增、删、改操作。
 
-### 添加数据
+#### 添加数据
 
-#### 1). 给指定字段添加数据
+##### 1). 给指定字段添加数据
 
 ```mysql
 INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...);
@@ -332,7 +332,7 @@ insert into employee(id,workno,name,gender,age,idcard,entrydate) values(1,'1','I
 
 0-255 之间。
 
-#### 2). 给全部字段添加数据
+##### 2). 给全部字段添加数据
 
 ```mysql
 INSERT INTO 表名 VALUES (值1, 值2, ...);
@@ -344,7 +344,7 @@ INSERT INTO 表名 VALUES (值1, 值2, ...);
 insert into employee values(2,'2','张无忌','男',18,'123456789012345670','2005-01-01');
 ```
 
-#### 3). 批量添加数据
+##### 3). 批量添加数据
 
 ```mysql
 INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...) ;
@@ -368,7 +368,7 @@ insert into employee values(3,'3','韦一笑','男',38,'123456789012345670','200
 
 插入的数据大小，应该在字段的规定范围内。
 
-#### 4). 修改数据
+##### 4). 修改数据
 
 修改数据的具体语法为:
 
@@ -402,7 +402,7 @@ update employee set entrydate = '2008-01-01';
 
 修改语句的条件可以有，也可以没有，如果没有条件，则会修改整张表的所有数据。
 
-#### 5). 删除数据
+##### 5). 删除数据
 
 ```mysql
 DELETE FROM 表 名 [ WHERE 条 件 ] ;
@@ -434,7 +434,7 @@ delete from employee;
 
 Execute即可。
 
-## 3.DQL
+### 3.DQL
 
 DQL英文全称是Data Query Language(数据查询语言)，数据查询语言，用来查询数据库中表的记录。
 
@@ -442,7 +442,7 @@ DQL英文全称是Data Query Language(数据查询语言)，数据查询语言�
 
 在一个正常的业务系统中，查询操作的频次是要远高于增删改的，当我们去访问企业官网、电商网站， 在这些网站中我们所看到的数据，实际都是需要从数据库中查询并展示的。而且在查询的过程中，可能 还会涉及到条件、排序、分页等操作。
 
-### 准备工作
+#### 准备工作
 
 ```sql
 drop table if exists employee;
@@ -507,7 +507,7 @@ INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 VALUES (16, '00016', '周芷若', '女', 18, null, '北京', '2012-06-01');
 ```
 
-### 基本语法
+#### 基本语法
 
 ```
 SELECT
@@ -534,7 +534,7 @@ LIMIT
 排序查询（order by）
 分页查询（limit）  
 
-### 基础查询  
+#### 基础查询  
 
 查询多个字段  
 
@@ -587,7 +587,7 @@ select workaddress '工作地址' from emp;
 select distinct workaddress '工作地址' from emp;
 ```
 
-### 条件查询  
+#### 条件查询  
 
 ```mysql
 SELECT 字段列表 FROM 表名 WHERE 条件列表 ;
@@ -752,7 +752,7 @@ select min(age) from emp;
 select sum(age) from emp where workaddress = '西安';
 ```
 
-### 分组查询  
+#### 分组查询  
 
 语法  
 
@@ -798,7 +798,7 @@ select workaddress, count(*) address_count from emp where age < 45 group by work
 select workaddress, gender, count(*) '数量' from emp group by gender , workaddress;
 ```
 
-### 排序查询  
+#### 排序查询  
 
 ```mysql
 SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1 , 字段2 排序方式2 ;
@@ -830,7 +830,7 @@ select * from emp order by entrydate desc;
 select * from emp order by age asc , entrydate desc;
 ```
 
-### 分页查询  
+#### 分页查询  
 
 ```mysql
 SELECT 字段列表 FROM 表名 LIMIT 起始索引, 查询记录数 ;
@@ -884,7 +884,7 @@ select name , age from emp where age <= 35 order by age asc , entrydate desc;
 select * from emp where gender = '男' and age between 20 and 40 order by age asc ,entrydate asc limit 5 ;
 ```
 
-### 执行顺序  
+#### 执行顺序  
 
 在讲解DQL语句的具体语法之前，我们已经讲解了DQL语句的完整语法，及编写顺序，接下来，我们要
 来说明的是DQL语句在执行时的执行顺序，也就是先执行那一部分，后执行那一部分。  
@@ -932,9 +932,9 @@ having ... select ... order by ... limit ...
 
 
 
-## 4.DCL
+### 4.DCL
 
-### 管理用户  
+#### 管理用户  
 
 查询用户  
 
@@ -1001,7 +1001,7 @@ alter user 'heima'@'%' identified with mysql_native_password by '1234';
 drop user 'itcast'@'localhost';
 ```
 
-### 权限控制  
+#### 权限控制  
 
 MySQL中定义了很多种权限，但是常用的就以下几种：  
 
@@ -1058,9 +1058,9 @@ grant all on itcast.* to 'heima'@'%';
 revoke all on itcast.* from 'heima'@'%';
 ```
 
-# 函数  
+## 函数  
 
-## 字符串函数  
+### 字符串函数  
 
 MySQL中内置了很多字符串函数，常用的几个如下：  
 
@@ -1126,7 +1126,7 @@ select substring('Hello MySQL',1,5);
 update emp set workno = lpad(workno, 5, '0');
 ```
 
-## 数值函数  
+### 数值函数  
 
 常见的数值函数如下：  
 
@@ -1179,7 +1179,7 @@ select round(2.344,2);
 select lpad(round(rand()*1000000 , 0), 6, '0');
 ```
 
-## 日期函数  
+### 日期函数  
 
 常见的日期函数如下：  
 
@@ -1243,7 +1243,7 @@ select name, datediff(curdate(), entrydate) as 'entrydays' from emp order by
 entrydays desc;
 ```
 
-## 流程函数  
+### 流程函数  
 
 流程函数也是很常用的一类函数，可以在SQL语句中实现条件筛选，从而提高语句的效率。  
 
@@ -1320,9 +1320,9 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 2). 数据库中，存储的是学生的分数值，如98、75，如何快速判定分数的等级呢？ ---------->
 答案: case ... when ...  
 
-# 约束  
+## 约束  
 
-## 概述  
+### 概述  
 
 概念：约束是作用于表中字段上的规则，用于限制存储在表中的数据。
 目的：保证数据库中数据的正确、有效性和完整性。
@@ -1339,7 +1339,7 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束。  
 
-## 约束演示  
+### 约束演示  
 
 上面我们介绍了数据库中常见的约束，以及约束涉及到的关键字，那这些约束我们到底如何在创建表、
 修改表的时候来指定呢，接下来我们就通过一个案例，来演示一下。
@@ -1384,7 +1384,7 @@ insert into tb_user(name,age,gender) values ('Tom5',120,'男');
 上面，我们是通过编写SQL语句的形式来完成约束的指定，那加入我们是通过图形化界面来创建表结构
 时，又该如何来指定约束呢？ 只需要在创建表的时候，根据我们的需要选择对应的约束即可。  
 
-## 外键约束  
+### 外键约束  
 
 介绍  
 
@@ -1441,7 +1441,7 @@ VALUES
 工，关联的为id为1的部门，此时就出现了数据的不完整性。 而要想解决这个问题就得通过数据库的
 外键约束。  
 
-## 语法  
+### 语法  
 
 添加外键  
 
@@ -1486,7 +1486,7 @@ ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;
 alter table emp drop foreign key fk_emp_dept_id;
 ```
 
-## 删除/更新行为  
+### 删除/更新行为  
 
 添加了外键之后，再删除父表数据时产生的约束行为，我们就称为删除/更新行为。具体的删除/更新行
 为有以下几种:  
@@ -1553,9 +1553,9 @@ dept(id) on update set null on delete set null ;
 
 这就是SET NULL这种删除/更新行为的效果  
 
-# 多表查询  
-
 ## 多表查询  
+
+### 多表查询  
 
 项目开发中，在进行数据库表结构设计时，会根据业务需求及业务模块之间的关系，分析并设计表结
 构，由于业务之间相互关联，所以各个表结构之间也存在着各种联系，基本上分为三种：
@@ -1563,7 +1563,7 @@ dept(id) on update set null on delete set null ;
 多对多
 一对一  
 
-### 一对多  
+#### 一对多  
 
 案例: 部门 与 员工的关系
 关系: 一个部门对应多个员工，一个员工对应一个部门
@@ -1571,7 +1571,7 @@ dept(id) on update set null on delete set null ;
 
 ![image-20231023103311818](mysql8学习.assets/image-20231023103311818.png)
 
-### 多对多  
+#### 多对多  
 
 案例: 学生 与 课程的关系
 关系: 一个学生可以选修多门课程，一门课程也可以供多个学生选择
@@ -1606,7 +1606,7 @@ insert into student_course values (null,1,1),(null,1,2),(null,1,3),(null,2,2),
 (null,2,3),(null,3,4);
 ```
 
-### 一对一  
+#### 一对一  
 
 案例: 用户 与 用户详情的关系
 关系: 一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详情字段放在另
@@ -1646,9 +1646,9 @@ university, userid) values
 (null,'本科','应用数学','阳泉第一小学','阳泉区第一中学','清华大学',4);
 ```
 
-## 多表查询概述  
+### 多表查询概述  
 
-### 数据准备  
+#### 数据准备  
 
 删除之前 emp, dept表的测试数据  
 
@@ -1702,7 +1702,7 @@ VALUES
 
 dept表共6条记录，emp表共17条记录。  
 
-### 概述  
+#### 概述  
 
 多表查询就是指从多张表中查询数据。  
 
@@ -1750,7 +1750,7 @@ select * from emp , dept where emp.dept_id = dept.id;
 
 ![image-20231023103822335](mysql8学习.assets/image-20231023103822335.png)
 
-### **内连接**  
+#### **内连接**  
 
 ![image-20231023103838935](mysql8学习.assets/image-20231023103838935.png)
 
@@ -1795,7 +1795,7 @@ select e.name, d.name from emp e join dept d on e.dept_id = d.id;
 注意事项:  一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字
 段  
 
-### **外连接**  
+#### **外连接**  
 
 ![image-20231023103957318](mysql8学习.assets/image-20231023103957318.png)
 
@@ -1843,7 +1843,7 @@ select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
 左外连接和右外连接是可以相互替换的，只需要调整在连接查询时SQL中，表结构的先后顺
 序就可以了。而我们在日常开发使用时，更偏向于左外连接。  
 
-### **自连接**  
+#### **自连接**  
 
 自连接查询，顾名思义，就是自己连接自己，也就是把一张表连接查询多次。我们先来学习一下自连接
 的查询语法  
@@ -1874,7 +1874,7 @@ b.id;
 在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底
 是哪一张表的字段。  
 
-### 联合查询  
+#### 联合查询  
 
 对于union查询，就是把多次查询的结果合并起来，形成一个新的查询结果集。  
 
@@ -1918,7 +1918,7 @@ union 联合查询，会对查询出来的结果进行去重处理。
 
 ![image-20231024090339035](mysql8学习.assets/image-20231024090339035.png)
 
-### 子查询  
+#### 子查询  
 
 概念  
 
@@ -1930,7 +1930,7 @@ SELECT * FROM t1 WHERE column1 = ( SELECT column1 FROM t2 );
 
 子查询外部的语句可以是INSERT / UPDATE / DELETE / SELECT 的任何一个。  
 
-#### 分类  
+##### 分类  
 
 根据子查询结果不同，分为：
 A. 标量子查询（子查询结果为单个值）
@@ -1943,7 +1943,7 @@ A. WHERE之后
 B. FROM之后
 C. SELECT之后  
 
-#### 标量子查询  
+##### 标量子查询  
 
 子查询返回的结果是单个值（数字、字符串、日期等），最简单的形式，这种子查询称为标量子查询。
 常用的操作符：= <> > >= < <=  
@@ -1977,7 +1977,7 @@ select entrydate from emp where name = '方东白';
 select * from emp where entrydate > (select entrydate from emp where name = '方东白');
 ```
 
-#### 列子查询  
+##### 列子查询  
 
 子查询返回的结果是一列（可以是多行），这种子查询称为列子查询。
 常用的操作符：IN 、NOT IN 、 ANY 、SOME 、 ALL  
@@ -2038,7 +2038,7 @@ select * from emp where salary > any ( select salary from emp where dept_id =
 (select id from dept where name = '研发部') );
 ```
 
-#### 行子查询  
+##### 行子查询  
 
 子查询返回的结果是一行（可以是多列），这种子查询称为行子查询。
 常用的操作符：= 、<> 、IN 、NOT IN
@@ -2094,7 +2094,7 @@ select e.*, d.* from (select * from emp where entrydate > '2006-01-01') e left
 join dept d on e.dept_id = d.id ;
 ```
 
-#### 多表查询案例  
+##### 多表查询案例  
 
 ```sql
 create table salgrade(
@@ -2236,9 +2236,9 @@ select s.name , s.no , c.name from student s , student_course sc , course c wher
 
 备注: 以上需求的实现方式可能会很多, SQL写法也有很多，只要能满足我们的需求，查询出符合条件的记录即可。  
 
-# 事务  
+## 事务  
 
-## 事务简介  
+### 事务简介  
 
 事务 是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系
 统提交或撤销操作请求，即这些操作要么同时成功，要么同时失败。
@@ -2248,7 +2248,7 @@ select s.name , s.no , c.name from student s , student_course sc , course c wher
 注意： 默认MySQL的事务是自动提交的，也就是说，当执行完一条DML语句时，MySQL会立即隐
 式的提交事务  
 
-## 事务操作  
+### 事务操作  
 
 数据准备：  
 
@@ -2262,7 +2262,7 @@ money double(10,2) comment '余额'
 insert into account(name, money) VALUES ('张三',2000), ('李四',2000);
 ```
 
-## 未控制事务  
+### 未控制事务  
 
 测试正常情况  
 
@@ -2296,7 +2296,7 @@ update account set money = money + 1000 where name = '李四';
 
 ![image-20231024094757807](mysql8学习.assets/image-20231024094757807.png)
 
-## 控制事务一  
+### 控制事务一  
 
 1). 查看/设置事务提交方式  
 
@@ -2322,7 +2322,7 @@ COMMIT;
 注意：上述的这种方式，我们是修改了事务的自动提交行为, 把默认的自动提交修改为了手动提
 交, 此时我们执行的DML语句都不会提交, 需要手动的执行commit进行提交。  
 
-## 控制事务二  
+### 控制事务二  
 
 1). 开启事务  
 
@@ -2359,7 +2359,7 @@ commit;
 -- rollback;
 ```
 
-## 事务四大特性  
+### 事务四大特性  
 
 原子性（Atomicity）：事务是不可分割的最小操作单元，要么全部成功，要么全部失败。
 一致性（Consistency）：事务完成时，必须使所有的数据都保持一致状态。
@@ -2372,7 +2372,7 @@ commit;
 
 ![image-20231024095107411](mysql8学习.assets/image-20231024095107411.png)
 
-## 并发事务问题
+### 并发事务问题
 
 1). 赃读：一个事务读到另外一个事务还没有提交的数据。  
 
@@ -2393,7 +2393,7 @@ commit;
 
 ![image-20231024095249517](mysql8学习.assets/image-20231024095249517.png)
 
-## 事务隔离级别  
+### 事务隔离级别  
 
 为了解决并发事务所引发的问题，在数据库中引入了事务隔离级别。主要有以下几种：  
 

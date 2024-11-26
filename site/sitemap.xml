@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://li-ye-dong.github.io/</loc>
-         <lastmod>2024-11-09</lastmod>
+         <lastmod>2024-11-26</lastmod>
     </url>
     <url>
          <loc>https://li-ye-dong.github.io/docker/docker%E7%AC%94%E8%AE%B0/</loc>
-         <lastmod>2024-11-09</lastmod>
+         <lastmod>2024-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://li-ye-dong.github.io/mysql8/mysql8%E5%AD%A6%E4%B9%A0/</loc>
+         <lastmod>2024-11-26</lastmod>
     </url>
     <url>
          <loc>https://li-ye-dong.github.io/nginx/Nginx%E5%AD%A6%E4%B9%A0/</loc>
-         <lastmod>2024-11-09</lastmod>
+         <lastmod>2024-11-26</lastmod>
     </url>
     <url>
          <loc>https://li-ye-dong.github.io/redis/Redis%E5%AD%A6%E4%B9%A0/</loc>
-         <lastmod>2024-11-09</lastmod>
+         <lastmod>2024-11-26</lastmod>
     </url>
 </urlset>
