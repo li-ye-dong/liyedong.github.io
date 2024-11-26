@@ -18,7 +18,8 @@ nav:
  #   - Configuration: guide/config.md
   - Nginx:
     - nginx/Nginx学习.md
-
+  - MySQL:
+    - mysql8/mysql8学习.md
 #[UI]
 theme:
   name: material
