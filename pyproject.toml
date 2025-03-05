@@ -7,10 +7,21 @@ readme = "README.md"
 packages = [{include = "liyedong"}]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.10,<=4.0"
 mkdocs = "^1.6.1"
-mkdocs-material = "^9.5.46"
+mkdocs-material = "^9.6.7"
+setuptools = "^75.8.2"
+mkdocs-blogging-plugin = "^2.2.11"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "tsinghua"
+priority = "primary"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+priority = "supplemental"
