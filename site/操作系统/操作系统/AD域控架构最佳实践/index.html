@@ -1,0 +1,2584 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/AD%E5%9F%9F%E6%8E%A7%E6%9E%B6%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+      
+      
+        <link rel="prev" href="../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/">
+      
+      
+        <link rel="next" href="../Centos8%E5%AD%A6%E4%B9%A0/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>AD域控架构最佳实践 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-节点数量和角色分布的最佳实践" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AD域控架构最佳实践
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDF%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%9B%91%E6%8E%A7/%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A7vsphere%E5%91%8A%E8%AD%A6/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../PDF%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            操作系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows文件复制带权限
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            操作系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    AD域控架构最佳实践
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    AD域控架构最佳实践
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-节点数量和角色分布的最佳实践" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 节点数量和角色分布的最佳实践
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 节点数量和角色分布的最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-中小型企业的单域环境2-3个节点" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 中小型企业的单域环境（2-3个节点）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 中小型企业的单域环境（2-3个节点）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#节点设计" class="md-nav__link">
+    <span class="md-ellipsis">
+      节点设计：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fsmo角色分布" class="md-nav__link">
+    <span class="md-ellipsis">
+      FSMO角色分布：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#配置需求" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置需求
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#设计说明" class="md-nav__link">
+    <span class="md-ellipsis">
+      设计说明：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#主节点1处理高负载的角色例如-pdc仿真主机和-rid主机因为它们经常进行更频繁的操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      主节点1处理高负载的角色，例如 PDC仿真主机和 RID主机，因为它们经常进行更频繁的操作。
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#节点2放置架构主机和域命名主机它们的变动较少因此将这些角色放在次要节点上以减少影响" class="md-nav__link">
+    <span class="md-ellipsis">
+      节点2放置架构主机和域命名主机，它们的变动较少，因此将这些角色放在次要节点上以减少影响。
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#节点3充当基础设施主机或全局编录gc服务器根据是否使用gc调整角色配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      节点3充当基础设施主机或全局编录（GC）服务器，根据是否使用GC调整角色配置。
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-大中型企业的多域环境5个及以上节点" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 大中型企业的多域环境（5个及以上节点）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 大中型企业的多域环境（5个及以上节点）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#节点设计_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      节点设计：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fsmo角色分布_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      FSMO角色分布：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#设计说明_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      设计说明：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fsmo角色用途设计" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. FSMO角色用途设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-域配置要求" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 域配置要求
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 域配置要求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#域控制器配置要求" class="md-nav__link">
+    <span class="md-ellipsis">
+      域控制器配置要求：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#全局编录的作用" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局编录的作用：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#基础结构主机-infrastructure-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础结构主机 (Infrastructure Master)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#为什么基础结构主机不应该与全局编录-gc-服务器共存" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么基础结构主机不应该与全局编录 (GC) 服务器共存？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#总结来说" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结来说：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#全局编录gc和基础结构主机的配置实践" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局编录（GC）和基础结构主机的配置实践：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#典型场景" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型场景：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Centos8%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos8学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Centos%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos安装docker和podman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RHEL8%E6%90%AD%E5%BB%BAdns%E6%9C%8D%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    架构设计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ubuntu%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ubuntu安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ubuntu%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ubuntu安装docker和podman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows%20AD%E5%9F%9F%E7%8E%AF%E5%A2%83%E4%B8%AD%E4%BA%94%E5%A4%A7%E4%B8%BB%E6%9C%BA%E8%A7%92%E8%89%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows AD域环境中五大主机角色
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85MongoDB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker安装MongoDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85chemex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装chemex
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装mysql
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85snipe-IT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker安装snipe IT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lshell%E5%91%BD%E4%BB%A4%E7%AE%A1%E6%8E%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lshell（管理用户只能使用某些命令）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows%E6%97%A0%E6%95%88%E5%9F%9F%E6%8E%A7%E6%B8%85%E9%99%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows无效域控清除
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.关闭防火墙和设置远程桌面的服务端口和关闭windows自动更新和设置ntp
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%AE%89%E8%A3%85lnmp%E7%8E%AF%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装lnmp环境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    RHEL9
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    计算机维护
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机维护
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/ventoy%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E3%80%82/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ventoy启动失败。
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/ventoy%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ventoy启动盘制作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/%E5%90%84%E5%93%81%E7%89%8C%E4%B8%BB%E6%9D%BFbios%E6%8C%89%E9%94%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    各品牌主板bios按键
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E7%9B%91%E6%8E%A7/%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A7vsphere%E5%91%8A%E8%AD%A6/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>AD域控架构最佳实践</h1>
+
+<p>Active Directory (AD) 域的设计和 FSMO（Flexible Single Master Operation）角色的分布是确保AD环境高效、安全运行的关键。在最佳实践中，节点（域控制器）的数量和角色的分配取决于企业的规模、地域分布和业务需求。接下来，我将详细讨论 <strong>AD域的最佳实践设计</strong>，包括几个节点的推荐方案、各节点的 FSMO 角色分配、用途设计以及域的配置要求。</p>
+<p><img alt="画板" src="../../../images/1733456062226-d0a4d834-0311-48df-a6c7-4b01733ab4ad.jpeg" /></p>
+<h3 id="1-节点数量和角色分布的最佳实践">1. <strong>节点数量和角色分布的最佳实践</strong><a class="headerlink" href="#1-节点数量和角色分布的最佳实践" title="Permanent link">&para;</a></h3>
+<h4 id="11-中小型企业的单域环境2-3个节点">1.1 <strong>中小型企业的单域环境（2-3个节点）</strong><a class="headerlink" href="#11-中小型企业的单域环境2-3个节点" title="Permanent link">&para;</a></h4>
+<p>对于中小型企业来说，通常有一个单域环境，域控制器的数量取决于可用性需求和负载分布。</p>
+<h5 id="节点设计"><strong>节点设计</strong>：<a class="headerlink" href="#节点设计" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>2个节点（域控制器）</strong>：基础的高可用性设计，确保一个域控制器宕机时另一个可以继续提供服务。</li>
+<li><strong>3个节点（域控制器）</strong>：增加冗余，保证更高的可用性，特别是在多地域或有分支机构的情况下。</li>
+</ul>
+<p><img alt="画板" src="../../../images/1727074626620-cf5f9dd1-9f3c-4c5c-a6ae-9c75ac98e384.jpeg" /></p>
+<h5 id="fsmo角色分布"><strong>FSMO角色分布</strong>：<a class="headerlink" href="#fsmo角色分布" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>节点1</strong>：<ul>
+<li><strong>PDC仿真主机</strong>：主时间源，负责密码更改、账户锁定等操作。</li>
+<li><strong>RID主机</strong>：分配SID中的RID部分。</li>
+<li><strong>GC全局编录器：跨域查询和身份验证。</strong></li>
+</ul>
+</li>
+<li><strong>节点2</strong>：<ul>
+<li><strong>架构主机</strong>：管理架构更改，通常变化较少。</li>
+<li><strong>域命名主机</strong>：管理域的添加和删除操作。</li>
+<li><strong>GC全局编录器：跨域查询和身份验证。</strong></li>
+</ul>
+</li>
+<li><strong>节点3</strong>：<ul>
+<li><strong>基础结构主机</strong>：负责跨域的对象名称解析（如果没有全局编录，不建议与GC服务器同机）。</li>
+<li><strong>GC全局编录器：跨域查询和身份验证。</strong></li>
+</ul>
+</li>
+</ul>
+<h5 id="配置需求">配置需求<a class="headerlink" href="#配置需求" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>操作系统</th>
+<th>配置</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zzad-app01</td>
+<td>winserver2008R2</td>
+<td>4C16G 100g</td>
+<td><strong>PDC仿真主机、RID主机、GC全局编录器</strong></td>
+</tr>
+<tr>
+<td>zzad-app02</td>
+<td>winserver2008R2</td>
+<td>4C16G 100G</td>
+<td><strong>架构主机、域命名主机、GC全局编录器</strong></td>
+</tr>
+<tr>
+<td>zzad-app03</td>
+<td>winserver2008R2</td>
+<td>4C16G 100g</td>
+<td><strong>基础结构主机、GC全局编录器</strong></td>
+</tr>
+</tbody>
+</table>
+<h5 id="设计说明"><strong>设计说明</strong>：<a class="headerlink" href="#设计说明" title="Permanent link">&para;</a></h5>
+<h5 id="主节点1处理高负载的角色例如-pdc仿真主机和-rid主机因为它们经常进行更频繁的操作"><strong>主节点1</strong>处理高负载的角色，例如 PDC仿真主机和 RID主机，因为它们经常进行更频繁的操作。<a class="headerlink" href="#主节点1处理高负载的角色例如-pdc仿真主机和-rid主机因为它们经常进行更频繁的操作" title="Permanent link">&para;</a></h5>
+<h5 id="节点2放置架构主机和域命名主机它们的变动较少因此将这些角色放在次要节点上以减少影响"><strong>节点2</strong>放置架构主机和域命名主机，它们的变动较少，因此将这些角色放在次要节点上以减少影响。<a class="headerlink" href="#节点2放置架构主机和域命名主机它们的变动较少因此将这些角色放在次要节点上以减少影响" title="Permanent link">&para;</a></h5>
+<h5 id="节点3充当基础设施主机或全局编录gc服务器根据是否使用gc调整角色配置"><strong>节点3</strong>充当基础设施主机或全局编录（GC）服务器，根据是否使用GC调整角色配置。<a class="headerlink" href="#节点3充当基础设施主机或全局编录gc服务器根据是否使用gc调整角色配置" title="Permanent link">&para;</a></h5>
+<h4 id="12-大中型企业的多域环境5个及以上节点">1.2 <strong>大中型企业的多域环境（5个及以上节点）</strong><a class="headerlink" href="#12-大中型企业的多域环境5个及以上节点" title="Permanent link">&para;</a></h4>
+<p>对于大中型企业，尤其是跨地域的组织，多个域控制器分布在不同的站点，以提高可用性和负载分布。</p>
+<h5 id="节点设计_1"><strong>节点设计</strong>：<a class="headerlink" href="#节点设计_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>5个或更多节点</strong>：为了提高性能和容错性，通常会设计多个域控制器。<ul>
+<li><strong>2-3个主站点的域控制器</strong></li>
+<li><strong>1-2个远程站点的域控制器</strong></li>
+</ul>
+</li>
+</ul>
+<p><img alt="画板" src="../../../images/1727073195562-9ff0d240-0859-4d2f-a3a5-a87f1186fe13.jpeg" /></p>
+<h5 id="fsmo角色分布_1"><strong>FSMO角色分布</strong>：<a class="headerlink" href="#fsmo角色分布_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>节点1（主域控制器）</strong>：<ul>
+<li><strong>PDC仿真主机</strong>：主时间源，负责密码管理、账户锁定等。应放在主站点的高性能域控制器上。</li>
+<li><strong>RID主机</strong>：负责为域内所有域控制器分配RID池，以创建唯一的SID。</li>
+</ul>
+</li>
+<li><strong>节点2（次级域控制器）</strong>：<ul>
+<li><strong>架构主机</strong>：森林范围的角色，负责架构的更改。放置在主站点的次要域控制器上。</li>
+<li><strong>域命名主机</strong>：管理域和应用程序分区的添加与删除。</li>
+</ul>
+</li>
+<li><strong>节点3（辅助域控制器）</strong>：<ul>
+<li><strong>基础结构主机</strong>：通常与全局编录服务器分开运行，处理跨域的对象名称解析和更新。适合在非全局编录（GC）的域控制器上配置。</li>
+</ul>
+</li>
+<li><strong>节点4和5（远程站点域控制器）</strong>：<ul>
+<li>这些域控制器可以配置为全局编录（GC）服务器，并且在地理上分布在其他站点，以处理远程位置的身份验证请求，并减少WAN带宽负载。</li>
+</ul>
+</li>
+</ul>
+<h5 id="设计说明_1"><strong>设计说明</strong>：<a class="headerlink" href="#设计说明_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>PDC仿真主机和 RID主机</strong>应当放置在核心站点的主域控制器上，保证这些关键角色的高可用性和性能。</li>
+<li><strong>架构主机和域命名主机</strong>可以放在较少使用的域控制器上，因为这些角色的使用频率低，且变动较少。</li>
+<li><strong>基础结构主机</strong>根据网络拓扑的设计，在跨域环境下应该避免与全局编录共存，除非每个域控制器都是全局编录服务器。</li>
+</ul>
+<hr />
+<h3 id="2-fsmo角色用途设计">2. <strong>FSMO角色用途设计</strong><a class="headerlink" href="#2-fsmo角色用途设计" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>PDC仿真主机</strong>：主要提供时间同步服务，并处理密码更改和账户锁定问题。它还在与 NT 4.0 域的兼容模式中充当主域控制器。因此，建议将其放置在性能较好的主域控制器上。</li>
+<li><strong>RID主机</strong>：负责为域内的所有域控制器分配 RID 池。若域控制器上的 RID 用尽，将无法创建新的对象。因此，RID主机的可用性至关重要，建议与 PDC 仿真主机放置在同一节点。</li>
+<li><strong>架构主机</strong>：架构主机负责AD架构的修改，这些修改通常比较少见。因此，架构主机可以放置在较少使用的域控制器上，建议与域命名主机一起放置。</li>
+<li><strong>域命名主机</strong>：负责域和应用程序分区的管理。类似于架构主机，域命名主机的操作也比较少，因此可以与架构主机一起放在次要节点上。</li>
+<li><strong>基础结构主机</strong>：基础结构主机在多域环境下负责跨域的对象名称解析，尤其是引用其他域的对象时。它不应与全局编录服务器共存，除非所有的域控制器都是全局编录服务器。</li>
+</ul>
+<hr />
+<p>在 Active Directory 中，FSMO（Flexible Single Master Operation）角色可以简写为以下形式：</p>
+<ul>
+<li><strong>PDC仿真主机</strong>：<strong>PDC</strong>（Primary Domain Controller Emulator）</li>
+<li><strong>RID主机</strong>：<strong>RID</strong>（Relative Identifier Master）</li>
+<li><strong>架构主机</strong>：<strong>Schema Master</strong></li>
+<li><strong>域命名主机</strong>：<strong>Domain Naming Master</strong></li>
+<li><strong>基础结构主机</strong>：<strong>Infrastructure Master</strong></li>
+</ul>
+<h3 id="3-域配置要求">3. <strong>域配置要求</strong><a class="headerlink" href="#3-域配置要求" title="Permanent link">&para;</a></h3>
+<h4 id="域控制器配置要求"><strong>域控制器配置要求</strong>：<a class="headerlink" href="#域控制器配置要求" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>全局编录（GC）</strong>：应确保在每个站点至少有一个域控制器配置为全局编录服务器，以提高跨域资源访问的效率。</li>
+<li><strong>站点和服务配置</strong>：合理配置站点和子网，以确保AD复制流量的优化。通过正确配置站点，可以减少广域网流量，并加快身份验证过程。</li>
+<li><strong>域和信任关系</strong>：如果是多域环境，域之间的信任关系应该设置为双向信任，以便于跨域资源访问。默认情况下，同一森林内的域之间是自动信任的。</li>
+<li><strong>时间同步</strong>：PDC仿真主机应配置为与可靠的外部时间源进行同步，确保整个域的时间一致性。所有其他域控制器则应与PDC仿真主机同步。</li>
+<li><strong>组策略配置</strong>：组策略应通过域级别和组织单元（OU）级别配置，以控制用户和计算机的设置。可以根据不同部门和站点的需求创建多个OU，灵活管理权限和策略。</li>
+<li><strong>备份和恢复计划</strong>：定期备份域控制器的系统状态，特别是 FSMO 角色所在的域控制器，以确保在出现故障时能够快速恢复。</li>
+</ul>
+<hr />
+<ol>
+<li>全局编录 (Global Catalog, GC)  </li>
+</ol>
+<p><strong>全局编录服务器</strong> 是一个特殊的域控制器，存储了整个 AD 森林中所有对象的部分属性，并允许快速查找这些对象。GC 服务器的作用是使用户能够搜索和访问跨域的资源，而不需要知道资源位于哪个域。</p>
+<h4 id="全局编录的作用"><strong>全局编录的作用</strong>：<a class="headerlink" href="#全局编录的作用" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>跨域查询</strong>：GC 服务器存储了整个森林中每个对象的一部分属性（例如对象的名字、类型等）。这允许用户跨域搜索，如搜索不同域中的用户或组。</li>
+<li><strong>身份验证</strong>：当用户登录到 AD 时，GC 服务器帮助验证用户是否属于某个组，尤其是跨域的组成员身份验证。</li>
+</ol>
+<p><strong>全局编录服务器</strong> 通常是多个域控制器的一部分，并在整个AD森林中共享部分对象数据，确保可以快速地在不同域中查找对象。</p>
+<h4 id="基础结构主机-infrastructure-master"><strong>基础结构主机 (Infrastructure Master)</strong><a class="headerlink" href="#基础结构主机-infrastructure-master" title="Permanent link">&para;</a></h4>
+<p><strong>基础结构主机</strong> 的主要作用是在多域环境中，当对象引用其他域的对象时（例如用户属于其他域中的组），它负责跨域更新这些对象的名称或位置。当对象在其他域中更改时，基础结构主机确保这些更改能被正确地更新和反映在当前域中。</p>
+<h4 id="为什么基础结构主机不应该与全局编录-gc-服务器共存"><strong>为什么基础结构主机不应该与全局编录 (GC) 服务器共存？</strong><a class="headerlink" href="#为什么基础结构主机不应该与全局编录-gc-服务器共存" title="Permanent link">&para;</a></h4>
+<p>在多域环境中，如果基础结构主机和 GC 服务器共存在同一个域控制器上，并且该服务器是该域的唯一基础结构主机，那么基础结构主机将无法正确执行它的跨域更新功能。这是因为全局编录服务器已经存储了所有域的部分对象信息，基础结构主机不会意识到跨域对象的变化，因为 GC 服务器上已经包含了跨域的所有数据。</p>
+<h4 id="总结来说"><strong>总结来说</strong>：<a class="headerlink" href="#总结来说" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>基础结构主机</strong>负责更新对象引用的跨域变化（尤其是非 GC 服务器的跨域对象变化）。</li>
+<li><strong>全局编录服务器</strong> 存储了整个 AD 森林中每个对象的一部分信息，允许快速跨域搜索。</li>
+</ul>
+<p>如果基础结构主机和全局编录服务器共存于同一个服务器上，在多域环境中，基础结构主机会认为它已经可以从 GC 得到所有的信息，导致无法正确地更新引用的跨域对象。因此，<strong>在多域环境下，基础结构主机应尽量不与 GC 服务器放在同一个域控制器上</strong>，以确保基础结构主机的功能不会受到 GC 的影响。</p>
+<h4 id="全局编录gc和基础结构主机的配置实践"><strong>全局编录（GC）和基础结构主机的配置实践</strong>：<a class="headerlink" href="#全局编录gc和基础结构主机的配置实践" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>全局编录服务器</strong> 通常设置在各个站点的域控制器上，以确保跨域搜索和身份验证的高效。</li>
+<li><strong>基础结构主机</strong> 应避免和 GC 服务器放在同一个域控制器上，除非这个域只有一个域控制器，或者所有域控制器都是 GC 服务器。</li>
+</ul>
+<h4 id="典型场景"><strong>典型场景</strong>：<a class="headerlink" href="#典型场景" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>单域环境</strong>：因为没有跨域对象引用的问题，基础结构主机和 GC 服务器可以共存。</li>
+<li><strong>多域环境</strong>：为了确保基础结构主机能够正确更新跨域对象引用，不建议基础结构主机和 GC 服务器在同一台域控制器上运行。</li>
+</ul>
+<h3 id="总结">总结<a class="headerlink" href="#总结" title="Permanent link">&para;</a></h3>
+<p>AD域设计中，FSMO角色的分布应根据组织的规模、地理分布和业务需求来确定。在小型环境中，可以集中分配角色，而在大中型企业中，角色应合理分散，以确保高可用性和灵活的管理。每个节点的设计应根据其具体的功能和负载进行配置，并确保有足够的冗余和备份机制来应对可能的故障。通过优化全局编录、站点配置和信任关系，可以保证 AD 环境的高效和稳定运行。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Windows文件复制带权限">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Windows文件复制带权限
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Centos8%E5%AD%A6%E4%B9%A0/" class="md-footer__link md-footer__link--next" aria-label="下一页: Centos8学习">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Centos8学习
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

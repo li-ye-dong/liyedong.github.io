@@ -1,0 +1,3932 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/k8s%E5%92%8C%E5%AE%B9%E5%99%A8/CKA/Kubernetes%E8%AE%A4%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83/">
+      
+      
+        <link rel="prev" href="../Kubernetes%20Dashboard/">
+      
+      
+        <link rel="next" href="../NetworkPolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Kubernetes认证与授权 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubectl的认证授权" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kubernetes认证与授权
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDF%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%9B%91%E6%8E%A7/%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A7vsphere%E5%91%8A%E8%AD%A6/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../PDF%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            K8s和容器
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    在 Kubernetes 上快速安装 KubeSphere
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9F%BA%E4%BA%8EEFK%E5%AE%9E%E7%8E%B0kubernetes%E9%9B%86%E7%BE%A4%E7%9A%84%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0%EF%BC%88%E6%89%A9%E5%B1%95%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于EFK实现kubernetes集群的日志平台（扩展）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CKA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            CKA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deploy%20Pod%E6%95%B0%E9%87%8F%E6%89%A9%E7%BC%A9%E5%AE%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Pod数量扩缩容
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deploy%20Pod%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Pod版本回退
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deploy%20Pod%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Pod版本更新策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../K8s%20Ingress%20%E4%B8%83%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s Ingress 七层负载均衡
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../K8s%20Service%20%E5%9B%9B%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s Service 四层负载均衡
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../K8s%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%20Namespace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s资源管理 Namespace
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../K8s%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%20Pod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s资源管理 Pod
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../K8s%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E4%B9%8BLabel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s资源管理之Label
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Kubernerts%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernerts资源清单概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Kubernetes%20Dashboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes Dashboard
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Kubernetes认证与授权
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes认证与授权
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl的认证授权" class="md-nav__link">
+    <span class="md-ellipsis">
+      kubectl的认证授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubelet的认证授权" class="md-nav__link">
+    <span class="md-ellipsis">
+      kubelet的认证授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Account
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NetworkPolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NetworkPolicy网络策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E5%AE%9A%E5%90%91%E8%B0%83%E5%BA%A6%20NodeSelector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 定向调度 NodeSelector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E5%AE%9A%E5%90%91%E8%B0%83%E5%BA%A6NodeName/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 定向调度NodeName
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E5%AE%B9%E5%99%A8%E6%8E%A2%E6%B5%8B%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 容器探测介绍
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E5%AE%B9%E5%99%A8%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 容器重启策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20DaemonSet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 DaemonSet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20Deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20HPA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 HPA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20ReplicaSet%EF%BC%88RS%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 ReplicaSet（RS）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%B1%A1%E7%82%B9%20Taints%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 污点 Taints概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%B1%A1%E7%82%B9%E4%B9%8B%20NoSchedule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 污点之 NoSchedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E6%B1%A1%E7%82%B9%E4%B9%8B%20PreferNoSchedule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 污点之 PreferNoSchedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E8%B0%83%E5%BA%A6%E5%AE%B9%E5%BF%8D%20Toleration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 调度容忍 Toleration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pod%20%E8%B0%83%E5%BA%A6%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 调度概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cka%E6%A8%A1%E6%8B%9F%E9%A2%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etcd%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Etcd备份还原
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%93%BE%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    部署相关
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubectl%E5%91%BD%E4%BB%A4%E5%92%8C%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubectl命令和技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubelet%E3%80%81kubeadm%E3%80%81kubectl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubelet、kubeadm、kubectl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes%20%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kubernetes 数据存储
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%BF%E7%94%A8kubeam%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主机硬件配置说明
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CKAD
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            CKAD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/ConfigMap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ConfigMap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/Containers%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers安全上下文
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/CronJob%E5%92%8CJob%E8%B5%84%E6%BA%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CronJob和Job资源
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/Dockerfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockerfile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/Pod%20%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5%20livenessProbe%E5%92%8CreadinessProbe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 健康检查 livenessProbe和readinessProbe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/Pod%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod资源限额
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/Secret/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secret
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/%E5%8D%87%E7%BA%A7%E5%92%8C%E5%9B%9E%E6%BB%9A/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    升级和回滚
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKAD/%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    金丝雀部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CKS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            CKS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/API%20server%20%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API server 身份验证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/Cilium%20%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cilium 网络策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/Docker%20%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 守护进程安全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/Dockerfile%E5%AE%89%E5%85%A8%E5%92%8C%E5%AE%B9%E5%99%A8%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockerfile安全和容器安全上下文
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/Falco%E5%AE%89%E5%85%A8%E7%9B%91%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Falco安全监测工具
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/TSL%20Secret/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSL Secret
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/bom%20%E5%B7%A5%E5%85%B7%E7%94%9F%E6%88%90%20SPDX%20%E6%96%87%E6%A1%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bom 工具生成 SPDX 文档
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/kubelet%20%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubelet 相关参数配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/%E4%BD%BF%E7%94%A8%20ingress%20%E5%85%AC%E5%BC%80%20https%20%E6%9C%8D%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 ingress 公开 https 服务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/%E5%85%B3%E9%97%AD%20API%20%E5%87%AD%E6%8D%AE%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关闭 API 凭据自动挂载
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E7%AD%96%E7%95%A5%20ImagePolicyWebhook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    容器镜像策略 ImagePolicyWebhook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/%E6%97%A5%E5%BF%97%E5%AE%A1%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    日志审计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5%20Deny%20%E5%92%8C%20Allow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络策略 Deny 和 Allow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CKS/%E9%99%90%E5%88%B6%E6%80%A7%20Pod%20%E5%AE%89%E5%85%A8%E6%A0%87%E5%87%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    限制性 Pod 安全标准
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Django%E5%BA%94%E7%94%A8%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django应用容器化实践
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Docker%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Docker%E5%B0%8F%E7%BB%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Docker%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Docker%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/Dokcer%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dokcer实现原理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/%E4%B8%AD%E9%97%B4%E4%BB%B6/Tomcat%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E7%9B%91%E6%8E%A7/%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A7vsphere%E5%91%8A%E8%AD%A6/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Kubernetes认证与授权</h1>
+
+<p><strong><font style="color:rgb(119, 119, 119);">APIService安全控制</font></strong></p>
+<p><img alt="" src="../../../images/1733054247494-47ae0594-6858-4ee7-9fb8-9ad10208a98c.png" /></p>
+<ul>
+<li><font style="color:rgb(51, 51, 51);">Authentication：身份认证</font><ol>
+<li><font style="color:rgb(51, 51, 51);">这个环节它面对的输入是整个</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;http request&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，负责对来自client的请求进行身份校验，支持的方法包括:</font></li>
+<li><font style="color:rgb(51, 51, 51);">client证书验证（https双向验证）</font></li>
+<li><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;basic auth&lt;/font&gt;</code></li>
+<li><font style="color:rgb(51, 51, 51);">普通token</font></li>
+<li><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;jwt token&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">(用于serviceaccount)</font></li>
+<li><font style="color:rgb(51, 51, 51);">APIServer启动时，可以指定一种Authentication方法，也可以指定多种方法。如果指定了多种方法，那么APIServer将会逐个使用这些方法对客户端请求进行验证， 只要请求数据通过其中一种方法的验证，APIServer就会认为Authentication成功；</font></li>
+<li><font style="color:rgb(51, 51, 51);">使用kubeadm引导启动的k8s集群的apiserver初始配置中，默认支持</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;client证书&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">验证和</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;serviceaccount&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">两种身份验证方式。 证书认证通过设置</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;--client-ca-file&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">根证书以及</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;--tls-cert-file&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">和</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;--tls-private-key-file&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">来开启。</font></li>
+<li><font style="color:rgb(51, 51, 51);">在这个环节，apiserver会通过client证书或 </font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;http header&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">中的字段(比如serviceaccount的</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;jwt token&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">)来识别出请求的</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;用户身份&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，包括”user”、”group”等，这些信息将在后面的</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;authorization&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">环节用到。</font></li>
+</ol>
+</li>
+<li><font style="color:rgb(51, 51, 51);">Authorization：鉴权，你可以访问哪些资源</font><ol>
+<li><font style="color:rgb(51, 51, 51);">这个环节面对的输入是</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;http request context&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">中的各种属性，包括：</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;user&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">、</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;group&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">、</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;request path&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">（比如：</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;/api/v1&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">、</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;/healthz&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">、</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;/version&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">等）、 </font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;request verb&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">(比如：</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;get&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">、</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;list&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">、</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;create&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">等)。</font></li>
+<li><font style="color:rgb(51, 51, 51);">APIServer会将这些属性值与事先配置好的访问策略(</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;access policy&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">）相比较。APIServer支持多种</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;authorization mode&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，包括</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;Node、RBAC、Webhook&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">等。</font></li>
+<li><font style="color:rgb(51, 51, 51);">APIServer启动时，可以指定一种</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;authorization mode&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，也可以指定多种</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;authorization mode&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，如果是后者，只要Request通过了其中一种mode的授权， 那么该环节的最终结果就是授权成功。在较新版本kubeadm引导启动的k8s集群的apiserver初始配置中，</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;authorization-mode&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">的默认配置是</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;”Node,RBAC”&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">。</font></li>
+</ol>
+</li>
+<li><font style="color:rgb(51, 51, 51);">Admission Control：</font><a href="http://docs.kubernetes.org.cn/144.html"><font style="color:rgb(51, 51, 51);">准入控制</font></a><font style="color:rgb(51, 51, 51);">，一个控制链(层层关卡)，偏集群安全控制、管理方面。为什么说是安全相关的机制？</font><ul>
+<li><font style="color:rgb(51, 51, 51);">以NamespaceLifecycle为例， 该插件确保处于Termination状态的Namespace不再接收新的对象创建请求，并拒绝请求不存在的Namespace。该插件还可以防止删除系统保留的Namespace:default，kube-system，kube-public。 </font></li>
+<li><font style="color:rgb(51, 51, 51);">NodeRestriction， 此插件限制kubelet修改Node和Pod对象，这样的kubelets只允许修改绑定到Node的Pod API对象，以后版本可能会增加额外的限制 。</font></li>
+</ul>
+</li>
+</ul>
+<p><font style="color:rgb(51, 51, 51);">为什么我们执行命令kubectl命令，可以直接管理k8s集群资源？</font></p>
+<h6 id="kubectl的认证授权"><font style="color:rgb(119, 119, 119);">kubectl的认证授权</font><a class="headerlink" href="#kubectl的认证授权" title="Permanent link">&para;</a></h6>
+<p><font style="color:rgb(51, 51, 51);">kubectl的日志调试级别：</font></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong><font style="color:rgb(51, 51, 51);">信息</font></strong></th>
+<th style="text-align: left;"><strong><font style="color:rgb(51, 51, 51);">描述</font></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=0</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">通常，这对操作者来说总是可见的。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=1</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">当您不想要很详细的输出时，这个是一个合理的默认日志级别。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=2</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">有关服务和重要日志消息的有用稳定状态信息，这些信息可能与系统中的重大更改相关。这是大多数系统推荐的默认日志级别。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=3</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">关于更改的扩展信息。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=4</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">调试级别信息。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=6</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">显示请求资源。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=7</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">显示 HTTP 请求头。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=8</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">显示 HTTP 请求内容。</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">v=9</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">显示 HTTP 请求内容，并且不截断内容。</font></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="l l-Scalar l-Scalar-Plain">$ kubectl get nodes -v=7</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="l l-Scalar l-Scalar-Plain">I0329 20:20:08.633065    3979 loader.go:359] Config loaded from file /root/.kube/config</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="l l-Scalar l-Scalar-Plain">I0329 20:20:08.633797    3979 round_trippers.go:416] GET https://192.168.136.128:6443/api/v1/nodes?limit=500</span>
+</code></pre></div></td></tr></table></div>
+<p><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubeadm init&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">启动完master节点后，会默认输出类似下面的提示内容：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nn">...</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="l l-Scalar l-Scalar-Plain">Your Kubernetes master has initialized successfully!</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="l l-Scalar l-Scalar-Plain">To start using your cluster, you need to run the following as a regular user</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">mkdir -p $HOME/.kube</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">sudo chown $(id -u):$(id -g) $HOME/.kube/config</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="nn">...</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">这些信息是在告知我们如何配置</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubeconfig&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">文件。按照上述命令配置后，master节点上的</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubectl&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">就可以直接使用</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;$HOME/.kube/config&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">的信息访问</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;k8s cluster&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">了。 并且，通过这种配置方式，</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubectl&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">也拥有了整个集群的管理员(root)权限。</font></p>
+<p><font style="color:rgb(51, 51, 51);">很多K8s初学者在这里都会有疑问：</font></p>
+<ul>
+<li><font style="color:rgb(51, 51, 51);">当</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubectl&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">使用这种</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubeconfig&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">方式访问集群时，</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;Kubernetes&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">的</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kube-apiserver&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">是如何对来自</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubectl&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">的访问进行身份验证(</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;authentication&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">)和授权(</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;authorization&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">)的呢？</font></li>
+<li><font style="color:rgb(51, 51, 51);">为什么来自</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubectl&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">的请求拥有最高的管理员权限呢？</font></li>
+</ul>
+<p><font style="color:rgb(51, 51, 51);">查看</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;/root/.kube/config&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">文件：</font></p>
+<p><font style="color:rgb(51, 51, 51);">前面提到过apiserver的authentication支持通过</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;tls client certificate、basic auth、token&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">等方式对客户端发起的请求进行身份校验， 从kubeconfig信息来看，kubectl显然在请求中使用了</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;tls client certificate&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">的方式，即客户端的证书。 </font></p>
+<p><font style="color:rgb(51, 51, 51);">证书base64解码：</font></p>
+<p>$ echo xxxxxxxxxxxxxx |base64 -d &gt; kubectl.crt</p>
+<p><font style="color:rgb(51, 51, 51);">说明在认证阶段，</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;apiserver&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">会首先使用</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;--client-ca-file&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">配置的CA证书去验证kubectl提供的证书的有效性,基本的方式 ：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="l l-Scalar l-Scalar-Plain">$  openssl verify -CAfile /etc/kubernetes/pki/ca.crt kubectl.crt</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="l l-Scalar l-Scalar-Plain">kubectl.crt</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OK</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">除了认证身份，还会取出必要的信息供授权阶段使用，文本形式查看证书内容：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="l l-Scalar l-Scalar-Plain">$ openssl x509 -in kubectl.crt -text</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="l l-Scalar l-Scalar-Plain">Certificate</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="nt">Data</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">        </span><span class="nt">Version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3 (0x2)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">        </span><span class="nt">Serial Number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4736260165981664452 (0x41ba9386f52b74c4)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="nt">Signature Algorithm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sha256WithRSAEncryption</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Issuer</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CN=kubernetes</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Validity</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">Not Before</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Feb 10 07:33:39 2020 GMT</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">Not After</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Feb  9 07:33:40 2021 GMT</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Subject</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">O=system:masters, CN=kubernetes-admin</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">认证通过后，提取出签发证书时指定的CN(Common Name),</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;kubernetes-admin&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，作为请求的用户名 (User Name), 从证书中提取O(Organization)字段作为请求用户所属的组 (Group)，</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;group = system:masters&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，然后传递给后面的授权模块。</font></p>
+<p><font style="color:rgb(51, 51, 51);">kubeadm在init初始引导集群启动过程中，创建了许多</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;default&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">的</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;role、clusterrole、rolebinding&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">和</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;clusterrolebinding&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">， 在k8s有关RBAC的官方文档中，我们看到下面一些</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;default clusterrole&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">列表: </font></p>
+<p><font style="color:rgb(51, 51, 51);"></font></p>
+<p><font style="color:rgb(51, 51, 51);">其中第一个cluster-admin这个cluster role binding绑定了system:masters group，这和authentication环节传递过来的身份信息不谋而合。 沿着system:masters group对应的cluster-admin clusterrolebinding“追查”下去，真相就会浮出水面。</font></p>
+<p><font style="color:rgb(51, 51, 51);">我们查看一下这一binding：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="l l-Scalar l-Scalar-Plain">$ kubectl describe clusterrolebinding cluster-admin</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">cluster-admin</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nt">Labels</span><span class="p">:</span><span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/bootstrapping=rbac-defaults</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="nt">Annotations:  rbac.authorization.kubernetes.io/autoupdate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="nt">Role</span><span class="p">:</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="nt">Kind</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ClusterRole</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">  </span><span class="nt">Name</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">cluster-admin</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="nt">Subjects</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Kind   Name            Namespace</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">----   ----            ---------</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Group  system:masters</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">我们看到在kube-system名字空间中，一个名为cluster-admin的clusterrolebinding将cluster-admin cluster role与system:masters Group绑定到了一起， 赋予了所有归属于system:masters Group中用户cluster-admin角色所拥有的权限。</font></p>
+<p><font style="color:rgb(51, 51, 51);">我们再来查看一下cluster-admin这个role的具体权限信息：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span>
+<span class="normal"><a href="#__codelineno-5-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="l l-Scalar l-Scalar-Plain">$ kubectl describe clusterrole cluster-admin</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">cluster-admin</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="nt">Labels</span><span class="p">:</span><span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/bootstrapping=rbac-defaults</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="nt">Annotations:  rbac.authorization.kubernetes.io/autoupdate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="nt">PolicyRule</span><span class="p">:</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Resources  Non-Resource URLs  Resource Names  Verbs</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">---------  -----------------  --------------  -----</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">*.*        []                 []              [*]</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">             </span><span class="l l-Scalar l-Scalar-Plain">[*]                []              [*]</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">非资源类，如查看集群健康状态。</font></p>
+<p><img alt="" src="../../../images/1733054309066-ea14655b-125e-4e06-8e71-3246ebd52640.png" /></p>
+<h6 id="rbac"><font style="color:rgb(119, 119, 119);">RBAC</font><a class="headerlink" href="#rbac" title="Permanent link">&para;</a></h6>
+<p>Role-Based Access Control，基于角色的访问控制， apiserver启动参数添加--authorization-mode=RBAC 来启用RBAC认证模式，kubeadm安装的集群默认已开启。<a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">官方介绍</a></p>
+<p>查看开启：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># master节点查看apiserver进程</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="l l-Scalar l-Scalar-Plain">$ ps aux |grep apiserver</span>
+</code></pre></div></td></tr></table></div>
+<p>RBAC模式引入了4个资源：</p>
+<ul>
+<li>Role，角色</li>
+</ul>
+<p>一个Role只能授权访问单个namespace </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">## 示例定义一个名为pod-reader的角色，该角色具有读取default这个命名空间下的pods的权限</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod-reader</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># &quot;&quot; indicates the core API group</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;pods&quot;</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;watch&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;list&quot;</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="c1">## apiGroups: &quot;&quot;,&quot;apps&quot;, &quot;autoscaling&quot;, &quot;batch&quot;, kubectl api-versions</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="c1">## resources: &quot;services&quot;, &quot;pods&quot;,&quot;deployments&quot;... kubectl api-resources</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="c1">## verbs: &quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;create&quot;, &quot;update&quot;, &quot;patch&quot;, &quot;delete&quot;, &quot;exec&quot;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>ClusterRole</li>
+</ul>
+<p>一个ClusterRole能够授予和Role一样的权限，但是它是集群范围内的。 </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">## 定义一个集群角色，名为secret-reader，该角色可以读取所有的namespace中的secret资源</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRole</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="c1"># &quot;namespace&quot; omitted since ClusterRoles are not namespaced</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-reader</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;&quot;</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;secrets&quot;</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;watch&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;list&quot;</span><span class="p p-Indicator">]</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>Rolebinding</li>
+</ul>
+<p>将role中定义的权限分配给用户和用户组。RoleBinding包含主题（users,groups,或service accounts）和授予角色的引用。对于namespace内的授权使用RoleBinding，集群范围内使用ClusterRoleBinding。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1">## 定义一个角色绑定，将pod-reader这个role的权限授予给jane这个User，使得jane可以在读取default这个命名空间下的所有的pod数据</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RoleBinding</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read-pods</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="nt">subjects</span><span class="p">:</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User</span><span class="w">   </span><span class="c1">#这里可以是User,Group,ServiceAccount</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jane</span><span class="w"> </span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="nt">roleRef</span><span class="p">:</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span><span class="w"> </span><span class="c1">#这里可以是Role或者ClusterRole,若是ClusterRole，则权限也仅限于rolebinding的内部</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod-reader</span><span class="w"> </span><span class="c1"># match the name of the Role or ClusterRole you wish to bind to</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+</code></pre></div></td></tr></table></div>
+<p><em>注意：rolebinding既可以绑定role，也可以绑定clusterrole，当绑定clusterrole的时候，subject的权限也会被限定于rolebinding定义的namespace内部，若想跨namespace，需要使用clusterrolebinding</em></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">## 定义一个角色绑定，将dave这个用户和secret-reader这个集群角色绑定，虽然secret-reader是集群角色，但是因为是使用rolebinding绑定的，因此dave的权限也会被限制在development这个命名空间内</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="c1"># This role binding allows &quot;dave&quot; to read secrets in the &quot;development&quot; namespace.</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1"># You need to already have a ClusterRole named &quot;secret-reader&quot;.</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RoleBinding</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read-secrets</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">  </span><span class="c1">#</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">  </span><span class="c1"># The namespace of the RoleBinding determines where the permissions are granted.</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">  </span><span class="c1"># This only grants permissions within the &quot;development&quot; namespace.</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">development</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="nt">subjects</span><span class="p">:</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dave</span><span class="w"> </span><span class="c1"># Name is case sensitive</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dave</span><span class="w"> </span><span class="c1"># Name is case sensitive</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="nt">roleRef</span><span class="p">:</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRole</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-reader</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+</code></pre></div></td></tr></table></div>
+<p>考虑一个场景： 如果集群中有多个namespace分配给不同的管理员，每个namespace的权限是一样的，就可以只定义一个clusterrole，然后通过rolebinding将不同的namespace绑定到管理员身上，否则就需要每个namespace定义一个Role，然后做一次rolebinding。</p>
+<ul>
+<li><font style="color:rgb(51, 51, 51);">ClusterRolebingding</font></li>
+</ul>
+<p><font style="color:rgb(51, 51, 51);">允许跨namespace进行授权</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="c1"># This cluster role binding allows anyone in the &quot;manager&quot; group to read secrets in any namespace.</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRoleBinding</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read-secrets-global</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="nt">subjects</span><span class="p">:</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Group</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manager</span><span class="w"> </span><span class="c1"># Name is case sensitive</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="nt">roleRef</span><span class="p">:</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRole</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-reader</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1733054329989-6e743892-242e-4bca-85dc-97deb8bfc8b8.png" /></p>
+<h6 id="kubelet的认证授权"><font style="color:rgb(119, 119, 119);">kubelet的认证授权</font><a class="headerlink" href="#kubelet的认证授权" title="Permanent link">&para;</a></h6>
+<p><font style="color:rgb(51, 51, 51);">查看kubelet进程</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="l l-Scalar l-Scalar-Plain">$ systemctl status kubelet</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="l l-Scalar l-Scalar-Plain">● kubelet.service - kubelet</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The Kubernetes Node Agent</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">Loaded</span><span class="nt">: loaded (/etc/systemd/system/kubelet.service; enabled; vendor preset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disabled)</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Drop-In</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/systemd/system/kubelet.service.d</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">└─10-kubeadm.conf</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">Active</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">active (running) since Wed 2020-04-01 02:34:13 CST; 1 day 14h ago</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">Docs</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubernetes.io/docs/</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Main PID</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">851 (kubelet)</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Tasks</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">Memory</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.1M</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">CGroup</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/system.slice/kubelet.service</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="w">           </span><span class="l l-Scalar l-Scalar-Plain">└─851 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">查看</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;/etc/kubernetes/kubelet.conf&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">，解析证书：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="l l-Scalar l-Scalar-Plain">$ echo xxxxx |base64 -d &gt;kubelet.crt</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="l l-Scalar l-Scalar-Plain">$ openssl x509 -in kubelet.crt -text</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="l l-Scalar l-Scalar-Plain">Certificate</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">    </span><span class="nt">Data</span><span class="p">:</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">        </span><span class="nt">Version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3 (0x2)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="w">        </span><span class="nt">Serial Number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9059794385454520113 (0x7dbadafe23185731)</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="w">    </span><span class="nt">Signature Algorithm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sha256WithRSAEncryption</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Issuer</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CN=kubernetes</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Validity</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">Not Before</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Feb 10 07:33:39 2020 GMT</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">Not After</span><span class="w"> </span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Feb  9 07:33:40 2021 GMT</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">Subject</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">O=system:nodes, CN=system:node:master-1</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">得到我们期望的内容：</font></p>
+<p>Subject: O=system:nodes, CN=system:node:k8s-master</p>
+<p><font style="color:rgb(51, 51, 51);">我们知道，k8s会把O作为Group来进行请求，因此如果有权限绑定给这个组，肯定在clusterrolebinding的定义中可以找得到。因此尝试去找一下绑定了system:nodes组的clusterrolebinding</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="l l-Scalar l-Scalar-Plain">$ kubectl get clusterrolebinding|awk &#39;NR&gt;1{print $1}&#39;|xargs kubectl get clusterrolebinding -oyaml|grep -n10 system:nodes</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="l l-Scalar l-Scalar-Plain">98-  roleRef</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="nt">99-    apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="nt">100-    kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRole</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="nt">101-    name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system:certificates.k8s.io:certificatesigningrequests:selfnodeclient</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="nt">102-  subjects</span><span class="p">:</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="nt">103-  - apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="nt">104-    kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Group</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="nt">105:    name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system:nodes</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="nt">106-- apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="nt">107-  kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRoleBinding</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="nt">108-  metadata</span><span class="p">:</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="nt">109-    creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2020-02-10T07:34:02Z&quot;</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="nt">110-    name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubeadm:node-proxier</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="nt">111-    resourceVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;213&quot;</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="nt">112-    selfLink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/kubeadm%3Anode-proxier</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17"></a>
+<a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="l l-Scalar l-Scalar-Plain">$ kubectl describe clusterrole system:certificates.k8s.io:certificatesigningrequests:selfnodeclient</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19"></a><span class="nt">Name</span><span class="p">:</span><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">system:certificates.k8s.io:certificatesigningrequests:selfnodeclient</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20"></a><span class="nt">Labels</span><span class="p">:</span><span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/bootstrapping=rbac-defaults</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="nt">Annotations:  rbac.authorization.kubernetes.io/autoupdate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="nt">PolicyRule</span><span class="p">:</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Resources                                                      Non-Resource URLs  Resource Names  Verbs</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">---------                                                      -----------------  --------------  -----</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">certificatesigningrequests.certificates.k8s.io/selfnodeclient  []                 []              [create]</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">结局有点意外，除了</font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;system:certificates.k8s.io:certificatesigningrequests:selfnodeclient&lt;/font&gt;</code><font style="color:rgb(51, 51, 51);">外，没有找到system相关的rolebindings，显然和我们的理解不一样。 尝试去找</font><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/"><font style="color:rgb(51, 51, 51);">资料</font></a><font style="color:rgb(51, 51, 51);">，发现了这么一段 :</font></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong><font style="color:rgb(51, 51, 51);">Default ClusterRole</font></strong></th>
+<th style="text-align: left;"><strong><font style="color:rgb(51, 51, 51);">Default ClusterRoleBinding</font></strong></th>
+<th style="text-align: left;"><strong><font style="color:rgb(51, 51, 51);">Description</font></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:kube-scheduler</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:kube-scheduler user</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">Allows access to the resources required by the </font><a href="https://kubernetes.io/docs/reference/generated/kube-scheduler/"><font style="color:rgb(51, 51, 51);">scheduler</font></a><br/><font style="color:rgb(51, 51, 51);">component.</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:volume-scheduler</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:kube-scheduler user</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">Allows access to the volume resources required by the kube-scheduler component.</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:kube-controller-manager</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:kube-controller-manager user</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">Allows access to the resources required by the </font><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/"><font style="color:rgb(51, 51, 51);">controller manager</font></a><br/><font style="color:rgb(51, 51, 51);"> component. The permissions required by individual controllers are detailed in the </font><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#controller-roles"><font style="color:rgb(51, 51, 51);">controller roles</font></a><br/><font style="color:rgb(51, 51, 51);">.</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:node</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">None</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">Allows access to resources required by the kubelet, </font><strong><font style="color:rgb(51, 51, 51);">including read access to all secrets, and write access to all pod status objects</font></strong><font style="color:rgb(51, 51, 51);">. You should use the </font><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/"><font style="color:rgb(51, 51, 51);">Node authorizer</font></a><br/><font style="color:rgb(51, 51, 51);"> and </font><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#noderestriction"><font style="color:rgb(51, 51, 51);">NodeRestriction admission plugin</font></a><br/><font style="color:rgb(51, 51, 51);"> instead of the </font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;system:node&lt;/font&gt;</code><br/><font style="color:rgb(51, 51, 51);"> role, and allow granting API access to kubelets based on the Pods scheduled to run on them. The </font><code>&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;system:node&lt;/font&gt;</code><br/><font style="color:rgb(51, 51, 51);"> role only exists for compatibility with Kubernetes clusters upgraded from versions prior to v1.8.</font></td>
+</tr>
+<tr>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:node-proxier</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">system:kube-proxy user</font></td>
+<td style="text-align: left;"><font style="color:rgb(51, 51, 51);">Allows access to the resources required by the </font><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/"><font style="color:rgb(51, 51, 51);">kube-proxy</font></a><br/><font style="color:rgb(51, 51, 51);">component.</font></td>
+</tr>
+</tbody>
+</table>
+<p><font style="color:rgb(51, 51, 51);">大致意思是说：之前会定义system:node这个角色，目的是为了kubelet可以访问到必要的资源，包括所有secret的读权限及更新pod状态的写权限。如果1.8版本后，是建议使用 </font><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/"><font style="color:rgb(51, 51, 51);">Node authorizer</font></a><font style="color:rgb(51, 51, 51);"> and </font><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#noderestriction"><font style="color:rgb(51, 51, 51);">NodeRestriction admission plugin</font></a><font style="color:rgb(51, 51, 51);"> 来代替这个角色的。</font></p>
+<p><font style="color:rgb(51, 51, 51);">我们目前使用1.16，查看一下授权策略：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="l l-Scalar l-Scalar-Plain">$ ps axu|grep apiserver</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="l l-Scalar l-Scalar-Plain">kube-apiserver --authorization-mode=Node,RBAC  --enable-admission-plugins=NodeRestriction</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">查看一下官网对Node authorizer的介绍：</font></p>
+<p><em><font style="color:rgb(51, 51, 51);">Node authorization is a special-purpose authorization mode that specifically authorizes API requests made by kubelets.</font></em></p>
+<p><em><font style="color:rgb(51, 51, 51);">In future releases, the node authorizer may add or remove permissions to ensure kubelets have the minimal set of permissions required to operate correctly.</font></em></p>
+<p><em><font style="color:rgb(51, 51, 51);">In order to be authorized by the Node authorizer, kubelets must use a credential that identifies them as being in the </font></em><code>_&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;system:nodes&lt;/font&gt;_</code><em><font style="color:rgb(51, 51, 51);"> group, with a username of </font></em><code>_&lt;font style="color:rgb(51, 51, 51);background-color:rgb(243, 244, 244);"&gt;system:node:&lt;nodeName&gt;&lt;/font&gt;_</code></p>
+<h6 id="service-account"><font style="color:rgb(119, 119, 119);">Service Account</font><a class="headerlink" href="#service-account" title="Permanent link">&para;</a></h6>
+<p><font style="color:rgb(51, 51, 51);">前面说，认证可以通过证书，也可以通过使用ServiceAccount（服务账户）的方式来做认证。大多数时候，我们在基于k8s做二次开发时都是选择通过serviceaccount的方式。我们之前访问dashboard的时候，是如何做的？</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span>
+<span class="normal"><a href="#__codelineno-16-20">20</a></span>
+<span class="normal"><a href="#__codelineno-16-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1">## 新建一个名为admin的serviceaccount，并且把名为cluster-admin的这个集群角色的权限授予新建的serviceaccount</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-dashboard</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="nn">---</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRoleBinding</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1beta1</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12"></a><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="w">    </span><span class="nt">rbac.authorization.kubernetes.io/autoupdate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14"></a><span class="nt">roleRef</span><span class="p">:</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15"></a><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRole</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-admin</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="nt">subjects</span><span class="p">:</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-dashboard</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">我们查看一下：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="l l-Scalar l-Scalar-Plain">$ kubectl -n kubernetes-dashboard get sa admin -o yaml</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2020-04-01T11:59:21Z&quot;</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-dashboard</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="w">  </span><span class="nt">resourceVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1988878&quot;</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="w">  </span><span class="nt">selfLink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/api/v1/namespaces/kubernetes-dashboard/serviceaccounts/admin</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="w">  </span><span class="nt">uid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">639ecc3e-74d9-11ea-a59b-000c29dfd73f</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="nt">secrets</span><span class="p">:</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin-token-lfsrf</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">注意到serviceaccount上默认绑定了一个名为admin-token-lfsrf的secret，我们查看一下secret</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span>
+<span class="normal"><a href="#__codelineno-18-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="l l-Scalar l-Scalar-Plain">$ kubectl -n kubernetes-dashboard describe secret admin-token-lfsrf</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">admin-token-lfsrf</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="nt">Namespace</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-dashboard</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="nt">Labels</span><span class="p">:</span><span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">&lt;none&gt;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="nt">Annotations:  kubernetes.io/service-account.name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/service-account.uid</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">639ecc3e-74d9-11ea-a59b-000c29dfd73f</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a>
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="nt">Type</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/service-account-token</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="l l-Scalar l-Scalar-Plain">Data</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="l l-Scalar l-Scalar-Plain">====</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="nt">ca.crt</span><span class="p">:</span><span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">1025 bytes</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="nt">namespace</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">4 bytes</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="nt">token</span><span class="p">:</span><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZW1vIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImFkbWluLXRva2VuLWxmc3JmIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiNjM5ZWNjM2UtNzRkOS0xMWVhLWE1OWItMDAwYzI5ZGZkNzNmIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlbW86YWRtaW4ifQ.ffGCU4L5LxTsMx3NcNixpjT6nLBi-pmstb4I-W61nLOzNaMmYSEIwAaugKMzNR-2VwM14WbuG04dOeO67niJeP6n8-ALkl-vineoYCsUjrzJ09qpM3TNUPatHFqyjcqJ87h4VKZEqk2qCCmLxB6AGbEHpVFkoge40vHs56cIymFGZLe53JZkhu3pwYuS4jpXytV30Ad-HwmQDUu_Xqcifni6tDYPCfKz2CZlcOfwqHeGIHJjDGVBKqhEeo8PhStoofBU6Y4OjObP7HGuTY-Foo4QindNnpp0QU6vSb7kiOiQ4twpayybH8PTf73dtdFt46UF6mGjskWgevgolvmO8A</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">开发的时候如何去调用k8s的api:</font></p>
+<ol>
+<li><font style="color:rgb(51, 51, 51);">curl演示</font></li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="l l-Scalar l-Scalar-Plain">$ curl -k  -H &quot;Authorization</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZW1vIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImFkbWluLXRva2VuLWxmc3JmIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiNjM5ZWNjM2UtNzRkOS0xMWVhLWE1OWItMDAwYzI5ZGZkNzNmIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlbW86YWRtaW4ifQ.ffGCU4L5LxTsMx3NcNixpjT6nLBi-pmstb4I-W61nLOzNaMmYSEIwAaugKMzNR-2VwM14WbuG04dOeO67niJeP6n8-ALkl-vineoYCsUjrzJ09qpM3TNUPatHFqyjcqJ87h4VKZEqk2qCCmLxB6AGbEHpVFkoge40vHs56cIymFGZLe53JZkhu3pwYuS4jpXytV30Ad-HwmQDUu_Xqcifni6tDYPCfKz2CZlcOfwqHeGIHJjDGVBKqhEeo8PhStoofBU6Y4OjObP7HGuTY-Foo4QindNnpp0QU6vSb7kiOiQ4twpayybH8PTf73dtdFt46UF6mGjskWgevgolvmO8A&quot; https://62.234.214.206:6443/api/v1/namespaces/demo/pods?limit=500</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li><font style="color:rgb(51, 51, 51);">postman</font></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../Kubernetes%20Dashboard/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Kubernetes Dashboard">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Kubernetes Dashboard
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../NetworkPolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/" class="md-footer__link md-footer__link--next" aria-label="下一页: NetworkPolicy网络策略">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                NetworkPolicy网络策略
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
