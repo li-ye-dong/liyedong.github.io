@@ -1,4 +1,5 @@
 @echo off
+python generate_index.py
 REM 确保在虚拟环境中运行 mkdocs serve
 poetry run mkdocs serve
 

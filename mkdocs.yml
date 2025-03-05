@@ -4,7 +4,6 @@ site_description: 美少男
 site_author: 李烨栋 #作者名
 site_url: https://li-ye-dong.github.io/  #网站地址
 copyright: Copyright &copy; 2025 李烨栋 # 左下角的版权声明
-
 ## [Navigtion]
 # nav:
 #   - 首页: index.md
@@ -19,22 +18,22 @@ copyright: Copyright &copy; 2025 李烨栋 # 左下角的版权声明
 #   - 更新记录:
 #       - blog/index.md
 
-nav:
-  - Home: index.md
-  - Redis:
-    - redis/Redis学习.md
-    #- 设计模式: java/设计模式/index.md
-  - Dokcer:
-    - docker/docker笔记.md
- #   - Installation: guide/installation.md
- #   - Basics: guide/basics.md
- #   - Configuration: guide/config.md
-  - Nginx:
-    - nginx/Nginx学习.md
-  - MySQL:
-    - mysql8/mysql8学习.md
-  - Blog:
-      - blog/index.md
+#nav:
+#  - Home: index.md
+#  - Redis:
+#    - redis/Redis学习.md
+#    #- 设计模式: java/设计模式/index.md
+#  - Dokcer:
+#    - docker/docker笔记.md
+# #   - Installation: guide/installation.md
+# #   - Basics: guide/basics.md
+# #   - Configuration: guide/config.md
+#  - Nginx:
+#    - nginx/Nginx学习.md
+#  - MySQL:
+#    - mysql8/mysql8学习.md
+#  - Blog:
+#      - blog/index.md
 
 
 
@@ -51,11 +50,10 @@ theme:
   # logo: static/logo.png
 #  favicon: static/logo.png
 #  logo: static/logo.png
-
   features:
     - header.autohide  #自动隐藏
     - announce.dismiss #呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
-    #- navigation.instant #自动隐藏
+    - navigation.instant #自动隐藏
     - navigation.tracking #地址栏中的 URL 将自动更新为在目录中突出显示的活动锚点
     - content.code.annotate
     - toc.integrate
@@ -194,12 +192,7 @@ extra:
 
 
 plugins:
-  - blogging:
-      dirs:
-        - blog
-      locale: zh_CN  # 这里强制设定中文
-  - search
-
+    - search
 #       post_date_format: full #时间
 #       draft: true
 #       draft_if_future_date: true #自动将具有未来日期的帖子标记为草稿

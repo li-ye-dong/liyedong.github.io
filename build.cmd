@@ -1,5 +1,5 @@
 @echo off
-
+python generate_index.py
 REM 使用 Poetry 执行 mkdocs build
 poetry run mkdocs build
 
