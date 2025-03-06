@@ -1,7 +1,4 @@
-# 安装Burp Suite
-
 # 安装<font style="color:rgb(79, 79, 79);">JDK</font>
-
 **<font style="color:rgb(77, 77, 77);">1，我们先把工具放到win10主机上，准备好（可以安装到win10虚拟机，也可以安装到物理机上）</font>**
 
 ![](../images/1729265377461-a9fbfb62-16b6-4b0f-a32b-16c43d1b0911.png)
@@ -160,7 +157,7 @@
 
 **<font style="color:rgb(77, 77, 77);">自己选择个文件，文件名可以随便写，但是.cer后缀</font>**
 
-
+  
  ![](../images/1729265843162-668bde16-3f3d-4fb2-9dd1-d814c305dc66.png)
 
 ![](../images/1729265866681-79318007-1a67-4ed4-9408-fad545dd954c.png)
@@ -213,7 +210,7 @@
 **<font style="color:rgb(77, 77, 77);">当除了未受信任的发布者不要安装以外，其余的安装好以后可以退出</font>**
 
 **<font style="color:rgb(77, 77, 77);">现在抓https的包试一试，发现正常能访问了，爆破也能看到浏览记录</font>**  
-
+ 
 
 #### **<font style="color:rgb(79, 79, 79);">5-4 应用程序设置代理转发到****BP</font>**
 ---
@@ -241,13 +238,13 @@
 
 **<font style="color:rgb(77, 77, 77);">填写代理地址，端口，将下面的将此代理由于HTTPS√勾上，然后确定即可</font>**
 
-
+  
  ![](../images/1729266085949-988fa1a4-c999-48f6-ae8f-bf525ca61573.png)
 
 ##### <font style="color:rgb(79, 79, 79);">5-4-2 火狐浏览器安装证书</font>
 **<font style="color:rgb(77, 77, 77);">同样为了解决HTTPS协议的抓包问题，也需要安装证书</font>**
 
-
+  
  ![](../images/1729266102939-6bb1a5b8-18e2-4c94-bee9-0cc4e0580afc.png)
 
 **<font style="color:rgb(77, 77, 77);">选择导入（证书颁发机构，服务器，个人，认证决策，你的证书，凡是能安装证书的地方都安装上）</font>**
@@ -269,4 +266,5 @@
 **<font style="color:rgb(77, 77, 77);">发现Burp Suite开启拦截以后也能正常抓https的包</font>**
 
 ![](../images/1729266239718-f305439b-d071-4358-a276-9f250d5c44a1.png)  
+ 
 

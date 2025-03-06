@@ -1,3 +1,4 @@
+# RHEL9-RHCSA学习
 # 文件目录![](../../../images/1715349516345-3347fa14-d355-4302-b74b-6b6f24fa3975.png) ![](../../../images/1715418789370-67585f2f-0c0b-436d-b176-3e2c9ce40ec2.png)
 # Tab补全篇
 shell Tab补全依赖包bash-completion-2.11-4.el9.noarch(最小安装没有)

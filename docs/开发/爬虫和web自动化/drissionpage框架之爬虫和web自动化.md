@@ -1,4 +1,4 @@
-# 🌏 安装
+## 🌏 安装
   
 
 
@@ -33,7 +33,7 @@ pip install DrissionPage --upgrade
 pip install DrissionPage==4.0.0b17
 ```
 
-# 🌏 导入
+## 🌏 导入
   
 
 
@@ -186,7 +186,7 @@ from DrissionPage.items import MixTab
 from DrissionPage.items import ChromiumFrame
 ```
 
-# 🌸特性、优势介绍
+## 🌸特性、优势介绍
 ## ⭐ 与 requests 对比  
 
 <font style="color:rgb(28, 30, 33);">以下代码实现一模一样的功能，对比两者的代码量：</font>
@@ -410,7 +410,7 @@ page = SessionPage()
 page.download(url, save_path)
 ```
 
-# ☀️ 基本概念
+## ☀️ 基本概念
   
 
 
@@ -585,7 +585,7 @@ ele1 = ele.find_element(By.XPATH, './/preceding-sibling::*[2]')  # 获取前面�
 
 <font style="color:rgb(28, 30, 33);">显然，本库的定位语句更简洁易懂，还有很多灵活好用的方法，详见 “查找元素” 章节。</font>
 
-# ❓ 常见问题
+## ❓ 常见问题
   
 
 
@@ -662,7 +662,7 @@ co.set_argument('--hide-crash-restore-bubble')
 
 
 
-# 🚪入门
+## 🚪入门
 ## 🗺️ 操控浏览器
   
 

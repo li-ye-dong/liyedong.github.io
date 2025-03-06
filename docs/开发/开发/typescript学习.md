@@ -1,3 +1,4 @@
+# typescript学习
 ```powershell
 npm install typescript -g
 ```

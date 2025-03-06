@@ -1,4 +1,5 @@
-# <font style="color:rgb(79, 79, 79);">什么是Mkdocs</font>
+# GithubPage搭建博客
+## <font style="color:rgb(79, 79, 79);">什么是Mkdocs</font>
 [<font style="color:rgb(25, 27, 31);">Material for MkDocs</font>](https://link.zhihu.com/?target=https%3A//squidfunk.github.io/mkdocs-material/)<font style="color:rgb(25, 27, 31);"> 是 MkDocs的一个主题配置，同时也是一个功能齐全的静态网站生成工具，能够解决上面提到的GitHub Pages的问题。</font>
 
 <font style="color:rgb(25, 27, 31);">Material for MkDocs 使用广泛，下面是一些大公司和知名开源项目的使用例子：</font>
@@ -22,7 +23,7 @@
 
 <font style="color:rgb(25, 27, 31);">示例页面的配置文件：</font>[<font style="color:rgb(25, 27, 31);">https://github.com/vra/mkdocs-m</font>](https://link.zhihu.com/?target=https%3A//github.com/vra/mkdocs-material-example/blob/main/mkdocs.yml)
 
-# <font style="color:rgb(25, 27, 31);">使用</font>
+## <font style="color:rgb(25, 27, 31);">使用</font>
 <font style="color:rgba(0, 0, 0, 0.87);">在完成</font>[<font style="color:rgba(0, 0, 0, 0.87);">Material for MkDocs的安装</font>](https://mkdoc-material.llango.com/getting-started/)<font style="color:rgba(0, 0, 0, 0.87);">后，可以使用</font>`mkdocs`<font style="color:rgba(0, 0, 0, 0.87);">相关命令来启动文档。转到要放置项目的目录，然后输入：</font>
 
 ```plain
@@ -48,7 +49,7 @@ docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material new .
 └─ mkdocs.yml
 ```
 
-# <font style="color:rgba(0, 0, 0, 0.87);">配置</font>[<font style="color:rgba(0, 0, 0, 0.87);">¶</font>](https://mkdoc-material.llango.com/creating-your-site/#_2)
+## <font style="color:rgba(0, 0, 0, 0.87);">配置</font>[<font style="color:rgba(0, 0, 0, 0.87);">¶</font>](https://mkdoc-material.llango.com/creating-your-site/#_2)
 ```yaml
 #[Info]
 site_name: liyedong Docs   #网站名字
@@ -257,7 +258,7 @@ docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
 
 <font style="color:rgba(0, 0, 0, 0.87);">浏览器打开</font>[<font style="color:rgba(0, 0, 0, 0.87);">localhost:8000</font>](http://localhost:8000/)<font style="color:rgba(0, 0, 0, 0.87);"></font>
 
-# <font style="color:rgb(25, 27, 31);">配置自动化</font>
+## <font style="color:rgb(25, 27, 31);">配置自动化</font>
 新建.github/workflows/static.yml
 
 ```javascript

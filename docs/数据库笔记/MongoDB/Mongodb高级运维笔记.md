@@ -1,3 +1,4 @@
+# Mongodb高级运维笔记
 # **<font style="color:rgb(51,51,51);">1.MongoDB常见架构</font>**![](../../images/1713955896839-ee98993a-8318-44ef-8539-592753a13c8f.png)
 # **<font style="color:rgb(51,51,51);">2.分片集群机制及原理</font>**
 ## **<font style="color:rgb(51,51,51);">2.1 为什么使用分片集群</font>**

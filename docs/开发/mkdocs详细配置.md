@@ -1,3 +1,4 @@
+# mkdocs文档生成器
 参考[https://blog.csdn.net/m0_63203517/article/details/145482770](https://blog.csdn.net/m0_63203517/article/details/145482770)
 
 [https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
@@ -341,7 +342,6 @@ site_description: 美少男
 site_author: 李烨栋 #作者名
 site_url: https://li-ye-dong.github.io/  #网站地址
 copyright: Copyright &copy; 2025 李烨栋 # 左下角的版权声明
-
 ## [Navigtion]
 # nav:
 #   - 首页: index.md
@@ -388,11 +388,10 @@ theme:
   # logo: static/logo.png
 #  favicon: static/logo.png
 #  logo: static/logo.png
-
   features:
     - header.autohide  #自动隐藏
     - announce.dismiss #呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
-    #- navigation.instant #自动隐藏
+    - navigation.instant #自动隐藏
     - navigation.tracking #地址栏中的 URL 将自动更新为在目录中突出显示的活动锚点
     - content.code.annotate
     - toc.integrate
@@ -531,8 +530,7 @@ extra:
 
 
 plugins:
-   - search
-
+    - search
 #       post_date_format: full #时间
 #       draft: true
 #       draft_if_future_date: true #自动将具有未来日期的帖子标记为草稿
@@ -874,4 +872,106 @@ theme:
 ```
 
 <font style="color:rgb(77, 77, 77);">这会自动为每个目录显示子目录和文件的嵌套导航。</font>
+
+# <font style="color:rgb(77, 77, 77);">代码生成索引首页</font>
+```yaml
+import os
+from pathlib import Path
+import datetime
+
+DOCS_DIR = "docs"
+INDEX_FILE = "docs/index.md"
+EXCLUDE_DIRS = {'images', 'static', '无法同步pdf'}
+ICON_MAP = {
+    "k8s和容器": "☸️",
+    "开发": "🐍",
+    "数据库笔记": "🗄️",
+    "操作系统": "🖥️"
+}
+
+
+def get_dir_level(path: Path) -> int:
+    """计算目录层级（相对于根目录的深度）"""
+    if path == Path(DOCS_DIR):
+        return 0
+    return len(path.relative_to(DOCS_DIR).parts)
+
+
+def generate_index(path: Path) -> list:
+    content = []
+    items = sorted(os.listdir(path))
+
+    # 生成当前目录标题（排除根目录）
+    if path != Path(DOCS_DIR):
+        level = get_dir_level(path)
+        icon = ICON_MAP.get(path.name, "📂")
+        content.append(f"{'##' * level} {icon} {path.name}")
+
+    # 处理文件
+    for item in items:
+        full_path = path / item
+        if full_path.is_file() and full_path.suffix == '.md' and item not in ['index.md', 'README.md']:
+            rel_path = full_path.relative_to(DOCS_DIR).as_posix()
+            title = item[:-3].replace('_', ' ')
+            indent = '  ' * (get_dir_level(path) - 1)  # 缩进控制
+            content.append(f"{indent}- [{title}]({rel_path})")
+
+    # 递归处理子目录
+    for item in items:
+        full_path = path / item
+        if full_path.is_dir() and item not in EXCLUDE_DIRS:
+            sub_content = generate_index(full_path)
+            content.extend(sub_content)
+
+    return content
+
+
+if __name__ == "__main__":
+    index_content = [
+        "# 知识库索引\n\n> 自动生成时间 {{ update_time }}\n\n",
+        *generate_index(Path(DOCS_DIR)),
+        "\n\n---\n> 使用 [generate_index.py] 更新目录结构"
+    ]
+
+    with open(INDEX_FILE, 'w', encoding='utf-8') as f:
+        final_content = '\n'.join(index_content).replace(
+            '{{ update_time }}',
+            datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+        )
+        f.write(final_content)
+```
+
+### <font style="color:rgb(64, 64, 64);">使用插件</font><font style="color:rgb(64, 64, 64);"> </font>`<font style="color:rgb(64, 64, 64);">mkdocs-pdf-export-plugin</font>`
+<font style="color:rgb(64, 64, 64);">通过插件将 Markdown 文件转换为 PDF，并嵌入到页面中。</font>
+
+#### <font style="color:rgb(64, 64, 64);">步骤：</font>
+<font style="color:rgb(64, 64, 64);">安装插件：</font>
+
+```yaml
+pip install mkdocs-pdf-export-plugin
+```
+
+<font style="color:rgb(64, 64, 64);">在</font><font style="color:rgb(64, 64, 64);"> </font>`<font style="color:rgb(64, 64, 64);">mkdocs.yml</font>`<font style="color:rgb(64, 64, 64);"> </font><font style="color:rgb(64, 64, 64);">中配置：</font>
+
+
+
+```plain
+plugins:
+  - pdf-export:
+      combined: true  # 将所有页面合并为一个 PDF
+```
+
+<font style="color:rgb(64, 64, 64);">在页面中添加下载链接：</font>
+
+```yaml
+markdown复制[下载 PDF](/pdf/combined.pdf)
+```
+
+#### <font style="color:rgb(64, 64, 64);">优点：</font>
++ <font style="color:rgb(64, 64, 64);">自动生成 PDF</font>
++ <font style="color:rgb(64, 64, 64);">支持多页面合并</font>
+
+#### <font style="color:rgb(64, 64, 64);">缺点：</font>
++ <font style="color:rgb(64, 64, 64);">需要额外配置</font>
++ <font style="color:rgb(64, 64, 64);">无法直接嵌入 PDF 查看器</font>
 

@@ -1,7 +1,7 @@
-# 概述
+## 概述
 在js逆向分析过程中，经常需要根据对象的调用顺序来进行判断缺少哪些环境，但是调用出错只会有错误如`undifent`这类的报错，经常不知道是缺少什么对象的什么属性值，此时需要js对象监视器，监视这个对象的set和get方法的执行。
 
-# Proxy代理
+## Proxy代理
 ```javascript
 var yuan = {
     username: "yuan",
@@ -48,7 +48,7 @@ alex.age = 10000
 
 
 
-# Proxy代理监控器
+## Proxy代理监控器
 ```javascript
 function setProxyArr(proxyObjArr) {
     for (let i = 0; i < proxyObjArr.length; i++) {

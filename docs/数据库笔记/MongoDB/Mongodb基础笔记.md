@@ -1,3 +1,4 @@
+# Mongodb基础笔记
 # 安装Mongodb
 [下载地址](https://www.mongodb.com/try/download/community)
 

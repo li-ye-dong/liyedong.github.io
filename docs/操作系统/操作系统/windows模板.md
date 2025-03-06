@@ -1,4 +1,4 @@
-# 1.关闭防火墙和设置远程桌面的服务端口和关闭windows自动更新和设置ntp
+## 1.关闭防火墙和设置远程桌面的服务端口和关闭windows自动更新和设置ntp
 ```shell
 @echo off
 setlocal enabledelayedexpansion
@@ -120,7 +120,7 @@ pause
 
 ```
 
-# 2.使用vmware的自定义规范刷新SID
+## 2.使用vmware的自定义规范刷新SID
 ![](../../images/1729166438113-cbe9cc25-1f1c-4392-83c6-9f49a8599faf.png)
 
 ![](../../images/1729166448985-a463e510-58d8-4fa1-ad87-2f10f9d91f9f.png)

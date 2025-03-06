@@ -1,9 +1,9 @@
-# 概述
+## 概述
  逆向字体加密是许多反爬措施中的一种，主要是通过自定义字体文件（如 `woff`、`ttf`）来改变网页显示的文字，使得直接抓取的内容不易读或与实际显示不一致。逆向解密字体的流程通常包含以下几个步骤：  
 
 工具封装
 
-# 步骤
+## 步骤
 ### 1. **获取字体文件**
 + 在网页的 HTML 或 CSS 中，字体文件通常通过 `@font-face` 定义。可以使用 `requests` 库抓取页面内容，然后找到字体文件 URL 下载。
 
@@ -55,12 +55,12 @@ decrypted_text = ''.join(mapping.get(c, c) for c in encrypted_text)
 ### 6. **自动化处理**
 + 为了在大规模爬取中解密这些字体加密，可以使用 Python 的 `re` 库和解析库（如 `BeautifulSoup`）自动提取并解密需要的信息。
 
-# 依赖安装
+## 依赖安装
 ```python
 poetry add ddddocr fonttools pillow
 ```
 
-# 工具封装
+## 工具封装
 ```python
 from fontTools.ttLib import TTFont
 import ddddocr
@@ -113,7 +113,7 @@ print(extract_text_from_font(font_file_path))
 
 ```
 
-# 优化后工具类
+## 优化后工具类
 ```python
 from fontTools.ttLib import TTFont
 import ddddocr

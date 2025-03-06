@@ -103,7 +103,7 @@ Access is denied.
 为了实现**尽量复制权限，但权限失败时只复制文件**的自动容错方案，推荐以下命令：
 
 ```powershell
-robocopy "\\192.168.xxxx\xxx$\xxx\xxx" "\\192.168.xx.xx1\xx$" /E /COPY:DAT /SEC /R:0 /NFL /NDL /LOG:"C:\path\to\logfile.txt"
+robocopy "\\192.168.107.226\研发中心$\研发中心-文件共享区\印制板" "\\192.168.104.211\印制板$" /E /COPY:DAT /SEC /R:0 /NFL /NDL /LOG:"C:\path\to\logfile.txt"
 ```
 
 这种方式在权限失败时会自动跳过权限部分，继续复制文件和数据，不需要手动干预。

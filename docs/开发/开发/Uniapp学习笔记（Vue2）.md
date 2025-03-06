@@ -1,3 +1,4 @@
+# Uniapp学习笔记（Vue2）
 # 1.uview框架
 <font style="color:rgb(64, 72, 91);">uView UI，是</font>[uni-app](https://gitee.com/link?target=https%3A%2F%2Funiapp.dcloud.io%2F)<font style="color:rgb(64, 72, 91);">全面兼容nvue的uni-app生态框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水</font>
 
@@ -61,8 +62,7 @@ App.vue引入
 ```
 
 # 3.开始使用
-
-
+[https://www.yuque.com/liyedong/zqilp1/zsgmvtx47dlwe4zg#xOYXO](#xOYXO)
 
 # 4.使用状态管理
 ```javascript

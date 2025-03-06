@@ -1,4 +1,5 @@
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 安装</font>
+# Elasticsearch 教程
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 安装</font>
 <font style="color:rgb(51, 51, 51);">在本章中，我们将详细了解Elasticsearch的安装过程。</font>
 
 <font style="color:rgb(51, 51, 51);">要在本地计算机上安装Elasticsearch，您将必须执行以下步骤-</font>
@@ -142,7 +143,7 @@ CD c:\kibana-7.0.0-windows-x86_64
 .\bin\kibana.bat
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 填充</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 填充</font>
 <font style="color:rgb(51, 51, 51);">在本章中，我们将学习如何向 Elasticsearch 添加一些索引、映射和数据。注意，这些数据中的一些将在本教程中解释的示例中使用。</font>
 
 ## <font style="color:rgb(51, 51, 51);">创建索引</font>
@@ -231,7 +232,7 @@ POST school/_doc/16
   
  ![](../../images/1731764183002-fbc4fbd8-2d29-4be9-8602-ca3947945a7e.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 版本升级</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 版本升级</font>
 <font style="color:rgb(51, 51, 51);">在任何系统或软件中，当我们升级到较新版本时，我们需要遵循一些步骤来维护应用程序设置，配置，数据和其他内容。这些步骤是使应用程序在新系统中稳定或维护数据完整性（防止数据损坏）所必需的。</font>
 
 <font style="color:rgb(51, 51, 51);">您需要按照以下步骤升级Elasticsearch-</font>
@@ -271,7 +272,7 @@ POST school/_doc/16
 
 <font style="color:rgb(51, 51, 51);">重新启用分配后，集群将开始将副本碎片分配给数据节点。此时，恢复索引和搜索是安全的，但是如果您可以等到所有主碎片和副本碎片都已成功分配并且所有节点的状态都为绿色时，集群将更快地恢复。</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch API约定</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch API约定</font>
 <font style="color:rgb(51, 51, 51);">Web中的应用程序编程接口(API)是一组函数调用或其他编程指令，用于访问该特定Web应用程序中的软件组件。例如，Facebook API通过访问来自Facebook的数据或其他功能来帮助开发人员创建应用程序；它可以是出生日期或状态更新。</font>
 
 <font style="color:rgb(51, 51, 51);">Elasticsearch提供了一个REST API，JSON可以通过HTTP访问该API。Elasticsearch使用一些约定，我们现在将对其进行讨论。</font>
@@ -832,7 +833,7 @@ POST schools/_update/4
 
 <font style="color:rgb(51, 51, 51);">您可以通过向更新的文档发送获取请求来检查更新。</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 搜索API</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 搜索API</font>
 <font style="color:rgb(51, 51, 51);">该API用于在Elasticsearch中搜索内容。用户可以通过发送带有查询字符串作为参数的get请求进行搜索，或者可以在发布请求的消息正文中发布查询。搜索 api 主要是多索引、多类型的。</font>
 
 ## <font style="color:rgb(51, 51, 51);">多索引</font>
@@ -964,7 +965,7 @@ POST /schools/_search
 }
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 聚合</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 聚合</font>
 <font style="color:rgb(51, 51, 51);">聚合框架收集搜索查询选择的所有数据，并由许多构建块组成，这有助于构建数据的复杂摘要。聚合的基本结构如下所示-</font>
 
 ```plain
@@ -1382,7 +1383,7 @@ POST /schools/_search?size=0
 }
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 索引API</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 索引API</font>
 <font style="color:rgb(51, 51, 51);">这些API负责管理索引的所有方面，例如设置，别名，映射，索引模板。</font>
 
 ## <font style="color:rgb(51, 51, 51);">创建索引</font>
@@ -1549,7 +1550,7 @@ POST colleges/_flush
 }
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch Cat API</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch Cat API</font>
 <font style="color:rgb(51, 51, 51);">通常，来自各种Elasticsearch API的结果以JSON格式显示。但是，JSON并非总是易于阅读。因此，Elasticsearch中提供了cat APIs功能，有助于使结果的打印格式更易于阅读和理解。cat API中使用了各种参数，这些参数具有不同的用途，例如-术语V使输出变得冗长。</font>
 
 <font style="color:rgb(51, 51, 51);">让我们在本章中更详细地了解cat API。</font>
@@ -1607,7 +1608,7 @@ epoch timestamp count
 1557633536 03:58:56 17809
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 集群API</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 集群API</font>
 <font style="color:rgb(51, 51, 51);">群集API用于获取有关群集及其节点的信息并在其中进行更改。要调用此API，我们需要指定节点名称，地址或_local。</font>
 
 GET /_nodes/_local
@@ -1779,7 +1780,7 @@ xpack.installed=true, ml.max_open_jobs=20}
 ignoreIdleThreads=true:
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 查询DSL</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 查询DSL</font>
 <font style="color:rgb(51, 51, 51);">在Elasticsearch中，搜索是通过使用基于JSON的查询来进行的。查询由两个子句组成-</font>
 
 + <font style="color:rgb(51, 51, 51);">叶子查询子句——这些子句是匹配的、术语或范围，它们在特定字段中查找特定的值。</font>
@@ -2265,7 +2266,7 @@ POST /geo_example/_doc?refresh
    }
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 映射</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 映射</font>
 <font style="color:rgb(51, 51, 51);">映射是存储在索引中的文档的轮廓。它定义了数据类型，如geo_point或字符串，以及文档中显示的字段的格式和规则，以控制动态添加字段的映射。</font>
 
 ```plain
@@ -2368,7 +2369,7 @@ GET /accountdetails/_mappings?include_type_name=false
 ## <font style="color:rgb(51, 51, 51);">删除映射类型</font>
 <font style="color:rgb(51, 51, 51);">在Elasticsearch 7.0.0或更高版本中创建的索引不再接受_default_映射。中创建的索引6.x将继续在Elasticsearch 6.x中像以前一样起作用。在7.0中的API中已弃用类型。</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 分析</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 分析</font>
 <font style="color:rgb(51, 51, 51);">当在搜索操作期间处理查询时，分析模块会分析任何索引中的内容。该模块由分析器，令牌生成器，令牌过滤器和字符过滤器组成。如果未定义分析器，则默认情况下，内置分析器，令牌，过滤器和令牌生成器会在分析模块中注册。</font>
 
 <font style="color:rgb(51, 51, 51);">在下面的示例中，我们使用一个标准分析器，该分析器在没有指定其他分析器时使用。它将根据语法对句子进行分析，并生成句子中使用的单词。</font>
@@ -2594,7 +2595,7 @@ POST _analyze
 | <font style="color:rgb(51, 51, 51);">4</font> | **<font style="color:rgb(51, 51, 51);">字母标记器(letter)</font>**<br/><font style="color:rgb(51, 51, 51);">这将捕获整个单词，直到遇到一个非字母。</font> |
 
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 模块</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 模块</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch由许多模块组成，这些模块负责其功能。这些模块具有两种类型的设置，如下所示：</font>
 
 + **<font style="color:rgb(51, 51, 51);">静态设置</font>**<font style="color:rgb(51, 51, 51);">−在启动Elasticsearch之前，需要在config(elasticsearch.yml)文件中配置这些设置。您需要更新集群中的所有关注节点，以反映这些设置的更改。</font>
@@ -2731,7 +2732,7 @@ Enable cache "index.requests.cache.enable": true
 ## <font style="color:rgb(51, 51, 51);">节点</font>
 <font style="color:rgb(51, 51, 51);">每个节点都可以选择是否为数据节点。可以通过更改 node.data 设置来更改此属性。将该值设置为 false 将定义该节点不是数据节点。</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 索引模块</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 索引模块</font>
 <font style="color:rgb(51, 51, 51);">这些是为每个索引创建的模块，用于控制索引的设置和行为。例如，索引可以使用多少个分片或该索引的主分片可以具有的副本数等。索引设置有两种类型-</font>
 
 + **<font style="color:rgb(51, 51, 51);">静态</font>**<font style="color:rgb(51, 51, 51);">−这些只能在创建索引时或在关闭的索引上进行设置。</font>
@@ -2760,7 +2761,7 @@ Enable cache "index.requests.cache.enable": true
 | <font style="color:rgb(51, 51, 51);">index.refresh_interval</font> | <font style="color:rgb(51, 51, 51);">1 second</font> | <font style="color:rgb(51, 51, 51);">执行刷新操作的频率，刷新操作使最近对索引的更改可见以供搜索。</font> |
 
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch Ingest节点</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch Ingest节点</font>
 | <font style="color:rgb(51, 51, 51);">index.blocks.read_only</font> | <font style="color:rgb(51, 51, 51);">1 true/false</font> | <font style="color:rgb(51, 51, 51);">设置为true将使索引和索引元数据为只读，设置为false将允许写入和元数据更改。</font> |
 | --- | --- | --- |
 
@@ -2891,7 +2892,7 @@ GET /logs/_doc/2
 
 <font style="color:rgb(51, 51, 51);">您可以在上面看到11是一个不使用管道的字符串。</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 管理索引生命周期</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 管理索引生命周期</font>
 <font style="color:rgb(51, 51, 51);">管理索引生命周期涉及基于分片大小和性能要求等因素执行管理操作。索引生命周期管理(ILM)API使您能够随着时间自动管理索引。</font>
 
 <font style="color:rgb(51, 51, 51);">本章列出了ILM API及其用法。</font>
@@ -2924,7 +2925,7 @@ GET /logs/_doc/2
 <font style="color:rgb(51, 51, 51);">  
 </font><font style="color:rgb(51, 51, 51);"> </font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch SQL访问</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch SQL访问</font>
 <font style="color:rgb(51, 51, 51);">它是一个组件，允许对 Elasticsearch 实时执行类似 sql 的查询。您可以将 Elasticsearch SQL 看作是一个翻译器，它同时理解 SQL 和 Elasticsearch，并且通过 Elasticsearch 功能，可以方便地实时读取和处理数据。</font>
 
 ## <font style="color:rgb(51, 51, 51);">Elasticsearch SQL的优点</font>
@@ -3032,7 +3033,7 @@ Main Street         |Sunshine       |1965-06-01T00:00:00.000Z|604
 
 **<font style="color:rgb(51, 51, 51);">Note</font>**<font style="color:rgb(51, 51, 51);"> −通过更改上面的SQL查询，您可以获得不同的结果集。</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 监视</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 监视</font>
 <font style="color:rgb(51, 51, 51);">为了监视集群的运行状况，监视功能从每个节点收集度量并将它们存储在Elasticsearch索引中。与Elasticsearch中的监视相关的所有设置必须在elasticsearch.yml 每个节点的文件，或者在可能的情况下，在动态集群设置中。</font>
 
 <font style="color:rgb(51, 51, 51);">为了开始监视，我们需要检查集群设置，可以通过以下方式完成：</font>
@@ -3062,7 +3063,7 @@ GET _cluster/settings
 
 <font style="color:rgb(51, 51, 51);">在导出程序可以路由监控数据之前，它们必须设置一定的Elasticsearch资源。这些资源包括模板和摄取管道</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 汇总数据</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 汇总数据</font>
 <font style="color:rgb(51, 51, 51);">汇总作业是一项周期性任务，它汇总索引模式指定的索引中的数据，并将其汇总到新索引中。在下面的示例中，我们创建了一个名为sensor的索引，该索引具有不同的日期时间戳。然后我们创建一个rollup作业，使用cron job周期性地从这些索引中汇总数据。</font>
 
 ```plain
@@ -3154,7 +3155,7 @@ GET /sensor_rollup/_rollup_search
 }
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 冻结索引</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 冻结索引</font>
 <font style="color:rgb(51, 51, 51);">频繁搜索的索引保存在内存中，因为重建索引和帮助进行高效搜索需要时间。另一方面，可能有我们很少访问的索引。这些索引不需要占用内存，可以在需要时重新构建。这类指数被称为冻结索引。</font>
 
 <font style="color:rgb(51, 51, 51);">每当搜索分片时，Elasticsearch都会构建冻结索引的每个分片的瞬态数据结构，并在搜索完成后立即丢弃这些数据结构。由于Elasticsearch不会在内存中维护这些临时数据结构，因此冻结索引消耗的堆要比普通索引少得多。与其他方式相比，这允许更高的磁盘与堆的比率。</font>
@@ -3181,7 +3182,7 @@ GET /index_name/_search?q=user:tpoint&ignore_throttled=false
 GET /_cat/indices/index_name?v&h=i,sth
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 测试</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 测试</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch提供了一个jar文件，可以将其添加到任何Java IDE中，并可以用于测试与Elasticsearch相关的代码。使用Elasticsearch提供的框架可以执行一系列测试。在本章中，我们将详细讨论这些测试-</font>
 
 + <font style="color:rgb(51, 51, 51);">单元测试</font>
@@ -3279,7 +3280,7 @@ assertFirstHit(searchResponse, hasId("6"));
 assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch Kibana仪表板</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch Kibana仪表板</font>
 <font style="color:rgb(51, 51, 51);">Kibana仪表板是可视化和搜索的集合。您可以排列，调整和编辑仪表板内容，然后保存仪表板以便共享。在本章中，我们将了解如何创建和编辑仪表板。</font>
 
 ## <font style="color:rgb(51, 51, 51);">仪表盘创建</font>
@@ -3303,7 +3304,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731765424051-e455b9e4-2e1c-4334-b789-52934d54bab1.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 按字段过滤</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 按字段过滤</font>
 <font style="color:rgb(51, 51, 51);">Kibana主页提供的discover功能允许我们从不同角度探索数据集。您可以搜索和筛选所选索引模式的数据。数据通常以值在一段时间内的分布形式提供。</font>
 
 <font style="color:rgb(51, 51, 51);">要浏览电子商务数据示例，请点击下</font>**<font style="color:rgb(51, 51, 51);">Discover</font>**<font style="color:rgb(51, 51, 51);">图所示的图标。这将随图表一起显示数据。</font>
@@ -3323,7 +3324,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
   
  ![](../../images/1731765690325-7c64c5f1-f392-4d1e-a871-16936fce09c5.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 数据表</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 数据表</font>
 <font style="color:rgb(51, 51, 51);">数据表是可视化类型，用于显示组合聚合的原始数据。使用数据表可以提供多种类型的聚合。为了创建数据表，我们应该完成此处详细讨论的步骤。</font>
 
 ## <font style="color:rgb(51, 51, 51);">可视化</font>
@@ -3342,7 +3343,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
   
  ![](../../images/1731766453468-93a3fcad-4693-401d-a3fb-491a5060dfde.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 区域地图</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 区域地图</font>
 <font style="color:rgb(51, 51, 51);">区域映射会在地理映射上显示指标。在查看以不同强度锚定到不同地理区域的数据时很有用。较深的阴影通常表示较高的值，较浅的阴影通常表示较低的值。</font>
 
 <font style="color:rgb(51, 51, 51);">创建此可视化的步骤详细说明如下-</font>
@@ -3363,7 +3364,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731766781781-4d47a69b-4890-45d0-b761-ddb0bbd0ca81.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 饼图</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 饼图</font>
 <font style="color:rgb(51, 51, 51);">饼图是最简单和著名的可视化工具之一。它表示数据为一个圆形的切片，每个切片的颜色不同。标签以及百分比数据值可以与圆一起显示。圆也可以采取甜甜圈的形状。</font>
 
 ## <font style="color:rgb(51, 51, 51);">可视化</font>
@@ -3386,7 +3387,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731766903664-07558cc5-647c-4d33-8128-d2edf7af2620.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 面积图和条形图</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 面积图和条形图</font>
 <font style="color:rgb(51, 51, 51);">面积图是折线图的扩展，其中折线图和轴之间的区域以某些颜色突出显示。条形图表示将数据组织成一系列值，然后相对于轴进行绘制的图表。它可以由水平条或垂直条组成。</font>
 
 <font style="color:rgb(51, 51, 51);">在本章中，我们将看到使用Kibana创建的所有这三种图形。如前几章所述，我们将继续使用电子商务索引中的数据。</font>
@@ -3420,7 +3421,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731767682823-e674465b-2d07-4128-933a-cfb7d82946a1.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 时间序列</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 时间序列</font>
 <font style="color:rgb(51, 51, 51);">时间序列表示特定时间序列中的数据序列。例如，从每月的第一天到最后一天的每一天的数据。数据点之间的间隔保持不变。包含时间成分的任何数据集都可以表示为时间序列。</font>
 
 <font style="color:rgb(51, 51, 51);">在本章中，我们将使用示例电子商务数据集并绘制每天的订单数计数以创建时间序列。</font>
@@ -3441,7 +3442,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731767984906-3ea237e3-1b7d-47a0-8351-2378f861d2f7.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 标签云</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 标签云</font>
 <font style="color:rgb(51, 51, 51);">标签云以吸引人的形式表示文本，这些文本主要是关键字和元数据。它们以不同的角度对齐，并以不同的颜色和字体大小表示。它有助于找出数据中最突出的术语。可以由一个或多个因素（例如术语的频率，标签的唯一性或基于附加到特定术语的权重等）确定突出程度。下面我们将介绍创建标签云的步骤。</font>
 
 ## <font style="color:rgb(51, 51, 51);">可视化</font>
@@ -3464,7 +3465,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731768463901-3aceb3cc-245b-428e-9adf-96df5fce2a21.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 热图</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 热图</font>
 <font style="color:rgb(51, 51, 51);">热图是一种可视化类型，其中不同的颜色阴影代表图形中的不同区域。该值可以连续变化，因此颜色的颜色阴影随该值而变化。它们对于表示连续变化的数据和离散数据都非常有用。</font>
 
 <font style="color:rgb(51, 51, 51);">在本章中，我们将使用名为sample_data_flights的数据集来构建热图。在其中，我们考虑了名为航班的出发地国家和目的地国家的变量，并进行了计数。</font>
@@ -3485,7 +3486,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 **<font style="color:rgb(51, 51, 51);">Note</font>**<font style="color:rgb(51, 51, 51);"> −必须将日期范围设置为“今年”，以便图形收集一年的数据以生成有效的热图。</font>
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 画布</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 画布</font>
 <font style="color:rgb(51, 51, 51);">画布应用程序是Kibana的一部分，它使我们能够创建动态，多页和像素完美的数据显示。它具有创建图表的能力，而不仅仅是图表和指标，这使其具有独特性和吸引力。在本章中，我们将看到画布的各种功能以及如何使用画布工作台。</font>
 
 ## <font style="color:rgb(51, 51, 51);">打开画布</font>
@@ -3507,7 +3508,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731768765028-6433d80a-5f95-4cd3-8c02-518c24fd81d1.png)
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 日志UI</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 日志UI</font>
 <font style="color:rgb(51, 51, 51);">Kibana还可以帮助可视化来自各种来源的日志数据。日志是基础结构运行状况，性能需求和安全漏洞分析等的重要分析来源。Kibana可以连接到各种日志，例如Web服务器日志，elasticsearch日志和cloudwatch日志等。</font>
 
 ## <font style="color:rgb(51, 51, 51);">Logstash日志</font>

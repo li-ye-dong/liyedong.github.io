@@ -1,3 +1,4 @@
+# JavaScript学习
 # 异步Promise
 先后发出名为a的请求和b的请求，一秒后回调成功使用resolve返回成功数据，对应then的res，reject返回的是catch里的err对象。简单来说就是resolve这个函数的回调是成功的时候调用，reject函数是失败调用
 

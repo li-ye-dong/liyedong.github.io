@@ -41,7 +41,7 @@ func setNamespaces(daemon *Daemon, s *specs.Spec, c *container.Container) error 
 ###### <font style="color:rgb(119, 119, 119);">CGroup 资源限制</font>
 <font style="color:rgb(51, 51, 51);">通过namespace可以保证容器之间的隔离，但是无法控制每个容器可以占用多少资源， 如果其中的某一个容器正在执行 CPU 密集型的任务，那么就会影响其他容器中任务的性能与执行效率，导致多个容器相互影响并且抢占资源。如何对多个容器的资源使用进行限制就成了解决进程虚拟资源隔离之后的主要问题。</font>![](../../images/1733055249736-5cd7eac9-4bcf-427b-829d-ba67acd3e7ae.png)
 
-<font style="color:rgb(51, 51, 51);">Control Groups（简称 CGroups）就是能够隔离宿主机器上的物理资源，例如 CPU、内存、磁盘 I/O 和网络带宽。每一个 CGroup 都是一组被相同的标准和参数限制的进程。而我们需要做的，其实就是把容器这个进程加入到指定的Cgroup中。
+<font style="color:rgb(51, 51, 51);">Control Groups（简称 CGroups）就是能够隔离宿主机器上的物理资源，例如 CPU、内存、磁盘 I/O 和网络带宽。每一个 CGroup 都是一组被相同的标准和参数限制的进程。而我们需要做的，其实就是把容器这个进程加入到指定的Cgroup中。深入理解CGroup，请</font>[<font style="color:rgb(51, 51, 51);">点此</font>](!%5Bimage-20200323195718300%5D(C:%5CUsers%5Cliyongxin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200323195718300.png))<font style="color:rgb(51, 51, 51);">。</font>
 
 ###### <font style="color:rgb(119, 119, 119);">UnionFS 联合文件系统</font>
 <font style="color:rgb(51, 51, 51);">Linux namespace和cgroup分别解决了容器的资源隔离与资源限制，那么容器是很轻量的，通常每台机器中可以运行几十上百个容器， 这些个容器是共用一个image，还是各自将这个image复制了一份，然后各自独立运行呢？ 如果每个容器之间都是全量的文件系统拷贝，那么会导致至少如下问题：</font>

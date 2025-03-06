@@ -1,26 +1,16 @@
-# 系统安装
-## 将所有空间挂给根目录
-![](../../images/1727333903072-97e5316d-39f1-4b49-9e64-e93e4a58b8c7.png)
-
-![](../../images/1727334005661-079ae8a6-c6f7-4d68-8b40-9379f134ff02.png)
-
-
-
-![](../../images/1727334038960-9599a680-4a3b-438d-aa5a-19e7bf10e83b.png)
-
-![](../../images/1727334274475-5d2d816d-e102-4324-98e3-79cc1242ef13.png)
-
-![](../../images/1727334286878-052a2d66-4701-4f28-b38e-55f9885b1a91.png)
-
-![](../../images/1727334256414-83e76cb5-cd17-4f5f-bb42-9b0a589de7c6.png)
-
-![](../../images/1727334862803-3f201a2c-3c3b-4081-9721-1929c1679cbb.png)
-
-
-
-
-
-# RHEL7
+## 系统安装
+### 将所有空间挂给根目录
+## ![](../../images/1727333903072-97e5316d-39f1-4b49-9e64-e93e4a58b8c7.png)
+## ![](../../images/1727334005661-079ae8a6-c6f7-4d68-8b40-9379f134ff02.png)
+## 
+## ![](../../images/1727334038960-9599a680-4a3b-438d-aa5a-19e7bf10e83b.png)
+## ![](../../images/1727334274475-5d2d816d-e102-4324-98e3-79cc1242ef13.png)
+## ![](../../images/1727334286878-052a2d66-4701-4f28-b38e-55f9885b1a91.png)
+## ![](../../images/1727334256414-83e76cb5-cd17-4f5f-bb42-9b0a589de7c6.png)
+## ![](../../images/1727334862803-3f201a2c-3c3b-4081-9721-1929c1679cbb.png)
+## 
+## 
+## RHEL7
 ```shell
 #!/bin/bash
 # 增加日志审计
@@ -140,7 +130,7 @@ reboot
 
 
 
-# RHEL8
+## RHEL8
 ```shell
 #!/bin/bash
 # 增加日志审计
@@ -244,12 +234,12 @@ reboot
 
 ```
 
-# RHEL9
+## RHEL9
 ```shell
 
 ```
 
-# 安装vmtool
+## 安装vmtool
 ```shell
 mount /dev/sr0 /mnt
 cd /mnt
@@ -261,7 +251,7 @@ cd /tmp/vmware-tools-distrib
 一直按回车，直至安装成功
 ```
 
-# 安装lshell（管理用户只能使用某些命令）
+## 安装lshell（管理用户只能使用某些命令）
 ```shell
 #python3.11安装最新版本
 pip download wheel -i https://pypi.tuna.tsinghua.edu.cn/simple

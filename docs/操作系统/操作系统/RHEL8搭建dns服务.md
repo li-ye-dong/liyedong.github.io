@@ -1,3 +1,4 @@
+# RHEL8搭建dns服务
 # 架构设计
 ![画板](../../images/1722501251679-0cad773a-b1a0-4ecb-97fe-be63601eb5ba.jpeg)
 
