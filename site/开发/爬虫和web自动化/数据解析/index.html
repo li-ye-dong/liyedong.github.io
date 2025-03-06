@@ -1,0 +1,6035 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E5%BC%80%E5%8F%91/%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/">
+      
+      
+        <link rel="prev" href="../%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8Cpandas%E5%A4%84%E7%90%86/">
+      
+      
+        <link rel="next" href="../%E6%97%A0%E9%99%90debugger%E9%80%86%E5%90%91%E5%92%8CF12%E7%A6%81%E6%AD%A2/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>数据解析 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#何为数据解析" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数据解析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDF/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../PDF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            开发
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FastApi学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fastapi%E6%89%93%E5%8C%85exe%E5%92%8Cvue%E6%89%93%E5%8C%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastapi打包exe和vue打包
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GithubPage%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GithubPage搭建博客
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mkdocs%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mkdocs文档生成器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93ORM%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据库ORM相关
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    DRF框架
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            DRF框架
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/JWT%E8%AE%A4%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JWT认证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/RESTful%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RESTful规范
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E4%BB%A5%E5%8D%9A%E5%AE%A2%E4%B8%BA%E4%BE%8B%E4%BD%BF%E7%94%A8DRF%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%87%BD%E6%95%B0%E7%9A%84%E8%A7%86%E5%9B%BE%E5%BC%80%E5%8F%91API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    以博客为例使用DRF的序列化器和基于函数的视图开发API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E5%88%86%E9%A1%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    分页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%A7%86%E5%9B%BEAPIView%2C%20GenericAPIView%E5%92%8C%E8%A7%86%E5%9B%BE%E9%9B%86%28ViewSet%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于类的视图APIView, GenericAPIView和视图集(ViewSet)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E7%8E%A9%E8%BD%AC%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%28Serializer%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    玩转序列化器(Serializer)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%AE%A4%E8%AF%81%E4%B8%8E%E6%9D%83%E9%99%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    认证与权限
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%AE%A4%E8%AF%81%E8%AF%A6%E8%A7%A3%E4%B8%8EToken%E8%AE%A4%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    认证详解与Token认证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%BF%87%E6%BB%A4%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    过滤与排序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E9%99%90%E6%B5%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    限流
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Django
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            Django
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%20%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AEURLConf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django 路由配置URLConf
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django上传文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E7%A4%BA%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django中间件原理及示例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%BF%A1%E5%8F%B7%E6%9C%BA%E5%88%B6%E5%8F%8A%E7%A4%BA%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django信号机制及示例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87%E5%A4%84%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django全局上下文处理器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%9B%BD%E9%99%85%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django国际化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%A4%9A%E7%A7%8D%E7%BC%93%E5%AD%98%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django多种缓存配置方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E5%85%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django性能优化大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django日志管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%9D%83%E9%99%90%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django权限详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django模型详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E8%BF%9E%E6%8E%A5MySQL%E5%92%8CPostgreSQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django连接MySQL和PostgreSQL数据库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django配置文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8Celery%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E5%92%8C%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django项目中使用Celery执行异步和周期性任务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Docker%E9%83%A8%E7%BD%B2Django/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker部署Django
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/ORM%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORM数据增删改查接口
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Queryset%E7%89%B9%E6%80%A7%E5%8F%8A%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Queryset特性及高级查询技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/uWSGI%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uWSGI的安装及配置详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/%E8%87%AA%E5%AE%9A%E4%B9%89Django-admin%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自定义Django admin管理命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_8" id="__nav_8_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Flask
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            Flask
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/Flask%20%E6%96%B9%E6%A1%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask 方案
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/Flask%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E4%BD%BF%E7%94%A8%20async%20%E5%92%8C%20await/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 async 和 await
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E4%BD%BF%E7%94%A8%E8%93%9D%E5%9B%BE%E8%BF%9B%E8%A1%8C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用蓝图进行应用模块化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E4%BF%A1%E5%8F%B7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    信号
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    命令行接口
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%9C%A8%20Shell%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Flask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    在 Shell 中使用 Flask
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于类的视图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%AE%89%E5%85%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全注意事项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%BA%94%E7%94%A8%E6%83%85%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用情境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用程序结构和生命周期
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%BA%94%E7%94%A8%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用错误处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开发服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    快速上手
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E6%89%A9%E5%B1%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E6%97%A5%E5%BF%97/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模板
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E6%B5%8B%E8%AF%95%20Flask%20%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测试 Flask 应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    生产部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E8%AF%B7%E6%B1%82%E6%83%85%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    请求情境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E8%B0%83%E8%AF%95%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%94%99%E8%AF%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调试应用程序错误
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Flask/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_9" id="__nav_8_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Pandas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_9">
+            <span class="md-nav__icon md-icon"></span>
+            Pandas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20DataFrame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas DataFrame
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20GroupBy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas GroupBy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20IO%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas IO操作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Panel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Panel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20SQL%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas SQL操作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Series/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Series
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Timedelta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Timedelta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E4%B8%B2%E8%81%94/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 串联
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%87%BD%E6%95%B0%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 函数应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 分类数据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%8F%AF%E8%A7%86%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 可视化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 基本方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 排序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 描述性统计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 数据丢失
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 数据结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 文本处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 日期函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 注意事项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%A8%80%E7%96%8F%E6%95%B0%E6%8D%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 稀疏数据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%B4%A2%E5%BC%95%E5%92%8C%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 索引和数据查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 统计函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%81%9A%E5%90%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 聚合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%89%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 自定义选项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%BF%9E%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 连接
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%BF%AD%E4%BB%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 迭代
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 重建索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Python%20Pandas%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 聚合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10" id="__nav_8_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10">
+            <span class="md-nav__icon md-icon"></span>
+            Python基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20gui%E8%87%AA%E5%8A%A8%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python gui自动化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E5%BC%82%E5%B8%B8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 错误和内置异常
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python中的数字数据类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 文件I/O
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 日期时间(datetime)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 命名空间和作用域
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E4%B9%8BPandas%20%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python之Pandas 常用函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%85%83%E7%B1%BB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python元类
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 参考手册大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python垃圾回收
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    镜像源
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python多进程与多线程编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%AE%9E%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 实例大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 面向对象编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/%E5%8D%8F%E7%A8%8B%20%26%20%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%28asyncio%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协程 &amp; 异步编程(asyncio)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_11" id="__nav_8_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python工程化
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_11">
+            <span class="md-nav__icon md-icon"></span>
+            Python工程化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Docker%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker初始化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Fastapi%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastapi项目工程化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Python-Poetry%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装和卸载
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Python%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python项目搭建
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/cookiecutter%20%E7%9A%84%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cookiecutter 的使用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目初始化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_12" id="__nav_8_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    图像处理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_12">
+            <span class="md-nav__icon md-icon"></span>
+            图像处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/Python%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python实现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/Python%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E6%AF%94%E5%AF%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python实现图像比对
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图像处理概念
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_13" id="__nav_8_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_13">
+            <span class="md-nav__icon md-icon"></span>
+            开发
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elasticsearch 教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Git%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/JavaScript%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JavaScript学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Uniapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88Vue2%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uniapp学习笔记（Vue2）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Vue3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue3学习笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/java/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/rust%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rust学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/typescript%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    typescript学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前端包管理器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_14" id="__nav_8_14_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    爬虫和web自动化
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_14">
+            <span class="md-nav__icon md-icon"></span>
+            爬虫和web自动化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Base64%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base64编码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CSS%E5%AD%97%E4%BD%93%E5%8A%A0%E5%AF%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSS字体加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Charles%E6%8A%93%E5%8C%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Charles抓包
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Playwright/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playwright
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Playwright%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playwright高级
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E8%B0%83%E7%94%A8js%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python调用js文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../drissionpage%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drissionpage框架之爬虫和web自动化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../js%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Js对象监视器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests高级
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webpack%E9%80%86%E5%90%91/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webpack逆向
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%8A%A0%E5%AF%86%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    加密类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8Cpandas%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据库和pandas处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    数据解析
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    数据解析
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#何为数据解析" class="md-nav__link">
+    <span class="md-ellipsis">
+      何为数据解析
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#数据解析的主流策略" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据解析的主流策略
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bs4" class="md-nav__link">
+    <span class="md-ellipsis">
+      bs4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xpath重点" class="md-nav__link">
+    <span class="md-ellipsis">
+      xpath（重点）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#作业" class="md-nav__link">
+    <span class="md-ellipsis">
+      作业：
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%97%A0%E9%99%90debugger%E9%80%86%E5%90%91%E5%92%8CF12%E7%A6%81%E6%AD%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无限debugger逆向和F12禁止
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%91%9E%E6%95%B0%E6%8A%80%E6%9C%AF%E9%80%86%E5%90%91/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    瑞数技术逆向
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%80%86%E5%90%91%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    逆向技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_15" id="__nav_8_15_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自学项目
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_15">
+            <span class="md-nav__icon md-icon"></span>
+            自学项目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%87%AA%E5%AD%A6%E9%A1%B9%E7%9B%AE/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    架构设计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>数据解析</h1>
+
+<h4 id="何为数据解析">何为数据解析<a class="headerlink" href="#何为数据解析" title="Permanent link">&para;</a></h4>
+<ul>
+<li>概念：可以将爬取到的数据中指定的数据进行单独提取。</li>
+<li>作用：实现聚焦爬虫。</li>
+<li>数据解析通用原理：<ul>
+<li>在一张页面中，想要解析的数据是存在于相关的html的标签中。</li>
+<li>可以先将指定的标签进行定位，然后可以将该标签中展示的数据进行提取。</li>
+</ul>
+</li>
+<li>聚焦爬虫编码流程:<ul>
+<li>指定url</li>
+<li>发起请求</li>
+<li>获取页面源码数据</li>
+<li>数据解析</li>
+<li>持久化存储</li>
+</ul>
+</li>
+<li>python中可以实现数据解析的技术：<ul>
+<li>正则表达式（复杂度高）</li>
+<li>bs4（python独有，学习成本较低）</li>
+<li>xpath（通用性最强，最重要）</li>
+<li>pyquery（css语句）</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据解析的主流策略">数据解析的主流策略<a class="headerlink" href="#数据解析的主流策略" title="Permanent link">&para;</a></h4>
+<h4 id="bs4">bs4<a class="headerlink" href="#bs4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>环境安装：<ul>
+<li>pip install bs4</li>
+<li>pip install lxml</li>
+</ul>
+</li>
+<li>bs4数据解析的流程:<ul>
+<li>创建一个BeautifulSoup对象，把被解析的数据加载到该对象中。</li>
+<li>调用BeautifulSoup对象相关的属性或者方法进行标签定位和数据提取</li>
+</ul>
+</li>
+<li>具体解析的操作：<ul>
+<li>在当前目录下新建一个test.html文件，然后将下述内容拷贝到该文件中</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="o">&lt;</span><span class="n">html</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="o">&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a> <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>  <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span> <span class="o">/&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">测试bs4</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>     <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">百里守约</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;song&quot;</span><span class="o">&gt;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">李清照</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">王安石</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">苏轼</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">柳宗元</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.song.com/&quot;</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;赵匡胤&quot;</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;_self&quot;</span><span class="o">&gt;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="n">this</span> <span class="ow">is</span> <span class="n">span</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="n">宋朝是最强大的王朝</span><span class="err">，</span><span class="n">不是军队的强大</span><span class="err">，</span><span class="n">而是经济很强大</span><span class="err">，</span><span class="n">国民都很有钱</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;du&quot;</span><span class="o">&gt;</span><span class="n">总为浮云能蔽日</span><span class="p">,</span><span class="n">长安不见使人愁</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;http://www.baidu.com/meinv.jpg&quot;</span> <span class="n">alt</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="o">/&gt;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;tang&quot;</span><span class="o">&gt;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>         <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.baidu.com&quot;</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;qing&quot;</span><span class="o">&gt;</span><span class="n">清明时节雨纷纷</span><span class="p">,</span><span class="n">路上行人欲断魂</span><span class="p">,</span><span class="n">借问酒家何处有</span><span class="p">,</span><span class="n">牧童遥指杏花村</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.163.com&quot;</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;qin&quot;</span><span class="o">&gt;</span><span class="n">秦时明月汉时关</span><span class="p">,</span><span class="n">万里长征人未还</span><span class="p">,</span><span class="n">但使龙城飞将在</span><span class="p">,</span><span class="n">不教胡马度阴山</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.126.com&quot;</span> <span class="n">alt</span><span class="o">=</span><span class="s2">&quot;qi&quot;</span><span class="o">&gt;</span><span class="n">岐王宅里寻常见</span><span class="p">,</span><span class="n">崔九堂前几度闻</span><span class="p">,</span><span class="n">正是江南好风景</span><span class="p">,</span><span class="n">落花时节又逢君</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.sina.com&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;du&quot;</span><span class="o">&gt;</span><span class="n">杜甫</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.dudu.com&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;du&quot;</span><span class="o">&gt;</span><span class="n">杜牧</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">杜小月</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">i</span><span class="o">&gt;</span><span class="n">度蜜月</span><span class="o">&lt;/</span><span class="n">i</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.haha.com&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;feng&quot;</span><span class="o">&gt;</span><span class="n">凤凰台上凤凰游</span><span class="p">,</span><span class="n">凤去台空江自流</span><span class="p">,</span><span class="n">吴宫花草埋幽径</span><span class="p">,</span><span class="n">晋代衣冠成古丘</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- 有了test.html文件后，在练习如下操作
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span>
+<span class="normal"><a href="#__codelineno-1-44">44</a></span>
+<span class="normal"><a href="#__codelineno-1-45">45</a></span>
+<span class="normal"><a href="#__codelineno-1-46">46</a></span>
+<span class="normal"><a href="#__codelineno-1-47">47</a></span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.html&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1">#1.创建一个BeautifulSoup的工具对象，然后把即将被解析的页面源码数据加载到该对象中</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1">#参数1：被解析的页面源码数据</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1">#参数2：固定形式的lxml(一种解析器)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1">#2.可以调用BeautifulSoup对象的相关函数和属性进行标签定位和数据提取</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="c1">#标签定位-方式1:soup.tagName(只可以定位到第一次出现的该标签)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="n">title_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">title</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="n">p_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">p</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#标签定位-方式2（属性定位）:soup.find(tagName,attrName=&#39;value&#39;)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c1">#注意：find只可以定位满足要求的第一个标签，如果使用class属性值的话，find参数class_</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1">#定位到了class属性值为song的div标签</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="n">div_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;song&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1">#定位到class属性值为du的a标签</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="n">a_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;du&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="c1">#定位到了id的属性值为feng的a标签</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="n">a_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;feng&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="c1">#标签定位-方式3（属性定位）:soup.find_all(tagName,attrName=&#39;value&#39;)</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="c1">#注意：find_all可以定位到满足要求的所有标签</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="n">tags</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;du&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="c1">#标签定位-方式4(选择器定位):</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="c1">#常用的选择器：class选择器(.class属性值)  id选择器(#id的属性值)</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="n">tags</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;#feng&#39;</span><span class="p">)</span> <span class="c1">#定位到id的属性值为feng对应的所有标签</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="n">tags</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.du&#39;</span><span class="p">)</span> <span class="c1">#定位到class属性值为du对应的所有标签</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="c1">#层级选择器：&gt;表示一个层级  一个空格可以表示多个层</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="n">tags</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.tang &gt; ul &gt; li &gt; a&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="n">tags</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.tang a&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="c1"># print(tags)</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="c1">#定位到标签内部数据的提取</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="c1">#方式1：提取标签内的文本数据</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="c1">#tag.string:只可以将标签直系的文本内容取出</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="c1">#tag.text:可以将标签内部所有的文本内容取出</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="n">tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;feng&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="n">content</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">string</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="n">div_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;tang&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="n">content</span> <span class="o">=</span> <span class="n">div_tag</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="c1">#方式2：提取标签的属性值 tag[&#39;attrName&#39;]</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="n">img_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="n">img_src</span> <span class="o">=</span> <span class="n">img_tag</span><span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="nb">print</span><span class="p">(</span><span class="n">img_src</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>案例应用：碧血剑文本爬取<ul>
+<li>url：<a href="https://bixuejian.5000yan.com/">https://bixuejian.5000yan.com/</a></li>
+<li>需求：将每一个章节的标题和内容进行爬取然后存储到文件中</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span><span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&#39;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://bixuejian.5000yan.com/&#39;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1">#获取了首页对应的页面源码数据</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="n">page_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="c1">#在首页页面源码数据中进行数据解析（章节的标题）</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page_text</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="c1">#所有的a标签定位保存到了a_list这个列表中</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="n">a_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.paiban &gt; li &gt; a&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">a_list</span><span class="p">:</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>    <span class="c1">#章节的标题</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>    <span class="n">title</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">string</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>    <span class="n">detail_url</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="c1">#章节详情页的url</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>    <span class="c1">#对详情页的url进行请求，为了获取详情页的页面源码数据，将章节内容进行解析</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>    <span class="n">detail_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">detail_url</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>    <span class="n">detail_response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a>    <span class="n">detail_page_text</span> <span class="o">=</span> <span class="n">detail_response</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>    <span class="c1">#解析详情页，将章节内容进行提取</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a>    <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">detail_page_text</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a>    <span class="n">div_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;grap&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a>    <span class="c1">#章节内容</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a>    <span class="n">content</span> <span class="o">=</span> <span class="n">div_tag</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a>    <span class="n">fileName</span> <span class="o">=</span> <span class="s1">&#39;xiaoshuo/&#39;</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span> <span class="c1">#xiaoshuo/章节1.txt</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a>        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">title</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">content</span><span class="p">)</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="s1">&#39;:爬取保存成功！&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="xpath重点">xpath（重点）<a class="headerlink" href="#xpath重点" title="Permanent link">&para;</a></h4>
+<ul>
+<li>环境安装：<ul>
+<li>pip install lxml</li>
+</ul>
+</li>
+<li>xpath解析的编码流程:<ul>
+<li>创建一个etree类型的对象，把被解析的数据加载到该对象中</li>
+<li>调用etree对象中xpath函数结合不同形式的xpath表达式进行标签定位和数据的提取</li>
+</ul>
+</li>
+<li>xpath表达式如何理解？</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lxml</span><span class="w"> </span><span class="kn">import</span> <span class="n">etree</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1">#1.创建一个etree的工具对象，然后把即将被解析的页面源码数据加载到该对象中</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;test.html&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">#2.调用etree对象的xpath函数然后结合着不用形式的xpath表达式进行标签定位和数据提取</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="c1">#xpath函数返回的是列表，列表中存储的是满足定位要求的所有标签</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1">#/html/head/title定位到html下面的head下面的title标签</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="n">title_tag</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;/html/head/title&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c1">#//title在页面源码中定位到所有的title标签</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="n">title_tag</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//title&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="c1">#属性定位</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="c1">#定位到所有的div标签</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="n">div_tags</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="c1">#定位到class属性值为song的div标签 //tagName[@attrName=&#39;value&#39;]</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="n">div_tag</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[@class=&quot;song&quot;]&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="c1">#索引定位://tag[index]</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="c1">#注意：索引是从1开始的</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="n">div_tag</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[1]&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="c1">#层级定位</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="c1"># /表示一个层级  //表示多个层级</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="n">a_list</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[@class=&quot;tang&quot;]/ul/li/a&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="n">a_list</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[@class=&quot;tang&quot;]//a&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="c1">#数据提取</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="c1">#1.提取标签中的文本内容:/text()取直系文本  //text()取所有文本</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="n">a_content</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//a[@id=&quot;feng&quot;]/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="n">div_content</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[@class=&quot;song&quot;]//text()&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="c1">#2.提取标签的属性值：//tag/@attrName</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="n">img_src</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//img/@src&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="nb">print</span><span class="p">(</span><span class="n">img_src</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>图片数据爬取：<ul>
+<li><a href="http://pic.netbian.com/4kmeinv/">http://pic.netbian.com/4kmeinv/</a><ul>
+<li>将爬取到的图片存储到指定的文件夹中</li>
+<li>爬取第一页</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lxml</span><span class="w"> </span><span class="kn">import</span> <span class="n">etree</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c1">#新建一个文件夹</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">dirName</span> <span class="o">=</span> <span class="s1">&#39;girls&#39;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dirName</span><span class="p">):</span><span class="c1">#如果文件夹不存在，则新建，否则不新建</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dirName</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span><span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&#39;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="p">}</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://pic.netbian.com/4kmeinv/index.html&#39;</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gbk&#39;</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="n">page_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="c1">#数据解析：图片地址+图片名称</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">page_text</span><span class="p">)</span><span class="c1">#HTML()专门用来解析网络请求到的页面源码数据</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="c1">#该列表中存储的是每一个li标签</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="n">li_list</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[@class=&quot;slist&quot;]/ul/li&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">li_list</span><span class="p">:</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a>    <span class="c1">#局部解析：将li标签中指定的内容解析出来</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a>    <span class="n">img_title</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;./a/b/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.jpg&#39;</span><span class="c1"># 左侧./表示xpath的调用者对应的标签</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a>    <span class="n">img_src</span> <span class="o">=</span> <span class="s1">&#39;https://pic.netbian.com&#39;</span><span class="o">+</span><span class="n">li</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;./a/img/@src&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a>    <span class="c1">#对图片发起请求，存储图片数据</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a>    <span class="n">img_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">img_src</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a>    <span class="c1"># girls/123.jpg</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a>    <span class="n">img_path</span> <span class="o">=</span> <span class="n">dirName</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">img_title</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a>        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">img_title</span><span class="p">,</span><span class="s1">&#39;下载保存成功！&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    * 爬取多页
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span>
+<span class="normal"><a href="#__codelineno-5-28">28</a></span>
+<span class="normal"><a href="#__codelineno-5-29">29</a></span>
+<span class="normal"><a href="#__codelineno-5-30">30</a></span>
+<span class="normal"><a href="#__codelineno-5-31">31</a></span>
+<span class="normal"><a href="#__codelineno-5-32">32</a></span>
+<span class="normal"><a href="#__codelineno-5-33">33</a></span>
+<span class="normal"><a href="#__codelineno-5-34">34</a></span>
+<span class="normal"><a href="#__codelineno-5-35">35</a></span>
+<span class="normal"><a href="#__codelineno-5-36">36</a></span>
+<span class="normal"><a href="#__codelineno-5-37">37</a></span>
+<span class="normal"><a href="#__codelineno-5-38">38</a></span>
+<span class="normal"><a href="#__codelineno-5-39">39</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lxml</span><span class="w"> </span><span class="kn">import</span> <span class="n">etree</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">#新建一个文件夹</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">dirName</span> <span class="o">=</span> <span class="s1">&#39;girls&#39;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dirName</span><span class="p">):</span><span class="c1">#如果文件夹不存在，则新建，否则不新建</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dirName</span><span class="p">)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span><span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36&#39;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="p">}</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="c1">#创建一个通用的url:除了第一页其他页码的通用url</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://pic.netbian.com/4kmeinv/index_</span><span class="si">%d</span><span class="s1">.html&#39;</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="k">if</span> <span class="n">page</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>        <span class="n">new_url</span> <span class="o">=</span> <span class="s1">&#39;https://pic.netbian.com/4kmeinv/index.html&#39;</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>        <span class="n">new_url</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">url</span><span class="o">%</span><span class="n">page</span><span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----------正在请求下载第</span><span class="si">%d</span><span class="s1">页的图片数据----------&#39;</span><span class="o">%</span><span class="n">page</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">new_url</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>    <span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span><span class="mi">2</span> <span class="s1">&#39;gbk&#39;</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a>    <span class="n">page_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a>    <span class="c1">#数据解析：图片地址+图片名称</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a>    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">page_text</span><span class="p">)</span><span class="c1">#HTML()专门用来解析网络请求到的页面源码数据</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a>    <span class="c1">#该列表中存储的是每一个li标签</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a>    <span class="n">li_list</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[@class=&quot;slist&quot;]/ul/li&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28"></a>    <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">li_list</span><span class="p">:</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29"></a>        <span class="c1">#局部解析：将li标签中指定的内容解析出来</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30"></a>        <span class="n">img_title</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;./a/b/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.jpg&#39;</span><span class="c1"># 左侧./表示xpath的调用者对应的标签</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31"></a>        <span class="n">img_src</span> <span class="o">=</span> <span class="s1">&#39;https://pic.netbian.com&#39;</span><span class="o">+</span><span class="n">li</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;./a/img/@src&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32"></a>
+<a id="__codelineno-5-33" name="__codelineno-5-33"></a>        <span class="c1">#对图片发起请求，存储图片数据</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34"></a>        <span class="n">img_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">img_src</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35"></a>        <span class="c1"># girls/123.jpg</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36"></a>        <span class="n">img_path</span> <span class="o">=</span> <span class="n">dirName</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">img_title</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38"></a>            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+<a id="__codelineno-5-39" name="__codelineno-5-39"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">img_title</span><span class="p">,</span><span class="s1">&#39;下载保存成功！&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="作业">作业：<a class="headerlink" href="#作业" title="Permanent link">&para;</a></h3>
+<p>简历模版下载：<a href="https://sc.chinaz.com/jianli/free.html">https://sc.chinaz.com/jianli/free.html</a></p>
+<ul>
+<li>下载当前页所有的建立模板<ul>
+<li>简历名称+简历的下载链接</li>
+<li>根据简历的下载链接 下载简历文件</li>
+<li>根据下载地址下载的压缩包，压缩包是二进制的数据</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span>
+<span class="normal"><a href="#__codelineno-6-27">27</a></span>
+<span class="normal"><a href="#__codelineno-6-28">28</a></span>
+<span class="normal"><a href="#__codelineno-6-29">29</a></span>
+<span class="normal"><a href="#__codelineno-6-30">30</a></span>
+<span class="normal"><a href="#__codelineno-6-31">31</a></span>
+<span class="normal"><a href="#__codelineno-6-32">32</a></span>
+<span class="normal"><a href="#__codelineno-6-33">33</a></span>
+<span class="normal"><a href="#__codelineno-6-34">34</a></span>
+<span class="normal"><a href="#__codelineno-6-35">35</a></span>
+<span class="normal"><a href="#__codelineno-6-36">36</a></span>
+<span class="normal"><a href="#__codelineno-6-37">37</a></span>
+<span class="normal"><a href="#__codelineno-6-38">38</a></span>
+<span class="normal"><a href="#__codelineno-6-39">39</a></span>
+<span class="normal"><a href="#__codelineno-6-40">40</a></span>
+<span class="normal"><a href="#__codelineno-6-41">41</a></span>
+<span class="normal"><a href="#__codelineno-6-42">42</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lxml</span><span class="w"> </span><span class="kn">import</span> <span class="n">etree</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="n">dirNmae</span> <span class="o">=</span> <span class="s1">&#39;图片&#39;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dirNmae</span><span class="p">):</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dirNmae</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36&#39;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="p">}</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://sc.chinaz.com/jianli/free.html&#39;</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="n">srcs</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;div#main div div a img&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="c1"># 提取每个 img 的 src 属性</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="n">src_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">srcs</span><span class="p">]</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="n">alt_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">srcs</span><span class="p">]</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">src_list</span><span class="p">)):</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a>    <span class="n">img_url</span> <span class="o">=</span> <span class="s2">&quot;https:&quot;</span> <span class="o">+</span> <span class="n">src_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a>    <span class="n">img_file_name</span> <span class="o">=</span> <span class="n">dirNmae</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">alt_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26"></a>    <span class="c1">#resp = requests.get(img_url, headers=headers)</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27"></a>    <span class="c1">#with open(img_file_name, &#39;wb&#39;) as fp:</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28"></a>    <span class="c1">#    fp.write(resp.content)</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29"></a>
+<a id="__codelineno-6-30" name="__codelineno-6-30"></a>    <span class="c1"># img_url=&#39;https://scpic.chinaz.net/Files/pic/jianli/202401/zjianli2338_s.jpg&#39;</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31"></a>    <span class="c1"># rar_url=&#39;https://downsc.chinaz.net/Files/DownLoad/jianli/202401/zjianli2338.rar&#39;</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32"></a>
+<a id="__codelineno-6-33" name="__codelineno-6-33"></a>    <span class="c1"># 使用正则表达式匹配并提取需要的部分</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34"></a>    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/pic(.+?)_s\.jpg$&#39;</span><span class="p">,</span> <span class="n">img_url</span><span class="p">)</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35"></a>    <span class="n">jianli_url</span> <span class="o">=</span> <span class="s1">&#39;https://downsc.chinaz.net/Files/DownLoad&#39;</span> <span class="o">+</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.rar&#39;</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">jianli_url</span><span class="p">)</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37"></a>    <span class="n">jianli_file_name</span> <span class="o">=</span> <span class="n">dirNmae</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">alt_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.rar&#39;</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38"></a>    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">jianli_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">jianli_file_name</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40"></a>        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;下载完成&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>图片下载：url：<a href="https://sc.chinaz.com/tupian/meinvtupian.html">https://sc.chinaz.com/tupian/meinvtupian.html</a></p>
+<p><font style="color:rgb(51, 51, 51);">爬取上述链接中所有的图片数据</font></p>
+<ul>
+<li></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8Cpandas%E5%A4%84%E7%90%86/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 数据库和pandas处理">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                数据库和pandas处理
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../%E6%97%A0%E9%99%90debugger%E9%80%86%E5%90%91%E5%92%8CF12%E7%A6%81%E6%AD%A2/" class="md-footer__link md-footer__link--next" aria-label="下一页: 无限debugger逆向和F12禁止">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                无限debugger逆向和F12禁止
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
