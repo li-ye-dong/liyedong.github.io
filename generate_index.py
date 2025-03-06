@@ -28,7 +28,7 @@ def generate_index(path: Path) -> list:
     if path != Path(DOCS_DIR):
         level = get_dir_level(path)
         icon = ICON_MAP.get(path.name, "📂")
-        content.append(f"{'##' * level} {icon} {path.name}")
+        content.append(f"{'#' * (level+1)} {icon} {path.name}")
 
     # 处理文件
     for item in items:

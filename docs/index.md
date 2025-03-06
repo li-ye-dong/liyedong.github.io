@@ -1,12 +1,12 @@
 # 知识库索引
 
-> 自动生成时间 2025-03-06 21:14
+> 自动生成时间 2025-03-06 21:54
 
 
 ## ☸️ k8s和容器
 - [KubeSphere体验](k8s和容器/KubeSphere体验.md)
 - [基于EFK实现kubernetes集群的日志平台（扩展）](k8s和容器/基于EFK实现kubernetes集群的日志平台（扩展）.md)
-#### 📂 CKA
+### 📂 CKA
   - [Deploy Pod数量扩缩容](k8s和容器/CKA/Deploy Pod数量扩缩容.md)
   - [Deploy Pod版本回退](k8s和容器/CKA/Deploy Pod版本回退.md)
   - [Deploy Pod版本更新策略](k8s和容器/CKA/Deploy Pod版本更新策略.md)
@@ -40,7 +40,7 @@
   - [kubernetes 数据存储](k8s和容器/CKA/kubernetes 数据存储.md)
   - [使用kubeam部署](k8s和容器/CKA/使用kubeam部署.md)
   - [模拟题](k8s和容器/CKA/模拟题.md)
-#### 📂 CKAD
+### 📂 CKAD
   - [ConfigMap](k8s和容器/CKAD/ConfigMap.md)
   - [Containers安全上下文](k8s和容器/CKAD/Containers安全上下文.md)
   - [CronJob和Job资源](k8s和容器/CKAD/CronJob和Job资源.md)
@@ -50,7 +50,7 @@
   - [Secret](k8s和容器/CKAD/Secret.md)
   - [升级和回滚](k8s和容器/CKAD/升级和回滚.md)
   - [金丝雀部署](k8s和容器/CKAD/金丝雀部署.md)
-#### 📂 CKS
+### 📂 CKS
   - [API server 身份验证](k8s和容器/CKS/API server 身份验证.md)
   - [Cilium 网络策略](k8s和容器/CKS/Cilium 网络策略.md)
   - [Docker 守护进程安全](k8s和容器/CKS/Docker 守护进程安全.md)
@@ -65,7 +65,7 @@
   - [日志审计](k8s和容器/CKS/日志审计.md)
   - [网络策略 Deny 和 Allow](k8s和容器/CKS/网络策略 Deny 和 Allow.md)
   - [限制性 Pod 安全标准](k8s和容器/CKS/限制性 Pod 安全标准.md)
-#### 📂 Docker
+### 📂 Docker
   - [Django应用容器化实践](k8s和容器/Docker/Django应用容器化实践.md)
   - [Docker安装](k8s和容器/Docker/Docker安装.md)
   - [Docker小结](k8s和容器/Docker/Docker小结.md)
@@ -73,11 +73,11 @@
   - [Docker网络](k8s和容器/Docker/Docker网络.md)
   - [Dokcer实现原理](k8s和容器/Docker/Dokcer实现原理.md)
 ## 📂 中间件
-#### 📂 Nginx
+### 📂 Nginx
   - [Nginx学习](中间件/Nginx/Nginx学习.md)
-#### 📂 haproxy
+### 📂 haproxy
   - [haproxy学习](中间件/haproxy/haproxy学习.md)
-#### 📂 中间件
+### 📂 中间件
   - [Tomcat学习笔记](中间件/中间件/Tomcat学习笔记.md)
   - [docker安装jenkins](中间件/中间件/docker安装jenkins.md)
   - [docker安装postgres](中间件/中间件/docker安装postgres.md)
@@ -113,7 +113,7 @@
 - [GithubPage搭建博客](开发/GithubPage搭建博客.md)
 - [mkdocs详细配置](开发/mkdocs详细配置.md)
 - [数据库ORM相关](开发/数据库ORM相关.md)
-#### 📂 DRF框架
+### 📂 DRF框架
   - [JWT认证](开发/DRF框架/JWT认证.md)
   - [RESTful规范](开发/DRF框架/RESTful规范.md)
   - [以博客为例使用DRF的序列化器和基于函数的视图开发API](开发/DRF框架/以博客为例使用DRF的序列化器和基于函数的视图开发API.md)
@@ -124,7 +124,7 @@
   - [认证详解与Token认证](开发/DRF框架/认证详解与Token认证.md)
   - [过滤与排序](开发/DRF框架/过滤与排序.md)
   - [限流](开发/DRF框架/限流.md)
-#### 📂 Django
+### 📂 Django
   - [Django 路由配置URLConf](开发/Django/Django 路由配置URLConf.md)
   - [Django上传文件](开发/Django/Django上传文件.md)
   - [Django中间件原理及示例](开发/Django/Django中间件原理及示例.md)
@@ -145,7 +145,7 @@
   - [Queryset特性及高级查询技巧](开发/Django/Queryset特性及高级查询技巧.md)
   - [uWSGI的安装及配置详解](开发/Django/uWSGI的安装及配置详解.md)
   - [自定义Django-admin管理命令](开发/Django/自定义Django-admin管理命令.md)
-#### 📂 Flask
+### 📂 Flask
   - [Flask 方案](开发/Flask/Flask 方案.md)
   - [Flask学习](开发/Flask/Flask学习.md)
   - [使用 async 和 await](开发/Flask/使用 async 和 await.md)
@@ -169,7 +169,7 @@
   - [请求情境](开发/Flask/请求情境.md)
   - [调试应用程序错误](开发/Flask/调试应用程序错误.md)
   - [配置管理](开发/Flask/配置管理.md)
-#### 📂 Pandas
+### 📂 Pandas
   - [Pandas DataFrame](开发/Pandas/Pandas DataFrame.md)
   - [Pandas GroupBy](开发/Pandas/Pandas GroupBy.md)
   - [Pandas IO操作](开发/Pandas/Pandas IO操作.md)
@@ -198,7 +198,7 @@
   - [Pandas 迭代](开发/Pandas/Pandas 迭代.md)
   - [Pandas 重建索引](开发/Pandas/Pandas 重建索引.md)
   - [Python Pandas教程](开发/Pandas/Python Pandas教程.md)
-#### 📂 Python基础
+### 📂 Python基础
   - [Python gui自动化](开发/Python基础/Python gui自动化.md)
   - [Python 异常](开发/Python基础/Python 异常.md)
   - [Python 数据类型](开发/Python基础/Python 数据类型.md)
@@ -214,18 +214,18 @@
   - [Python实例](开发/Python基础/Python实例.md)
   - [Python面向对象](开发/Python基础/Python面向对象.md)
   - [协程 & 异步编程(asyncio)](开发/Python基础/协程 & 异步编程(asyncio).md)
-#### 📂 Python工程化
+### 📂 Python工程化
   - [Docker初始化](开发/Python工程化/Docker初始化.md)
   - [Fastapi项目工程化](开发/Python工程化/Fastapi项目工程化.md)
   - [Python-Poetry包管理器](开发/Python工程化/Python-Poetry包管理器.md)
   - [Python项目搭建](开发/Python工程化/Python项目搭建.md)
   - [cookiecutter 的使用](开发/Python工程化/cookiecutter 的使用.md)
   - [项目初始化](开发/Python工程化/项目初始化.md)
-#### 📂 图像处理
+### 📂 图像处理
   - [Python实现](开发/图像处理/Python实现.md)
   - [Python实现图像比对](开发/图像处理/Python实现图像比对.md)
   - [图像处理概念](开发/图像处理/图像处理概念.md)
-#### 🐍 开发
+### 🐍 开发
   - [Elasticsearch 教程](开发/开发/Elasticsearch 教程.md)
   - [Git教程](开发/开发/Git教程.md)
   - [JavaScript学习](开发/开发/JavaScript学习.md)
@@ -235,7 +235,7 @@
   - [rust学习](开发/开发/rust学习.md)
   - [typescript学习](开发/开发/typescript学习.md)
   - [前端包管理器](开发/开发/前端包管理器.md)
-#### 📂 爬虫和web自动化
+### 📂 爬虫和web自动化
   - [Base64编码](开发/爬虫和web自动化/Base64编码.md)
   - [CSS字体加密](开发/爬虫和web自动化/CSS字体加密.md)
   - [Charles抓包](开发/爬虫和web自动化/Charles抓包.md)
@@ -253,11 +253,11 @@
   - [无限debugger逆向和F12禁止](开发/爬虫和web自动化/无限debugger逆向和F12禁止.md)
   - [瑞数技术逆向](开发/爬虫和web自动化/瑞数技术逆向.md)
   - [逆向技巧](开发/爬虫和web自动化/逆向技巧.md)
-#### 📂 自学项目
+### 📂 自学项目
   - [架构设计](开发/自学项目/架构设计.md)
 ## 🖥️ 操作系统
 - [windows文件复制带权限](操作系统/windows文件复制带权限.md)
-#### 🖥️ 操作系统
+### 🖥️ 操作系统
   - [AD域控架构最佳实践](操作系统/操作系统/AD域控架构最佳实践.md)
   - [Centos8学习](操作系统/操作系统/Centos8学习.md)
   - [Centos安装docker和podman](操作系统/操作系统/Centos安装docker和podman.md)
@@ -276,21 +276,21 @@
   - [windows无效域控清除](操作系统/操作系统/windows无效域控清除.md)
   - [windows模板](操作系统/操作系统/windows模板.md)
   - [安装lnmp环境](操作系统/操作系统/安装lnmp环境.md)
-###### 📂 RHEL9
+#### 📂 RHEL9
     - [RHEL9-RHCE学习](操作系统/操作系统/RHEL9/RHEL9-RHCE学习.md)
     - [RHEL9-RHCSA学习](操作系统/操作系统/RHEL9/RHEL9-RHCSA学习.md)
-#### 📂 计算机维护
+### 📂 计算机维护
   - [ventoy启动失败。](操作系统/计算机维护/ventoy启动失败。.md)
   - [ventoy启动盘制作](操作系统/计算机维护/ventoy启动盘制作.md)
   - [各品牌主板bios按键](操作系统/计算机维护/各品牌主板bios按键.md)
 ## 🗄️ 数据库笔记
-#### 📂 MongoDB
+### 📂 MongoDB
   - [MongoDB 数据一致性和隔离](数据库笔记/MongoDB/MongoDB 数据一致性和隔离.md)
   - [Mongodb基础笔记](数据库笔记/MongoDB/Mongodb基础笔记.md)
   - [Mongodb高级运维笔记](数据库笔记/MongoDB/Mongodb高级运维笔记.md)
-#### 📂 Redis
+### 📂 Redis
   - [Redis学习笔记](数据库笔记/Redis/Redis学习笔记.md)
-#### 📂 SQLite3
+### 📂 SQLite3
   - [SQLite ALIAS语法](数据库笔记/SQLite3/SQLite ALIAS语法.md)
   - [SQLite ALTER TABLE命令](数据库笔记/SQLite3/SQLite ALTER TABLE命令.md)
   - [SQLite AND＆OR 运算符](数据库笔记/SQLite3/SQLite AND＆OR 运算符.md)
@@ -344,12 +344,12 @@
 ## 📂 浏览器书签收藏
 - [安娜档案密钥](浏览器书签收藏/安娜档案密钥.md)
 ## 📂 监控
-#### 📂 zabbix
+### 📂 zabbix
   - [zabbix监控4.2](监控/zabbix/zabbix监控4.2.md)
-#### 📂 监控
+### 📂 监控
   - [zabbix监控vsphere告警](监控/监控/zabbix监控vsphere告警.md)
 ## 📂 虚拟化
-#### 📂 虚拟化
+### 📂 虚拟化
   - [RVtools使用](虚拟化/虚拟化/RVtools使用.md)
   - [horizon移除连接服务器](虚拟化/虚拟化/horizon移除连接服务器.md)
   - [vcenter重置密码和忘记密码](虚拟化/虚拟化/vcenter重置密码和忘记密码.md)
