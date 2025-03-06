@@ -4,7 +4,7 @@ import datetime
 
 DOCS_DIR = "docs"
 INDEX_FILE = "docs/index.md"
-EXCLUDE_DIRS = {'images', 'static', '无法同步pdf'}
+EXCLUDE_DIRS = {'images', 'static', 'PDF','zabbix监控4.2.assets','Nginx学习.assets'}
 ICON_MAP = {
     "k8s和容器": "☸️",
     "开发": "🐍",
