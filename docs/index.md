@@ -1,9 +1,9 @@
 # 知识库索引
 
-> 自动生成时间 2025-03-06 14:58
+> 自动生成时间 2025-03-06 17:21
 
 
-## 📂 PDF笔记
+## 📂 PDF
 ## ☸️ k8s和容器
 - [KubeSphere体验](k8s和容器/KubeSphere体验.md)
 - [基于EFK实现kubernetes集群的日志平台（扩展）](k8s和容器/基于EFK实现kubernetes集群的日志平台（扩展）.md)
@@ -345,6 +345,9 @@
 ## 📂 浏览器书签收藏
 - [安娜档案密钥](浏览器书签收藏/安娜档案密钥.md)
 ## 📂 监控
+#### 📂 zabbix
+  - [zabbix监控4.2](监控/zabbix/zabbix监控4.2.md)
+###### 📂 zabbix监控4.2.assets
 #### 📂 监控
   - [zabbix监控vsphere告警](监控/监控/zabbix监控vsphere告警.md)
 ## 📂 虚拟化
