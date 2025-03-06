@@ -1,0 +1,5700 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E5%BC%80%E5%8F%91/Flask/Flask%E5%AD%A6%E4%B9%A0/">
+      
+      
+        <link rel="prev" href="../Flask%20%E6%96%B9%E6%A1%88/">
+      
+      
+        <link rel="next" href="../%E4%BD%BF%E7%94%A8%20async%20%E5%92%8C%20await/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>概述 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#概述" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              概述
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDF/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../PDF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            开发
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FastApi学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fastapi%E6%89%93%E5%8C%85exe%E5%92%8Cvue%E6%89%93%E5%8C%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastapi打包exe和vue打包
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GithubPage%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GithubPage搭建博客
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mkdocs%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mkdocs文档生成器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93ORM%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据库ORM相关
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    DRF框架
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            DRF框架
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/JWT%E8%AE%A4%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JWT认证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/RESTful%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RESTful规范
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E4%BB%A5%E5%8D%9A%E5%AE%A2%E4%B8%BA%E4%BE%8B%E4%BD%BF%E7%94%A8DRF%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%87%BD%E6%95%B0%E7%9A%84%E8%A7%86%E5%9B%BE%E5%BC%80%E5%8F%91API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    以博客为例使用DRF的序列化器和基于函数的视图开发API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E5%88%86%E9%A1%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    分页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%A7%86%E5%9B%BEAPIView%2C%20GenericAPIView%E5%92%8C%E8%A7%86%E5%9B%BE%E9%9B%86%28ViewSet%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于类的视图APIView, GenericAPIView和视图集(ViewSet)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E7%8E%A9%E8%BD%AC%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%28Serializer%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    玩转序列化器(Serializer)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%AE%A4%E8%AF%81%E4%B8%8E%E6%9D%83%E9%99%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    认证与权限
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%AE%A4%E8%AF%81%E8%AF%A6%E8%A7%A3%E4%B8%8EToken%E8%AE%A4%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    认证详解与Token认证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%BF%87%E6%BB%A4%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    过滤与排序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E9%99%90%E6%B5%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    限流
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Django
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            Django
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%20%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AEURLConf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django 路由配置URLConf
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django上传文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E7%A4%BA%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django中间件原理及示例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%BF%A1%E5%8F%B7%E6%9C%BA%E5%88%B6%E5%8F%8A%E7%A4%BA%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django信号机制及示例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87%E5%A4%84%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django全局上下文处理器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%9B%BD%E9%99%85%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django国际化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%A4%9A%E7%A7%8D%E7%BC%93%E5%AD%98%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django多种缓存配置方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E5%85%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django性能优化大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django日志管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%9D%83%E9%99%90%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django权限详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django模型详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E8%BF%9E%E6%8E%A5MySQL%E5%92%8CPostgreSQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django连接MySQL和PostgreSQL数据库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django配置文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8Celery%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E5%92%8C%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django项目中使用Celery执行异步和周期性任务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Docker%E9%83%A8%E7%BD%B2Django/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker部署Django
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/ORM%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORM数据增删改查接口
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Queryset%E7%89%B9%E6%80%A7%E5%8F%8A%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Queryset特性及高级查询技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/uWSGI%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uWSGI的安装及配置详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/%E8%87%AA%E5%AE%9A%E4%B9%89Django-admin%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自定义Django admin管理命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_8" id="__nav_8_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Flask
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            Flask
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Flask%20%E6%96%B9%E6%A1%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask 方案
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    概述
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%BF%E7%94%A8%20async%20%E5%92%8C%20await/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 async 和 await
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%BF%E7%94%A8%E8%93%9D%E5%9B%BE%E8%BF%9B%E8%A1%8C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用蓝图进行应用模块化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BF%A1%E5%8F%B7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    信号
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    命令行接口
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9C%A8%20Shell%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Flask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    在 Shell 中使用 Flask
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于类的视图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%AE%89%E5%85%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全注意事项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BA%94%E7%94%A8%E6%83%85%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用情境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用程序结构和生命周期
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BA%94%E7%94%A8%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用错误处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开发服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    快速上手
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%89%A9%E5%B1%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%97%A5%E5%BF%97/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模板
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%B5%8B%E8%AF%95%20Flask%20%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测试 Flask 应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    生产部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%AF%B7%E6%B1%82%E6%83%85%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    请求情境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%B0%83%E8%AF%95%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%94%99%E8%AF%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调试应用程序错误
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_9" id="__nav_8_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Pandas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_9">
+            <span class="md-nav__icon md-icon"></span>
+            Pandas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20DataFrame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas DataFrame
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20GroupBy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas GroupBy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20IO%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas IO操作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Panel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Panel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20SQL%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas SQL操作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Series/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Series
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Timedelta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Timedelta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E4%B8%B2%E8%81%94/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 串联
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%87%BD%E6%95%B0%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 函数应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 分类数据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%8F%AF%E8%A7%86%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 可视化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 基本方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 排序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 描述性统计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 数据丢失
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 数据结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 文本处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 日期函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 注意事项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%A8%80%E7%96%8F%E6%95%B0%E6%8D%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 稀疏数据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%B4%A2%E5%BC%95%E5%92%8C%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 索引和数据查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 统计函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%81%9A%E5%90%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 聚合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%89%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 自定义选项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%BF%9E%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 连接
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%BF%AD%E4%BB%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 迭代
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 重建索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Python%20Pandas%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 聚合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10" id="__nav_8_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10">
+            <span class="md-nav__icon md-icon"></span>
+            Python基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20gui%E8%87%AA%E5%8A%A8%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python gui自动化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E5%BC%82%E5%B8%B8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 错误和内置异常
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python中的数字数据类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 文件I/O
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 日期时间(datetime)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 命名空间和作用域
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E4%B9%8BPandas%20%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python之Pandas 常用函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%85%83%E7%B1%BB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python元类
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 参考手册大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python垃圾回收
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    镜像源
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python多进程与多线程编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%AE%9E%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 实例大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 面向对象编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/%E5%8D%8F%E7%A8%8B%20%26%20%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%28asyncio%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协程 &amp; 异步编程(asyncio)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_11" id="__nav_8_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python工程化
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_11">
+            <span class="md-nav__icon md-icon"></span>
+            Python工程化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Docker%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker初始化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Fastapi%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastapi项目工程化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Python-Poetry%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装和卸载
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Python%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python项目搭建
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/cookiecutter%20%E7%9A%84%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cookiecutter 的使用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目初始化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_12" id="__nav_8_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    图像处理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_12">
+            <span class="md-nav__icon md-icon"></span>
+            图像处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/Python%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python实现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/Python%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E6%AF%94%E5%AF%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python实现图像比对
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图像处理概念
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_13" id="__nav_8_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_13">
+            <span class="md-nav__icon md-icon"></span>
+            开发
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elasticsearch 教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Git%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/JavaScript%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JavaScript学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Uniapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88Vue2%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uniapp学习笔记（Vue2）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Vue3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue3学习笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/java/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/rust%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rust学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/typescript%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    typescript学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前端包管理器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_14" id="__nav_8_14_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    爬虫和web自动化
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_14">
+            <span class="md-nav__icon md-icon"></span>
+            爬虫和web自动化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Base64%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base64编码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/CSS%E5%AD%97%E4%BD%93%E5%8A%A0%E5%AF%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSS字体加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Charles%E6%8A%93%E5%8C%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Charles抓包
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Playwright/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playwright
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Playwright%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playwright高级
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Python%E8%B0%83%E7%94%A8js%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python调用js文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/drissionpage%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drissionpage框架之爬虫和web自动化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/js%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Js对象监视器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/requests%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/requests%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests高级
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/webpack%E9%80%86%E5%90%91/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webpack逆向
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E5%8A%A0%E5%AF%86%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    加密类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8Cpandas%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据库和pandas处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据解析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E6%97%A0%E9%99%90debugger%E9%80%86%E5%90%91%E5%92%8CF12%E7%A6%81%E6%AD%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无限debugger逆向和F12禁止
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E7%91%9E%E6%95%B0%E6%8A%80%E6%9C%AF%E9%80%86%E5%90%91/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    瑞数技术逆向
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E9%80%86%E5%90%91%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    逆向技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_15" id="__nav_8_15_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自学项目
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_15">
+            <span class="md-nav__icon md-icon"></span>
+            自学项目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%87%AA%E5%AD%A6%E9%A1%B9%E7%9B%AE/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    架构设计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">&para;</a></h1>
+<p><font style="color:rgb(62, 67, 73);">欢迎阅读 Flask 的文档。推荐您先从《</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/installation.html"><font style="color:rgb(62, 67, 73);">安装</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">》入手，然后阅 读《</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/quickstart.html"><font style="color:rgb(62, 67, 73);">快速上手</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">》。更详细一些的《</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/tutorial/index.html"><font style="color:rgb(62, 67, 73);">教程</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">》介绍 了如何创建一个完整（尽管很小）的 Flask 应用。《</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/patterns/index.html"><font style="color:rgb(62, 67, 73);">Flask 方案</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">》 中介绍了一些常用的解决方案。其余的文档详细介绍了 Flask 的每一个组件。 《</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html"><font style="color:rgb(62, 67, 73);">API</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">》提供了最详细的参考。</font></p>
+<p><font style="color:rgb(62, 67, 73);">Flask 依赖 </font><a href="https://werkzeug.palletsprojects.com/"><font style="color:rgb(62, 67, 73);">Werkzeug</font></a><font style="color:rgb(62, 67, 73);"> WSGI 套件、 </font><a href="https://jinja.palletsprojects.com/"><font style="color:rgb(62, 67, 73);">Jinja</font></a><font style="color:rgb(62, 67, 73);"> 模板引擎和 </font><a href="https://click.palletsprojects.com/"><font style="color:rgb(62, 67, 73);">Click</font></a><font style="color:rgb(62, 67, 73);"> CLI 套 件。查找信息时请不要忘了查阅它们的文档。</font></p>
+<p><font style="color:rgb(62, 67, 73);">官网链接地址如下：</font></p>
+<p><a href="https://dormousehole.readthedocs.io/en/2.3.2/index.html">https://dormousehole.readthedocs.io/en/2.3.2/index.html</a></p>
+<h1 id="安装">安装<a class="headerlink" href="#安装" title="Permanent link">&para;</a></h1>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">poetry</span> <span class="n">add</span> <span class="n">Flask</span><span class="p">:</span><span class="mf">2.3.2</span>
+</code></pre></div></td></tr></table></div>
+<h1 id="用户指南"><font style="color:black;">用户指南</font><a class="headerlink" href="#用户指南" title="Permanent link">&para;</a></h1>
+<p><font style="color:rgb(62, 67, 73);">Flask 提供了配置和约定，以及合理的默认值，以开始使用。文档的这一部分 解释了 Flask 框架的不同部分以及如何使用、定制和扩展。除了 Flask 本身， 社区维护的扩展可以添加更多功能。</font></p>
+<ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/installation.html"><font style="color:rgb(62, 67, 73);">安装</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/installation.html#python"><font style="color:rgb(62, 67, 73);">Python 版本</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/installation.html#id2"><font style="color:rgb(62, 67, 73);">依赖</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/installation.html#id4"><font style="color:rgb(62, 67, 73);">虚拟环境</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/installation.html#flask"><font style="color:rgb(62, 67, 73);">安装 Flask</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html"><font style="color:rgb(62, 67, 73);">快速上手</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id2"><font style="color:rgb(62, 67, 73);">一个最小的应用</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id3"><font style="color:rgb(62, 67, 73);">调试模式</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#html"><font style="color:rgb(62, 67, 73);">HTML 转义</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id4"><font style="color:rgb(62, 67, 73);">路由</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id7"><font style="color:rgb(62, 67, 73);">静态文件</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id8"><font style="color:rgb(62, 67, 73);">渲染模板</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id12"><font style="color:rgb(62, 67, 73);">操作请求数据</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id16"><font style="color:rgb(62, 67, 73);">重定向和错误</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#about-responses"><font style="color:rgb(62, 67, 73);">关于响应</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#sessions"><font style="color:rgb(62, 67, 73);">会话</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id19"><font style="color:rgb(62, 67, 73);">消息闪现</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id20"><font style="color:rgb(62, 67, 73);">日志</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#wsgi"><font style="color:rgb(62, 67, 73);">集成 WSGI 中间件</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#flask"><font style="color:rgb(62, 67, 73);">使用 Flask 扩展</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/quickstart.html#id21"><font style="color:rgb(62, 67, 73);">部署到网络服务器</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/index.html"><font style="color:rgb(62, 67, 73);">教程</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/layout.html"><font style="color:rgb(62, 67, 73);">项目布局</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/factory.html"><font style="color:rgb(62, 67, 73);">应用设置</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/database.html"><font style="color:rgb(62, 67, 73);">定义和操作数据库</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/views.html"><font style="color:rgb(62, 67, 73);">蓝图和视图</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/templates.html"><font style="color:rgb(62, 67, 73);">模板</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/static.html"><font style="color:rgb(62, 67, 73);">静态文件</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/blog.html"><font style="color:rgb(62, 67, 73);">博客蓝图</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/install.html"><font style="color:rgb(62, 67, 73);">项目可安装化</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/tests.html"><font style="color:rgb(62, 67, 73);">测试覆盖</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/deploy.html"><font style="color:rgb(62, 67, 73);">部署产品</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/tutorial/next.html"><font style="color:rgb(62, 67, 73);">继续开发！</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/templating.html"><font style="color:rgb(62, 67, 73);">模板</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/templating.html#jinja"><font style="color:rgb(62, 67, 73);">Jinja 设置</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/templating.html#id2"><font style="color:rgb(62, 67, 73);">标准环境</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/templating.html#id3"><font style="color:rgb(62, 67, 73);">控制自动转义</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/templating.html#registering-filters"><font style="color:rgb(62, 67, 73);">注册过滤器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/templating.html#id5"><font style="color:rgb(62, 67, 73);">环境处理器</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html"><font style="color:rgb(62, 67, 73);">测试 Flask 应用</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html#id1"><font style="color:rgb(62, 67, 73);">识别测试</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html#fixtures"><font style="color:rgb(62, 67, 73);">Fixtures</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html#id2"><font style="color:rgb(62, 67, 73);">用测试客户端发送请求</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html#id4"><font style="color:rgb(62, 67, 73);">追随重定向</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html#id5"><font style="color:rgb(62, 67, 73);">访问和修改会话</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html#cli"><font style="color:rgb(62, 67, 73);">使用 CLI 运行器运行命令</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/testing.html#id6"><font style="color:rgb(62, 67, 73);">依赖于活动状态情境的测试</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html"><font style="color:rgb(62, 67, 73);">应用错误处理</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html#error-logging-tools"><font style="color:rgb(62, 67, 73);">错误日志工具</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html#id4"><font style="color:rgb(62, 67, 73);">错误处理器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html#id9"><font style="color:rgb(62, 67, 73);">自定义错误页面</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html#id11"><font style="color:rgb(62, 67, 73);">蓝印错误处理器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html#api-json"><font style="color:rgb(62, 67, 73);">将 API 错误作为 JSON 返回</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html#id12"><font style="color:rgb(62, 67, 73);">日志</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/errorhandling.html#id13"><font style="color:rgb(62, 67, 73);">调试</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/debugging.html"><font style="color:rgb(62, 67, 73);">调试应用程序错误</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/debugging.html#id2"><font style="color:rgb(62, 67, 73);">在生产环境中</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/debugging.html#id3"><font style="color:rgb(62, 67, 73);">内置调试器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/debugging.html#id4"><font style="color:rgb(62, 67, 73);">外部调试器</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/logging.html"><font style="color:rgb(62, 67, 73);">日志</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/logging.html#id2"><font style="color:rgb(62, 67, 73);">基本配置</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/logging.html#id5"><font style="color:rgb(62, 67, 73);">把出错信息通过电子邮件发送给管理者</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/logging.html#id6"><font style="color:rgb(62, 67, 73);">注入请求信息</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/logging.html#id7"><font style="color:rgb(62, 67, 73);">其他库</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html"><font style="color:rgb(62, 67, 73);">配置管理</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#id2"><font style="color:rgb(62, 67, 73);">配置入门</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#id3"><font style="color:rgb(62, 67, 73);">调试模式</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#id4"><font style="color:rgb(62, 67, 73);">内置配置变量</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#python"><font style="color:rgb(62, 67, 73);">使用 Python 配置文件</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#id5"><font style="color:rgb(62, 67, 73);">使用数据文件来配置</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#id6"><font style="color:rgb(62, 67, 73);">使用环境变量来配置</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#id7"><font style="color:rgb(62, 67, 73);">配置的最佳实践</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#config-dev-prod"><font style="color:rgb(62, 67, 73);">开发/生产</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/config.html#instance-folders"><font style="color:rgb(62, 67, 73);">实例文件夹</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/signals.html"><font style="color:rgb(62, 67, 73);">信号</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/signals.html#id2"><font style="color:rgb(62, 67, 73);">核心信号</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/signals.html#id3"><font style="color:rgb(62, 67, 73);">订阅信号</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/signals.html#id4"><font style="color:rgb(62, 67, 73);">创建信号</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/signals.html#signals-sending"><font style="color:rgb(62, 67, 73);">发送信号</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/signals.html#flask"><font style="color:rgb(62, 67, 73);">信号与 Flask 的请求环境</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/signals.html#id6"><font style="color:rgb(62, 67, 73);">信号订阅装饰器</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/views.html"><font style="color:rgb(62, 67, 73);">基于类的视图</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/views.html#id2"><font style="color:rgb(62, 67, 73);">基本可重用视图</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/views.html#url"><font style="color:rgb(62, 67, 73);">URL变量</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/views.html#self"><font style="color:rgb(62, 67, 73);">视图的生命周期和self</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/views.html#id3"><font style="color:rgb(62, 67, 73);">视图装饰器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/views.html#id4"><font style="color:rgb(62, 67, 73);">方法提示</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/views.html#api"><font style="color:rgb(62, 67, 73);">方法调度和 API</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/lifecycle.html"><font style="color:rgb(62, 67, 73);">应用程序结构和生命周期</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/lifecycle.html#id2"><font style="color:rgb(62, 67, 73);">应用程序设置</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/lifecycle.html#id3"><font style="color:rgb(62, 67, 73);">为应用程序提供服务</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/lifecycle.html#id5"><font style="color:rgb(62, 67, 73);">如何处理请求</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/appcontext.html"><font style="color:rgb(62, 67, 73);">应用情境</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/appcontext.html#id2"><font style="color:rgb(62, 67, 73);">情境的目的</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/appcontext.html#id3"><font style="color:rgb(62, 67, 73);">情境的生命周期</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/appcontext.html#id4"><font style="color:rgb(62, 67, 73);">手动推送情境</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/appcontext.html#id5"><font style="color:rgb(62, 67, 73);">存储数据</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/appcontext.html#id6"><font style="color:rgb(62, 67, 73);">事件和信号</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/reqcontext.html"><font style="color:rgb(62, 67, 73);">请求情境</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/reqcontext.html#id2"><font style="color:rgb(62, 67, 73);">情境的用途</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/reqcontext.html#id3"><font style="color:rgb(62, 67, 73);">情境的生命周期</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/reqcontext.html#id4"><font style="color:rgb(62, 67, 73);">手动推送情境</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/reqcontext.html#id5"><font style="color:rgb(62, 67, 73);">情境如何工作</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/reqcontext.html#callbacks-and-errors"><font style="color:rgb(62, 67, 73);">回调和错误</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/reqcontext.html#notes-on-proxies"><font style="color:rgb(62, 67, 73);">关于代理的说明</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html"><font style="color:rgb(62, 67, 73);">使用蓝图进行应用模块化</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#id2"><font style="color:rgb(62, 67, 73);">为什么使用蓝图？</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#id3"><font style="color:rgb(62, 67, 73);">蓝图的概念</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#id4"><font style="color:rgb(62, 67, 73);">第一个蓝图</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#id5"><font style="color:rgb(62, 67, 73);">注册蓝图</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#id6"><font style="color:rgb(62, 67, 73);">嵌套蓝图</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#id7"><font style="color:rgb(62, 67, 73);">蓝图资源</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#url"><font style="color:rgb(62, 67, 73);">创建 URL</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/blueprints.html#id11"><font style="color:rgb(62, 67, 73);">蓝图出错处理器</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensions.html"><font style="color:rgb(62, 67, 73);">扩展</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensions.html#id2"><font style="color:rgb(62, 67, 73);">寻找扩展</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensions.html#id3"><font style="color:rgb(62, 67, 73);">使用扩展</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensions.html#id4"><font style="color:rgb(62, 67, 73);">创建扩展</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html"><font style="color:rgb(62, 67, 73);">命令行接口</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#id2"><font style="color:rgb(62, 67, 73);">探索应用</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#id3"><font style="color:rgb(62, 67, 73);">运行开发服务器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#shell"><font style="color:rgb(62, 67, 73);">打开一个 Shell</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#dotenv"><font style="color:rgb(62, 67, 73);">通过 dotenv 设置环境变量</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#virturalenv"><font style="color:rgb(62, 67, 73);">通过 virturalenv 设置环境变量</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#id9"><font style="color:rgb(62, 67, 73);">自定义命令</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#id12"><font style="color:rgb(62, 67, 73);">插件</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#custom-scripts"><font style="color:rgb(62, 67, 73);">自定义脚本</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/cli.html#pycharm"><font style="color:rgb(62, 67, 73);">PyCharm 集成</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/server.html"><font style="color:rgb(62, 67, 73);">开发服务器</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/server.html#id2"><font style="color:rgb(62, 67, 73);">通过命令行使用开发服务器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/server.html#id5"><font style="color:rgb(62, 67, 73);">通过代码使用开发服务器</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/shell.html"><font style="color:rgb(62, 67, 73);">在 Shell 中使用 Flask</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/shell.html#id1"><font style="color:rgb(62, 67, 73);">命令行接口</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/shell.html#id2"><font style="color:rgb(62, 67, 73);">创建一个请求情境</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/shell.html#id3"><font style="color:rgb(62, 67, 73);">发送请求前/后动作</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/shell.html#shell"><font style="color:rgb(62, 67, 73);">在 Shell 中玩得更爽</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/index.html"><font style="color:rgb(62, 67, 73);">Flask 方案</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/packages.html"><font style="color:rgb(62, 67, 73);">大型应用作为一个包</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/appfactories.html"><font style="color:rgb(62, 67, 73);">应用工厂</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/appdispatch.html"><font style="color:rgb(62, 67, 73);">应用调度</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/urlprocessors.html"><font style="color:rgb(62, 67, 73);">URL 处理器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/sqlite3.html"><font style="color:rgb(62, 67, 73);">使用 SQLite 3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/sqlalchemy.html"><font style="color:rgb(62, 67, 73);">使用 SQLAlchemy</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/fileuploads.html"><font style="color:rgb(62, 67, 73);">上传文件</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/caching.html"><font style="color:rgb(62, 67, 73);">缓存</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/viewdecorators.html"><font style="color:rgb(62, 67, 73);">视图装饰器</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/wtforms.html"><font style="color:rgb(62, 67, 73);">使用 WTForms 进行表单验证</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/templateinheritance.html"><font style="color:rgb(62, 67, 73);">模板继承</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/flashing.html"><font style="color:rgb(62, 67, 73);">消息闪现</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/javascript.html"><font style="color:rgb(62, 67, 73);">JavaScript 、fetch和 JSON</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/lazyloading.html"><font style="color:rgb(62, 67, 73);">惰性载入视图</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/mongoengine.html"><font style="color:rgb(62, 67, 73);">通过 MongoEngine 使用 MongoDB</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/favicon.html"><font style="color:rgb(62, 67, 73);">添加一个页面图标</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/streaming.html"><font style="color:rgb(62, 67, 73);">流内容</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/deferredcallbacks.html"><font style="color:rgb(62, 67, 73);">延迟的请求回调</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/methodoverrides.html"><font style="color:rgb(62, 67, 73);">添加 HTTP 方法重载</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/requestchecksum.html"><font style="color:rgb(62, 67, 73);">请求内容校验</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/celery.html"><font style="color:rgb(62, 67, 73);">使用 Celery 的后台任务</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/subclassing.html"><font style="color:rgb(62, 67, 73);">继承 Flask</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/patterns/singlepageapplications.html"><font style="color:rgb(62, 67, 73);">单页应用</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/security.html"><font style="color:rgb(62, 67, 73);">安全注意事项</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/security.html#xss"><font style="color:rgb(62, 67, 73);">跨站脚本攻击（ XSS ）</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/security.html#csrf"><font style="color:rgb(62, 67, 73);">跨站请求伪造（ CSRF ）</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/security.html#json"><font style="color:rgb(62, 67, 73);">JSON 安全</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/security.html#id4"><font style="color:rgb(62, 67, 73);">安全头部</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/security.html#id5"><font style="color:rgb(62, 67, 73);">复制/粘贴到终端</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/deploying/index.html"><font style="color:rgb(62, 67, 73);">生产部署</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/deploying/index.html#id2"><font style="color:rgb(62, 67, 73);">自主部署选项</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/deploying/index.html#id3"><font style="color:rgb(62, 67, 73);">托管平台</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/async-await.html"><font style="color:rgb(62, 67, 73);">使用async和await</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/async-await.html#id2"><font style="color:rgb(62, 67, 73);">性能</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/async-await.html#id3"><font style="color:rgb(62, 67, 73);">后台任务</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/async-await.html#quart"><font style="color:rgb(62, 67, 73);">何时使用 Quart 代替</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/async-await.html#id5"><font style="color:rgb(62, 67, 73);">扩展</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/async-await.html#id6"><font style="color:rgb(62, 67, 73);">其他事件循环</font></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="api-参考"><font style="color:black;">API 参考</font><a class="headerlink" href="#api-参考" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(62, 67, 73);">这部分文档详细说明某个函数、类或方法。</font></p>
+<ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html"><font style="color:rgb(62, 67, 73);">API</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#application-object"><font style="color:rgb(62, 67, 73);">Application Object</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#blueprint-objects"><font style="color:rgb(62, 67, 73);">Blueprint Objects</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#incoming-request-data"><font style="color:rgb(62, 67, 73);">Incoming Request Data</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#response-objects"><font style="color:rgb(62, 67, 73);">Response Objects</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#sessions"><font style="color:rgb(62, 67, 73);">Sessions</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#session-interface"><font style="color:rgb(62, 67, 73);">Session Interface</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#test-client"><font style="color:rgb(62, 67, 73);">Test Client</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#test-cli-runner"><font style="color:rgb(62, 67, 73);">Test CLI Runner</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#application-globals"><font style="color:rgb(62, 67, 73);">Application Globals</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#useful-functions-and-classes"><font style="color:rgb(62, 67, 73);">Useful Functions and Classes</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#message-flashing"><font style="color:rgb(62, 67, 73);">Message Flashing</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#module-flask.json"><font style="color:rgb(62, 67, 73);">JSON Support</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#template-rendering"><font style="color:rgb(62, 67, 73);">Template Rendering</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#configuration"><font style="color:rgb(62, 67, 73);">Configuration</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#stream-helpers"><font style="color:rgb(62, 67, 73);">Stream Helpers</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#useful-internals"><font style="color:rgb(62, 67, 73);">Useful Internals</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#signals"><font style="color:rgb(62, 67, 73);">Signals</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#class-based-views"><font style="color:rgb(62, 67, 73);">Class-Based Views</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#url-route-registrations"><font style="color:rgb(62, 67, 73);">URL Route Registrations</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#view-function-options"><font style="color:rgb(62, 67, 73);">View Function Options</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/api.html#command-line-interface"><font style="color:rgb(62, 67, 73);">Command Line Interface</font></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="其他材料"><font style="color:black;">其他材料</font><a class="headerlink" href="#其他材料" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html"><font style="color:rgb(62, 67, 73);">Flask 的设计思路</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html#id1"><font style="color:rgb(62, 67, 73);">显式的应用对象</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html#id2"><font style="color:rgb(62, 67, 73);">路由系统</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html#id3"><font style="color:rgb(62, 67, 73);">唯一模板引擎</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html#id4"><font style="color:rgb(62, 67, 73);">“微”的含义</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html#id5"><font style="color:rgb(62, 67, 73);">线程本地对象</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html#async-await-asgi"><font style="color:rgb(62, 67, 73);">Async/await 和 ASGI 支持</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/design.html#id6"><font style="color:rgb(62, 67, 73);">Flask 是什么，不是什么</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html"><font style="color:rgb(62, 67, 73);">Flask 扩展开发</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html#id1"><font style="color:rgb(62, 67, 73);">命名</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html#id2"><font style="color:rgb(62, 67, 73);">扩展类和初始化</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html#id3"><font style="color:rgb(62, 67, 73);">添加行为</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html#id4"><font style="color:rgb(62, 67, 73);">配置技术</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html#id5"><font style="color:rgb(62, 67, 73);">请求期间的数据</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html#id6"><font style="color:rgb(62, 67, 73);">视图和模型</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/extensiondev.html#id7"><font style="color:rgb(62, 67, 73);">推荐的扩展指南</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/contributing.html"><font style="color:rgb(62, 67, 73);">如何为 Flask 做出贡献</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/contributing.html#id1"><font style="color:rgb(62, 67, 73);">问答支持</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/contributing.html#id2"><font style="color:rgb(62, 67, 73);">报告问题</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/contributing.html#id4"><font style="color:rgb(62, 67, 73);">提交补丁</font></a></li>
+</ul>
+</li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/license.html"><font style="color:rgb(62, 67, 73);">BSD-3-Clause 许可证</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html"><font style="color:rgb(62, 67, 73);">更新日志</font></a><ul>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-3-0-2"><font style="color:rgb(62, 67, 73);">Version 3.0.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-3-0-1"><font style="color:rgb(62, 67, 73);">Version 3.0.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-3-0-0"><font style="color:rgb(62, 67, 73);">Version 3.0.0</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-3-3"><font style="color:rgb(62, 67, 73);">Version 2.3.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-3-2"><font style="color:rgb(62, 67, 73);">Version 2.3.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-3-1"><font style="color:rgb(62, 67, 73);">Version 2.3.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-3-0"><font style="color:rgb(62, 67, 73);">Version 2.3.0</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-2-5"><font style="color:rgb(62, 67, 73);">Version 2.2.5</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-2-4"><font style="color:rgb(62, 67, 73);">Version 2.2.4</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-2-3"><font style="color:rgb(62, 67, 73);">Version 2.2.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-2-2"><font style="color:rgb(62, 67, 73);">Version 2.2.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-2-1"><font style="color:rgb(62, 67, 73);">Version 2.2.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-2-0"><font style="color:rgb(62, 67, 73);">Version 2.2.0</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-1-3"><font style="color:rgb(62, 67, 73);">Version 2.1.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-1-2"><font style="color:rgb(62, 67, 73);">Version 2.1.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-1-1"><font style="color:rgb(62, 67, 73);">Version 2.1.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-1-0"><font style="color:rgb(62, 67, 73);">Version 2.1.0</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-0-3"><font style="color:rgb(62, 67, 73);">Version 2.0.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-0-2"><font style="color:rgb(62, 67, 73);">Version 2.0.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-0-1"><font style="color:rgb(62, 67, 73);">Version 2.0.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-2-0-0"><font style="color:rgb(62, 67, 73);">Version 2.0.0</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-1-4"><font style="color:rgb(62, 67, 73);">Version 1.1.4</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-1-3"><font style="color:rgb(62, 67, 73);">Version 1.1.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-1-2"><font style="color:rgb(62, 67, 73);">Version 1.1.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-1-1"><font style="color:rgb(62, 67, 73);">Version 1.1.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-1-0"><font style="color:rgb(62, 67, 73);">Version 1.1.0</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-0-4"><font style="color:rgb(62, 67, 73);">Version 1.0.4</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-0-3"><font style="color:rgb(62, 67, 73);">Version 1.0.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-0-2"><font style="color:rgb(62, 67, 73);">Version 1.0.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-0-1"><font style="color:rgb(62, 67, 73);">Version 1.0.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-1-0"><font style="color:rgb(62, 67, 73);">Version 1.0</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-12-5"><font style="color:rgb(62, 67, 73);">Version 0.12.5</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-12-4"><font style="color:rgb(62, 67, 73);">Version 0.12.4</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-12-3"><font style="color:rgb(62, 67, 73);">Version 0.12.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-12-2"><font style="color:rgb(62, 67, 73);">Version 0.12.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-12-1"><font style="color:rgb(62, 67, 73);">Version 0.12.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-12"><font style="color:rgb(62, 67, 73);">Version 0.12</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-11-1"><font style="color:rgb(62, 67, 73);">Version 0.11.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-11"><font style="color:rgb(62, 67, 73);">Version 0.11</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-10-1"><font style="color:rgb(62, 67, 73);">Version 0.10.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-10"><font style="color:rgb(62, 67, 73);">Version 0.10</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-9"><font style="color:rgb(62, 67, 73);">Version 0.9</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-8-1"><font style="color:rgb(62, 67, 73);">Version 0.8.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-8"><font style="color:rgb(62, 67, 73);">Version 0.8</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-7-2"><font style="color:rgb(62, 67, 73);">Version 0.7.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-7-1"><font style="color:rgb(62, 67, 73);">Version 0.7.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-7"><font style="color:rgb(62, 67, 73);">Version 0.7</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-6-1"><font style="color:rgb(62, 67, 73);">Version 0.6.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-6"><font style="color:rgb(62, 67, 73);">Version 0.6</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-5-2"><font style="color:rgb(62, 67, 73);">Version 0.5.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-5-1"><font style="color:rgb(62, 67, 73);">Version 0.5.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-5"><font style="color:rgb(62, 67, 73);">Version 0.5</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-4"><font style="color:rgb(62, 67, 73);">Version 0.4</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-3-1"><font style="color:rgb(62, 67, 73);">Version 0.3.1</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-3"><font style="color:rgb(62, 67, 73);">Version 0.3</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-2"><font style="color:rgb(62, 67, 73);">Version 0.2</font></a></li>
+<li><a href="https://dormousehole.readthedocs.io/en/latest/changes.html#version-0-1"><font style="color:rgb(62, 67, 73);">Version 0.1</font></a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../Flask%20%E6%96%B9%E6%A1%88/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Flask 方案">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Flask 方案
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../%E4%BD%BF%E7%94%A8%20async%20%E5%92%8C%20await/" class="md-footer__link md-footer__link--next" aria-label="下一页: 使用 async 和 await">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                使用 async 和 await
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

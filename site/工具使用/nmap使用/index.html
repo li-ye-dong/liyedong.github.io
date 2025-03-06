@@ -1,0 +1,2202 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/nmap%E4%BD%BF%E7%94%A8/">
+      
+      
+        <link rel="prev" href="../docker-desktop%E5%AE%89%E8%A3%85/">
+      
+      
+        <link rel="next" href="../windows%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>nmap使用 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nmap使用" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              nmap使用
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../PDF/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../PDF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            工具使用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024年6月总结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024年度总结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Clash%20for%20windows%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clash for windows使用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SwitchyOmega%E6%99%BA%E8%83%BD%E4%BB%A3%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwitchyOmega智能代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-desktop%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker-desktop安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    nmap使用
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    nmap使用
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#端口联通常用-nmap-端口扫描命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      端口联通常用 Nmap 端口扫描命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="端口联通常用 Nmap 端口扫描命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-全端口-tcp-扫描" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 全端口 TCP 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-全端口-udp-扫描" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 全端口 UDP 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tcpudp-综合扫描" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. TCP+UDP 综合扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-仅扫描常见端口" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 仅扫描常见端口
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-扫描指定端口" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 扫描指定端口
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-检测开放端口及服务版本" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 检测开放端口及服务版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-检测开放端口操作系统服务及-traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 检测开放端口、操作系统、服务及 traceroute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-规避防火墙的隐蔽扫描" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 规避防火墙的隐蔽扫描
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#其他场景常用-nmap-扫描" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他场景常用 Nmap 扫描
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="其他场景常用 Nmap 扫描">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-网络存活主机探测" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 网络存活主机探测
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-扫描目标的操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 扫描目标的操作系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-扫描目标服务及版本" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 扫描目标服务及版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-查找特定服务" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 查找特定服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-查找所有开启的端口" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 查找所有开启的端口
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-绕过防火墙进行扫描" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 绕过防火墙进行扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-内网-smb-共享扫描" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 内网 SMB 共享扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-web-服务器漏洞探测" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Web 服务器漏洞探测
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-探测-sql-服务器mysqlpostgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 探测 SQL 服务器（MySQL、PostgreSQL）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-扫描目标是否存在已知漏洞" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. 扫描目标是否存在已知漏洞
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-获取目标的路由追踪信息" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 获取目标的路由追踪信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-检查开放的-rdp-端口windows-远程桌面" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. 检查开放的 RDP 端口（Windows 远程桌面）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-探测-iot-设备如摄像头" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. 探测 IoT 设备（如摄像头）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-探测-smtp-邮件服务器" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. 探测 SMTP 邮件服务器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-全面扫描适用于渗透测试" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. 全面扫描（适用于渗透测试）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    windows桌面优化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%A7%84%E5%88%92/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    我的个人规划
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目管理学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="nmap使用">nmap使用<a class="headerlink" href="#nmap使用" title="Permanent link">&para;</a></h1>
+<h3 id="端口联通常用-nmap-端口扫描命令"><strong>端口联通常用 Nmap 端口扫描命令</strong><a class="headerlink" href="#端口联通常用-nmap-端口扫描命令" title="Permanent link">&para;</a></h3>
+<h4 id="1-全端口-tcp-扫描"><strong>1. 全端口 TCP 扫描</strong><a class="headerlink" href="#1-全端口-tcp-扫描" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">1</span><span class="p">-</span><span class="n">65535</span> <span class="n">-sS</span> <span class="n">-T4</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 1-65535</code>：扫描所有 65535 个端口。</li>
+<li><code>-sS</code>：使用 TCP SYN（半开）扫描，适用于检测防火墙后端口是否开放。</li>
+<li><code>-T4</code>：设定扫描速度（T0-T5，T4 适中，适用于大部分场景）。</li>
+</ul>
+<hr />
+<h4 id="2-全端口-udp-扫描"><strong>2. 全端口 UDP 扫描</strong><a class="headerlink" href="#2-全端口-udp-扫描" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">1</span><span class="p">-</span><span class="n">65535</span> <span class="n">-sU</span> <span class="n">-T4</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-sU</code>：使用 UDP 扫描，适用于检测 DNS（53）、SNMP（161）等 UDP 服务。</li>
+<li>由于 UDP 无连接特性，扫描速度较慢，可搭配 <code>-T4</code> 加速。</li>
+</ul>
+<hr />
+<h4 id="3-tcpudp-综合扫描"><strong>3. TCP+UDP 综合扫描</strong><a class="headerlink" href="#3-tcpudp-综合扫描" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">1</span><span class="p">-</span><span class="n">65535</span> <span class="n">-sS</span> <span class="n">-sU</span> <span class="n">-T4</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-sS</code> 和 <code>-sU</code> 组合，进行 TCP 和 UDP 全端口扫描。</li>
+</ul>
+<hr />
+<h4 id="4-仅扫描常见端口"><strong>4. 仅扫描常见端口</strong><a class="headerlink" href="#4-仅扫描常见端口" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">nmap</span> <span class="o">-F</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-F</code>：快速扫描，仅扫描最常见的 100 个端口。</li>
+</ul>
+<hr />
+<h4 id="5-扫描指定端口"><strong>5. 扫描指定端口</strong><a class="headerlink" href="#5-扫描指定端口" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">22</span><span class="p">,</span><span class="n">80</span><span class="p">,</span><span class="n">443</span> <span class="n">-sS</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 22,80,443</code>：只扫描 SSH（22）、HTTP（80）、HTTPS（443）。</li>
+</ul>
+<hr />
+<h4 id="6-检测开放端口及服务版本"><strong>6. 检测开放端口及服务版本</strong><a class="headerlink" href="#6-检测开放端口及服务版本" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">nmap</span> <span class="n">-sV</span> <span class="n">-p</span> <span class="n">1</span><span class="p">-</span><span class="n">65535</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-sV</code>：检测端口的服务及版本信息。</li>
+</ul>
+<hr />
+<h4 id="7-检测开放端口操作系统服务及-traceroute"><strong>7. 检测开放端口、操作系统、服务及 traceroute</strong><a class="headerlink" href="#7-检测开放端口操作系统服务及-traceroute" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">nmap</span> <span class="n">-A</span> <span class="n">-T4</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-A</code>：启用 OS 识别、版本检测、脚本扫描和 traceroute。</li>
+</ul>
+<hr />
+<h4 id="8-规避防火墙的隐蔽扫描"><strong>8. 规避防火墙的隐蔽扫描</strong><a class="headerlink" href="#8-规避防火墙的隐蔽扫描" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">nmap</span> <span class="n">-sS</span> <span class="n">-Pn</span> <span class="o">-f</span> <span class="n">-D</span> <span class="n">RND</span><span class="p">:</span><span class="n">10</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-Pn</code>：跳过 Ping 发现，直接扫描端口（适用于主机屏蔽 ICMP）。</li>
+<li><code>-f</code>：分片发送数据包，绕过部分防火墙。</li>
+<li><code>-D RND:10</code>：使用 10 个随机 Decoy（伪装）IP 进行扫描，隐藏真实来源。</li>
+</ul>
+<h3 id="其他场景常用-nmap-扫描"><strong>其他场景常用 Nmap 扫描</strong><a class="headerlink" href="#其他场景常用-nmap-扫描" title="Permanent link">&para;</a></h3>
+<p>Nmap 不仅用于端口扫描，还能用于漏洞检测、内网渗透、网络排查等场景。以下是一些常见的应用场景及命令：</p>
+<hr />
+<h4 id="1-网络存活主机探测"><strong>1. 网络存活主机探测</strong><a class="headerlink" href="#1-网络存活主机探测" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 扫描某个网段，查看哪些主机在线。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">nmap</span> <span class="n">-sn</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">/</span><span class="n">24</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-sn</code>：仅进行主机发现，不进行端口扫描。</li>
+<li><code>192.168.1.0/24</code>：扫描整个 C 段（254 个 IP）。</li>
+</ul>
+<hr />
+<h4 id="2-扫描目标的操作系统"><strong>2. 扫描目标的操作系统</strong><a class="headerlink" href="#2-扫描目标的操作系统" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 需要判断目标主机运行的操作系统版本。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">nmap</span> <span class="n">-O</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-O</code>：启用操作系统检测（需要管理员权限）。</li>
+<li><code>--osscan-guess</code>：如果 OS 识别度较低，可尝试更激进的猜测。</li>
+</ul>
+<hr />
+<h4 id="3-扫描目标服务及版本"><strong>3. 扫描目标服务及版本</strong><a class="headerlink" href="#3-扫描目标服务及版本" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 检测服务器运行的服务及版本号，有助于查找漏洞。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">nmap</span> <span class="n">-sV</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-sV</code>：检测端口对应的服务和版本信息。</li>
+</ul>
+<hr />
+<h4 id="4-查找特定服务"><strong>4. 查找特定服务</strong><a class="headerlink" href="#4-查找特定服务" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 只想查找特定服务（如 FTP、HTTP、MySQL）。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">21</span><span class="p">,</span><span class="n">22</span><span class="p">,</span><span class="n">80</span><span class="p">,</span><span class="n">443</span><span class="p">,</span><span class="n">3306</span> <span class="n">-sV</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 21,22,80,443,3306</code>：扫描 FTP（21）、SSH（22）、HTTP（80）、HTTPS（443）、MySQL（3306）。</li>
+<li><code>-sV</code>：获取服务版本信息。</li>
+</ul>
+<hr />
+<h4 id="5-查找所有开启的端口"><strong>5. 查找所有开启的端口</strong><a class="headerlink" href="#5-查找所有开启的端口" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 查找目标主机上所有开放的端口。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="n">nmap</span> <span class="n">-p</span><span class="p">-</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p-</code>：扫描所有 65535 个端口。</li>
+</ul>
+<hr />
+<h4 id="6-绕过防火墙进行扫描"><strong>6. 绕过防火墙进行扫描</strong><a class="headerlink" href="#6-绕过防火墙进行扫描" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 目标主机有防火墙，普通扫描被阻挡。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="n">nmap</span> <span class="n">-sS</span> <span class="n">-Pn</span> <span class="o">-f</span> <span class="n">-D</span> <span class="n">RND</span><span class="p">:</span><span class="n">10</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-sS</code>：TCP SYN 半开扫描，隐蔽性强。</li>
+<li><code>-Pn</code>：跳过 Ping 探测，直接扫描端口（防止 ICMP 被屏蔽）。</li>
+<li><code>-f</code>：分片扫描，绕过部分防火墙。</li>
+<li><code>-D RND:10</code>：使用 10 个随机 Decoy IP 伪装来源。</li>
+</ul>
+<hr />
+<h4 id="7-内网-smb-共享扫描"><strong>7. 内网 SMB 共享扫描</strong><a class="headerlink" href="#7-内网-smb-共享扫描" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 查找局域网内所有开放 SMB（445）服务的主机。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">445</span> <span class="p">-</span><span class="n">-open</span> <span class="n">-sV</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">/</span><span class="n">24</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 445</code>：扫描 SMB 端口。</li>
+<li><code>--open</code>：只显示开放的端口。</li>
+<li><code>-sV</code>：检测服务版本。</li>
+</ul>
+<hr />
+<h4 id="8-web-服务器漏洞探测"><strong>8. Web 服务器漏洞探测</strong><a class="headerlink" href="#8-web-服务器漏洞探测" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 检测 Web 服务器的漏洞和安全配置。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="n">nmap</span> <span class="p">-</span><span class="n">-script</span><span class="p">=</span><span class="n">http-vuln</span><span class="p">*</span> <span class="n">-p</span> <span class="n">80</span><span class="p">,</span><span class="n">443</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>--script=http-vuln*</code>：使用 Nmap 的 NSE 脚本扫描 HTTP 相关漏洞。</li>
+<li><code>-p 80,443</code>：扫描 HTTP 和 HTTPS 端口。</li>
+</ul>
+<hr />
+<h4 id="9-探测-sql-服务器mysqlpostgresql"><strong>9. 探测 SQL 服务器（MySQL、PostgreSQL）</strong><a class="headerlink" href="#9-探测-sql-服务器mysqlpostgresql" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 查找局域网或公网的数据库服务器。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">3306</span><span class="p">,</span><span class="n">5432</span> <span class="p">-</span><span class="n">-open</span> <span class="n">-sV</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">/</span><span class="n">24</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 3306,5432</code>：扫描 MySQL（3306）、PostgreSQL（5432）。</li>
+<li><code>--open</code>：只显示开放的端口。</li>
+<li><code>-sV</code>：检测服务版本。</li>
+</ul>
+<hr />
+<h4 id="10-扫描目标是否存在已知漏洞"><strong>10. 扫描目标是否存在已知漏洞</strong><a class="headerlink" href="#10-扫描目标是否存在已知漏洞" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 利用 NSE（Nmap Scripting Engine）检查目标是否有漏洞。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="n">nmap</span> <span class="p">-</span><span class="n">-script</span><span class="p">=</span><span class="n">vuln</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>--script=vuln</code>：使用 Nmap 的漏洞扫描脚本（如 MS17-010）。</li>
+</ul>
+<hr />
+<h4 id="11-获取目标的路由追踪信息"><strong>11. 获取目标的路由追踪信息</strong><a class="headerlink" href="#11-获取目标的路由追踪信息" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 检测目标 IP 的网络路径信息（类似 <code>traceroute</code>）。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="n">nmap</span> <span class="p">-</span><span class="n">-traceroute</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>--traceroute</code>：显示目标的路由路径。</li>
+</ul>
+<hr />
+<h4 id="12-检查开放的-rdp-端口windows-远程桌面"><strong>12. 检查开放的 RDP 端口（Windows 远程桌面）</strong><a class="headerlink" href="#12-检查开放的-rdp-端口windows-远程桌面" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 查找哪些服务器开放了 RDP（3389）。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">3389</span> <span class="p">-</span><span class="n">-open</span> <span class="n">-sV</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">/</span><span class="n">24</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 3389</code>：扫描 Windows 远程桌面端口。</li>
+<li><code>--open</code>：只显示开放端口的主机。</li>
+</ul>
+<hr />
+<h4 id="13-探测-iot-设备如摄像头"><strong>13. 探测 IoT 设备（如摄像头）</strong><a class="headerlink" href="#13-探测-iot-设备如摄像头" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 查找智能设备（如摄像头、路由器）的开放端口。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">23</span><span class="p">,</span><span class="n">80</span><span class="p">,</span><span class="n">554</span><span class="p">,</span><span class="n">8080</span> <span class="p">-</span><span class="n">-open</span> <span class="n">-sV</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">/</span><span class="n">24</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 23,80,554,8080</code>：扫描 Telnet（23）、HTTP（80）、RTSP（554）、Web 管理（8080）。</li>
+<li><code>--open</code>：只显示开放端口的设备。</li>
+</ul>
+<hr />
+<h4 id="14-探测-smtp-邮件服务器"><strong>14. 探测 SMTP 邮件服务器</strong><a class="headerlink" href="#14-探测-smtp-邮件服务器" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 检查邮件服务器是否存在开放的 SMTP 端口（如 25、587）。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="n">nmap</span> <span class="n">-p</span> <span class="n">25</span><span class="p">,</span><span class="n">587</span> <span class="p">-</span><span class="n">-open</span> <span class="n">-sV</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-p 25,587</code>：扫描 SMTP 端口。</li>
+<li><code>--open</code>：只显示开放端口的主机。</li>
+</ul>
+<hr />
+<h4 id="15-全面扫描适用于渗透测试"><strong>15. 全面扫描（适用于渗透测试）</strong><a class="headerlink" href="#15-全面扫描适用于渗透测试" title="Permanent link">&para;</a></h4>
+<p><strong>场景：</strong> 对目标进行全面信息收集（端口、服务、OS、漏洞）。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="n">nmap</span> <span class="n">-A</span> <span class="n">-T4</span> <span class="n">-p</span><span class="p">-</span> <span class="p">&lt;</span><span class="n">目标IP</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>-A</code>：启用操作系统检测、版本探测、脚本扫描、路由追踪。</li>
+<li><code>-T4</code>：加快扫描速度。</li>
+<li><code>-p-</code>：扫描所有 65535 端口。</li>
+</ul>
+<hr />
+<h4 id="总结"><strong>总结</strong><a class="headerlink" href="#总结" title="Permanent link">&para;</a></h4>
+<p>Nmap 是非常强大的网络扫描工具，可以用于各种场景，包括：</p>
+<ul>
+<li><strong>网络安全检测</strong>（检测开放端口、漏洞扫描）。</li>
+<li><strong>内网渗透</strong>（扫描存活主机、查找 SMB/RDP）。</li>
+<li><strong>Web 应用测试</strong>（扫描 Web 服务器漏洞）。</li>
+<li><strong>数据库安全</strong>（查找 MySQL、PostgreSQL 服务器）。</li>
+<li><strong>设备探测</strong>（扫描 IoT 设备、路由器、摄像头）。</li>
+<li><strong>应急响应</strong>（快速排查服务器端口开放情况）。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../docker-desktop%E5%AE%89%E8%A3%85/" class="md-footer__link md-footer__link--prev" aria-label="上一页: docker-desktop安装">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                docker-desktop安装
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../windows%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96/" class="md-footer__link md-footer__link--next" aria-label="下一页: windows桌面优化">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                windows桌面优化
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

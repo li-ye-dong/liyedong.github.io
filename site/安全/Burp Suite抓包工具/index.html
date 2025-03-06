@@ -1,0 +1,1650 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/">
+      
+      
+        <link rel="prev" href="../../%E5%88%86%E4%BA%AB/%E6%88%BF%E5%B1%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
+      
+      
+        <link rel="next" href="../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Burp Suite抓包工具 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#burp-suite抓包工具" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Burp Suite抓包工具
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../PDF/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../PDF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            安全
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Burp Suite抓包工具
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%AE%89%E5%A8%9C%E6%A1%A3%E6%A1%88%E5%AF%86%E9%92%A5/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E7%9B%91%E6%8E%A7/zabbix/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="burp-suite抓包工具">Burp Suite抓包工具<a class="headerlink" href="#burp-suite抓包工具" title="Permanent link">&para;</a></h1>
+<h1 id="安装jdk">安装<font style="color:rgb(79, 79, 79);">JDK</font><a class="headerlink" href="#安装jdk" title="Permanent link">&para;</a></h1>
+<p><strong><font style="color:rgb(77, 77, 77);">1，我们先把工具放到win10主机上，准备好（可以安装到win10虚拟机，也可以安装到物理机上）</font></strong></p>
+<p><img alt="" src="../../images/1729265377461-a9fbfb62-16b6-4b0f-a32b-16c43d1b0911.png" /></p>
+<p><img alt="" src="../../images/1729265390268-8733cae2-bbd4-4cb6-aba1-c0ea43b81d47.png" /></p>
+<p><img alt="" src="../../images/1729265402518-7c53721e-d68c-4368-be73-9ae54592907b.png" /></p>
+<p><img alt="" src="../../images/1729265420783-0126af98-4f42-40e5-a10d-e5c28da065de.png" /></p>
+<p><img alt="" src="../../images/1729265429188-069cb69c-0e48-4784-a97e-0800d6f61c97.png" /></p>
+<h1 id="安装burp-suite">安装Burp Suite<a class="headerlink" href="#安装burp-suite" title="Permanent link">&para;</a></h1>
+<p><img alt="" src="../../images/1729265442616-727d7c48-82b7-4b04-a3d5-f6da77777d01.png" /></p>
+<h1 id="激活burp-suite"><font style="color:rgb(79, 79, 79);">激活Burp Suite</font><a class="headerlink" href="#激活burp-suite" title="Permanent link">&para;</a></h1>
+<p><strong><font style="color:rgb(85, 86, 102);background-color:rgb(238, 240, 244);">首先，打开中文版bp程序， CN-JRE Burp.bat 是启动中文版BP的， EN-JRE Brup.bat 是启动英文版BP 的，其他的文件看 当前目录注意事项.txt 文档，有说明。</font></strong><img alt="" src="../../images/1729265495237-c52e6c7a-f3c4-4fe5-9355-8fa54cb8a386.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">点击 CN-JRE Burp.bat，如下，会有一个黑色的CMD窗口自动跟着打开了，这个窗口之后都不要关闭，除非我们要关闭BP。</font></strong></p>
+<p><img alt="" src="../../images/1729265504345-9876e5fc-a1b4-49f0-a92f-03b0da6f7e80.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">取消勾选，点击接受</font></strong></p>
+<p><img alt="" src="../../images/1729265514429-d6d6c395-a582-40ff-8cc9-1f490102d18c.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">弹出如下窗口</font></strong></p>
+<p><img alt="" src="../../images/1729265523528-c8876101-1ad0-4db6-80c6-8b6acac4b980.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">生成许可证密钥数据，打开bp目录中的如下目录</font></strong></p>
+<p><img alt="" src="../../images/1729265540345-bc24d302-cb53-4469-92d5-c575f646f7e0.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">如下，添加密钥，然后点击下一步：</font></strong></p>
+<p><img alt="" src="../../images/1729265548400-6126e95f-9716-4c11-8198-2d0f1775e979.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">选择手动激活</font></strong></p>
+<p><img alt="" src="../../images/1729265555685-462d3b9c-bb2f-4658-8247-e6eebb878f87.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">按照如下步骤进行操作</font></strong></p>
+<p><img alt="" src="../../images/1729265567211-fcfe2d90-53b6-4312-9d0a-e42b6b3891d7.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">成功安装并激活完成了</font></strong></p>
+<p><img alt="" src="../../images/1729265576798-54a72bb5-238e-48a9-8bae-62e19f4dbf7f.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">看到如下窗口，表示BP安装并激活成功了。</font></strong><font style="color:rgb(77, 77, 77);"> </font><strong><font style="color:rgb(77, 77, 77);">下一步</font></strong></p>
+<p><img alt="" src="../../images/1729265585838-981ad38c-70b1-4866-8a55-9dbfb4b16266.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">启动burp</font></strong></p>
+<p><img alt="" src="../../images/1729265619041-467334c8-ff16-4485-b4dd-6d7f821240e7.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">这就是他的面板了</font></strong></p>
+<p><img alt="" src="../../images/1729265629251-2af35f12-ad89-4805-85d9-9b36896d94dc.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">快捷方式 CN-JRE Burp.bat就是它的启动文件，可以放到桌面上</font></strong></p>
+<p><img alt="" src="../../images/1729265638744-f913d61f-714d-4601-bcf6-04bd531fd81d.png" /></p>
+<h1 id="设置-burp-suite-代理"><strong><font style="color:rgb(79, 79, 79);">设置 Burp Suite 代理</font></strong><a class="headerlink" href="#设置-burp-suite-代理" title="Permanent link">&para;</a></h1>
+<p><img alt="" src="../../images/1729265647066-22fde58b-e108-410f-be28-fdb440fe2369.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">设置代理有多种形式，我们先说两种最常用的</font></strong></p>
+<h4 id="5-1-系统设置代理转发到bp"><strong><font style="color:rgb(79, 79, 79);">5-1 系统设置代理转发到</strong><strong>BP</font></strong><a class="headerlink" href="#5-1-系统设置代理转发到bp" title="Permanent link">&para;</a></h4>
+<p><strong><font style="color:rgb(77, 77, 77);">首先，打开我们的BP，看一下BP的代理功能设置</font></strong></p>
+<p><img alt="" src="../../images/1729265664973-445521e0-55c4-4f5e-99b1-950bf325bac7.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">注意上面的IP和端口，我们称之为BP代理服务器的IP和端口。 它监听本机8080端口，并对过8080端口的数据包进行拦截，修改等操作，所以我们还需要设置系统代理，让流量转发到8080端口</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">win10：</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">打开系统设置</font></strong></p>
+<p><img alt="" src="../../images/1729265681831-ba94c06b-4fc9-4824-8795-f0d769092861.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">搜索代理，然后是代理服务器设置</font></strong></p>
+<p><img alt="" src="../../images/1729265689982-d31f5117-4925-443b-9ce9-1f9e7ba2b183.png" /></p>
+<p><img alt="" src="../../images/1729265698183-5539f860-f949-4fee-b881-7d759022b21e.png" /></p>
+<p><strong><font style="color:rgb(85, 86, 102);">代理服务器的IP和端口设置，要和BP代理服务器的IP和端口一致，这样就能将我们主机上的HTTP数据包 转发到BP上了。</font></strong></p>
+<p><strong><font style="color:rgb(85, 86, 102);">win11设置代理如下，其他和win10是一样的，不做累述了：</font></strong></p>
+<p><strong><font style="color:rgb(85, 86, 102);">打开系统设置 – 搜索代理 – 打开代理服务器设置 – 找到手动代理中的使用代理服务器 – 点击设置</font></strong></p>
+<p><img alt="" src="../../images/1729265708144-80dac518-1e2d-4c5a-9353-6bf23eda7af5.png" /></p>
+<h4 id="5-2-系统代理开启之后bp抓包"><font style="color:rgb(79, 79, 79);">5-2</font><font style="color:rgb(79, 79, 79);"> </font><strong><font style="color:rgb(79, 79, 79);">系统代理开启之后</font></strong><strong><font style="color:rgb(79, 79, 79);">BP</font></strong><strong><font style="color:rgb(79, 79, 79);">抓包</font></strong><a class="headerlink" href="#5-2-系统代理开启之后bp抓包" title="Permanent link">&para;</a></h4>
+<p><strong><font style="color:rgb(77, 77, 77);">打开谷歌浏览器（如果没有安装的话工具里面给了，自行安装，安装很简单的）</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">浏览了一个 hebei.com.cn的网站，现在看看是否有历史记录</font></strong></p>
+<p><img alt="" src="../../images/1729265716583-cb706228-4a92-4b89-93a0-643eb04e9934.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">可以看到在代理 ---- http历史记录里看到许多记录</font></strong></p>
+<p><img alt="" src="../../images/1729265724656-c6d2f86b-e907-4f0c-be6c-1574fb900db9.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">如何拦截数据包？</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">代理 — 拦截 ----打开拦截</font></strong></p>
+<p><img alt="" src="../../images/1729265732682-62168302-192c-43d1-8d6d-3d4706bf7d04.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">回到浏览器刷新页面，发现页面一直在刷新，回来看看burp Suite</font></strong></p>
+<p><img alt="" src="../../images/1729265743624-4cca1f5e-4894-4399-8934-872ce6b48f01.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">修改完成以后可以点击‘放行’ 来放包，也可以让数据包丢弃，不让他到后端，就相当于丢失了</font></strong></p>
+<p><img alt="" src="../../images/1729265755221-1100fd7c-cfc2-45cf-a23c-ac67b12bf1c3.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">有时候我们需要对一个数据包进行反复修改，发到后端，这时候可以把包放到重放器里面</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">右击 ---- 发动到repeater</font></strong></p>
+<p><img alt="" src="../../images/1729265767147-e3e11605-53c8-4b97-9b10-4d637121ef56.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">打开重放器就可以看到数据包，可以进行反复修改</font></strong></p>
+<p><img alt="" src="../../images/1729265774778-5ba3fcb2-4d0c-421a-9248-247f065401ce.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">功能差不多就讲到这里，我会出一期视频会详细讲解burpSuite的常用功能</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">但是你可以抓一下，百度，或者京东的包，发现如下情况</font></strong></p>
+<p><img alt="" src="../../images/1729265784167-01289255-9993-4645-950a-9e4e8897e3ea.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">点击高级，然后继续访问此页面，看到如下样式乱了的页面</font></strong></p>
+<p><img alt="" src="../../images/1729265792437-186677bf-2365-4ecb-a978-22264ac168c3.png" /></p>
+<p><strong><font style="color:rgb(85, 86, 102);">这是为什么呢？提示不安全？并且看到网址栏中有了个红色的https，并且画了个横线，然后我们点击高级，点击继续访问，就看到了页面，但是有些数据却显示不正常，页面也乱套了，为什么呢？</font></strong></p>
+<p><strong><font style="color:rgb(85, 86, 102);">这就不得不说HTTPS协议了，这是个网络传输的安全协议，由于我们做代理配置和抓包时，没有做 HTTPS协议的相关处理，导致了问题的出现，提示不安全的同时，导致有些数据都没有办法正常传输， 有些数据甚至都抓不到包</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">想解决如上问题，想抓到HTTPS的数据包就需要在浏览器上安装上Bp导出的证书</font></strong></p>
+<h4 id="5-3-浏览器安装burp-suite安全证书"><font style="color:rgb(79, 79, 79);">5-3 浏览器安装Burp Suite安全证书</font><a class="headerlink" href="#5-3-浏览器安装burp-suite安全证书" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../../images/1729265827075-a597f5fe-4563-47b5-8412-6acfddd6f3a4.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">选择 DER格式的证书，然后下一步</font></strong></p>
+<p><img alt="" src="../../images/1729265835044-1843807d-a2c5-43f8-b757-7624dea709bb.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">自己选择个文件，文件名可以随便写，但是.cer后缀</font></strong></p>
+<p><img alt="" src="../../images/1729265843162-668bde16-3f3d-4fb2-9dd1-d814c305dc66.png" /></p>
+<p><img alt="" src="../../images/1729265866681-79318007-1a67-4ed4-9408-fad545dd954c.png" /></p>
+<h5 id="5-3-2-浏览器安装证书"><strong><font style="color:rgb(79, 79, 79);">5-3-2 浏览器安装证书</font></strong><a class="headerlink" href="#5-3-2-浏览器安装证书" title="Permanent link">&para;</a></h5>
+<p><strong><font style="color:rgb(77, 77, 77);">打开谷歌浏览器的设置</font></strong></p>
+<p><img alt="" src="../../images/1729265875585-e6edced1-0357-45ee-aa7f-2169c26911ce.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">搜索证书，然后选择安全</font></strong></p>
+<p><img alt="" src="../../images/1729265891262-18333766-9c0e-4ee5-ace1-4cbbd539258c.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">管理证书</font></strong></p>
+<p><img alt="" src="../../images/1729265899587-1f50a8af-a7a3-4f21-b971-a890009f3c08.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">选择导入</font></strong></p>
+<p><img alt="" src="../../images/1729265906888-d07bf659-d496-4de6-8b2b-248a1ef56d0b.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">下一步</font></strong></p>
+<p><img alt="" src="../../images/1729265915080-370d9267-1bc1-457d-90a5-df04e7b9c4ab.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">选择刚才导出的证书，然后就下一步即可</font></strong></p>
+<p><img alt="" src="../../images/1729265923126-ff2b106e-56b0-4352-afc0-1dd7dc6cdf4c.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">下一步</font></strong></p>
+<p><img alt="" src="../../images/1729265930751-639bbabe-166c-4dd5-b346-7f7ea7a04428.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">完成</font></strong></p>
+<p><img alt="" src="../../images/1729265948173-2565c9a6-6d5a-40c9-ae82-4de84c11e9c8.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">同样的导入方式继续导入证书</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">（注意，未受信任的发布者不用导入，导入了就抓不到包了）</font></strong></p>
+<p><img alt="" src="../../images/1729265967597-c5372b00-1e7e-4dd1-9ec5-f27b624ac361.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">安装受信任的根证书颁发机构的时候会有以下提示，点击是即可</font></strong></p>
+<p><img alt="" src="../../images/1729265978850-8b8be7bd-3fe6-4e47-be43-a5d797fb0527.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">当除了未受信任的发布者不要安装以外，其余的安装好以后可以退出</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">现在抓https的包试一试，发现正常能访问了，爆破也能看到浏览记录</font></strong>  </p>
+<h4 id="5-4-应用程序设置代理转发到bp"><strong><font style="color:rgb(79, 79, 79);">5-4 应用程序设置代理转发到</strong><strong>BP</font></strong><a class="headerlink" href="#5-4-应用程序设置代理转发到bp" title="Permanent link">&para;</a></h4>
+<hr />
+<p><strong><font style="color:rgb(85, 86, 102);background-color:rgb(238, 240, 244);">刚才的系统代理开启然后BP抓包的方式太粗暴了，会抓取我们计算机上所有的HTTP请求请求数据包， 这样导致一个问题就是，会抓到好多我们不想看到的其他应用程序的数据包，比如我们只想抓取火狐浏览器firefox的数据包，但是如果你电脑上运行着一些其他应用程序，这些应用程序的HTTP数据包也会被抓到，很容易对我们分析数据包的时候产生混淆。</font></strong></p>
+<p><strong><font style="color:rgb(85, 86, 102);background-color:rgb(238, 240, 244);">那么我们就可以给某个应用程序单独设置代理，那么BP就只抓这个应用程序的数据，但是有个问题就是，并不是所有的应用程序都支持单独设置代理，比如chrome浏览器就不行，火狐浏览器就可以，那么不能单独设置代理的程序如何来抓呢，就可以用上面的系统代理的形式来抓，还有一些可能不是http协议数据传输的，那么还可以用到其他的抓包工具，比如wireshark、进程抓包工具、全局代理工具等来实现抓包，这些后面我们再一一细说，先看火狐浏览器是如何单独设置代理的。</font></strong></p>
+<h5 id="5-4-1-火狐浏览器设置代理"><font style="color:rgb(79, 79, 79);">5-4-1 火狐浏览器设置代理</font><a class="headerlink" href="#5-4-1-火狐浏览器设置代理" title="Permanent link">&para;</a></h5>
+<p><strong><font style="color:rgb(77, 77, 77);">（火狐浏览器自行安装一下，安装包也给你们了，工具里面有）</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">1、先关闭我们的系统代理</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">关掉刚才开的系统代理</font></strong></p>
+<p><img alt="" src="../../images/1729266056532-492e8093-bc0d-4f53-854f-9e44d66ef477.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">2、打开火狐浏览器的代理设置</font></strong></p>
+<p><img alt="" src="../../images/1729266064249-d6cd9dea-af1a-4385-9384-8fbf0e05823d.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">搜索代理，然后点击设置</font></strong></p>
+<p><img alt="" src="../../images/1729266073713-3b638d73-4904-4836-9fbb-fe33f20bd244.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">填写代理地址，端口，将下面的将此代理由于HTTPS√勾上，然后确定即可</font></strong></p>
+<p><img alt="" src="../../images/1729266085949-988fa1a4-c999-48f6-ae8f-bf525ca61573.png" /></p>
+<h5 id="5-4-2-火狐浏览器安装证书"><font style="color:rgb(79, 79, 79);">5-4-2 火狐浏览器安装证书</font><a class="headerlink" href="#5-4-2-火狐浏览器安装证书" title="Permanent link">&para;</a></h5>
+<p><strong><font style="color:rgb(77, 77, 77);">同样为了解决HTTPS协议的抓包问题，也需要安装证书</font></strong></p>
+<p><img alt="" src="../../images/1729266102939-6bb1a5b8-18e2-4c94-bee9-0cc4e0580afc.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">选择导入（证书颁发机构，服务器，个人，认证决策，你的证书，凡是能安装证书的地方都安装上）</font></strong></p>
+<p><img alt="" src="../../images/1729266114456-c66538cf-14a0-427c-a42c-bbe9fffa1365.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">选择导入以后，选择bp导出的证书，然后可能会有如下弹框，两个√都勾上，然后确定即可</font></strong></p>
+<p><img alt="" src="../../images/1729266146036-2bf15b79-1120-4b9c-80c8-a74d6dbdef0c.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">好像只需要在证书办法机构和个人两个地方导入即可，最后点击确认即可。</font></strong></p>
+<p><strong><font style="color:rgb(77, 77, 77);">设置完成以后浏览器重启一下</font></strong></p>
+<p><img alt="" src="../../images/1729266159711-bf1b95d8-39fb-46fc-ad43-f7bad64d3c88.png" /></p>
+<p><strong><font style="color:rgb(77, 77, 77);">发现Burp Suite开启拦截以后也能正常抓https的包</font></strong></p>
+<p><img alt="" src="../../images/1729266239718-f305439b-d071-4358-a276-9f250d5c44a1.png" />  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../%E5%88%86%E4%BA%AB/%E6%88%BF%E5%B1%8B%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 后端技术栈">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                后端技术栈
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2024年6月总结">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                2024年6月总结
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
