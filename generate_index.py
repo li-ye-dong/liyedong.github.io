@@ -36,7 +36,7 @@ def generate_index(path: Path) -> list:
         if full_path.is_file() and full_path.suffix == '.md' and item not in ['index.md', 'README.md']:
             rel_path = full_path.relative_to(DOCS_DIR).as_posix()
             title = item[:-3].replace('_', ' ')
-            indent = '  ' * (get_dir_level(path) - 1)  # 缩进控制
+            indent = ' ' * (get_dir_level(path) - 1)  # 缩进控制
             content.append(f"{indent}- [{title}]({rel_path})")
 
     # 递归处理子目录
