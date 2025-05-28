@@ -1,6 +1,6 @@
 # 知识库索引
 
-> 自动生成时间 2025-03-06 22:23
+> 自动生成时间 2025-05-28 11:19
 
 
 ## ☸️ k8s和容器
@@ -82,31 +82,8 @@
  - [docker安装jenkins](中间件/中间件/docker安装jenkins.md)
  - [docker安装postgres](中间件/中间件/docker安装postgres.md)
  - [docker安装redis](中间件/中间件/docker安装redis.md)
-## 📂 分享
-- [1.ai数字人](分享/1.ai数字人.md)
-- [10.ChatGPT 中文调教指南](分享/10.ChatGPT 中文调教指南.md)
-- [2.ai换脸](分享/2.ai换脸.md)
-- [3.人工智能网址集合（国内）](分享/3.人工智能网址集合（国内）.md)
-- [4.国外网址](分享/4.国外网址.md)
-- [5.使用场景](分享/5.使用场景.md)
-- [6.询问的一些技巧](分享/6.询问的一些技巧.md)
-- [7.三步搭建自己专属的gpt](分享/7.三步搭建自己专属的gpt.md)
-- [8.文字转ppt](分享/8.文字转ppt.md)
-- [9.ChatGLM3-清华开源大模型](分享/9.ChatGLM3-清华开源大模型.md)
-- [ai工具的使用和一些使用场景的分享](分享/ai工具的使用和一些使用场景的分享.md)
-- [房屋管理系统](分享/房屋管理系统.md)
 ## 📂 安全
 - [Burp Suite抓包工具](安全/Burp Suite抓包工具.md)
-## 📂 工具使用
-- [2024年6月总结](工具使用/2024年6月总结.md)
-- [2024年度总结](工具使用/2024年度总结.md)
-- [Clash for windows使用](工具使用/Clash for windows使用.md)
-- [SwitchyOmega智能代理](工具使用/SwitchyOmega智能代理.md)
-- [docker-desktop安装](工具使用/docker-desktop安装.md)
-- [nmap使用](工具使用/nmap使用.md)
-- [windows桌面优化](工具使用/windows桌面优化.md)
-- [我的个人规划](工具使用/我的个人规划.md)
-- [项目管理学习](工具使用/项目管理学习.md)
 ## 🐍 开发
 - [FastApi学习](开发/FastApi学习.md)
 - [Fastapi打包exe和vue打包](开发/Fastapi打包exe和vue打包.md)
@@ -256,29 +233,10 @@
 ### 📂 自学项目
  - [架构设计](开发/自学项目/架构设计.md)
 ## 🖥️ 操作系统
-- [windows文件复制带权限](操作系统/windows文件复制带权限.md)
+### 📂 RHEL9
+ - [RHEL9-RHCE学习](操作系统/RHEL9/RHEL9-RHCE学习.md)
+ - [RHEL9-RHCSA学习](操作系统/RHEL9/RHEL9-RHCSA学习.md)
 ### 🖥️ 操作系统
- - [AD域控架构最佳实践](操作系统/操作系统/AD域控架构最佳实践.md)
- - [Centos8学习](操作系统/操作系统/Centos8学习.md)
- - [Centos安装docker和podman](操作系统/操作系统/Centos安装docker和podman.md)
- - [Centos安装lnmp环境](操作系统/操作系统/Centos安装lnmp环境.md)
- - [Linux模板优化](操作系统/操作系统/Linux模板优化.md)
- - [RHEL8搭建dns服务](操作系统/操作系统/RHEL8搭建dns服务.md)
- - [RHEL网络管理](操作系统/操作系统/RHEL网络管理.md)
- - [Ubuntu安装](操作系统/操作系统/Ubuntu安装.md)
- - [Ubuntu安装docker和podman](操作系统/操作系统/Ubuntu安装docker和podman.md)
- - [Windows AD域环境中五大主机角色](操作系统/操作系统/Windows AD域环境中五大主机角色.md)
- - [docker安装MongoDB](操作系统/操作系统/docker安装MongoDB.md)
- - [docker安装chemex](操作系统/操作系统/docker安装chemex.md)
- - [docker安装mysql](操作系统/操作系统/docker安装mysql.md)
- - [docker安装snipe-IT](操作系统/操作系统/docker安装snipe-IT.md)
- - [lshell命令管控](操作系统/操作系统/lshell命令管控.md)
- - [windows无效域控清除](操作系统/操作系统/windows无效域控清除.md)
- - [windows模板](操作系统/操作系统/windows模板.md)
- - [安装lnmp环境](操作系统/操作系统/安装lnmp环境.md)
-#### 📂 RHEL9
-  - [RHEL9-RHCE学习](操作系统/操作系统/RHEL9/RHEL9-RHCE学习.md)
-  - [RHEL9-RHCSA学习](操作系统/操作系统/RHEL9/RHEL9-RHCSA学习.md)
 ### 📂 计算机维护
  - [ventoy启动失败。](操作系统/计算机维护/ventoy启动失败。.md)
  - [ventoy启动盘制作](操作系统/计算机维护/ventoy启动盘制作.md)
@@ -341,13 +299,6 @@
  - [SQLite 语法](数据库笔记/SQLite3/SQLite 语法.md)
  - [SQLite 附加数据库（ATTACH DATABASE）](数据库笔记/SQLite3/SQLite 附加数据库（ATTACH DATABASE）.md)
  - [SQLite](数据库笔记/SQLite3/SQLite.md)
-## 📂 浏览器书签收藏
-- [安娜档案密钥](浏览器书签收藏/安娜档案密钥.md)
-## 📂 监控
-### 📂 zabbix
- - [zabbix监控4.2](监控/zabbix/zabbix监控4.2.md)
-### 📂 监控
- - [zabbix监控vsphere告警](监控/监控/zabbix监控vsphere告警.md)
 ## 📂 虚拟化
 ### 📂 虚拟化
  - [RVtools使用](虚拟化/虚拟化/RVtools使用.md)

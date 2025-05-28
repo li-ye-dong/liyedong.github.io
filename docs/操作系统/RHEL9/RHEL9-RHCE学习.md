@@ -661,7 +661,7 @@ autocmd filetype yaml setlocal ai ts=2 sw=2 et
 
 <font style="color:rgb(0,0,0);">在RHCE9中，yum_repository模块名添加 ansible.builtin. 即可</font>
 
-![](../../../images/1718766447160-fb5719a1-c2ea-42c9-a726-6a2bdfebba95.png)
+![](../../images/1718766447160-fb5719a1-c2ea-42c9-a726-6a2bdfebba95.png)
 
 <font style="color:rgb(0,0,0);">这个</font><font style="color:rgb(0,0,0);">playbook</font><font style="color:rgb(0,0,0);">只有一个任务，在</font><font style="color:rgb(0,0,0);">RHCE9</font><font style="color:rgb(0,0,0);">中需要使用</font><font style="color:rgb(0,0,0);">ansible.builtin.yum_rpeository</font><font style="color:rgb(0,0,0);">模块， </font>
 
@@ -675,7 +675,7 @@ autocmd filetype yaml setlocal ai ts=2 sw=2 et
 [devops@workstation ansible]$ ansible-playbook --syntax-check test1.yml
 ```
 
-![](../../../images/1718766462958-ae73f478-fab8-46c5-bb4d-596592c4037c.png)
+![](../../images/1718766462958-ae73f478-fab8-46c5-bb4d-596592c4037c.png)
 
 <font style="color:rgb(0,0,0);">RHCE9方式： </font>
 
@@ -707,17 +707,17 @@ autocmd filetype yaml setlocal ai ts=2 sw=2 et
 
 <font style="color:rgb(223,64,42);">执行结果</font>
 
-![](../../../images/1718766486301-859622d0-8f31-47a2-a282-aa25eb240e4b.png)
+![](../../images/1718766486301-859622d0-8f31-47a2-a282-aa25eb240e4b.png)
 
 <font style="color:rgb(0,0,0);">在</font><font style="color:rgb(0,0,0);">test1.yml</font><font style="color:rgb(0,0,0);">上继续扩充 </font>
 
 <font style="color:rgb(0,0,0);">现在这个playbook一共有两个任务，分别是创建YUM仓库文件，重启防火墙.</font>
 
-![](../../../images/1718766498489-db4f82f6-30f5-4e62-be8e-436b046d242f.png)	
+![](../../images/1718766498489-db4f82f6-30f5-4e62-be8e-436b046d242f.png)	
 
 <font style="color:rgb(223,64,42);">执行结果</font>
 
-![](../../../images/1718766509014-4ba3ddcd-aa3d-4ab6-86a4-a588c5a66fbb.png)
+![](../../images/1718766509014-4ba3ddcd-aa3d-4ab6-86a4-a588c5a66fbb.png)
 
 **<font style="color:rgb(0,0,0);">定义</font>****<font style="color:rgb(0,0,0);">tasks</font>****<font style="color:rgb(0,0,0);">的一些细节 </font>**
 
@@ -1002,7 +1002,7 @@ Vault password: （输入旧密码）
 
 <font style="color:rgb(0,0,0);">执行结果</font>
 
-![](../../../images/1718944106700-3695381b-9592-4687-9076-fa3c8c534a2b.png)
+![](../../images/1718944106700-3695381b-9592-4687-9076-fa3c8c534a2b.png)
 
 **<font style="color:rgb(0,0,0);">变量定义和使用细节 </font>**
 
@@ -1443,7 +1443,7 @@ gathering = explicit
 
 **<font style="color:rgb(0,0,0);">常用的facts变量 （可以通过setup模块查询）</font>**
 
-![](../../../images/1718945128512-e53aec29-0851-4d4d-bd6c-2e3694a26c0d.png)
+![](../../images/1718945128512-e53aec29-0851-4d4d-bd6c-2e3694a26c0d.png)
 
 **<font style="color:rgb(0,0,0);">自定义facts变量 </font>**
 

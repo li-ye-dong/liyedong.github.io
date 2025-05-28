@@ -1,5 +1,5 @@
 # RHEL9-RHCSA学习
-# 文件目录![](../../../images/1715349516345-3347fa14-d355-4302-b74b-6b6f24fa3975.png) ![](../../../images/1715418789370-67585f2f-0c0b-436d-b176-3e2c9ce40ec2.png)
+# 文件目录![](../../images/1715349516345-3347fa14-d355-4302-b74b-6b6f24fa3975.png) ![](../../images/1715418789370-67585f2f-0c0b-436d-b176-3e2c9ce40ec2.png)
 # Tab补全篇
 shell Tab补全依赖包bash-completion-2.11-4.el9.noarch(最小安装没有)
 
@@ -77,7 +77,7 @@ total 0
 -rw-r--r--. 1 root root 0 May 12 23:52 02
 ```
 
-![](../../../images/1715522522383-5236c21c-da20-44b8-ab2f-5ffaf4bee175.png)
+![](../../images/1715522522383-5236c21c-da20-44b8-ab2f-5ffaf4bee175.png)
 
 <font style="color:rgb(0,0,0);">1.</font><font style="color:rgb(0,0,0);">文件类型 </font>
 
@@ -430,7 +430,7 @@ ls: cannot access 'D1': No such file or directory
 
 <font style="color:rgb(0,0,0);">用法：cp [选项] 源文件 目标文件</font>
 
-![](../../../images/1715777205282-14320338-a032-4aa8-aab4-d83525d12166.png)
+![](../../images/1715777205282-14320338-a032-4aa8-aab4-d83525d12166.png)
 
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">递归复制目录</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
@@ -470,7 +470,7 @@ cp: overwrite '/file'? y
 
 <font style="color:rgb(0,0,0);"># mv 源文件 目标 </font>
 
-![](../../../images/1715777352018-770c6003-ccc6-4d05-bb02-dd74894d2e28.png)
+![](../../images/1715777352018-770c6003-ccc6-4d05-bb02-dd74894d2e28.png)
 
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">目标文件或目录存在，提示是否覆盖</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
@@ -517,7 +517,7 @@ mv: overwrite '/1.txt'? y
 
 <font style="color:rgb(0,0,0);">用法：rm [参数] 文件或目录名 rm -rf /</font>
 
-![](../../../images/1715777415313-4d847761-458b-4054-960c-698b7aaf275b.png)
+![](../../images/1715777415313-4d847761-458b-4054-960c-698b7aaf275b.png)
 
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">递归删除</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
@@ -576,7 +576,7 @@ drwxr-xr-x. 2 root root 18 Jan 31 17:20 difu
 
 <font style="color:rgb(0,0,0);">用法：find [路径] [匹配表达式]</font>
 
-![](../../../images/1715777535906-9a2f2596-ee98-4f4f-8532-2fb9a4e0b4ac.png)
+![](../../images/1715777535906-9a2f2596-ee98-4f4f-8532-2fb9a4e0b4ac.png)
 
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">查找指定文件</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
@@ -671,7 +671,7 @@ cp -a $(find / -user simone) /root/found
 
 <font style="color:rgb(0,0,0);">用法：tar [选项] 归档后的文件 被归档的文件</font>
 
-![](../../../images/1715777804675-375515c8-90e5-4f69-b173-6aa88673d42d.png)
+![](../../images/1715777804675-375515c8-90e5-4f69-b173-6aa88673d42d.png)
 
 **<font style="color:rgb(0,0,0);">---创建归档文件---</font>**
 
@@ -706,7 +706,7 @@ tar/
 
 <font style="color:rgb(0,0,0);">创建的归档名称可以自定义，可通过</font><font style="color:rgb(243,50,50);">file命令</font><font style="color:rgb(0,0,0);">查看归档类型。</font>
 
-![](../../../images/1715777887296-adb79ec0-1514-4811-9972-a4f75114bc97.png)
+![](../../images/1715777887296-adb79ec0-1514-4811-9972-a4f75114bc97.png)
 
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">创建与提取</font>****<font style="color:rgb(0,0,0);">gzip</font>****<font style="color:rgb(0,0,0);">压缩格式</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
@@ -868,7 +868,7 @@ exit 或者使用 exec bash退出再次登录shell
 
 <font style="color:rgb(0,0,0);">语法：shutdown [选项]</font>
 
-![](../../../images/1715778144966-f6afb585-1851-4283-8fd2-2e1b010402bb.png)
+![](../../images/1715778144966-f6afb585-1851-4283-8fd2-2e1b010402bb.png)
 
 ```shell
 # shutdown -h +10 10分钟之后关机
@@ -1147,7 +1147,7 @@ Last login: Sat May 11 09:11:31 EDT 2019 from 192.168.200.222 on pts/1
 
 <font style="color:rgb(57,57,57);">普通权限：read ，write ，execute</font>
 
-![](../../../images/1716011045130-a7e6f743-131d-46d7-8ddc-55c468197d5a.png)
+![](../../images/1716011045130-a7e6f743-131d-46d7-8ddc-55c468197d5a.png)
 
 <font style="color:rgb(0,0,0);">查看文件权限属性： </font>
 
@@ -1283,7 +1283,7 @@ drwxrwxr-x. 5 myth difu 45 May 11 10:26 dirall
 
 <font style="color:rgb(57,57,57);">chmod : 修改文件/目录权限 </font>
 
-<font style="color:rgb(57,57,57);">选项： -R 递归修改</font>![](../../../images/1716011263151-e5fbd6b7-db83-49f1-8516-2c7a6ba49335.png)
+<font style="color:rgb(57,57,57);">选项： -R 递归修改</font>![](../../images/1716011263151-e5fbd6b7-db83-49f1-8516-2c7a6ba49335.png)
 
 <font style="color:rgb(0,32,96);">#chmod u+r 文件 为属主增加读的权限 </font>
 
@@ -1477,7 +1477,7 @@ chmod 7755 filename # -> rwsrwsrwt
 ```
 
 ### 练习
-![](../../../images/1716129022819-25b6768b-7abb-41fe-96ef-e47edbfeecb5.png)
+![](../../images/1716129022819-25b6768b-7abb-41fe-96ef-e47edbfeecb5.png)
 
 ```shell
 mkdir -p /home/contrib
@@ -1545,7 +1545,7 @@ ls -l
 ```
 
 ### 练习
-![](../../../images/1716131096071-577108bb-993e-4f86-8217-f544f048a263.png)
+![](../../images/1716131096071-577108bb-993e-4f86-8217-f544f048a263.png)
 
 ```shell
 0666 - 0020 = 0646
@@ -1554,13 +1554,13 @@ umask 0646
 source ~/bash_profile
 ```
 
-![](../../../images/1716131225358-682f4d0f-0eb9-403d-8b74-ac7ed32ad3a5.png)
+![](../../images/1716131225358-682f4d0f-0eb9-403d-8b74-ac7ed32ad3a5.png)
 
 ```shell
 ----w-r--
 ```
 
-![](../../../images/1716131290477-bc4f0bb1-9968-4e68-b252-742be90851b3.png)
+![](../../images/1716131290477-bc4f0bb1-9968-4e68-b252-742be90851b3.png)
 
 ```shell
 su - daffy
@@ -1597,7 +1597,7 @@ ls -l
 
 <font style="color:rgb(0,0,0);">调用历史命令</font>
 
-![](../../../images/1716207150278-8d34ab04-6588-44c6-81f9-0252a88f3576.png)
+![](../../images/1716207150278-8d34ab04-6588-44c6-81f9-0252a88f3576.png)
 
 ```shell
 [root@difu ~]# ls -l /etc/passwd
@@ -1639,7 +1639,7 @@ systemctl restart sshd！！
 
 <font style="color:rgb(0,0,0);">命令别名：把一条命令定义为一个命令，当运行这个别名就相当于运行整条命令</font>
 
-![](../../../images/1716207183793-19d214bb-a819-4fad-9e5c-8541dd4b4c8e.png)
+![](../../images/1716207183793-19d214bb-a819-4fad-9e5c-8541dd4b4c8e.png)
 
 ```shell
 [root@df_rhel ~]# vim /etc/sysconfig/network-scripts/ifcfg-ens33
@@ -1680,7 +1680,7 @@ redhat
 
 <font style="color:rgb(0,0,0);">2.管道右边命令，必须能够接收标准输入流命令才行</font>
 
-![](../../../images/1716207427669-8cdb7929-18e8-4396-ab57-c1f8fca24b11.png)
+![](../../images/1716207427669-8cdb7929-18e8-4396-ab57-c1f8fca24b11.png)
 
 ```shell
 [root@df_rhel ~]# echo ahdifu.com | passwd --stdin myth
@@ -1688,7 +1688,7 @@ redhat
 [root@df_rhel ~]# ls /etc/ | wc -l
 ```
 
-**<font style="color:rgb(0,0,0);">文本文件：ascii格式的文件，Linux下很多文件都是文本文件</font>**![](../../../images/1716207446022-5f5499d1-b76e-4165-a9a2-000e14440451.png)
+**<font style="color:rgb(0,0,0);">文本文件：ascii格式的文件，Linux下很多文件都是文本文件</font>**![](../../images/1716207446022-5f5499d1-b76e-4165-a9a2-000e14440451.png)
 
 # **<font style="color:rgb(0,0,0);">使用VIM编辑文本： </font>**
 <font style="color:rgb(0,0,0);">vi</font><font style="color:rgb(0,0,0);">：</font><font style="color:rgb(0,0,0);">Visual Interface </font><font style="color:rgb(0,0,0);">可视化文本编辑器 </font>
@@ -1707,7 +1707,7 @@ redhat
 
 <font style="color:rgb(0,0,0);">输入模式：常规的文本编辑 </font>
 
-<font style="color:rgb(0,0,0);">末行模式：也叫底线模式，此模式下可以输入单个或多个字符命令</font>![](../../../images/1716207740463-003cde4f-4313-4cdc-b9a1-8407434f91ce.png)<font style="color:rgb(0,0,0);">VIM </font><font style="color:rgb(0,0,0);">打开文件： </font>
+<font style="color:rgb(0,0,0);">末行模式：也叫底线模式，此模式下可以输入单个或多个字符命令</font>![](../../images/1716207740463-003cde4f-4313-4cdc-b9a1-8407434f91ce.png)<font style="color:rgb(0,0,0);">VIM </font><font style="color:rgb(0,0,0);">打开文件： </font>
 
 <font style="color:rgb(223,64,42);">#vim file </font>
 
@@ -1715,17 +1715,17 @@ redhat
 
 <font style="color:rgb(0,0,0);">#vim + file: </font><font style="color:rgb(0,0,0);">打开文件并使光标处于最后一行 </font>
 
-<font style="color:rgb(0,0,0);">#vim +/abc file: 打开文件并使光标处于第一次匹配到abc的行</font>![](../../../images/1716207754836-9a67a20d-6b75-411a-8186-3a3f27332884.png)<font style="color:rgb(0,0,0);">vim保存关闭文件</font>![](../../../images/1716207778911-a847a868-85f2-44d8-9e2e-975c03880ff5.png)
+<font style="color:rgb(0,0,0);">#vim +/abc file: 打开文件并使光标处于第一次匹配到abc的行</font>![](../../images/1716207754836-9a67a20d-6b75-411a-8186-3a3f27332884.png)<font style="color:rgb(0,0,0);">vim保存关闭文件</font>![](../../images/1716207778911-a847a868-85f2-44d8-9e2e-975c03880ff5.png)
 
 <font style="color:rgb(0,0,0);">vim从命令模式进入编辑模式</font>
 
-<font style="color:rgb(0,0,0);">光标移动</font>![](../../../images/1716207880536-bfcc594c-ff4c-458a-bf13-0cba055b1123.png)<font style="color:rgb(0,0,0);">在末行模式下，光标行间跳转 </font>
+<font style="color:rgb(0,0,0);">光标移动</font>![](../../images/1716207880536-bfcc594c-ff4c-458a-bf13-0cba055b1123.png)<font style="color:rgb(0,0,0);">在末行模式下，光标行间跳转 </font>
 
-<font style="color:rgb(0,0,0);">输入“:行号” --> 回车</font>![](../../../images/1716208024638-f2ddb92c-fead-4949-8c2d-6f4386c5eb4a.png)<font style="color:rgb(0,0,0);">删除字符或行</font>![](../../../images/1716208034019-b8dc14f8-8168-4323-9ded-6b150f071bfc.png)![](../../../images/1716208047137-665818a7-a4a9-427b-b8f4-c92b42642dce.png)<font style="color:rgb(0,0,0);">复制和粘贴 复制和粘贴</font>![](../../../images/1716208058999-0e98c3bd-6145-49ba-b0d5-396092e830c6.png)<font style="color:rgb(0,0,0);">撤销和恢复撤销</font>![](../../../images/1716208073135-d3ce527b-25b0-42e7-9af5-8ba838426315.png)<font style="color:rgb(0,0,0);">字符替换</font>![](../../../images/1716208184644-ba88ff35-a2d4-4d60-9151-e88a1c1662d7.png)
+<font style="color:rgb(0,0,0);">输入“:行号” --> 回车</font>![](../../images/1716208024638-f2ddb92c-fead-4949-8c2d-6f4386c5eb4a.png)<font style="color:rgb(0,0,0);">删除字符或行</font>![](../../images/1716208034019-b8dc14f8-8168-4323-9ded-6b150f071bfc.png)![](../../images/1716208047137-665818a7-a4a9-427b-b8f4-c92b42642dce.png)<font style="color:rgb(0,0,0);">复制和粘贴 复制和粘贴</font>![](../../images/1716208058999-0e98c3bd-6145-49ba-b0d5-396092e830c6.png)<font style="color:rgb(0,0,0);">撤销和恢复撤销</font>![](../../images/1716208073135-d3ce527b-25b0-42e7-9af5-8ba838426315.png)<font style="color:rgb(0,0,0);">字符替换</font>![](../../images/1716208184644-ba88ff35-a2d4-4d60-9151-e88a1c1662d7.png)
 
 <font style="color:rgb(0,0,0);">字符查找</font>
 
-![](../../../images/1716208201708-916e8065-ea07-4d41-a25a-7c76e35b2ece.png)**<font style="color:rgb(0,0,0);">末行模式下字符查找和替换 </font>**
+![](../../images/1716208201708-916e8065-ea07-4d41-a25a-7c76e35b2ece.png)**<font style="color:rgb(0,0,0);">末行模式下字符查找和替换 </font>**
 
 <font style="color:rgb(223,64,42);">:</font><font style="color:rgb(223,64,42);">起始行，结束行</font><font style="color:rgb(223,64,42);">s/pattern/string/gi </font>
 
@@ -1751,9 +1751,9 @@ redhat
 
 <font style="color:rgb(223,64,42);">% </font><font style="color:rgb(223,64,42);">表示全文 </font>
 
-<font style="color:rgb(0,0,0);">末行模式下配置其他特性</font>![](../../../images/1716208548300-f6ddf0fa-b26f-4948-a761-6ae133ba5ff6.png)![](../../../images/1716208553415-e50c3abe-cc71-49a1-942e-bd06937599c5.png)<font style="color:rgb(0,0,0);">vim</font><font style="color:rgb(0,0,0);">参数配置 </font>
+<font style="color:rgb(0,0,0);">末行模式下配置其他特性</font>![](../../images/1716208548300-f6ddf0fa-b26f-4948-a761-6ae133ba5ff6.png)![](../../images/1716208553415-e50c3abe-cc71-49a1-942e-bd06937599c5.png)<font style="color:rgb(0,0,0);">vim</font><font style="color:rgb(0,0,0);">参数配置 </font>
 
-<font style="color:rgb(0,0,0);">vim的配置位于/etc/vimrc，用于配置vim相关功能</font>![](../../../images/1716208649790-426bdf26-58a5-45e8-bac3-3f5cb4ccdb53.png)
+<font style="color:rgb(0,0,0);">vim的配置位于/etc/vimrc，用于配置vim相关功能</font>![](../../images/1716208649790-426bdf26-58a5-45e8-bac3-3f5cb4ccdb53.png)
 
 # **<font style="color:rgb(0,0,0);">字符过滤</font>**
 <font style="color:rgb(0,0,0);">grep:</font><font style="color:rgb(0,0,0);">对文本内容进行关键词搜索匹配 </font>
@@ -1767,12 +1767,12 @@ redhat
 myth:x:1111:100 
 ```
 
-<font style="color:rgb(0,0,0);">grep常用选项</font>![](../../../images/1716208663974-54d43b57-a31c-4070-a0f0-68efad588ba5.png)
+<font style="color:rgb(0,0,0);">grep常用选项</font>![](../../images/1716208663974-54d43b57-a31c-4070-a0f0-68efad588ba5.png)
 
 ## **<font style="color:rgb(0,0,0);">正则表达式 </font>**
 <font style="color:rgb(0,0,0);">正则表达式是一种模式匹配语言，用一些简单的符号来描述一个复杂的规则。 </font>
 
-<font style="color:rgb(0,0,0);">正则表达式常用符号</font>![](../../../images/1716208746660-863ad11a-f57a-4db2-9eb3-c42b7ab9915b.png)<font style="color:rgb(0,0,0);">例如： </font>
+<font style="color:rgb(0,0,0);">正则表达式常用符号</font>![](../../images/1716208746660-863ad11a-f57a-4db2-9eb3-c42b7ab9915b.png)<font style="color:rgb(0,0,0);">例如： </font>
 
 <font style="color:rgb(0,0,0);">1.</font><font style="color:rgb(0,0,0);">把</font><font style="color:rgb(0,0,0);">/etc/ssh/sshd_config</font><font style="color:rgb(0,0,0);">文件中有效配置</font><font style="color:rgb(0,0,0);">(</font><font style="color:rgb(0,0,0);">去除空行和以</font><font style="color:rgb(0,0,0);">#</font><font style="color:rgb(0,0,0);">开头的行</font><font style="color:rgb(0,0,0);">) </font>
 
@@ -1865,7 +1865,7 @@ nmcli con mod name
 
 <font style="color:rgb(0,0,0);">命令进⾏的任 何更改。</font>
 
-![](../../../images/1717049333258-5cf15e76-e585-4941-8dfd-e82a0c4a0e80.png)
+![](../../images/1717049333258-5cf15e76-e585-4941-8dfd-e82a0c4a0e80.png)
 
 ## **<font style="color:rgb(0,0,0);">网卡管理</font>**
 <font style="color:rgb(57,57,57);">网卡接口： </font>
@@ -1896,7 +1896,7 @@ nmcli con mod name
 <font style="color:rgb(57,57,57);">修改网络配置文件的方法：</font>
 
 ### **<font style="color:rgb(0,0,0);">1.图形界面修改</font>**
-![](../../../images/1717049649318-fdf71b7f-fc89-4bc3-89d8-63e69abc6c39.png)
+![](../../images/1717049649318-fdf71b7f-fc89-4bc3-89d8-63e69abc6c39.png)
 
 ### **<font style="color:rgb(0,0,0);">2.直接编辑网卡配置文件 </font>**
 <font style="color:rgb(243,50,50);">/etc/NetworkManager/system-connections/</font><font style="color:rgb(57,57,57);"> 此目录下都是跟网络功能相关的配置的文 </font>
@@ -1907,9 +1907,9 @@ nmcli con mod name
 
 <font style="color:rgb(57,57,57);">置文件</font>
 
-![](../../../images/1717049669997-955f4bb8-3c74-4e3d-bd5a-a3fcea3ed1d9.png)
+![](../../images/1717049669997-955f4bb8-3c74-4e3d-bd5a-a3fcea3ed1d9.png)
 
-![](../../../images/1717049676401-01629e32-95fb-46ed-aff5-c98f9c8d22a8.png)
+![](../../images/1717049676401-01629e32-95fb-46ed-aff5-c98f9c8d22a8.png)
 
 <font style="color:rgb(57,57,57);">直接编辑网卡配置文件需要 使⽤ nmcli 命令来激活新⽹络地址 </font>
 
@@ -2515,7 +2515,7 @@ Updating / installing...
 
 <font style="color:rgb(0,0,0);">启用目标软件仓库 </font>
 
-<font style="color:rgb(0,0,0);">subscription-manager repos --enable <仓库全名></font>![](../../../images/1717077106716-2bde2d41-c213-4d4d-88db-de3794fa1353.png)![](../../../images/1717077114832-e551af41-20d5-4b41-b738-2f6a4265d0a0.png)
+<font style="color:rgb(0,0,0);">subscription-manager repos --enable <仓库全名></font>![](../../images/1717077106716-2bde2d41-c213-4d4d-88db-de3794fa1353.png)![](../../images/1717077114832-e551af41-20d5-4b41-b738-2f6a4265d0a0.png)
 
 ## **<font style="color:rgb(0,0,0);">DNF介绍 </font>**
 <font style="color:rgb(0,0,0);">使⽤ DNF 管理软件包 </font>
@@ -2564,7 +2564,7 @@ Updating / installing...
 
 <font style="color:rgb(0,0,0);">dnf group install 命令将安装⼀个组，同时安装其必选和默认的软件包，以及它们依赖的软件 包。 </font>
 
-<font style="color:rgb(0,0,0);">dnf group install "RPM Development Tools" -y</font>![](../../../images/1717077157820-36c1fa9c-12d9-4ea2-a6cd-c32471cdc494.png)
+<font style="color:rgb(0,0,0);">dnf group install "RPM Development Tools" -y</font>![](../../images/1717077157820-36c1fa9c-12d9-4ea2-a6cd-c32471cdc494.png)
 
 <font style="color:rgb(0,0,0);">启⽤红帽软件存储库 </font>
 
@@ -2688,7 +2688,7 @@ Updating / installing...
 
 <font style="color:rgb(57,57,57);">yum源，前提是主机必须能访问外网 </font>
 
-<font style="color:rgb(3,102,214);">https://opsx.alibaba.com/</font>![](../../../images/1717077215862-a38590d7-5517-42b2-bc60-0a05cadf7f02.png)
+<font style="color:rgb(3,102,214);">https://opsx.alibaba.com/</font>![](../../images/1717077215862-a38590d7-5517-42b2-bc60-0a05cadf7f02.png)
 
 ```shell
 rhel8
@@ -2785,15 +2785,15 @@ License : GPLv3+ [授权]
 ## 破解root密码
 选择第二个
 
-![](../../../images/1717998761721-05439ae5-b6e7-4463-a819-e6a990a57938.png)
+![](../../images/1717998761721-05439ae5-b6e7-4463-a819-e6a990a57938.png)
 
 按e
 
-![](../../../images/1717998871854-381a1c37-1d5c-4170-97a0-0bb4dc9cac40.png)
+![](../../images/1717998871854-381a1c37-1d5c-4170-97a0-0bb4dc9cac40.png)
 
 按回车
 
-![](../../../images/1717998911618-d64b3ca1-0128-43fb-bebb-84016692864b.png)
+![](../../images/1717998911618-d64b3ca1-0128-43fb-bebb-84016692864b.png)
 
 ```shell
 mount -o remount,rw /sysroot
@@ -2906,7 +2906,7 @@ echo "- - -" | tee /sys/class/scsi_host/host*/scan
 
 **<font style="color:rgb(57,57,57);">逻辑分区：</font>**<font style="color:rgb(57,57,57);">从扩展分区中划分，可以直接使用</font>
 
-![](../../../images/1717140511708-0754e48b-9290-421c-8951-b771813cf248.png)
+![](../../images/1717140511708-0754e48b-9290-421c-8951-b771813cf248.png)
 
 **<font style="color:rgb(57,57,57);">分区编号 </font>**
 
@@ -3013,7 +3013,7 @@ First sector (10489856-41943039, default 10489856):
 
 <font style="color:rgb(57,57,57);">构、逻辑、大小、安全性、存取效率都不一样。</font>
 
-![](../../../images/1717144411374-ee6ba4f5-d205-44fe-9cb4-a51a0bd5e831.png)
+![](../../images/1717144411374-ee6ba4f5-d205-44fe-9cb4-a51a0bd5e831.png)
 
 ```shell
 #mkfs -t ext4 -m 3 -b size=1024 /dev/sdb1 
@@ -3415,7 +3415,7 @@ tmpfs tmpfs 378M 36K 378M 1% /run/user/0
 
 **<font style="color:rgb(57,57,57);">PV、VG、LV 关系如下：</font>**
 
-![](../../../images/1717145222702-d932fe80-6375-40e8-9ea1-30ca14d393d6.png)
+![](../../images/1717145222702-d932fe80-6375-40e8-9ea1-30ca14d393d6.png)
 
 **<font style="color:rgb(0,0,0);">创建一个逻辑卷的步骤： </font>**
 
@@ -3719,7 +3719,7 @@ tmpfs tmpfs 378M 36K 378M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">因为在上文中提到，stratis 基于 xfs，默认为 xfs 系统。</font>
 
-![](../../../images/1717413087128-e0fdd6c3-c6bc-4627-a93b-d8cec056012c.png)
+![](../../images/1717413087128-e0fdd6c3-c6bc-4627-a93b-d8cec056012c.png)
 
 <font style="color:rgb(0,0,0);">这幅图中我们可以看到，几个硬盘转变为一个池，池化，而文件系统大小从池中来获取。 </font>
 
@@ -3892,7 +3892,7 @@ pool01 fs01 546 MiB Sep 19 2020
 
 <font style="color:rgb(0,0,0);">下图显示了 KVM 虚拟机架构中，vdo 所在的位置。</font>
 
-![](../../../images/1717413418995-5f80514e-6ccc-4c34-8cef-40b8efa469a4.png)
+![](../../images/1717413418995-5f80514e-6ccc-4c34-8cef-40b8efa469a4.png)
 
 <font style="color:rgb(0,0,0);">对于 </font><font style="color:rgb(0,0,0);">Vdo </font><font style="color:rgb(0,0,0);">的重删压缩，是什么一个意思呢？ </font>
 
@@ -4094,7 +4094,7 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">RPC（Remote Procedure Call）远程过程调用。作用：对数据进行处理后显示或打印</font>
 
-![](../../../images/1717656524053-ebb7cc40-32bd-4fc1-a568-a97a7df63c9b.png)
+![](../../images/1717656524053-ebb7cc40-32bd-4fc1-a568-a97a7df63c9b.png)
 
 <font style="color:rgb(0,0,0);">相关进程： </font>
 
@@ -4106,7 +4106,7 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">rpc.statd</font><font style="color:rgb(0,0,0);">：检查文件一致性，可修复文件（非必要）</font><font style="color:rgb(0,0,0);">nfs</font><font style="color:rgb(0,0,0);">配置文件 </font>
 
-<font style="color:rgb(0,0,0);">默认文件路径：/etc/exports</font>![](../../../images/1717656553074-6fff2af5-fab4-47b6-8b29-e0b922e3b746.png)
+<font style="color:rgb(0,0,0);">默认文件路径：/etc/exports</font>![](../../images/1717656553074-6fff2af5-fab4-47b6-8b29-e0b922e3b746.png)
 
 <font style="color:rgb(0,0,0);">nfs</font><font style="color:rgb(0,0,0);">常用命令 </font>
 
@@ -4152,11 +4152,11 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">1</font><font style="color:rgb(0,0,0);">）添加一块</font><font style="color:rgb(0,0,0);">1T</font><font style="color:rgb(0,0,0);">的硬盘 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# lsblk</font>![](../../../images/1717656576490-8714fbb6-ae83-45e8-a491-fe5ef5c3cea0.png)
+<font style="color:rgb(0,0,0);">[root@node1 ~]# lsblk</font>![](../../images/1717656576490-8714fbb6-ae83-45e8-a491-fe5ef5c3cea0.png)
 
 <font style="color:rgb(0,0,0);">2</font><font style="color:rgb(0,0,0);">）给这个</font><font style="color:rgb(0,0,0);">1T</font><font style="color:rgb(0,0,0);">硬盘做</font><font style="color:rgb(0,0,0);">lvm </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# fdisk /dev/sdb</font>![](../../../images/1717656590491-92fce0fa-93c1-4e75-9253-b6dcb768590f.png)
+<font style="color:rgb(0,0,0);">[root@node1 ~]# fdisk /dev/sdb</font>![](../../images/1717656590491-92fce0fa-93c1-4e75-9253-b6dcb768590f.png)
 
 <font style="color:rgb(0,0,0);">查看分区情况 </font>
 
@@ -4280,7 +4280,7 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">[root@node1 ~]# df ­Th</font>
 
-![](../../../images/1717656634536-c188cea2-2f05-463f-98df-4c6fd9c3b404.png)
+![](../../images/1717656634536-c188cea2-2f05-463f-98df-4c6fd9c3b404.png)
 
 <font style="color:rgb(0,0,0);">3</font><font style="color:rgb(0,0,0);">）修改</font><font style="color:rgb(0,0,0);">nfs</font><font style="color:rgb(0,0,0);">配置文件 </font>
 
@@ -4318,7 +4318,7 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">[root@node1 ~]# systemctl status firewalld.service</font>
 
-![](../../../images/1717658239409-3ce56859-31be-4a48-85dc-260b82d24556.png)
+![](../../images/1717658239409-3ce56859-31be-4a48-85dc-260b82d24556.png)
 
 ```shell
 [root@liyedong /]# firewall-cmd --permanent --add-service=nfs
@@ -4358,7 +4358,7 @@ success
 
 <font style="color:rgb(0,0,0);">[root@node2 ~]# df ­Th</font>
 
-![](../../../images/1717658255413-3ddb75f9-7bbf-4f0d-85a0-7c5b1bf99c36.png)
+![](../../images/1717658255413-3ddb75f9-7bbf-4f0d-85a0-7c5b1bf99c36.png)
 
 <font style="color:rgb(0,0,0);">验证： </font>
 
@@ -4493,7 +4493,7 @@ success
 
 **<font style="color:rgb(0,0,0);">主要配置指令</font>**
 
-![](../../../images/1717662769386-79fe3b57-027a-4750-bcf6-32dc3d7ceee9.png)
+![](../../images/1717662769386-79fe3b57-027a-4750-bcf6-32dc3d7ceee9.png)
 
 <font style="color:rgb(57,57,57);">目录容器：容器内的指令仅在在指定的目录下生效 </font>
 
@@ -4831,13 +4831,13 @@ success
 
 **<font style="color:rgb(57,57,57);">6.访问虚拟机 ip,开始配置 wordpress</font>**
 
-![](../../../images/1717662838923-f3b642be-618f-4389-9190-f48061e38770.png)
+![](../../images/1717662838923-f3b642be-618f-4389-9190-f48061e38770.png)
 
-![](../../../images/1717662845431-69784baa-cc46-4b20-8600-50403cb32ac5.png)
+![](../../images/1717662845431-69784baa-cc46-4b20-8600-50403cb32ac5.png)
 
 <font style="color:rgb(57,57,57);">根据提示进行配置</font>
 
-![](../../../images/1717662859623-0d51c044-bd82-4c34-9709-65c2723abae4.png)
+![](../../images/1717662859623-0d51c044-bd82-4c34-9709-65c2723abae4.png)
 
 # **<font style="color:rgb(0,0,0);">cron周期性计划任务 </font>**
 <font style="color:rgb(0,0,0);">cron周期性计划任务用来定期执行程序，目前最主要的用途是定期备份数据 </font>
@@ -4947,7 +4947,7 @@ systemctl restart chronyd
 ```
 
 # 配置系统调优-tuned配置集
-![](../../../images/1718030583086-e5e25c73-318c-45e7-96f7-b6ea24cf4b40.png)
+![](../../images/1718030583086-e5e25c73-318c-45e7-96f7-b6ea24cf4b40.png)
 
 ```shell
 yum install -y tuned
@@ -5081,9 +5081,9 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">公钥认证</font>
 
-![](../../../images/1717731016701-b10c5f35-3c4a-43aa-b75e-a05d57cb9c80.png)
+![](../../images/1717731016701-b10c5f35-3c4a-43aa-b75e-a05d57cb9c80.png)
 
-![](../../../images/1717731023352-d4f97031-345f-4c5d-9b92-e478cccd471d.png)
+![](../../images/1717731023352-d4f97031-345f-4c5d-9b92-e478cccd471d.png)
 
 **<font style="color:rgb(0,0,0);">OPENSSH </font>****<font style="color:rgb(0,0,0);">配置 </font>**
 
@@ -5112,9 +5112,9 @@ tuned-adm active #查看存活配置
 
 **<font style="color:rgb(0,0,0);">服务端配置：</font>**
 
-![](../../../images/1717731051487-a1c4acd1-24c6-4fe4-b038-eca9a8ccbdf5.png)
+![](../../images/1717731051487-a1c4acd1-24c6-4fe4-b038-eca9a8ccbdf5.png)
 
-![](../../../images/1717731374994-039d0c9b-2d68-4413-8e18-3da1167feeb1.png)
+![](../../images/1717731374994-039d0c9b-2d68-4413-8e18-3da1167feeb1.png)
 
 <font style="color:rgb(57,57,57);">参数修改后需要重启 </font><font style="color:rgb(57,57,57);">sshd </font><font style="color:rgb(57,57,57);">服务</font><font style="color:rgb(57,57,57);">---(selinux,firewalld) </font>
 
@@ -5278,7 +5278,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">[root@difu1909 .ssh]# vim </font><font style="color:rgb(223,64,42);">authorized_keys</font>
 
-![](../../../images/1717731735217-2419f6aa-5ae3-428e-a569-200dadd981d5.png)
+![](../../images/1717731735217-2419f6aa-5ae3-428e-a569-200dadd981d5.png)
 
 ## **<font style="color:rgb(0,0,0);">SCP:基于 SSH 的跨主机复制 </font>**
 <font style="color:rgb(57,57,57);">将本地文件推送给远程主机 </font>
@@ -5587,7 +5587,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">work drop internal external trusted home dmz public block</font>
 
-![](../../../images/1718026499763-6ea9751e-9abe-48d1-9623-59d9e51362f1.png)<font style="color:rgb(57,57,57);">默认处于激活状态并且在使用的区域是 </font><font style="color:rgb(57,57,57);">public </font>
+![](../../images/1718026499763-6ea9751e-9abe-48d1-9623-59d9e51362f1.png)<font style="color:rgb(57,57,57);">默认处于激活状态并且在使用的区域是 </font><font style="color:rgb(57,57,57);">public </font>
 
 <font style="color:rgb(57,57,57);">zone </font>
 
@@ -5611,9 +5611,9 @@ tuned-adm active #查看存活配置
 
 **<font style="color:rgb(0,0,0);">规则配置: </font>**
 
-![](../../../images/1718026519311-4f5089dd-ac99-4a3b-854a-a730eb6bdb58.png)
+![](../../images/1718026519311-4f5089dd-ac99-4a3b-854a-a730eb6bdb58.png)
 
-![](../../../images/1718026531375-c18a798a-1405-4dbd-bccd-0b31945de9bb.png)
+![](../../images/1718026531375-c18a798a-1405-4dbd-bccd-0b31945de9bb.png)
 
 **<font style="color:rgb(0,0,0);">规则清除： </font>**
 
@@ -5707,7 +5707,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(0,0,0);">namespace 命名空间</font>
 
-![](../../../images/1718084107969-f445eedf-3873-49d7-a3da-383c34b93080.png)
+![](../../images/1718084107969-f445eedf-3873-49d7-a3da-383c34b93080.png)
 
 <font style="color:rgb(0,0,0);">容器与虚拟机在硬件和底层操作系统交互有所不同： </font>
 
@@ -5803,19 +5803,19 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(0,0,0);">再次重复登陆会显示已经登陆。</font>
 
-![](../../../images/1718084126146-5abb68d7-bff3-477b-b89f-95874a68b7a2.png)
+![](../../images/1718084126146-5abb68d7-bff3-477b-b89f-95874a68b7a2.png)
 
 <font style="color:rgb(0,0,0);">登陆某一个容器注册表时，显示已经登陆，可以后加 --get-login 来显示已经登陆的身份</font>
 
 <font style="color:rgb(0,0,0);">root身份</font>
 
-![](../../../images/1718084140701-d5753f5e-f53c-4229-9094-ad9b8b6fb473.png)
+![](../../images/1718084140701-d5753f5e-f53c-4229-9094-ad9b8b6fb473.png)
 
-<font style="color:rgb(0,0,0);">test 身份</font>![](../../../images/1718084151298-b446905b-dbed-4e74-8cf2-e8f70fe50b0a.png)
+<font style="color:rgb(0,0,0);">test 身份</font>![](../../images/1718084151298-b446905b-dbed-4e74-8cf2-e8f70fe50b0a.png)
 
 <font style="color:rgb(0,0,0);">要登出容器注册表，可以使用 podman logout 命令，登出已经登陆的注册表</font>
 
-![](../../../images/1718084163178-ead806d1-7e63-4b5f-97cc-5f0594fc6310.png)
+![](../../images/1718084163178-ead806d1-7e63-4b5f-97cc-5f0594fc6310.png)
 
 **<font style="color:rgb(0,0,0);">Podman 命令</font>**
 
@@ -5863,7 +5863,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">在注册表中搜索镜像。</font>
 
-![](../../../images/1718084206067-7fc3648a-ed13-4611-bc92-d2400e9ea291.png)
+![](../../images/1718084206067-7fc3648a-ed13-4611-bc92-d2400e9ea291.png)
 
 **<font style="color:rgb(0,0,0);">安装容器实用工具 </font>**
 
@@ -6009,7 +6009,7 @@ store:
 docker://registry.access.redhat.com/quarkus/mandrel-20-rhel8
 ```
 
-![](../../../images/1718085494164-d9d0c884-e5bd-42d0-a477-c1580ab2999f.png)
+![](../../images/1718085494164-d9d0c884-e5bd-42d0-a477-c1580ab2999f.png)
 
 <font style="color:rgb(0,0,0);">也可以查看本地存储的镜像信息，提供的信息比 </font><font style="color:rgb(0,0,0);">skopep inspect </font>
 
@@ -6025,7 +6025,7 @@ bc668af2b27f 6 years ago 153 MB
 registry.access.redhat.com/rhel7.0
 ```
 
-![](../../../images/1718085509740-c217ab19-1575-4e85-80d8-b84e7208aa55.png)
+![](../../images/1718085509740-c217ab19-1575-4e85-80d8-b84e7208aa55.png)
 
 ## **<font style="color:rgb(0,0,0);">管理容器即服务 </font>**
 **<font style="color:rgb(0,0,0);">初级概念： </font>**
@@ -6099,7 +6099,7 @@ registry.access.redhat.com/rhel7.0
 
 <font style="color:rgb(0,0,0);">扩展：（比较系统和用户服务）</font>
 
-![](../../../images/1718085635277-c1015b5a-3a02-43ea-812f-4ddf6d2f717a.png)
+![](../../images/1718085635277-c1015b5a-3a02-43ea-812f-4ddf6d2f717a.png)
 
 
 
@@ -6139,7 +6139,7 @@ ssh contsvc@example
 podman pull registry.access.redhat.com/rhscl/httpd-24-rhel7
 ```
 
-![](../../../images/1718085742316-ec1dd7e5-2dbc-4e44-9729-c8c159dbe080.png)
+![](../../images/1718085742316-ec1dd7e5-2dbc-4e44-9729-c8c159dbe080.png)
 
 
 
@@ -6170,7 +6170,7 @@ registry.access.redhat.com/rhscl/httpd-24-
 rhel7:latest
 ```
 
-![](../../../images/1718085754338-120875ec-e986-4ca7-a4ed-ffecbbc87ee3.png)
+![](../../images/1718085754338-120875ec-e986-4ca7-a4ed-ffecbbc87ee3.png)
 
 <font style="color:rgb(0,0,0);">6</font><font style="color:rgb(0,0,0);">）创建容器 </font>
 
