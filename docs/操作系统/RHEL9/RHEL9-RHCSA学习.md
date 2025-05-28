@@ -1,40 +1,40 @@
-# RHEL9-RHCSA学习
-# 文件目录![](../../images/1715349516345-3347fa14-d355-4302-b74b-6b6f24fa3975.png) ![](../../images/1715418789370-67585f2f-0c0b-436d-b176-3e2c9ce40ec2.png)
-# Tab补全篇
+## RHEL9-RHCSA学习
+## 文件目录![](../../images/1715349516345-3347fa14-d355-4302-b74b-6b6f24fa3975.png) ![](../../images/1715418789370-67585f2f-0c0b-436d-b176-3e2c9ce40ec2.png)
+## Tab补全篇
 shell Tab补全依赖包bash-completion-2.11-4.el9.noarch(最小安装没有)
 
 ```shell
-[root@localhost ~]# rpm -qa | grep bash
+[root@localhost ~]## rpm -qa | grep bash
 bash-5.1.8-4.el9.x86_64
 bash-completion-2.11-4.el9.noarch
 ```
 
-# 转义字符"\"
-## 分行(提高可读性)
+## 转义字符"\"
+### 分行(提高可读性)
 ```shell
 mkdir test \
 test2 \
 test3 
 ```
 
-## 创建一个有空格的文件夹
+### 创建一个有空格的文件夹
 ```shell
 mkdir c\ d
 ```
 
-# cd命令
+## cd命令
 ```shell
-[root@RHEL9 /]# cd var （改变目录位置至当前目录下的var子目录下）
-[root@RHEL9 var]# cd .. （改变当前位置至当前目录的父目录）
-[root@RHEL9 var]# cd . （切换到当前目前）
-[root@RHEL9 /]# cd （改变目录位置至用户登录时的工作目录）
-[root@RHEL9 ~]# cd ~ （改变目录位置至用户登录时的工作目录（用户的家目录）
-[root@RHEL9 ~]# cd ../etc （改变目录位置至当前目录的父目录下的etc的子目录下）
-[root@RHEL9 etc]# cd /var/www （利用绝对路径表示改变目录到 /var/www目录下）
-[root@RHEL9 etc]# cd - （返回上一次切换前的目录，相当于撤销）
+[root@RHEL9 /]## cd var （改变目录位置至当前目录下的var子目录下）
+[root@RHEL9 var]## cd .. （改变当前位置至当前目录的父目录）
+[root@RHEL9 var]## cd . （切换到当前目前）
+[root@RHEL9 /]## cd （改变目录位置至用户登录时的工作目录）
+[root@RHEL9 ~]## cd ~ （改变目录位置至用户登录时的工作目录（用户的家目录）
+[root@RHEL9 ~]## cd ../etc （改变目录位置至当前目录的父目录下的etc的子目录下）
+[root@RHEL9 etc]## cd /var/www （利用绝对路径表示改变目录到 /var/www目录下）
+[root@RHEL9 etc]## cd - （返回上一次切换前的目录，相当于撤销）
 ```
 
-# ls命令
+## ls命令
 <font style="color:rgb(0,0,0);">ls</font><font style="color:rgb(0,0,0);">命令用来</font><font style="color:rgb(243,50,50);">列出文件或目录信息。 </font>
 
 <font style="color:rgb(0,0,0);">用法：</font><font style="color:rgb(0,0,0);">ls [</font><font style="color:rgb(0,0,0);">参数</font><font style="color:rgb(0,0,0);">] </font><font style="color:rgb(0,0,0);">目录名或文件名 </font>
@@ -42,7 +42,7 @@ mkdir c\ d
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">列出文件或目录信息</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
 ```shell
-[root@RHEL9 /]# ls 
+[root@RHEL9 /]## ls 
 afs boot etc lib media opt root sbin sys usr 
 bin dev home lib64 mnt proc run srv tmp var 
 ```
@@ -50,7 +50,7 @@ bin dev home lib64 mnt proc run srv tmp var
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">显示所有文件</font>****<font style="color:rgb(0,0,0);">--- </font>****<font style="color:rgb(243,50,50);">-a</font>**<font style="color:rgb(0,0,0);">：显示所有内容，包括以</font><font style="color:rgb(0,0,0);">“</font>**<font style="color:rgb(243,50,50);">.</font>**<font style="color:rgb(0,0,0);">”</font><font style="color:rgb(0,0,0);">开头的隐藏文件。 </font>
 
 ```shell
-[root@RHEL9 /]# ls -a 
+[root@RHEL9 /]## ls -a 
 . afs boot etc lib media opt root sbin sys usr 
 .. bin dev home lib64 mnt proc run srv tmp var 
 ```
@@ -60,7 +60,7 @@ bin dev home lib64 mnt proc run srv tmp var
 <font style="color:rgb(0,0,0);">示</font><font style="color:rgb(0,0,0);">“</font>**<font style="color:rgb(0,0,0);">.</font>**<font style="color:rgb(0,0,0);">”</font><font style="color:rgb(0,0,0);">和</font><font style="color:rgb(0,0,0);">“</font>**<font style="color:rgb(0,0,0);">..</font>**<font style="color:rgb(0,0,0);">”</font><font style="color:rgb(0,0,0);">。 </font>
 
 ```shell
-[root@RHEL9 /]# ls -A 
+[root@RHEL9 /]## ls -A 
 .123 bin dev home lib64 mnt proc run srv tmp var 
 afs boot etc lib media opt root sbin sys usr 
 ```
@@ -70,7 +70,7 @@ afs boot etc lib media opt root sbin sys usr
 **<font style="color:rgb(243,50,50);">-l</font>**<font style="color:rgb(0,0,0);">：以长格式形式显示文件的详细信息。 </font>
 
 ```shell
-[root@RHEL9 time]# ll 
+[root@RHEL9 time]## ll 
 total 0 
 -rw-r--r--. 1 root root 0 May 12 23:52 00 
 -rw-r--r--. 1 root root 0 May 12 23:51 01 
@@ -112,7 +112,7 @@ total 0
 **<font style="color:rgb(243,50,50);">-h</font>**<font style="color:rgb(0,0,0);">：以</font><font style="color:rgb(0,0,0);">K</font><font style="color:rgb(0,0,0);">，</font><font style="color:rgb(0,0,0);">M</font><font style="color:rgb(0,0,0);">，</font><font style="color:rgb(0,0,0);">G</font><font style="color:rgb(0,0,0);">单位显示文件大小 </font>
 
 ```shell
-[root@RHEL9 time]# ll -h 
+[root@RHEL9 time]## ll -h 
 total 84K 
 -rw-r--r--. 1 root root 28K May 14 13:08 1.txt 
 -rw-r--r--. 1 root root 55K May 14 13:13 2.txt
@@ -125,7 +125,7 @@ total 84K
 <font style="color:rgb(0,0,0);">而不是显示其下的各个文件，与</font><font style="color:rgb(243,50,50);">-l</font><font style="color:rgb(0,0,0);">搭配使用可以得到详细的目录信息。 </font>
 
 ```shell
-[root@RHEL9 /]# ls -d /root 
+[root@RHEL9 /]## ls -d /root 
 /root 
 ```
 
@@ -134,13 +134,13 @@ total 84K
 **<font style="color:rgb(243,50,50);">-c</font>**<font style="color:rgb(0,0,0);">：按文件的修改时间排序。 </font>
 
 ```shell
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 00 01 02 
-[root@RHEL9 time]# ls -c 
+[root@RHEL9 time]## ls -c 
 00 02 01
 ```
 
-# file命令
+## file命令
 ```shell
 echo "liyedong" > test.txt
 mv test.txt test.png
@@ -152,18 +152,18 @@ file test.png
 <font style="color:rgb(0,0,0);">file</font><font style="color:rgb(0,0,0);">命令查看文件类型 </font>
 
 ```shell
-[root@RHEL9 time]# file 1.txt 
+[root@RHEL9 time]## file 1.txt 
 1.txt: ASCII text, with very long lines 
-[root@RHEL9 time]# file difu 
+[root@RHEL9 time]## file difu 
 difu: directory
 ```
 
-# “ > ”指令 与“ >> ”指令 
+## “ > ”指令 与“ >> ”指令 
 **<font style="color:rgb(243,50,50);">> </font>**<font style="color:rgb(0,0,0);">： 输出重定向（覆盖重定向） </font>
 
 **<font style="color:rgb(243,50,50);">>> </font>**<font style="color:rgb(0,0,0);">： 追加重定向（写入重定向）</font>
 
-# <font style="color:rgb(0,0,0);">cat命令</font>
+## <font style="color:rgb(0,0,0);">cat命令</font>
 <font style="color:rgb(0,0,0);">cat</font><font style="color:rgb(0,0,0);">命令主要用于</font><font style="color:rgb(243,50,50);">滚屏显示文件内容</font><font style="color:rgb(0,0,0);">或是</font><font style="color:rgb(243,50,50);">将多个文件合并成一个文件</font><font style="color:rgb(0,0,0);">。 </font>
 
 <font style="color:rgb(0,0,0);">用法：cat [参数] 文件名</font>
@@ -173,7 +173,7 @@ difu: directory
 <font style="color:rgb(0,0,0);">cat</font><font style="color:rgb(0,0,0);">命令的常用参数选项如下： </font>**<font style="color:rgb(243,50,50);">-b</font>**<font style="color:rgb(0,0,0);">：对输出内容中的</font><font style="color:rgb(243,50,50);">非空行</font><font style="color:rgb(0,0,0);">标注行号。 </font>
 
 ```shell
-[root@RHEL9 /]# cat -b cat.txt 
+[root@RHEL9 /]## cat -b cat.txt 
 ```
 
 _<font style="color:rgb(0,0,0);">1 -b：对输出内容中的非空行标注行号</font>_
@@ -183,7 +183,7 @@ _<font style="color:rgb(0,0,0);">2 -n</font>__<font style="color:rgb(0,0,0);">�
 **<font style="color:rgb(243,50,50);">-n</font>**<font style="color:rgb(0,0,0);">：对输出内容中的</font><font style="color:rgb(243,50,50);">所有行</font><font style="color:rgb(0,0,0);">标注行号。 </font>
 
 ```shell
-[root@RHEL9 /]# cat -n cat.txt 
+[root@RHEL9 /]## cat -n cat.txt 
 1 -b：对输出内容中的非空行标注行号。 
 2 
 3 
@@ -195,7 +195,7 @@ _<font style="color:rgb(0,0,0);">2 -n</font>__<font style="color:rgb(0,0,0);">�
 <font style="color:rgb(0,0,0);">cat</font><font style="color:rgb(0,0,0);">命令中没有指定参数，则</font><font style="color:rgb(0,0,0);">cat</font><font style="color:rgb(0,0,0);">会直接显示文件原本的内容 </font>
 
 ```shell
-[root@RHEL9 /]# cat /var/www/html/index.html 
+[root@RHEL9 /]## cat /var/www/html/index.html 
 （查看/var/www/html目录下的index.html文件 内容） 
 ```
 
@@ -206,28 +206,28 @@ _<font style="color:rgb(0,0,0);">2 -n</font>__<font style="color:rgb(0,0,0);">�
 <font style="color:rgb(0,0,0);">利用</font><font style="color:rgb(0,0,0);">cat</font><font style="color:rgb(0,0,0);">命令还可以</font><font style="color:rgb(243,50,50);">合并多个文件</font><font style="color:rgb(0,0,0);">。 </font>
 
 ```shell
-[root@RHEL9/]# cat file1
+[root@RHEL9/]## cat file1
 123
-[root@RHEL9 /]# cat file2
+[root@RHEL9 /]## cat file2
 456
-[root@RHEL9 /]# cat file3 （file3已经存在，且原文件内容为 789）
+[root@RHEL9 /]## cat file3 （file3已经存在，且原文件内容为 789）
 789
-[root@RHEL9 /]# cat file2 file1 > file3 （此命令会覆盖file3原文件内容）
-[root@RHEL9 /]# cat file3
+[root@RHEL9 /]## cat file2 file1 > file3 （此命令会覆盖file3原文件内容）
+[root@RHEL9 /]## cat file3
 456
 123
 cat file2 file1 > file3 命令会把file2和file1文件的内容合并为file3。
 file2文件的内容在file1文件的内容前面（按顺序位置决定），且此命令会覆盖掉file3原文件
 内容。
-[root@RHEL9 /]# cat file1
+[root@RHEL9 /]## cat file1
 123
-[root@RHEL9 /]# cat file2
+[root@RHEL9 /]## cat file2
 456
-[root@RHEL9 /]# cat file3 （file3已经存在，且原文件内容为 789）
+[root@RHEL9 /]## cat file3 （file3已经存在，且原文件内容为 789）
 789
-[root@RHEL9 /]# cat file2 file1 >> file3 （此命令会将file2和file3文件的内容附加到file3
+[root@RHEL9 /]## cat file2 file1 >> file3 （此命令会将file2和file3文件的内容附加到file3
 的后面）
-[root@RHEL9 /]# cat file3
+[root@RHEL9 /]## cat file3
 789
 456
 123
@@ -235,7 +235,7 @@ cat file2 file1>>file3
 命令会把file2和file1的文件内容附加到file3文件原有内容的后面
 ```
 
-# more命令
+## more命令
 <font style="color:rgb(0,0,0);">可以一页一页地</font><font style="color:rgb(243,50,50);">分屏显示文件的内容</font><font style="color:rgb(0,0,0);">。</font><font style="color:rgb(0,0,0);">more</font><font style="color:rgb(0,0,0);">命令通常用于分屏显示文件内容。 </font>
 
 <font style="color:rgb(0,0,0);">执行</font><font style="color:rgb(0,0,0);">more</font><font style="color:rgb(0,0,0);">命令后，进入</font><font style="color:rgb(0,0,0);">more</font><font style="color:rgb(0,0,0);">状态。 </font>
@@ -253,14 +253,14 @@ cat file2 file1>>file3
 **<font style="color:rgb(243,50,50);">-</font>**<font style="color:rgb(243,50,50);">num</font><font style="color:rgb(0,0,0);">：</font><font style="color:rgb(243,50,50);">num</font><font style="color:rgb(243,50,50);">代表的是数字</font><font style="color:rgb(0,0,0);">，用来指定分页显示时</font><font style="color:rgb(243,50,50);">每页的行数</font><font style="color:rgb(0,0,0);">。 </font>
 
 ```shell
-[root@RHEL9 /]# cat test （原文件内容）
+[root@RHEL9 /]## cat test （原文件内容）
 1
 2
 3
 4
 5
 6
-[root@RHEL9 /]# more -2 test （以每页2行显示文件内容）
+[root@RHEL9 /]## more -2 test （以每页2行显示文件内容）
 1
 2
 --More--(33%) （已经显示文件内容的占比，6行文件以2行每页显示，第一页占比33%）
@@ -271,17 +271,17 @@ cat file2 file1>>file3
 **<font style="color:rgb(243,50,50);">+</font>**<font style="color:rgb(243,50,50);">num</font><font style="color:rgb(0,0,0);">：</font><font style="color:rgb(0,0,0);">num</font><font style="color:rgb(0,0,0);">代表的是数字，用来指定</font><font style="color:rgb(243,50,50);">从指定文件的第</font><font style="color:rgb(243,50,50);">num</font><font style="color:rgb(243,50,50);">行开始显示。 </font>
 
 ```shell
-[root@RHEL9 /]# cat test （原文件内容） 
+[root@RHEL9 /]## cat test （原文件内容） 
 1 
 2 
 3 
 4 
-[root@RHEL9 /]# more +3 test （从第三行开始显示文件内容） 
+[root@RHEL9 /]## more +3 test （从第三行开始显示文件内容） 
 3 
 4 
 ```
 
-# less命令
+## less命令
 <font style="color:rgb(0,0,0);">less</font><font style="color:rgb(0,0,0);">命令是</font><font style="color:rgb(0,0,0);">more</font><font style="color:rgb(0,0,0);">命令的改进版，比</font><font style="color:rgb(0,0,0);">more</font><font style="color:rgb(0,0,0);">命令的功能强大。 </font>
 
 <font style="color:rgb(0,0,0);">less</font><font style="color:rgb(0,0,0);">命令可以向下、向上翻页，甚至可以前后左右移动。执行</font><font style="color:rgb(0,0,0);">less</font><font style="color:rgb(0,0,0);">命令后，进入了</font><font style="color:rgb(0,0,0);">less</font><font style="color:rgb(0,0,0);">状态。 </font>
@@ -297,7 +297,7 @@ cat file2 file1>>file3
 <font style="color:rgb(0,0,0);">less</font><font style="color:rgb(0,0,0);">命令支持在文本文件中快速查找 </font>
 
 ```shell
-[root@RHEL9 /]# less file1 
+[root@RHEL9 /]## less file1 
 1 
 2 
 3 
@@ -308,7 +308,7 @@ cat file2 file1>>file3
 
 <font style="color:rgb(0,0,0);">less命令的用法与more命令基本相同</font>
 
-# <font style="color:rgb(0,0,0);">head命令</font>
+## <font style="color:rgb(0,0,0);">head命令</font>
 <font style="color:rgb(0,0,0);">head</font><font style="color:rgb(0,0,0);">命令用于显示文件的</font><font style="color:rgb(243,50,50);">开头</font><font style="color:rgb(0,0,0);">部分，</font><font style="color:rgb(243,50,50);">默认情况</font><font style="color:rgb(0,0,0);">下只显示文件的</font><font style="color:rgb(243,50,50);">前</font><font style="color:rgb(243,50,50);">10</font><font style="color:rgb(243,50,50);">行内容</font><font style="color:rgb(0,0,0);">。 </font>
 
 <font style="color:rgb(0,0,0);">用法：</font><font style="color:rgb(0,0,0);">head [</font><font style="color:rgb(0,0,0);">参数</font><font style="color:rgb(0,0,0);">] </font><font style="color:rgb(0,0,0);">文件名 </font>
@@ -318,12 +318,12 @@ cat file2 file1>>file3
 **<font style="color:rgb(243,50,50);">-n</font>**<font style="color:rgb(243,50,50);"> num</font><font style="color:rgb(0,0,0);">：显示指定文件的</font><font style="color:rgb(243,50,50);">前</font><font style="color:rgb(243,50,50);">num</font><font style="color:rgb(243,50,50);">行 </font>
 
 ```shell
-[root@RHEL9 /]# head file1 （head不加参数显示原文件前十行内容） 
+[root@RHEL9 /]## head file1 （head不加参数显示原文件前十行内容） 
 123 
 456 
 789 
 012 
-[root@RHEL9 /]# head -n 3 file1 （-n 3 只显示文件的前3行内容） 
+[root@RHEL9 /]## head -n 3 file1 （-n 3 只显示文件的前3行内容） 
 123 
 456 
 789 
@@ -334,13 +334,13 @@ cat file2 file1>>file3
 **<font style="color:rgb(243,50,50);">-c </font>**<font style="color:rgb(243,50,50);">num</font><font style="color:rgb(0,0,0);">：显示指定文件的</font><font style="color:rgb(243,50,50);">前</font><font style="color:rgb(243,50,50);">num</font><font style="color:rgb(243,50,50);">个字符 </font>
 
 ```shell
-[root@RHEL9 /]# head file2 （head不加参数显示文件前十行内容） 
+[root@RHEL9 /]## head file2 （head不加参数显示文件前十行内容） 
 123456 
-[root@RHEL9 /]# head -c 5 file2 （-c 5 只显示文件的前5个字符内容） 
+[root@RHEL9 /]## head -c 5 file2 （-c 5 只显示文件的前5个字符内容） 
 12345 
 ```
 
-# **tail命令 **
+## **tail命令 **
 <font style="color:rgb(0,0,0);">tail</font><font style="color:rgb(0,0,0);">命令用于显示文件的</font><font style="color:rgb(243,50,50);">末尾</font><font style="color:rgb(0,0,0);">部分，</font><font style="color:rgb(243,50,50);">默认情况</font><font style="color:rgb(0,0,0);">下只显示文件的</font><font style="color:rgb(243,50,50);">末尾</font><font style="color:rgb(243,50,50);">10</font><font style="color:rgb(243,50,50);">行内容</font><font style="color:rgb(0,0,0);">。 </font>
 
 <font style="color:rgb(0,0,0);">用法：</font><font style="color:rgb(0,0,0);">tail [</font><font style="color:rgb(0,0,0);">参数</font><font style="color:rgb(0,0,0);">] </font><font style="color:rgb(0,0,0);">文件名 </font>
@@ -350,7 +350,7 @@ cat file2 file1>>file3
 **<font style="color:rgb(0,145,255);">-n </font>**<font style="color:rgb(243,50,50);">num</font><font style="color:rgb(0,0,0);">：显示指定文件的末尾</font><font style="color:rgb(0,0,0);">num</font><font style="color:rgb(0,0,0);">行 </font>
 
 ```shell
-[root@RHEL9 /]# tail -n 2 file1 
+[root@RHEL9 /]## tail -n 2 file1 
 ```
 
 _<font style="color:rgb(0,0,0);">4 </font>_
@@ -362,13 +362,13 @@ _<font style="color:rgb(0,0,0);">5 </font>_
 **<font style="color:rgb(243,50,50);">-f </font>**<font style="color:rgb(0,0,0);">：持续刷新文件内容。 </font>
 
 ```shell
-[root@RHEL9 /]# tail -f /var/log/cron 
+[root@RHEL9 /]## tail -f /var/log/cron 
 ...... 
 Jan 23 00:23:01 ansible CROND[4710]: (root) CMD (logger "EX200 in progress") 
 Jan 23 00:24:01 ansible CROND[4743]: (root) CMD (logger "EX200 in progress")
 ```
 
-# mkdir命令
+## mkdir命令
 <font style="color:rgb(0,0,0);">mkdir</font><font style="color:rgb(0,0,0);">命令用于创建一个目录。 </font>
 
 <font style="color:rgb(0,0,0);">用法：</font><font style="color:rgb(0,0,0);">mkdir [</font><font style="color:rgb(0,0,0);">参数</font><font style="color:rgb(0,0,0);">] </font><font style="color:rgb(0,0,0);">目录名 </font>
@@ -378,7 +378,7 @@ Jan 23 00:24:01 ansible CROND[4743]: (root) CMD (logger "EX200 in progress")
 <font style="color:rgb(0,0,0);">mkdir</font><font style="color:rgb(0,0,0);">命令用于创建一个目录。 </font>
 
 ```shell
-[root@RHEL9 /]# ls -d dir1/ 
+[root@RHEL9 /]## ls -d dir1/ 
 dir1/ 
 ```
 
@@ -387,15 +387,15 @@ dir1/
 **<font style="color:rgb(243,50,50);">-p</font>**<font style="color:rgb(0,0,0);">：创建目录时，若父目录不存在，则同 时创建该目录与该目录的父目录。 </font>
 
 ```shell
-[root@RHEL9 /]# mkdir -p /D1/D2/D3/D4 
-[root@RHEL9 /]# tree /D1 
+[root@RHEL9 /]## mkdir -p /D1/D2/D3/D4 
+[root@RHEL9 /]## tree /D1 
 /D1 
 └── D2 
 └── D3 
 └── D4 
 ```
 
-# rmdir命令
+## rmdir命令
 <font style="color:rgb(0,0,0);">rmdir</font><font style="color:rgb(0,0,0);">命令用于删除空目录 </font>
 
 <font style="color:rgb(0,0,0);">用法：</font><font style="color:rgb(0,0,0);">rmdir [</font><font style="color:rgb(0,0,0);">参数</font><font style="color:rgb(0,0,0);">] </font><font style="color:rgb(0,0,0);">目录名 </font>
@@ -403,10 +403,10 @@ dir1/
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">删除空目录</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
 ```shell
-[root@RHEL9 /]# rmdir D1 
+[root@RHEL9 /]## rmdir D1 
 rmdir: failed to remove 'D1': Directory not empty 
-[root@RHEL9 /]# rmdir D1/D2/D3/D4/ 
-[root@RHEL9 /]# tree D1/ 
+[root@RHEL9 /]## rmdir D1/D2/D3/D4/ 
+[root@RHEL9 /]## tree D1/ 
 D1/ 
 └── D2 
 └── D3 
@@ -417,15 +417,15 @@ D1/
 **<font style="color:rgb(243,50,50);">-p</font>**<font style="color:rgb(0,0,0);">：删除目录时，一同删除目录，但是父目录中除了要删除的目录之外必须已经没有其他目录及文 件。 </font>
 
 ```shell
-[root@RHEL9 /]# tree D1 
+[root@RHEL9 /]## tree D1 
 D1 
 └── D1.11 directory, 0 files 
-[root@RHEL9 /]# rmdir -p D1/D1.1/ 
-[root@RHEL9 /]# ls -d D1 
+[root@RHEL9 /]## rmdir -p D1/D1.1/ 
+[root@RHEL9 /]## ls -d D1 
 ls: cannot access 'D1': No such file or directory
 ```
 
-# cp命令
+## cp命令
 <font style="color:rgb(0,0,0);">cp</font><font style="color:rgb(0,0,0);">命令主要用于文件或者目录的复制。 </font>
 
 <font style="color:rgb(0,0,0);">用法：cp [选项] 源文件 目标文件</font>
@@ -437,10 +437,10 @@ ls: cannot access 'D1': No such file or directory
 **<font style="color:rgb(243,50,50);">-r</font>**<font style="color:rgb(0,0,0);">：递归复制目录（将目录下所有内容一起复制） </font>
 
 ```shell
-[root@RHEL9 ~]# cp /var/www / 
+[root@RHEL9 ~]## cp /var/www / 
 cp: -r not specified; omitting directory '/var/www' 
-[root@RHEL9 ~]# cp -r /var/www / 
-[root@RHEL9 ~]# ls -d /www 
+[root@RHEL9 ~]## cp -r /var/www / 
+[root@RHEL9 ~]## ls -d /www 
 /www
 ```
 
@@ -449,26 +449,26 @@ cp: -r not specified; omitting directory '/var/www'
 **<font style="color:rgb(243,50,50);">-p</font>**<font style="color:rgb(0,0,0);">：保留源文件的相关属性 </font>
 
 ```shell
-[root@RHEL9 ansible]# ll 
+[root@RHEL9 ansible]## ll 
 total 0 
 -rw-rw-r--. 1 ansible ansible 0 Jan 31 12:30 file 
-[root@RHEL9 ansible]# cp file / 
-[root@RHEL9 ansible]# ll /file 
+[root@RHEL9 ansible]## cp file / 
+[root@RHEL9 ansible]## ll /file 
 -rw-r--r--. 1 root root 0 Jan 31 12:32 /file 
-[root@RHEL9 ansible]# cp -p file / 
+[root@RHEL9 ansible]## cp -p file / 
 cp: overwrite '/file'? y 
-[root@RHEL9 ansible]# ll /file 
+[root@RHEL9 ansible]## ll /file 
 -rw-rw-r--. 1 ansible ansible 0 Jan 31 12:30 /file 
 ```
 
 **<font style="color:rgb(243,50,50);">-a</font>**<font style="color:rgb(0,0,0);">：等同于同时使用以上选项</font>
 
-# <font style="color:rgb(0,0,0);">mv命令</font>
+## <font style="color:rgb(0,0,0);">mv命令</font>
 <font style="color:rgb(0,0,0);">mv</font><font style="color:rgb(0,0,0);">命令主要用于文件或者目录的</font><font style="color:rgb(243,50,50);">移动</font><font style="color:rgb(0,0,0);">或</font><font style="color:rgb(243,50,50);">改名 </font>
 
 <font style="color:rgb(0,0,0);">用法：mv [参数] 源文件或目录 目标文件或目录</font>
 
-<font style="color:rgb(0,0,0);"># mv 源文件 目标 </font>
+<font style="color:rgb(0,0,0);">## mv 源文件 目标 </font>
 
 ![](../../images/1715777352018-770c6003-ccc6-4d05-bb02-dd74894d2e28.png)
 
@@ -477,9 +477,9 @@ cp: overwrite '/file'? y
 **<font style="color:rgb(243,50,50);">-i</font>**<font style="color:rgb(0,0,0);">：如果目标文件或者目录存在，则提示是否覆盖目标文件或者目录 </font>
 
 ```shell
-[root@RHEL9 time]# mv 1.txt / 
+[root@RHEL9 time]## mv 1.txt / 
 mv: overwrite '/1.txt'? y 
-[root@RHEL9 time]# mv -i 1.txt / 
+[root@RHEL9 time]## mv -i 1.txt / 
 mv: overwrite '/1.txt'? y
 ```
 
@@ -488,7 +488,7 @@ mv: overwrite '/1.txt'? y
 **<font style="color:rgb(243,50,50);">-f</font>**<font style="color:rgb(0,0,0);">：无论目标文件或者目录是否存在，直接覆盖目标文件或者目录。 </font>
 
 ```shell
-[root@RHEL9 time]# mv -f 1.txt / 
+[root@RHEL9 time]## mv -f 1.txt / 
 [root@RHEL9 time] 
 ```
 
@@ -497,8 +497,8 @@ mv: overwrite '/1.txt'? y
 **<font style="color:rgb(243,50,50);">-t</font>**<font style="color:rgb(0,0,0);">：将多个目录</font><font style="color:rgb(0,0,0);">mv</font><font style="color:rgb(0,0,0);">到一个目录中 </font>
 
 ```shell
-[root@RHEL9 time]# mv D1 D2 D3 -t / 
-[root@RHEL9 time]# ls -d /D* 
+[root@RHEL9 time]## mv D1 D2 D3 -t / 
+[root@RHEL9 time]## ls -d /D* 
 /D1 /D2 /D3 
 ```
 
@@ -507,12 +507,12 @@ mv: overwrite '/1.txt'? y
 <font style="color:rgb(0,0,0);">第二种写法： </font>
 
 ```shell
-[root@RHEL9 time]# mv -t / D1 D2 D3 
-[root@RHEL9 time]# ls -d /D*
+[root@RHEL9 time]## mv -t / D1 D2 D3 
+[root@RHEL9 time]## ls -d /D*
 /D1 /D2 /D3
 ```
 
-# rm命令
+## rm命令
 <font style="color:rgb(0,0,0);">rm</font><font style="color:rgb(0,0,0);">命令主要用于删除文件或者目录 </font>
 
 <font style="color:rgb(0,0,0);">用法：rm [参数] 文件或目录名 rm -rf /</font>
@@ -524,7 +524,7 @@ mv: overwrite '/1.txt'? y
 **<font style="color:rgb(243,50,50);">-r</font>**<font style="color:rgb(0,0,0);">：递归删除目录与目录中的所有文件 </font>
 
 ```shell
-[root@RHEL9 time]# rm -r A 
+[root@RHEL9 time]## rm -r A 
 rm: descend into directory 'A'? y 
 rm: descend into directory 'A/B'? y 
 rm: remove directory 'A/B/C'? y 
@@ -540,11 +540,11 @@ rm: remove directory 'A'? y
 **<font style="color:rgb(243,50,50);">-f</font>**<font style="color:rgb(0,0,0);">：强制删除且不提示 </font>
 
 ```shell
-[root@RHEL9 time]# rm -f 2.txt 
-[root@RHEL9 time]# 
+[root@RHEL9 time]## rm -f 2.txt 
+[root@RHEL9 time]## 
 ```
 
-# touch命令
+## touch命令
 <font style="color:rgb(0,0,0);">touch</font><font style="color:rgb(0,0,0);">命令用于建立文件 </font>
 
 <font style="color:rgb(0,0,0);">用法：touch [参数] 文件或目录名</font>
@@ -552,8 +552,8 @@ rm: remove directory 'A'? y
 **<font style="color:rgb(0,0,0);">---</font>****<font style="color:rgb(0,0,0);">创建文件</font>****<font style="color:rgb(0,0,0);">--- </font>**
 
 ```shell
-[root@RHEL9 time]# touch file 
-[root@RHEL9 time]# ll file 
+[root@RHEL9 time]## touch file 
+[root@RHEL9 time]## ll file 
 -rw-r--r--. 1 root root 0 Jan 31 17:18 file 
 ```
 
@@ -562,16 +562,16 @@ rm: remove directory 'A'? y
 **<font style="color:rgb(243,50,50);">-m</font>**<font style="color:rgb(0,0,0);">：仅把文件或目录的存取时间改为当前时间 </font>
 
 ```shell
-[root@RHEL9 time]# ll 
+[root@RHEL9 time]## ll 
 total 0 
 drwxr-xr-x. 2 root root 18 Jan 31 17:19 difu 
-[root@RHEL9 time]# touch -m difu/ 
-[root@RHEL9 time]# ll 
+[root@RHEL9 time]## touch -m difu/ 
+[root@RHEL9 time]## ll 
 total 0 
 drwxr-xr-x. 2 root root 18 Jan 31 17:20 difu
 ```
 
-# find命令
+## find命令
 **<font style="color:rgb(0,0,0);">find</font>****<font style="color:rgb(0,0,0);">命令用于文件查找 </font>**
 
 <font style="color:rgb(0,0,0);">用法：find [路径] [匹配表达式]</font>
@@ -583,9 +583,9 @@ drwxr-xr-x. 2 root root 18 Jan 31 17:20 difu
 **<font style="color:rgb(243,50,50);">-name </font>****<font style="color:rgb(243,50,50);">文件名</font>**<font style="color:rgb(0,0,0);">：查找指定的文件名称 </font>
 
 ```shell
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 ABC difu file 
-[root@RHEL9 time]# find / -name ABC 
+[root@RHEL9 time]## find / -name ABC 
 /time/ABC 
 ```
 
@@ -594,12 +594,12 @@ ABC difu file
 **<font style="color:rgb(243,50,50);">-user </font>****<font style="color:rgb(243,50,50);">用户名</font>**<font style="color:rgb(0,0,0);">：查找属于指定用户的文件 </font>
 
 ```shell
-[root@RHEL9 time]# ll
+[root@RHEL9 time]## ll
 total 0 
 -rw-r--r--. 1 RHEL RHEL 0 Jan 31 17:22 ABC 
 drwxr-xr-x. 2 root root 18 Jan 31 17:22 difu 
 -rw-r--r--. 1 root root 0 Jan 31 17:22 file 
-[root@RHEL9 time]# find / -user RHEL 
+[root@RHEL9 time]## find / -user RHEL 
 ...... 
 /time/ABC 
 ......
@@ -610,12 +610,12 @@ drwxr-xr-x. 2 root root 18 Jan 31 17:22 difu
 **<font style="color:rgb(243,50,50);">-group </font>****<font style="color:rgb(243,50,50);">组名</font>**<font style="color:rgb(0,0,0);">：查找属于指定组的文件 </font>
 
 ```shell
-[root@RHEL9 time]# ll 
+[root@RHEL9 time]## ll 
 total 0 
 -rw-r--r--. 1 RHEL RHEL 0 Jan 31 17:22 ABC 
 drwxr-xr-x. 2 root root 18 Jan 31 17:22 difu 
 -rw-r--r--. 1 root root 0 Jan 31 17:22 file 
-[root@RHEL9 time]# find / -group RHEL 
+[root@RHEL9 time]## find / -group RHEL 
 ...... 
 /time/ABC 
 ...... 
@@ -626,19 +626,19 @@ drwxr-xr-x. 2 root root 18 Jan 31 17:22 difu
 **<font style="color:rgb(243,50,50);">-size +n / -n</font>**<font style="color:rgb(0,0,0);">：查找大于或者小于指定大小的文件 </font>
 
 ```shell
-[root@RHEL9 time]# find / -size +500M 
+[root@RHEL9 time]## find / -size +500M 
 ...... 
 /mnt/images/install.img 
-[root@RHEL9 time]# ll -h /mnt/images/install.img 
+[root@RHEL9 time]## ll -h /mnt/images/install.img 
 -r--r--r--. 1 root root 583M Oct 9 2020 /mnt/images/install.img 
-[root@RHEL9 time]# find / -size -5 
+[root@RHEL9 time]## find / -size -5 
 ...... 
 /1.txt 
-[root@RHEL9 time]# ll -h /1.txt 
+[root@RHEL9 time]## ll -h /1.txt 
 -rw-r--r--. 1 root root 0 Jan 11 17:38 /1.txt
 ```
 
-# 通配符
+## 通配符
 <font style="color:rgb(0,0,0);">文件通配在</font><font style="color:rgb(0,0,0);">ls</font><font style="color:rgb(0,0,0);">，</font><font style="color:rgb(0,0,0);">cp</font><font style="color:rgb(0,0,0);">，</font><font style="color:rgb(0,0,0);">rm</font><font style="color:rgb(0,0,0);">等文件管理命令会经常用到 </font>
 
 <font style="color:rgb(0,0,0);">使用通配符符来表示某一类文件</font>
@@ -666,7 +666,7 @@ cp -a `find / -user simone` /root/found
 cp -a $(find / -user simone) /root/found
 ```
 
-# **<font style="color:rgb(243,50,50);">tar文件归档打包工具</font>**
+## **<font style="color:rgb(243,50,50);">tar文件归档打包工具</font>**
 <font style="color:rgb(0,0,0);">将多个文件或者目录打包成一个文件 </font>
 
 <font style="color:rgb(0,0,0);">用法：tar [选项] 归档后的文件 被归档的文件</font>
@@ -676,19 +676,19 @@ cp -a $(find / -user simone) /root/found
 **<font style="color:rgb(0,0,0);">---创建归档文件---</font>**
 
 ```shell
-[root@RHEL9 time]# tar -cf file.tar file1 file2 file3
-[root@RHEL9 time]# ls
+[root@RHEL9 time]## tar -cf file.tar file1 file2 file3
+[root@RHEL9 time]## ls
 file1 file2 file3 file.tar tar
 ```
 
 **<font style="color:rgb(0,0,0);">---提取归档文件---</font>**
 
 ```shell
-[root@RHEL9 time]# tar -xvf file.tar -C tar/
+[root@RHEL9 time]## tar -xvf file.tar -C tar/
 file1
 file2
 file3
-[root@RHEL9 time]# tree tar/
+[root@RHEL9 time]## tree tar/
 tar/
 ├── file1
 ├── file2
@@ -713,20 +713,20 @@ tar/
 **<font style="color:rgb(243,50,50);">-z(</font>****<font style="color:rgb(243,50,50);">小写</font>****<font style="color:rgb(243,50,50);">)</font>**<font style="color:rgb(0,0,0);">：使用</font><font style="color:rgb(0,0,0);">gzip</font><font style="color:rgb(0,0,0);">压缩 </font>
 
 ```shell
-[root@RHEL9 time]# tar -czvf file.tar.gzip file1 file2 file3 
+[root@RHEL9 time]## tar -czvf file.tar.gzip file1 file2 file3 
 file1 
 file2 
 file3 
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file1 file2 file3 file.tar.gzip 
 -x：提取gzip压缩文件 
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file.tar.gzip 
-[root@RHEL9 time]# tar -xzvf file.tar.gzip 
+[root@RHEL9 time]## tar -xzvf file.tar.gzip 
 file1 
 file2 
 file3 
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file1 file2 file3 file.tar.gzip
 ```
 
@@ -735,24 +735,24 @@ file1 file2 file3 file.tar.gzip
 **<font style="color:rgb(243,50,50);">-j(小写)</font>**<font style="color:rgb(0,0,0);">：使用bzip2压缩 </font>
 
 ```shell
-[root@RHEL9 time]# tar -cjvf file.tar.bzip2 file1 file2 file3 
+[root@RHEL9 time]## tar -cjvf file.tar.bzip2 file1 file2 file3 
 file1 
 file2 
 file3 
-[root@RHEL9 time]# ls
+[root@RHEL9 time]## ls
 file1 file2 file3 file.tar.bzip2
 ```
 
 **<font style="color:rgb(243,50,50);">-x</font>**<font style="color:rgb(0,0,0);">：提取bzip2压缩文件</font>
 
 ```shell
-[root@RHEL9 time]# ls
+[root@RHEL9 time]## ls
 file.tar.bzip2
-[root@RHEL9 time]# tar -xjvf file.tar.bzip2
+[root@RHEL9 time]## tar -xjvf file.tar.bzip2
 file1
 file2
 file3
-[root@RHEL9 time]# ls
+[root@RHEL9 time]## ls
 file1 file2 file3 file.tar.bzip2
 ```
 
@@ -761,24 +761,24 @@ file1 file2 file3 file.tar.bzip2
 **<font style="color:rgb(243,50,50);">-J</font>****<font style="color:rgb(243,50,50);">（大写）</font>**<font style="color:rgb(0,0,0);">：使用</font><font style="color:rgb(0,0,0);">xz</font><font style="color:rgb(0,0,0);">压缩 </font>
 
 ```shell
-[root@RHEL9 time]# tar -cJvf file.tar.xz file1 file2 file3 
+[root@RHEL9 time]## tar -cJvf file.tar.xz file1 file2 file3 
 file1 
 file2 
 file3 
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file1 file2 file3 file.tar.xz 
 ```
 
 **<font style="color:rgb(243,50,50);">-x</font>**<font style="color:rgb(0,0,0);">：提取</font><font style="color:rgb(0,0,0);">xz</font><font style="color:rgb(0,0,0);">压缩文件 </font>
 
 ```shell
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file.tar.xz 
-[root@RHEL9 time]# tar -xJvf file.tar.xz 
+[root@RHEL9 time]## tar -xJvf file.tar.xz 
 file1 
 file2 
 file3 
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file1 file2 file3 file.tar.xz
 ```
 
@@ -800,7 +800,7 @@ file1 file2 file3 file.tar.xz
 <font style="color:rgb(223,64,42);">zip ====== zip</font>
 
 ```shell
-[root@difu1909 ~]# tar -czvf /home/ahdifu/local.tar.gzip /home/myth/
+[root@difu1909 ~]## tar -czvf /home/ahdifu/local.tar.gzip /home/myth/
 ```
 
 <font style="color:rgb(0,0,0);">[归档后的目标路径] [文件源路径]</font>
@@ -814,25 +814,25 @@ file1 file2 file3 file.tar.xz
 **<font style="color:rgb(243,50,50);">zip</font>**<font style="color:rgb(0,0,0);">：使用</font><font style="color:rgb(0,0,0);">zip</font><font style="color:rgb(0,0,0);">压缩 </font>
 
 ```shell
-[root@RHEL9 time]# zip file.zip file1 file2 file3 
+[root@RHEL9 time]## zip file.zip file1 file2 file3 
 adding: file1 (stored 0%) 
 adding: file2 (stored 0%) 
 adding: file3 (stored 0%) 
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file1 file2 file3 file.zip 
 ```
 
 **<font style="color:rgb(243,50,50);">unzip</font>**<font style="color:rgb(0,0,0);">：提取</font><font style="color:rgb(0,0,0);">zip</font><font style="color:rgb(0,0,0);">压缩文件 </font>
 
 ```shell
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file.zip 
-[root@RHEL9 time]# unzip file.zip 
+[root@RHEL9 time]## unzip file.zip 
 Archive: file.zip 
 extracting: file1 
 extracting: file2 
 extracting: file3 
-[root@RHEL9 time]# ls 
+[root@RHEL9 time]## ls 
 file1 file2 file3 file.zip 
 ```
 
@@ -851,15 +851,15 @@ find / -name *.txt -exec cp -a {} /time/ \;
 -exec ：把查找到的内容交给exec后面的命令执行
 ```
 
-# **<font style="color:rgb(0,0,0);">配置主机名 </font>**
+## **<font style="color:rgb(0,0,0);">配置主机名 </font>**
 ```shell
-# hostnamectl set-hostname HOST_NAME 
-[root@ahdifu ~]# hostnamectl set-hostname Ahdifu 
+## hostnamectl set-hostname HOST_NAME 
+[root@ahdifu ~]## hostnamectl set-hostname Ahdifu 
 exit 或者使用 exec bash退出再次登录shell 
 [root@Ahdifu ~]#
 ```
 
-# **<font style="color:rgb(0,0,0);">正确的关机方法</font>**
+## **<font style="color:rgb(0,0,0);">正确的关机方法</font>**
 <font style="color:rgb(0,0,0);">重启主机：</font><font style="color:rgb(0,0,0);">reboot </font>
 
 <font style="color:rgb(0,0,0);">其它一些关机命令：</font><font style="color:rgb(0,0,0);">halt</font><font style="color:rgb(0,0,0);">、</font><font style="color:rgb(0,0,0);">poweroff</font><font style="color:rgb(0,0,0);">、</font><font style="color:rgb(0,0,0);">shutdown </font>
@@ -871,12 +871,12 @@ exit 或者使用 exec bash退出再次登录shell
 ![](../../images/1715778144966-f6afb585-1851-4283-8fd2-2e1b010402bb.png)
 
 ```shell
-# shutdown -h +10 10分钟之后关机
-# shutdown -h 23:30 指定具体的时间点进行关机
-# shutdown -h now 立即关机
-# shutdown -r now 立即重启
-# shutdown -r +10 10 分钟以后重启
-# shutdown -r 22:22 22:22 以后重启
+## shutdown -h +10 10分钟之后关机
+## shutdown -h 23:30 指定具体的时间点进行关机
+## shutdown -h now 立即关机
+## shutdown -r now 立即重启
+## shutdown -r +10 10 分钟以后重启
+## shutdown -r 22:22 22:22 以后重启
 
 init：服务等级，Linux中一共有7个等级，目前先了解常用的4个等级
 init 0 关机
@@ -885,7 +885,7 @@ init 5 含有图形界面的模式
 init 6 重启
 ```
 
-# 用户管理
+## 用户管理
 **<font style="color:rgb(0,0,0);">管理用户 </font>**
 
 <font style="color:rgb(57,57,57);">useradd </font><font style="color:rgb(57,57,57);">， </font><font style="color:rgb(57,57,57);">userdel </font><font style="color:rgb(57,57,57);">， </font><font style="color:rgb(57,57,57);">usermod , passwd , id ,w,who, chage </font>
@@ -919,30 +919,30 @@ init 6 重启
 <font style="color:rgb(57,57,57);">新建用户默认属性变量文件：/etc/login.defs</font>
 
 ```shell
-[root@df_rhel ~]# useradd yukang
-[root@df_rhel ~]# cat /etc/passwd
+[root@df_rhel ~]## useradd yukang
+[root@df_rhel ~]## cat /etc/passwd
 yukang:x:1001:1001::/home/yukang:/bin/bash
-[root@df_rhel ~]# id yukang
+[root@df_rhel ~]## id yukang
 uid=1001(yukang) gid=1001(yukang) groups=1001(yukang)
 创建一个用户名为 ansible 且 uid 为 2000：
-[root@df_rhel ~]# useradd -u 2000 ansible
-[root@df_rhel ~]# id ansible
+[root@df_rhel ~]## useradd -u 2000 ansible
+[root@df_rhel ~]## id ansible
 uid=2000(ansible) gid=2000(ansible) groups=2000(ansible)
 创建用户时候，会同时创建相同名字的用户组，默认只有基本组
-[root@df_rhel ~]# useradd -u 1500 test01 -g difushare
-[root@df_rhel ~]# id test01
+[root@df_rhel ~]## useradd -u 1500 test01 -g difushare
+[root@df_rhel ~]## id test01
 uid=1500(test01) gid=2001(difushare) groups=2001(difushare)
-[root@df_rhel ~]# useradd user01 -G difushare
-[root@df_rhel ~]# id user01
+[root@df_rhel ~]## useradd user01 -G difushare
+[root@df_rhel ~]## id user01
 uid=2001(user01) gid=2002(user01) groups=2002(user01),2001(difushare)
-[root@df_rhel ~]# useradd -u 3000 -s /sbin/nologin -M web
-[root@df_rhel ~]# id web
+[root@df_rhel ~]## useradd -u 3000 -s /sbin/nologin -M web
+[root@df_rhel ~]## id web
 uid=3000(web) gid=3000(web) groups=3000(web)
-[root@df_rhel ~]# cd /home/
-[root@df_rhel ~]# su - web
+[root@df_rhel ~]## cd /home/
+[root@df_rhel ~]## su - web
 su: warning: cannot change directory to /home/web: No such file or directory
 This account is currently not available. 
-[root@Myth_RHEL ~]# useradd -s /bin/false user4
+[root@Myth_RHEL ~]## useradd -s /bin/false user4
 ```
 
 <font style="color:rgb(57,57,57);">删除用户</font><font style="color:rgb(57,57,57);">: userdel </font>
@@ -958,20 +958,20 @@ This account is currently not available.
 <font style="color:rgb(57,57,57);">-r </font><font style="color:rgb(57,57,57);">删除用户时同时删除用户家目录 </font>
 
 ```shell
-[root@df_rhel /]# cd /home/ 
-[root@df_rhel home]# ls 
+[root@df_rhel /]## cd /home/ 
+[root@df_rhel home]## ls 
 ansible myth test01 test02 user01 
-[root@df_rhel home]# userdel test01 
-[root@df_rhel home]# ls 
+[root@df_rhel home]## userdel test01 
+[root@df_rhel home]## ls 
 ansible myth test01 test02 user01 
-[root@df_rhel home]# cat /etc/passwd 
+[root@df_rhel home]## cat /etc/passwd 
 myth:x:1000:1000:myth:/home/myth:/bin/bash 
 ansible:x:2000:2000::/home/ansible:/bin/bash 
 test02:x:1600:1600::/home/test02:/bin/bash 
 user01:x:2001:2002::/home/user01:/bin/bash 
 web:x:3000:3000::/home/web:/sbin/nologin 
-[root@df_rhel ~]# cd /var/spool/mail/ 
-[root@df_rhel mail]# ls 
+[root@df_rhel ~]## cd /var/spool/mail/ 
+[root@df_rhel mail]## ls 
 ansible myth rpc test01 test02 user01 web 
 ```
 
@@ -980,13 +980,13 @@ ansible myth rpc test01 test02 user01 web
 <font style="color:rgb(57,57,57);">户的家目录和邮件目录 </font>
 
 ```shell
-[root@df_rhel home]# userdel user01 
-[root@df_rhel home]# useradd user01 
+[root@df_rhel home]## userdel user01 
+[root@df_rhel home]## useradd user01 
 useradd: warning: the home directory already exists. 
 Not copying any file from skel directory into it. 
 Creating mailbox file: File exists
-[root@df_rhel home]# userdel -rf user01
-[root@df_rhel home]# ls
+[root@df_rhel home]## userdel -rf user01
+[root@df_rhel home]## ls
 ansible myth test02
 ```
 
@@ -996,9 +996,9 @@ ansible myth test02
 
 **<font style="color:rgb(57,57,57);">-g </font>****<font style="color:rgb(57,57,57);">指定 </font>****<font style="color:rgb(57,57,57);">GID </font>**
 
-<font style="color:rgb(57,57,57);">[root@df_rhel ~]# groupadd -g 2019 difutech </font>
+<font style="color:rgb(57,57,57);">[root@df_rhel ~]## groupadd -g 2019 difutech </font>
 
-<font style="color:rgb(0,0,0);">[root@df_rhel ~]# cat /etc/group [</font><font style="color:rgb(0,0,0);">查看创建的组及组 </font><font style="color:rgb(0,0,0);">ID] </font>
+<font style="color:rgb(0,0,0);">[root@df_rhel ~]## cat /etc/group [</font><font style="color:rgb(0,0,0);">查看创建的组及组 </font><font style="color:rgb(0,0,0);">ID] </font>
 
 <font style="color:rgb(57,57,57);">groupdel : </font><font style="color:rgb(57,57,57);">删除组 </font>
 
@@ -1015,13 +1015,13 @@ ansible myth test02
 <font style="color:rgb(57,57,57);">-n </font><font style="color:rgb(57,57,57);">和 </font><font style="color:rgb(57,57,57);">u,g,G </font><font style="color:rgb(57,57,57);">一起使用，显示具体名称，不显示 </font><font style="color:rgb(57,57,57);">id, </font>
 
 ```shell
-[root@df_rhel ~]# id myth 
+[root@df_rhel ~]## id myth 
 uid=1000(myth) gid=1000(myth) groups=1000(myth) 
-[root@df_rhel ~]# id -nu myth 
+[root@df_rhel ~]## id -nu myth 
 myth 
-[root@df_rhel ~]# id -ng myth 
+[root@df_rhel ~]## id -ng myth 
 myth 
-[root@df_rhel ~]# id -nG myth 
+[root@df_rhel ~]## id -nG myth 
 myth
 ```
 
@@ -1050,45 +1050,45 @@ myth
 **<font style="color:rgb(57,57,57);">-u </font>****<font style="color:rgb(57,57,57);">修改 </font>****<font style="color:rgb(57,57,57);">uid </font>**
 
 ```shell
-[root@df_rhel ~]# id myth 
+[root@df_rhel ~]## id myth 
 uid=1000(myth) gid=1000(myth) groups=1000(myth) 
-[root@df_rhel ~]# usermod -u 1111 myth 
-[root@df_rhel ~]# id myth 
+[root@df_rhel ~]## usermod -u 1111 myth 
+[root@df_rhel ~]## id myth 
 uid=1111(myth) gid=1000(myth) groups=1000(myth) 
 ```
 
 **<font style="color:rgb(57,57,57);">-g </font>****<font style="color:rgb(57,57,57);">修改基本组 </font>**
 
 ```shell
-[root@df_rhel ~]# usermod -g difushare myth 
-[root@df_rhel ~]# id myth 
+[root@df_rhel ~]## usermod -g difushare myth 
+[root@df_rhel ~]## id myth 
 uid=1111(myth) gid=2001(difushare) groups=2001(difushare),1000(myth) 
-[root@df_rhel ~]# 
+[root@df_rhel ~]## 
 ```
 
 **<font style="color:rgb(57,57,57);">-G </font>****<font style="color:rgb(57,57,57);">修改附加组 </font>**
 
 ```shell
-[root@df_rhel ~]# id myth 
+[root@df_rhel ~]## id myth 
 uid=1111(myth) gid=1000(myth) groups=1000(myth),2001(difushare)
-[root@df_rhel ~]# usermod -G difustudent myth 
-[root@df_rhel ~]# id myth 
+[root@df_rhel ~]## usermod -G difustudent myth 
+[root@df_rhel ~]## id myth 
 uid=1111(myth) gid=1000(myth) groups=1000(myth),3001(difustudent) 
 ```
 
 <font style="color:rgb(57,57,57);">思考题： </font>
 
 ```shell
-[root@df_rhel ~]# usermod -G myth myth 
-[root@df_rhel ~]# id myth 
+[root@df_rhel ~]## usermod -G myth myth 
+[root@df_rhel ~]## id myth 
 uid=1111(myth) gid=2001(difushare) groups= 
 ```
 
 **<font style="color:rgb(57,57,57);">-s </font>****<font style="color:rgb(57,57,57);">修改登录 </font>****<font style="color:rgb(57,57,57);">shell </font>**
 
 ```shell
-[root@df_rhel ~]# usermod -s /sbin/nologin ansible 
-[root@df_rhel ~]# su - ansible 
+[root@df_rhel ~]## usermod -s /sbin/nologin ansible 
+[root@df_rhel ~]## su - ansible 
 This account is currently not available. 
 ```
 
@@ -1114,10 +1114,10 @@ echo "root:password" | chpasswd #适合大部分发行版
 <font style="color:rgb(57,57,57);">su </font><font style="color:rgb(223,64,42);">- </font><font style="color:rgb(57,57,57);">username</font><font style="color:rgb(57,57,57);">：切换用户环境，相当于用户正常登陆 </font>
 
 ```shell
-[root@df_rhel ~]# su myth 
+[root@df_rhel ~]## su myth 
 [myth@df_rhel root]$ exit 
 exit
-[root@df_rhel ~]# su - myth 
+[root@df_rhel ~]## su - myth 
 Last login: Sat May 11 09:53:01 EDT 2019 on pts/1 
 [myth@df_rhel ~]$ 
 ```
@@ -1127,7 +1127,7 @@ Last login: Sat May 11 09:53:01 EDT 2019 on pts/1
 <font style="color:rgb(0,0,0);">---</font><font style="color:rgb(0,0,0);">管理员与非管理员之间的切换 </font>
 
 ```shell
-[root@df_rhel ~]# su - myth 
+[root@df_rhel ~]## su - myth 
 Last login: Sat May 11 09:50:32 EDT 2019 on pts/1 
 [myth@df_rhel ~]$ su - difu 
 Password: 
@@ -1135,14 +1135,14 @@ Last login: Sat May 11 09:50:48 EDT 2019 on pts/1
 [difu@df_rhel ~]$ su - root 
 Password: 
 Last login: Sat May 11 09:11:31 EDT 2019 from 192.168.200.222 on pts/1 
-[root@df_rhel ~]# 
+[root@df_rhel ~]## 
 ```
 
 <font style="color:rgb(0,0,0);">从 </font><font style="color:rgb(0,0,0);">root </font><font style="color:rgb(0,0,0);">用户切换到其他用户是不需要密码验证，从普通用户切换到任何用户都 </font>
 
 <font style="color:rgb(0,0,0);">需要密码验证</font>
 
-# <font style="color:rgb(0,0,0);">文件权限管理</font>
+## <font style="color:rgb(0,0,0);">文件权限管理</font>
 **<font style="color:rgb(0,0,0);">权限管理 </font>**
 
 <font style="color:rgb(57,57,57);">普通权限：read ，write ，execute</font>
@@ -1205,12 +1205,12 @@ drwx------. 3 test02 test02 78 May 11 08:12 test02
 **<font style="color:rgb(57,57,57);">#chown username filename --修改属主 </font>**
 
 ```shell
-[root@df_rhel tmp]# ll file.txt 
+[root@df_rhel tmp]## ll file.txt 
 -rw-rw-r--. 1 myth myth 4 May 11 10:06 file.txt 
-[root@df_rhel tmp]# chown difu file.txt 
-[root@df_rhel tmp]# ll file.txt 
+[root@df_rhel tmp]## chown difu file.txt 
+[root@df_rhel tmp]## ll file.txt 
 -rw-rw-r--. 1 difu myth 4 May 11 10:06 file.txt 
-[root@df_rhel tmp]# su - difu 
+[root@df_rhel tmp]## su - difu 
 [difu@df_rhel tmp]$ echo 456 > file.txt 
 [difu@df_rhel tmp]$ cat file.txt
 456
@@ -1229,36 +1229,36 @@ total 4
 **<font style="color:rgb(57,57,57);">#chown :grpname filename --修改属组 </font>**
 
 ```shell
-[root@df_rhel tmp]# chown :difu file.txt 
-[root@df_rhel tmp]# ll file.txt 
+[root@df_rhel tmp]## chown :difu file.txt 
+[root@df_rhel tmp]## ll file.txt 
 -rw-rw-r--. 1 difu difu 8 May 11 10:20 file.txt
 ```
 
 **<font style="color:rgb(57,57,57);">#chown username:grpname filename --修改属主和属组 </font>**
 
 ```shell
-[root@df_rhel tmp]# chown myth:myth file.txt 
-[root@df_rhel tmp]# ll file.txt 
+[root@df_rhel tmp]## chown myth:myth file.txt 
+[root@df_rhel tmp]## ll file.txt 
 -rw-rw-r--. 1 myth myth 8 May 11 10:20 file.txt 
 ```
 
 <font style="color:rgb(57,57,57);">-R 递归修改 </font>
 
 ```shell
-[root@df_rhel tmp]# ll dirall/ 
+[root@df_rhel tmp]## ll dirall/ 
 total 0 
 drwxrwxr-x. 2 difu difu 6 May 11 10:26 dir01 
 drwxrwxr-x. 2 difu difu 6 May 11 10:26 dir02 
 drwxrwxr-x. 2 difu difu 6 May 11 10:26 dir03 
-[root@df_rhel tmp]# ll -d dirall/ 
+[root@df_rhel tmp]## ll -d dirall/ 
 drwxrwxr-x. 5 difu difu 45 May 11 10:26 dirall/ 
-[root@df_rhel tmp]# chown -R myth:myth dirall 
-[root@df_rhel tmp]# ll dirall/ 
+[root@df_rhel tmp]## chown -R myth:myth dirall 
+[root@df_rhel tmp]## ll dirall/ 
 total 0 
 drwxrwxr-x. 2 myth myth 6 May 11 10:26 dir01 
 drwxrwxr-x. 2 myth myth 6 May 11 10:26 dir02 
 drwxrwxr-x. 2 myth myth 6 May 11 10:26 dir03
-[root@df_rhel tmp]# ll -d dirall/
+[root@df_rhel tmp]## ll -d dirall/
 drwxrwxr-x. 5 myth myth 45 May 11 10:26 dirall/
 
 ```
@@ -1270,12 +1270,12 @@ drwxrwxr-x. 5 myth myth 45 May 11 10:26 dirall/
 <font style="color:rgb(57,57,57);">-R 递归修改 </font>
 
 ```shell
-[root@df_rhel tmp]# ll 
+[root@df_rhel tmp]## ll 
 total 4 
 drwxrwxr-x. 5 myth myth 45 May 11 10:26 dirall 
 -rw-rw-r--. 1 myth myth 8 May 11 10:20 file.txt 
-[root@df_rhel tmp]# chgrp difu ./* 
-[root@df_rhel tmp]# ll 
+[root@df_rhel tmp]## chgrp difu ./* 
+[root@df_rhel tmp]## ll 
 total 4 
 drwxrwxr-x. 5 myth difu 45 May 11 10:26 dirall 
 -rw-rw-r--. 1 myth difu 8 May 11 10:20 file.txt
@@ -1298,32 +1298,32 @@ drwxrwxr-x. 5 myth difu 45 May 11 10:26 dirall
 **<font style="color:rgb(0,32,96);">chmod u </font>**
 
 ```shell
-[root@df_rhel tmp]# chmod u+x file.txt 
-[root@df_rhel tmp]# ll file.txt 
+[root@df_rhel tmp]## chmod u+x file.txt 
+[root@df_rhel tmp]## ll file.txt 
 -rwxrw-r--. 1 myth difu 8 May 11 10:20 file.txt 
-[root@df_rhel tmp]# chmod u-w file.txt 
-[root@df_rhel tmp]# ll file.txt 
+[root@df_rhel tmp]## chmod u-w file.txt 
+[root@df_rhel tmp]## ll file.txt 
 -r-xrw-r--. 1 myth difu 8 May 11 10:20 file.txt
 ```
 
 **<font style="color:rgb(0,32,96);">chmod o </font>**
 
 ```shell
-[root@df_rhel tmp]# chmod o=rwx file.txt 
-[root@df_rhel tmp]# ll file.txt 
+[root@df_rhel tmp]## chmod o=rwx file.txt 
+[root@df_rhel tmp]## ll file.txt 
 -r-xrw-rwx. 1 myth difu 8 May 11 10:20 file.txt 
 ```
 
 **<font style="color:rgb(0,32,96);">chmod g </font>**
 
 ```shell
-[root@df_rhel tmp]# chmod -R g=--- dirall/ 
-[root@df_rhel tmp]# ll dirall/ 
+[root@df_rhel tmp]## chmod -R g=--- dirall/ 
+[root@df_rhel tmp]## ll dirall/ 
 total 0 
 drwx---r-x. 2 myth myth 6 May 11 10:26 dir01 
 drwx---r-x. 2 myth myth 6 May 11 10:26 dir02 
 drwx---r-x. 2 myth myth 6 May 11 10:26 dir03 
-[root@df_rhel tmp]# ll -d dirall 
+[root@df_rhel tmp]## ll -d dirall 
 drwx---r-x. 5 myth difu 45 May 11 10:26 dirall
 ```
 
@@ -1351,7 +1351,7 @@ drwx---r-x. 5 myth difu 45 May 11 10:26 dirall
 
 <font style="color:rgb(57,57,57);">没有权限直接接补为-</font>
 
-## <font style="color:rgb(57,57,57);">文件访问控制列表 </font>
+### <font style="color:rgb(57,57,57);">文件访问控制列表 </font>
 <font style="color:rgb(57,57,57);">setfacl : 文件系统访问控制列表，针对具体用户设定权限，而非 </font>
 
 <font style="color:rgb(57,57,57);">u,g,o 三类用户 </font>
@@ -1363,20 +1363,20 @@ drwx---r-x. 5 myth difu 45 May 11 10:26 dirall
 **<font style="color:rgb(57,57,57);">#setfacl -m u:username:rw- filename --设定用户 acl </font>**
 
 ```shell
-[root@df_rhel public]# ll 
+[root@df_rhel public]## ll 
 total 0 
 -rw-rw-r--. 1 root root 0 May 11 10:50 file01.txt 
 -rw-r--r--. 1 root root 0 May 11 10:50 file02.txt 
-[root@df_rhel public]# setfacl -m u:myth:rw file01.txt
-[root@df_rhel public]# ll
+[root@df_rhel public]## setfacl -m u:myth:rw file01.txt
+[root@df_rhel public]## ll
 total 0
 -rw-rw-r--+ 1 root root 0 May 11 10:50 file01.txt -rw-r--r--. 1 root root 0 May 11 10:50 file02.txt
-[root@df_rhel public]# getfacl file01.txt
-# file: file01.txt
-# owner: root
-# group: root
+[root@df_rhel public]## getfacl file01.txt
+## file: file01.txt
+## owner: root
+## group: root
 user::rw- user:myth:rw- group::rw- mask::rw- other::r--
-[root@df_rhel public]# su - myth
+[root@df_rhel public]## su - myth
 Last login: Sat May 11 10:56:33 EDT 2019 on pts/1
 [myth@df_rhel ~]$ cd /home/public/
 [myth@df_rhel public]$ echo 123 >> file01.txt
@@ -1387,11 +1387,11 @@ Last login: Sat May 11 10:56:33 EDT 2019 on pts/1
 **<font style="color:rgb(57,57,57);">#setfacl -m g:grpname:r-x filename --设定组 acl </font>**
 
 ```shell
-[root@df_rhel public]# setfacl -m g:difu:rw file02.txt 
-[root@df_rhel public]# getfacl file02.txt 
-# file: file02.txt 
-# owner: root 
-# group: root 
+[root@df_rhel public]## setfacl -m g:difu:rw file02.txt 
+[root@df_rhel public]## getfacl file02.txt 
+## file: file02.txt 
+## owner: root 
+## group: root 
 user::rw- 
 group::r-- 
 group:difu:rw- 
@@ -1402,23 +1402,23 @@ other::r--
 **<font style="color:rgb(57,57,57);">#setfacl -x username filename -- 取消用户 acl </font>**
 
 ```shell
-[root@df_rhel public]# setfacl -x myth file01.txt 
-[root@df_rhel public]# getfacl file01.txt 
-# file: file01.txt 
-# owner: root 
-# group: root 
+[root@df_rhel public]## setfacl -x myth file01.txt 
+[root@df_rhel public]## getfacl file01.txt 
+## file: file01.txt 
+## owner: root 
+## group: root 
 user::rw- 
 group::rw- 
 mask::rw-
 other::r--
-[root@myth myth]# setfacl -x g:difu 2.txt --取消属组的特殊权限
+[root@myth myth]## setfacl -x g:difu 2.txt --取消属组的特殊权限
 ```
 
 <font style="color:rgb(57,57,57);">#getfacl filename </font>
 
 <font style="color:rgb(57,57,57);">--获取文件的 acl</font>
 
-## **<font style="color:rgb(0,0,0);">特殊权限 </font>**
+### **<font style="color:rgb(0,0,0);">特殊权限 </font>**
 ```shell
 rwsrwsrwt
 rwSrwSrwT
@@ -1470,10 +1470,10 @@ t:在 others 设置，在公共目录（用户都具有写权限的目录）中�
 chmod u+s filename 
 chmod g+s filename 
 chmod o+t filename 
-chmod 4755 filename # -> rwsrwxrwt
-chmod 2755 filename # -> rwxrwsrwx
-chmod 1755 filename # -> rwxrwxrwt
-chmod 7755 filename # -> rwsrwsrwt
+chmod 4755 filename ## -> rwsrwxrwt
+chmod 2755 filename ## -> rwxrwsrwx
+chmod 1755 filename ## -> rwxrwxrwt
+chmod 7755 filename ## -> rwsrwsrwt
 ```
 
 ### 练习
@@ -1486,7 +1486,7 @@ chown :manager /home/contrib
 chmod 2770 /home/contrib
 ```
 
-## <font style="color:rgb(57,57,57);">MODE:八进制权限模型 </font>
+### <font style="color:rgb(57,57,57);">MODE:八进制权限模型 </font>
 ```shell
 --- --- --- 
 rwx r-x r-x 
@@ -1501,7 +1501,7 @@ rw- 6
 rwx 7
 ```
 
-## <font style="color:rgb(57,57,57);">默认权限 umask </font>
+### <font style="color:rgb(57,57,57);">默认权限 umask </font>
 ```shell
 umask
 0022
@@ -1572,7 +1572,7 @@ touch test.txt
 ls -l
 ```
 
-# history命令
+## history命令
 <font style="color:rgb(0,0,0);">命令历史： </font>
 
 <font style="color:rgb(0,0,0);">命令历史：系统默认会记录最近所输入的命令 </font>
@@ -1581,7 +1581,7 @@ ls -l
 
 <font style="color:rgb(0,0,0);">使用方法： </font>
 
-<font style="color:rgb(0,0,0);"># history [</font><font style="color:rgb(0,0,0);">选项</font><font style="color:rgb(0,0,0);">] </font>
+<font style="color:rgb(0,0,0);">## history [</font><font style="color:rgb(0,0,0);">选项</font><font style="color:rgb(0,0,0);">] </font>
 
 <font style="color:rgb(0,0,0);">常用选项： </font>
 
@@ -1600,13 +1600,13 @@ ls -l
 ![](../../images/1716207150278-8d34ab04-6588-44c6-81f9-0252a88f3576.png)
 
 ```shell
-[root@difu ~]# ls -l /etc/passwd
+[root@difu ~]## ls -l /etc/passwd
 -rw-r--r--. 1 root root 2303 2月 22 09:27 /etc/passwd
-[root@difu ~]# !!
+[root@difu ~]## !!
 ls -l /etc/passwd
 -rw-r--r--. 1 root root 2303 2月 22 09:27 /etc/passwd
-[root@difu ~]# systemctl restart sshd
-[root@difu ~]# !sys
+[root@difu ~]## systemctl restart sshd
+[root@difu ~]## !sys
 systemctl restart sshd！！
 ```
 
@@ -1621,7 +1621,7 @@ systemctl restart sshd！！
 <font style="color:rgb(0,0,0);">#</font><font style="color:rgb(0,0,0);">命令</font><font style="color:rgb(0,0,0);">1 `</font><font style="color:rgb(0,0,0);">命令</font><font style="color:rgb(0,0,0);">2` </font>
 
 ```shell
-[root@df_rhel ~]# ls -l `which ps` 
+[root@df_rhel ~]## ls -l `which ps` 
 -rwxr-xr-x. 1 root root 100120 Sep 22 2017 /usr/bin/ps 
 ```
 
@@ -1630,8 +1630,8 @@ systemctl restart sshd！！
 <font style="color:rgb(0,0,0);">#</font><font style="color:rgb(0,0,0);">命令</font><font style="color:rgb(0,0,0);">1 $(</font><font style="color:rgb(0,0,0);">命令</font><font style="color:rgb(0,0,0);">2) </font>
 
 ```shell
-[root@df_rhel ~]# touch $(date +%Y%m%d) 
-[root@df_rhel ~]# ls 
+[root@df_rhel ~]## touch $(date +%Y%m%d) 
+[root@df_rhel ~]## ls 
 20190515 
 ```
 
@@ -1642,9 +1642,9 @@ systemctl restart sshd！！
 ![](../../images/1716207183793-19d214bb-a819-4fad-9e5c-8541dd4b4c8e.png)
 
 ```shell
-[root@df_rhel ~]# vim /etc/sysconfig/network-scripts/ifcfg-ens33
-[root@df_rhel ~]# alias veth='vim /etc/sysconfig/network-scripts/ifcfgens33'
-[root@df_rhel ~]# veth
+[root@df_rhel ~]## vim /etc/sysconfig/network-scripts/ifcfg-ens33
+[root@df_rhel ~]## alias veth='vim /etc/sysconfig/network-scripts/ifcfgens33'
+[root@df_rhel ~]## veth
 ```
 
 <font style="color:rgb(0,0,0);">管道和重定向： </font>
@@ -1652,15 +1652,15 @@ systemctl restart sshd！！
 <font style="color:rgb(0,0,0);">I/O</font><font style="color:rgb(0,0,0);">重定向 </font>
 
 ```shell
-[root@difu tmp]# echo Hello 
+[root@difu tmp]## echo Hello 
 Hello 
-[root@difu tmp]# echo Hello > file1
-[root@difu tmp]# cat file1
+[root@difu tmp]## echo Hello > file1
+[root@difu tmp]## cat file1
 Hello
-[root@difu tmp]# ls
+[root@difu tmp]## ls
 centos difu file1 redhat
-[root@difu tmp]# ls >> file1 [追加重定向]
-[root@difu tmp]# cat file1
+[root@difu tmp]## ls >> file1 [追加重定向]
+[root@difu tmp]## cat file1
 Hello
 centos
 difu
@@ -1683,14 +1683,14 @@ redhat
 ![](../../images/1716207427669-8cdb7929-18e8-4396-ab57-c1f8fca24b11.png)
 
 ```shell
-[root@df_rhel ~]# echo ahdifu.com | passwd --stdin myth
-[root@df_rhel ~]# ls /etc/ | more
-[root@df_rhel ~]# ls /etc/ | wc -l
+[root@df_rhel ~]## echo ahdifu.com | passwd --stdin myth
+[root@df_rhel ~]## ls /etc/ | more
+[root@df_rhel ~]## ls /etc/ | wc -l
 ```
 
 **<font style="color:rgb(0,0,0);">文本文件：ascii格式的文件，Linux下很多文件都是文本文件</font>**![](../../images/1716207446022-5f5499d1-b76e-4165-a9a2-000e14440451.png)
 
-# **<font style="color:rgb(0,0,0);">使用VIM编辑文本： </font>**
+## **<font style="color:rgb(0,0,0);">使用VIM编辑文本： </font>**
 <font style="color:rgb(0,0,0);">vi</font><font style="color:rgb(0,0,0);">：</font><font style="color:rgb(0,0,0);">Visual Interface </font><font style="color:rgb(0,0,0);">可视化文本编辑器 </font>
 
 <font style="color:rgb(0,0,0);">vim</font><font style="color:rgb(0,0,0);">：</font><font style="color:rgb(0,0,0);">vi</font><font style="color:rgb(0,0,0);">的增强版 </font>
@@ -1755,7 +1755,7 @@ redhat
 
 <font style="color:rgb(0,0,0);">vim的配置位于/etc/vimrc，用于配置vim相关功能</font>![](../../images/1716208649790-426bdf26-58a5-45e8-bac3-3f5cb4ccdb53.png)
 
-# **<font style="color:rgb(0,0,0);">字符过滤</font>**
+## **<font style="color:rgb(0,0,0);">字符过滤</font>**
 <font style="color:rgb(0,0,0);">grep:</font><font style="color:rgb(0,0,0);">对文本内容进行关键词搜索匹配 </font>
 
 <font style="color:rgb(223,64,42);">语法格式 </font>
@@ -1763,13 +1763,13 @@ redhat
 <font style="color:rgb(0,0,0);">#grep [</font><font style="color:rgb(0,0,0);">选项</font><font style="color:rgb(0,0,0);">] ‘</font><font style="color:rgb(0,0,0);">搜索的字符</font><font style="color:rgb(0,0,0);">’</font><font style="color:rgb(0,0,0);">文件 </font>
 
 ```shell
-[root@df_rhel ~]# grep myth /etc/passwd 
+[root@df_rhel ~]## grep myth /etc/passwd 
 myth:x:1111:100 
 ```
 
 <font style="color:rgb(0,0,0);">grep常用选项</font>![](../../images/1716208663974-54d43b57-a31c-4070-a0f0-68efad588ba5.png)
 
-## **<font style="color:rgb(0,0,0);">正则表达式 </font>**
+### **<font style="color:rgb(0,0,0);">正则表达式 </font>**
 <font style="color:rgb(0,0,0);">正则表达式是一种模式匹配语言，用一些简单的符号来描述一个复杂的规则。 </font>
 
 <font style="color:rgb(0,0,0);">正则表达式常用符号</font>![](../../images/1716208746660-863ad11a-f57a-4db2-9eb3-c42b7ab9915b.png)<font style="color:rgb(0,0,0);">例如： </font>
@@ -1777,7 +1777,7 @@ myth:x:1111:100
 <font style="color:rgb(0,0,0);">1.</font><font style="color:rgb(0,0,0);">把</font><font style="color:rgb(0,0,0);">/etc/ssh/sshd_config</font><font style="color:rgb(0,0,0);">文件中有效配置</font><font style="color:rgb(0,0,0);">(</font><font style="color:rgb(0,0,0);">去除空行和以</font><font style="color:rgb(0,0,0);">#</font><font style="color:rgb(0,0,0);">开头的行</font><font style="color:rgb(0,0,0);">) </font>
 
 ```shell
-[root@ahdifu ~]#grep -v ^# /etc/ssh/sshd_config | grep -v ^$ 
+[root@ahdifu ~]#grep -v ^## /etc/ssh/sshd_config | grep -v ^$ 
 HostKey /etc/ssh/ssh_host_rsa_key 
 HostKey /etc/ssh/ssh_host_ecdsa_key 
 HostKey /etc/ssh/ssh_host_ed25519_key 
@@ -1788,7 +1788,7 @@ SyslogFacility AUTHPRIV
 <font style="color:rgb(0,0,0);">2.</font><font style="color:rgb(0,0,0);">过滤出</font><font style="color:rgb(0,0,0);">/proc/meminfo</font><font style="color:rgb(0,0,0);">中以</font><font style="color:rgb(0,0,0);">“S”</font><font style="color:rgb(0,0,0);">开头的行 </font>
 
 ```shell
-[root@ahdifu ~]# grep ^S /proc/meminfo 
+[root@ahdifu ~]## grep ^S /proc/meminfo 
 SwapCached: 0 kB 
 SwapTotal: 2097148 kB 
 SwapFree: 2097148 kB 
@@ -1798,7 +1798,7 @@ SReclaimable: 48412 kB
 SUnreclaim: 57016 kB
 ```
 
-# **<font style="color:rgb(0,0,0);">文本统计 </font>**
+## **<font style="color:rgb(0,0,0);">文本统计 </font>**
 **<font style="color:rgb(0,0,0);">wc </font>**<font style="color:rgb(0,0,0);">统计文件的行数，词数和字符数 </font>
 
 <font style="color:rgb(247,117,103);">语法格式 </font>
@@ -1818,7 +1818,7 @@ SUnreclaim: 57016 kB
 <font style="color:rgb(0,0,0);">-L </font><font style="color:rgb(0,0,0);">统计最长行的字符数 </font>
 
 ```shell
-[root@df_rhel ~]# wc /etc/passwd 
+[root@df_rhel ~]## wc /etc/passwd 
 46 87 2366 /etc/passwd 
 ```
 
@@ -1827,12 +1827,12 @@ SUnreclaim: 57016 kB
 <font style="color:rgb(0,0,0);">统计</font><font style="color:rgb(0,0,0);">/etc</font><font style="color:rgb(0,0,0);">目录下的文件和目录数量 </font>
 
 ```shell
-[root@df_rhel ~]# ls /etc/ | wc -l 
+[root@df_rhel ~]## ls /etc/ | wc -l 
 274
 ```
 
-# 网络管理
-## 网卡配置文件
+## 网络管理
+### 网卡配置文件
 <font style="color:rgb(57,57,57);">网卡和配置文件一起形成网络功能，同一个网卡可以有多个配置，但只能有一个处于活动 </font>
 
 <font style="color:rgb(57,57,57);">状态。 </font>
@@ -1842,13 +1842,13 @@ SUnreclaim: 57016 kB
 <font style="color:rgb(0,0,0);">Red Hat Enterprise Linux 8 版本 </font>
 
 ```shell
-[root@myth ~]# cd /etc/sysconfig/network-scripts/ 
+[root@myth ~]## cd /etc/sysconfig/network-scripts/ 
 ```
 
 <font style="color:rgb(0,0,0);">Red Hat Enterprise Linux 9 版本 </font>
 
 ```shell
-[root@myth ~]# cd /etc/NetworkManager/system-connections/ 
+[root@myth ~]## cd /etc/NetworkManager/system-connections/ 
 ```
 
 <font style="color:rgb(0,0,0);">⾃红帽企业 Linux 9 起，⽹络配置存储在 /etc/NetworkManager/system-connections/ ⽬录中。 </font>
@@ -1867,7 +1867,7 @@ nmcli con mod name
 
 ![](../../images/1717049333258-5cf15e76-e585-4941-8dfd-e82a0c4a0e80.png)
 
-## **<font style="color:rgb(0,0,0);">网卡管理</font>**
+### **<font style="color:rgb(0,0,0);">网卡管理</font>**
 <font style="color:rgb(57,57,57);">网卡接口： </font>
 
 <font style="color:rgb(57,57,57);">ifconfig 显示当前活动的网卡 windows下的 ipconfig </font>
@@ -1892,7 +1892,7 @@ nmcli con mod name
 
 <font style="color:rgb(57,57,57);"></font>
 
-## **<font style="color:rgb(0,0,0);">配置文件管理 </font>**
+### **<font style="color:rgb(0,0,0);">配置文件管理 </font>**
 <font style="color:rgb(57,57,57);">修改网络配置文件的方法：</font>
 
 ### **<font style="color:rgb(0,0,0);">1.图形界面修改</font>**
@@ -1945,19 +1945,19 @@ network manager command-line interface
 ```shell
 #nmcli connection show 
 #nmcli device status 
-[root@myth ~]# nmcli device status (查看网卡硬件设备信息) 
-[root@myth ~]# nmcli connection show --active 
+[root@myth ~]## nmcli device status (查看网卡硬件设备信息) 
+[root@myth ~]## nmcli connection show --active 
 NAME UUID TYPE DEVICE 
 ens33 96bd750e-9395-4d8d-bd48-449cab8a17d1 802-3-ethernet ens33 
 virbr0 c4fda5cb-64bd-40d4-a12d-6707425d893c bridge virbr0 
-[root@myth ~]# nmcli connection show ens33 
+[root@myth ~]## nmcli connection show ens33 
 ```
 
 <font style="color:rgb(57,57,57);">显示所有设备状态信息： </font>
 
 ```shell
 #nmcli device status 
-[root@myth ~]# nmcli device status （查看网卡链接状态） 
+[root@myth ~]## nmcli device status （查看网卡链接状态） 
 DEVICE TYPE STATE CONNECTION 
 virbr0 bridge connected virbr0 
 ens33 ethernet connected ens33 
@@ -1970,7 +1970,7 @@ virbr0-nic tun unmanaged -
 <font style="color:rgb(57,57,57);">创建一个文件名为eth01，并且与物理网卡名为ens38绑定 </font>
 
 ```shell
-# nmcli connection add type ethernet con-name eth01 ifname ens38 
+## nmcli connection add type ethernet con-name eth01 ifname ens38 
 ```
 
 <font style="color:rgb(57,57,57);">再次创建一个文件名为eth0，同样与物理网卡名为ens38绑定，并且设置ip地址及网关 </font>
@@ -1979,7 +1979,7 @@ virbr0-nic tun unmanaged -
 #nmcli connection add type ethernet con-name eth1 ifname ens38 ipv4.addresses 
 192.168.200.248/24 ipv4.gateway 192.168.200.254 ipv4.dns 202.102.192.68 
 autoconnect yes ipv4.method manual 
-[root@myth network-scripts]# nmcli connection show 
+[root@myth network-scripts]## nmcli connection show 
 NAME UUID TYPE DEVICE 
 ens33 96bd750e-9395-4d8d-bd48-449cab8a17d1 802-3-ethernet ens33 
 eth0 d789dfee-4d28-4055-9de9-a4e4c5ebc779 802-3-ethernet ens38 
@@ -1990,7 +1990,7 @@ eth01 11fd8563-4e6b-4697-b97d-95657b0cc207 802-3-ethernet --
 <font style="color:rgb(57,57,57);">查看接口地址 </font>
 
 ```shell
-[root@myth network-scripts]# ip addr 
+[root@myth network-scripts]## ip addr 
 5: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 
 1000 
 link/ether 00:0c:29:74:87:8e brd ff:ff:ff:ff:ff:ff 
@@ -1998,7 +1998,7 @@ inet 192.168.200.124/24 brd 192.168.200.255 scope global ens38
 valid_lft forever preferred_lft forever 
 inet6 fe80::56a7:ee0f:5828:b48b/64 scope link 
 valid_lft forever preferred_lft forever 
-[root@myth network-scripts]# nmcli connection show eth0 
+[root@myth network-scripts]## nmcli connection show eth0 
 IP4.ADDRESS[1]: 192.168.200.124/24 
 IP4.GATEWAY: 192.168.200.254 
 IP6.ADDRESS[1]: fe80::56a7:ee0f:5828:b48b/64N 
@@ -2008,9 +2008,9 @@ IP6.GATEWAY:
 <font style="color:rgb(57,57,57);">修改某个连接的配置 </font>
 
 ```shell
-# nmcli connection modify eth0 ipv4.addresses 192.168.200.125/24 ipv4.dns 8.8.8.8 
+## nmcli connection modify eth0 ipv4.addresses 192.168.200.125/24 ipv4.dns 8.8.8.8 
 ipv4.gateway 192.168.200.254 ipv4.method manual 
-[root@myth network-scripts]# nmcli connection show eth0 
+[root@myth network-scripts]## nmcli connection show eth0 
 IP4.ADDRESS[1]: 192.168.200.125/24 
 IP4.GATEWAY: 192.168.200.254 
 IP4.DNS[1]: 8.8.8.8 
@@ -2021,9 +2021,9 @@ IP6.GATEWAY:
 <font style="color:rgb(57,57,57);">增加某个值 </font>
 
 ```shell
-# nmcli connection modify eth0 +ipv4.dns 4.4.4.4 
-[root@myth network-scripts]# systemctl restart network 
-[root@myth network-scripts]# nmcli connection show eth0 | grep IP4
+## nmcli connection modify eth0 +ipv4.dns 4.4.4.4 
+[root@myth network-scripts]## systemctl restart network 
+[root@myth network-scripts]## nmcli connection show eth0 | grep IP4
 IP4.ADDRESS[1]: 192.168.200.125/24 
 IP4.GATEWAY: 192.168.200.254
 IP4.DNS[1]: 8.8.8.8
@@ -2037,15 +2037,15 @@ IP6.GATEWAY:
 <font style="color:rgb(57,57,57);">重新链接eth0网卡</font>
 
 ```shell
-# nmcli connection reload 
-# nmcli connection up eth0
+## nmcli connection reload 
+## nmcli connection up eth0
 ```
 
 <font style="color:rgb(57,57,57);">删除某个连接</font>
 
 ```shell
 #nmcli connection delete eth0
-[root@myth network-scripts]# nmcli connection delete eth01
+[root@myth network-scripts]## nmcli connection delete eth01
 Connection 'eth01' (11fd8563-4e6b-4697-b97d-95657b0cc207) successfully deleted.
 ```
 
@@ -2053,15 +2053,15 @@ Connection 'eth01' (11fd8563-4e6b-4697-b97d-95657b0cc207) successfully deleted.
 
 ```shell
 #nmcli connection down eth0
-[root@myth network-scripts]# nmcli connection show
+[root@myth network-scripts]## nmcli connection show
 NAME UUID TYPE DEVICE
 ens33 96bd750e-9395-4d8d-bd48-449cab8a17d1 802-3-ethernet ens33
 eth0 d789dfee-4d28-4055-9de9-a4e4c5ebc779 802-3-ethernet ens38
 virbr0 c4fda5cb-64bd-40d4-a12d-6707425d893c bridge virbr0
-[root@myth network-scripts]# nmcli connection down eth0
+[root@myth network-scripts]## nmcli connection down eth0
 Connection 'eth0' successfully deactivated (D-Bus active path:
 /org/freedesktop/NetworkManager/ActiveConnection/23)
-[root@myth network-scripts]# nmcli connection show
+[root@myth network-scripts]## nmcli connection show
 NAME UUID TYPE DEVICE
 ens33 96bd750e-9395-4d8d-bd48-449cab8a17d1 802-3-ethernet ens33
 virbr0 c4fda5cb-64bd-40d4-a12d-6707425d893c bridge virbr0
@@ -2072,10 +2072,10 @@ eth0 d789dfee-4d28-4055-9de9-a4e4c5ebc779 802-3-ethernet --
 
 ```shell
 #nmcli connection up eth0
-[root@myth network-scripts]# nmcli connection up eth0
+[root@myth network-scripts]## nmcli connection up eth0
 Connection successfully activated (D-Bus active path:
 /org/freedesktop/NetworkManager/ActiveConnection/24)
-[root@myth network-scripts]# nmcli connection show
+[root@myth network-scripts]## nmcli connection show
 NAME UUID TYPE DEVICE
 ens33 96bd750e-9395-4d8d-bd48-449cab8a17d1 802-3-ethernet ens33
 eth0 d789dfee-4d28-4055-9de9-a4e4c5ebc779 802-3-ethernet ens38
@@ -2098,12 +2098,12 @@ virbr0 c4fda5cb-64bd-40d4-a12d-6707425d893c bridge virbr0
 <font style="color:rgb(57,57,57);">断开设备连接 </font>
 
 ```shell
-# nmcli device disconnect ensxxx 
-[root@myth network-scripts]# nmcli device disconnect ens38 
+## nmcli device disconnect ensxxx 
+[root@myth network-scripts]## nmcli device disconnect ens38 
 Device 'ens38' successfully disconnected. 
 打开设备连接 
-# nmcli device connect ensxxx 
-[root@myth network-scripts]# nmcli device connect ens38 
+## nmcli device connect ensxxx 
+[root@myth network-scripts]## nmcli device connect ens38 
 Device 'ens38' successfully activated with 'd789dfee-4d28-4055-9de9- 
 a4e4c5ebc779'.
 ```
@@ -2119,7 +2119,7 @@ a4e4c5ebc779'.
 <font style="color:rgb(0,0,0);">查看当前主机名： </font>
 
 ```shell
-[root@yukang ~]# cat /etc/hostname 
+[root@yukang ~]## cat /etc/hostname 
 yukang 
 ```
 
@@ -2184,7 +2184,7 @@ netstat -tunalp | grep telnet
 ss -tunalp | grep sshd
 ```
 
-# 软件管理
+## 软件管理
 **<font style="color:rgb(0,0,0);">什么是软件？ </font>**
 
 <font style="color:rgb(0,0,0);">软件：</font><font style="color:rgb(57,57,57);">Software</font><font style="color:rgb(0,0,0);">是一系列按照特定顺序组织的计算机数据和</font><font style="color:rgb(57,57,57);">指令</font><font style="color:rgb(0,0,0);">的集合。一般来讲软件被划分为</font><font style="color:rgb(57,57,57);">系统 </font>
@@ -2238,9 +2238,9 @@ ss -tunalp | grep sshd
 <font style="color:rgb(0,0,0);">本地软件包： </font>
 
 ```shell
-[root@df_rhel ~]# mount /dev/sr0 /media/ 
-[root@df_rhel ~]# cd /media/Packages/ 
-[root@df_rhel Packages]# ls | wc -l 
+[root@df_rhel ~]## mount /dev/sr0 /media/ 
+[root@df_rhel ~]## cd /media/Packages/ 
+[root@df_rhel Packages]## ls | wc -l 
 51 
 ```
 
@@ -2283,16 +2283,16 @@ ss -tunalp | grep sshd
 **<font style="color:rgb(243,50,50);">-qa 查询所有已安装的包 </font>**
 
 ```shell
-[root@df_rhel ~]# rpm -qa cowsay
+[root@df_rhel ~]## rpm -qa cowsay
 cowsay-3.04-12.fc30.noarch
-[root@df_rhel ~]# rpm -qa telnet
+[root@df_rhel ~]## rpm -qa telnet
 telnet-0.17-64.el7.x86_64
 ```
 
 <font style="color:rgb(57,57,57);">-qi 查询指定包的说明信息 （已安装的包） </font>
 
 ```shell
-[root@df_rhel ~]# rpm -qi cowsay 
+[root@df_rhel ~]## rpm -qi cowsay 
 Name : cowsay 
 Version : 3.04 
 Release : 12.fc30 
@@ -2309,7 +2309,7 @@ Source RPM : cowsay-3.04-12.fc30.src.rpm
 **<font style="color:rgb(243,50,50);">-ql 查询指定包安装后生成的文件列表 </font>**
 
 ```shell
-[root@df_rhel ~]# rpm -ql telnet 
+[root@df_rhel ~]## rpm -ql telnet 
 /usr/bin/telnet 
 /usr/share/doc/telnet-0.17 
 /usr/share/doc/telnet-0.17/README 
@@ -2319,13 +2319,13 @@ Source RPM : cowsay-3.04-12.fc30.src.rpm
 <font style="color:rgb(243,50,50);">-qc </font><font style="color:rgb(57,57,57);">查询指定包安装后的配置文件 </font>
 
 ```shell
-[root@df_rhel ~]# rpm -qc httpd 
+[root@df_rhel ~]## rpm -qc httpd 
 ```
 
 <font style="color:rgb(57,57,57);">-qd 查询指定包安装后的帮助文件 </font>
 
 ```shell
-[root@df_rhel ~]# rpm -qd cowsay 
+[root@df_rhel ~]## rpm -qd cowsay 
 /usr/share/doc/cowsay/ChangeLog 
 /usr/share/doc/cowsay/LICENSE 
 /usr/share/doc/cowsay/README 
@@ -2336,20 +2336,20 @@ Source RPM : cowsay-3.04-12.fc30.src.rpm
 <font style="color:rgb(57,57,57);">-qf /path/file 查询指定的文件是由哪个包安装产生的 </font>
 
 ```shell
-[root@df_rhel ~]# rpm -qf /usr/share/doc/cowsay/ChangeLog 
+[root@df_rhel ~]## rpm -qf /usr/share/doc/cowsay/ChangeLog 
 cowsay-3.04-12.fc30.noarch
 ```
 
 <font style="color:rgb(57,57,57);">-qpi 查询未安装包的信息 </font>
 
 ```shell
-[root@df_rhel ~]# rpm -qpi cowsay-3.04-12.fc30.noarch.rpm 
+[root@df_rhel ~]## rpm -qpi cowsay-3.04-12.fc30.noarch.rpm 
 ```
 
 <font style="color:rgb(57,57,57);">-qpl 查询未安装包在安装后生成的文件列表 </font>
 
 ```shell
-[root@df_rhel ~]# rpm -qpl cowsay-3.04-12.fc30.noarch.rpm
+[root@df_rhel ~]## rpm -qpl cowsay-3.04-12.fc30.noarch.rpm
 ```
 
 <font style="color:rgb(57,57,57);">RPM默认的文件安装路径： </font>
@@ -2369,11 +2369,11 @@ cowsay-3.04-12.fc30.noarch
 <font style="color:rgb(223,64,42);">#rpm -Fvh </font><font style="color:rgb(57,57,57);">如果有旧版本则升级，否则退出 </font>
 
 ```shell
-[root@df_rhel ~]# rpm -qa telnet 
-[root@df_rhel ~]# rpm -Fvh telnet-0.17-64.el7.x86_64.rpm 
+[root@df_rhel ~]## rpm -qa telnet 
+[root@df_rhel ~]## rpm -Fvh telnet-0.17-64.el7.x86_64.rpm 
 warning: telnet-0.17-64.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: 
 NOKEY 
-[root@df_rhel ~]# rpm -Uvh telnet-0.17-64.el7.x86_64.rpm 
+[root@df_rhel ~]## rpm -Uvh telnet-0.17-64.el7.x86_64.rpm 
 warning: telnet-0.17-64.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: 
 NOKEY 
 Preparing... ################################# [100%] 
@@ -2386,8 +2386,8 @@ Updating / installing...
 <font style="color:rgb(223,64,42);">#rpm -e PACKGE_NAME </font>
 
 ```shell
-[root@df_rhel ~]# rpm -e telnet
-[root@df_rhel ~]# rpm -qa telnet
+[root@df_rhel ~]## rpm -e telnet
+[root@df_rhel ~]## rpm -qa telnet
 ```
 
 **<font style="color:rgb(0,0,0);">重建rpm数据库 </font>**
@@ -2408,7 +2408,7 @@ Updating / installing...
 
 **<font style="color:rgb(0,0,0);">RHEL8.0： </font>**
 
-<font style="color:rgb(0,0,0);">[root@myth_8 ~]# uname -a </font>
+<font style="color:rgb(0,0,0);">[root@myth_8 ~]## uname -a </font>
 
 <font style="color:rgb(0,0,0);">Linux myth_8.0 </font><font style="color:rgb(223,64,42);">4.18.0-80.el8.x86_64</font><font style="color:rgb(0,0,0);"> #1 SMP Wed Mar 13 12:02:46 UTC 2019 x86_64 x86_64 </font>
 
@@ -2416,7 +2416,7 @@ Updating / installing...
 
 **<font style="color:rgb(0,0,0);">RHEL7.5： </font>**
 
-<font style="color:rgb(0,0,0);">[root@df_rhel ~]# </font>**<font style="color:rgb(223,64,42);">more /etc/os-release </font>**
+<font style="color:rgb(0,0,0);">[root@df_rhel ~]## </font>**<font style="color:rgb(223,64,42);">more /etc/os-release </font>**
 
 <font style="color:rgb(0,0,0);">NAME="</font><font style="color:rgb(223,64,42);">Red Hat Enterprise Linux Serve</font><font style="color:rgb(0,0,0);">r" </font>
 
@@ -2452,7 +2452,7 @@ Updating / installing...
 
 **<font style="color:rgb(0,0,0);">RHEL8.0： </font>**
 
-<font style="color:rgb(0,0,0);">[root@myth_8 ~]# cat /etc/os-release </font>
+<font style="color:rgb(0,0,0);">[root@myth_8 ~]## cat /etc/os-release </font>
 
 <font style="color:rgb(0,0,0);">NAME="Red Hat Enterprise Linux" </font>
 
@@ -2486,21 +2486,21 @@ Updating / installing...
 
 **<font style="color:rgb(0,0,0);">RHEL7.5： </font>**
 
-<font style="color:rgb(0,0,0);">[root@df_rhel ~]# </font>**<font style="color:rgb(223,64,42);">rpm -qa kernel </font>**
+<font style="color:rgb(0,0,0);">[root@df_rhel ~]## </font>**<font style="color:rgb(223,64,42);">rpm -qa kernel </font>**
 
 <font style="color:rgb(0,0,0);">kernel-</font><font style="color:rgb(223,64,42);">3.10.0</font><font style="color:rgb(0,0,0);">-862.el7.x86_64 </font>
 
 **<font style="color:rgb(0,0,0);">RHEL8.0： </font>**
 
-<font style="color:rgb(0,0,0);">[root@myth_8 ~]# </font><font style="color:rgb(223,64,42);">rpm -qa kernel </font>
+<font style="color:rgb(0,0,0);">[root@myth_8 ~]## </font><font style="color:rgb(223,64,42);">rpm -qa kernel </font>
 
 <font style="color:rgb(0,0,0);">kernel-</font><font style="color:rgb(223,64,42);">4.18.0</font><font style="color:rgb(0,0,0);">-80.el8.x86_64 </font>
 
 <font style="color:rgb(0,0,0);">升级内核： </font>
 
-<font style="color:rgb(0,0,0);">[root@df_rhel ~]# rpm -ivh kernel-4.18.0-80.el8.x86_64.rpm </font>
+<font style="color:rgb(0,0,0);">[root@df_rhel ~]## rpm -ivh kernel-4.18.0-80.el8.x86_64.rpm </font>
 
-## <font style="color:rgb(0,0,0);">拥有红帽订阅，通过互联网连接到红帽</font>
+### <font style="color:rgb(0,0,0);">拥有红帽订阅，通过互联网连接到红帽</font>
 <font style="color:rgb(0,0,0);">注册 </font>
 
 <font style="color:rgb(0,0,0);">subscription-manager register --username ahdifu </font>
@@ -2517,7 +2517,7 @@ Updating / installing...
 
 <font style="color:rgb(0,0,0);">subscription-manager repos --enable <仓库全名></font>![](../../images/1717077106716-2bde2d41-c213-4d4d-88db-de3794fa1353.png)![](../../images/1717077114832-e551af41-20d5-4b41-b738-2f6a4265d0a0.png)
 
-## **<font style="color:rgb(0,0,0);">DNF介绍 </font>**
+### **<font style="color:rgb(0,0,0);">DNF介绍 </font>**
 <font style="color:rgb(0,0,0);">使⽤ DNF 管理软件包 </font>
 
 <font style="color:rgb(0,0,0);">DNF (Dandi</font><font style="color:rgb(0,0,0);">fi</font><font style="color:rgb(0,0,0);">ed YUM) 取代了 YUM，作为红帽企业 Linux 9 中的软件包管理器。 </font>
@@ -2717,13 +2717,13 @@ proxy_password=ahdifu.com 代理服务器的密码
 <font style="color:rgb(223,64,42);">#yum -y install PACKGE_NAME ---y 自动应答yes </font>
 
 ```shell
-[root@df_rhel ~]# yum -y install sl 
+[root@df_rhel ~]## yum -y install sl 
 ```
 
 <font style="color:rgb(223,64,42);">#yum -y groupinstall PACKGE_GROUP_NAME </font>
 
 ```shell
-[root@df_rhel ~]# yum -y groupinstall “KDE Desktop” 
+[root@df_rhel ~]## yum -y groupinstall “KDE Desktop” 
 ```
 
 <font style="color:rgb(57,57,57);">yum查询</font>
@@ -2732,7 +2732,7 @@ proxy_password=ahdifu.com 代理服务器的密码
 
 <font style="color:rgb(223,64,42);">#yum list installed 列出已安装的 </font>
 
-<font style="color:rgb(0,0,0);">[root@df_rhel ~]# yum list installed | wc -l </font>
+<font style="color:rgb(0,0,0);">[root@df_rhel ~]## yum list installed | wc -l </font>
 
 <font style="color:rgb(223,64,42);">#yum list updates 列出可以升级的 </font>
 
@@ -2741,7 +2741,7 @@ proxy_password=ahdifu.com 代理服务器的密码
 <font style="color:rgb(223,64,42);">#yum info PACKGE_NAME 查看软件包信息 </font>
 
 ```shell
-[root@df_rhel ~]# yum info cowsay 
+[root@df_rhel ~]## yum info cowsay 
 Loaded plugins: langpacks, product-id, search-disabled-repos, subscription- 
 : manager 
 This system is not registered with an entitlement server. You can use subscription-manager to 
@@ -2764,7 +2764,7 @@ License : GPLv3+ [授权]
 <font style="color:rgb(223,64,42);">#yum remove | erase PACKGE_NAME </font>
 
 ```shell
-[root@df_rhel ~]# yum -y remove sl
+[root@df_rhel ~]## yum -y remove sl
 ```
 
 <font style="color:rgb(57,57,57);">yum升级软件 </font>
@@ -2777,12 +2777,12 @@ License : GPLv3+ [授权]
 
 <font style="color:rgb(223,64,42);">清空缓存 #yum clean all</font>
 
-## <font style="color:rgb(223,64,42);">rpm网站</font>
+### <font style="color:rgb(223,64,42);">rpm网站</font>
 [http://rpmfind.net](http://rpmfind.net)
 
 [http://rpm.pbone.net](http://rpm.pbone.net)
 
-## 破解root密码
+### 破解root密码
 选择第二个
 
 ![](../../images/1717998761721-05439ae5-b6e7-4463-a819-e6a990a57938.png)
@@ -2804,7 +2804,7 @@ exit
 reboot
 ```
 
-# 磁盘管理
+## 磁盘管理
 **<font style="color:rgb(0,0,0);">磁盘接口类型： </font>**
 
 <font style="color:rgb(57,57,57);">IDE/ATA: </font><font style="color:rgb(57,57,57);">并行接口，</font><font style="color:rgb(68,68,68);">133MB/s </font>
@@ -2833,7 +2833,7 @@ reboot
 
 <font style="color:rgb(57,57,57);">同一磁盘不同分区：/dev/sda1，/dev/sda5</font>
 
-## **<font style="color:rgb(0,0,0);">磁盘查看：</font>**
+### **<font style="color:rgb(0,0,0);">磁盘查看：</font>**
 ```shell
 fdisk -l
 Disk /dev/sda: 17.2 GB, 17179869184 bytes, 33554432 sectors
@@ -2873,7 +2873,7 @@ echo "- - -" >/sys/class/scsi_host/host0/scan
 echo "- - -" | tee /sys/class/scsi_host/host*/scan
 ```
 
-## **<font style="color:rgb(0,0,0);">分区： </font>**
+### **<font style="color:rgb(0,0,0);">分区： </font>**
 **<font style="color:rgb(0,0,0);">分区的好处： </font>**
 
 <font style="color:rgb(68,68,68);">优化 I/O 性能 </font>
@@ -2914,11 +2914,11 @@ echo "- - -" | tee /sys/class/scsi_host/host*/scan
 
 <font style="color:rgb(57,57,57);">逻辑分区的分区编号从 5 开始</font>
 
-## <font style="color:rgb(57,57,57);">使用 fdisk 进行分区操作</font>
+### <font style="color:rgb(57,57,57);">使用 fdisk 进行分区操作</font>
 <font style="color:rgb(57,57,57);">fdisk 默认是 MBR 分区方式，可以使用 parted 进行 GPT 分区</font>
 
 ```shell
-[root@myth ~]# fdisk /dev/sda
+[root@myth ~]## fdisk /dev/sda
 Command (m for help): h 获取帮助
 h: unknown command
 Command action
@@ -2999,14 +2999,14 @@ First sector (10489856-41943039, default 10489856):
 
 
 
-[root@difu1909 ~]# ls /dev/sdb*
+[root@difu1909 ~]## ls /dev/sdb*
 /dev/sdb /dev/sdb1 /dev/sdb2 /dev/sdb5
 
 #partprobe 刷新分区
-[root@difu1909 ~]# partprobe /dev/sdb
+[root@difu1909 ~]## partprobe /dev/sdb
 ```
 
-## **<font style="color:rgb(0,0,0);">创建文件系统： </font>**
+### **<font style="color:rgb(0,0,0);">创建文件系统： </font>**
 <font style="color:rgb(57,57,57);">什么是文件系统</font><font style="color:rgb(57,57,57);">: </font>
 
 <font style="color:rgb(57,57,57);">文件系统是一种存储和组织计算机数据的方法，文件系统种类有很多，每一种文件系统的结 </font>
@@ -3021,7 +3021,7 @@ First sector (10489856-41943039, default 10489856):
 -m 指定管理块所占百分比，默认 5% 
 -b 指定块大小，默认 4096byte 
 -f 强行指定文件系统类型
-[root@difu1909 ~]# mkfs.xfs /dev/sdb5
+[root@difu1909 ~]## mkfs.xfs /dev/sdb5
 meta-data=/dev/sdb5 isize=512 agcount=4, agsize=655360 blks
 = sectsz=512 attr=2, projid32bit=1
 = crc=1 finobt=0, sparse=0
@@ -3031,12 +3031,12 @@ naming =version 2 bsize=4096 ascii-ci=0 ftype=1
 log =internal log bsize=4096 blocks=2560, version=2
 = sectsz=512 sunit=0 blks, lazy-count=1
 realtime =none extsz=4096 blocks=0, rtextents=0
-[root@difu1909 ~]# mkfs.ext4 /dev/sdb5
-[root@difu1909 ~]# mkfs.xfs /dev/sdb5
+[root@difu1909 ~]## mkfs.ext4 /dev/sdb5
+[root@difu1909 ~]## mkfs.xfs /dev/sdb5
 mkfs.xfs: /dev/sdb5 appears to contain an existing filesystem
 (ext4).
 mkfs.xfs: Use the -f option to force overwrite.
-[root@difu1909 ~]# mkfs.xfs -f /dev/sdb5
+[root@difu1909 ~]## mkfs.xfs -f /dev/sdb5
 meta-data=/dev/sdb5 isize=512 agcount=4, agsize=655360 blks
 = sectsz=512 attr=2, projid32bit=1
 = crc=1 finobt=0, sparse=0
@@ -3049,20 +3049,20 @@ realtime =none extsz=4096 blocks=0, rtextents=0
 
 ```
 
-## blkid 查看文件系统和属性
+### blkid 查看文件系统和属性
 ```shell
-[root@difu1909 ~]# blkid /dev/sdb5
+[root@difu1909 ~]## blkid /dev/sdb5
 /dev/sdb5: UUID="06a7f9e8-e6bb-431f-af49-0332c45323b9" TYPE="xfs"
 ```
 
-## 创建交换分区
+### 创建交换分区
 <font style="color:rgb(57,57,57);">创建分区：</font>
 
 <font style="color:rgb(57,57,57);">[创建 sdb6，步骤省略]</font>
 
 ```shell
 修改分区类型标记
-[root@difu1909 ~]# fdisk /dev/sdb
+[root@difu1909 ~]## fdisk /dev/sdb
 Welcome to fdisk (util-linux 2.23.2).
 Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
@@ -3088,7 +3088,7 @@ Device Boot Start End Blocks Id System
 <font style="color:rgb(223,64,42);">#swapon -s </font>
 
 ```shell
-[root@difu1909 ~]# swapon -s 
+[root@difu1909 ~]## swapon -s 
 Filename Type Size Used Priority 
 /dev/dm-1 partition 2047996 0 -2 
 ```
@@ -3097,7 +3097,7 @@ Filename Type Size Used Priority
 <font style="color:rgb(223,64,42);">#mkswap /dev/sda6 </font>
 
 ```shell
-[root@difu1909 ~]# mkswap /dev/sdb6 
+[root@difu1909 ~]## mkswap /dev/sdb6 
 Setting up swapspace version 1, size = 819196 KiB 
 no label, UUID=9bb41238-7931-4cca-98dc-dbcbe6bf008d 
 ```
@@ -3106,8 +3106,8 @@ no label, UUID=9bb41238-7931-4cca-98dc-dbcbe6bf008d
 <font style="color:rgb(223,64,42);">#swapon /dev/sda6 </font>
 
 ```shell
-[root@difu1909 ~]# swapon /dev/sdb6 
-[root@difu1909 ~]# swapon -s 
+[root@difu1909 ~]## swapon /dev/sdb6 
+[root@difu1909 ~]## swapon -s 
 Filename Type Size Used Priority 
 /dev/dm-1 partition 2047996 0 -2 
 /dev/sdb6 partition 819196 0 -3 
@@ -3116,7 +3116,7 @@ Filename Type Size Used Priority
 ### <font style="color:rgb(57,57,57);">关闭交换分区 </font>
 <font style="color:rgb(223,64,42);">#swapoff /dev/sda6</font>
 
-## **<font style="color:rgb(0,0,0);">磁盘挂载</font>**
+### **<font style="color:rgb(0,0,0);">磁盘挂载</font>**
 ### **<font style="color:rgb(0,0,0);">临时挂载</font>**
 <font style="color:rgb(57,57,57);">挂载设备其实就是给设备提供一个访问入口 </font>
 
@@ -3127,15 +3127,15 @@ Filename Type Size Used Priority
 <font style="color:rgb(57,57,57);">UUID</font>
 
 ```shell
-[root@difu1909 ~]# mkdir /home/ahdifu/mountdir
-[root@difu1909 ~]# mount /dev/sdb5 /home/ahdifu/mountdir/
+[root@difu1909 ~]## mkdir /home/ahdifu/mountdir
+[root@difu1909 ~]## mount /dev/sdb5 /home/ahdifu/mountdir/
 
-[root@difu1909 ~]# blkid /dev/sdb5
+[root@difu1909 ~]## blkid /dev/sdb5
 /dev/sdb5: UUID="76ddc841-77d6-4e6a-8f5f-03c9fedf42b3" TYPE="xfs"
-[root@difu1909 ~]# umount /dev/sdb5
-[root@difu1909 ~]# mount
+[root@difu1909 ~]## umount /dev/sdb5
+[root@difu1909 ~]## mount
 UUID="76ddc841-77d6-4e6a-8f5f-03c9fedf42b3" /home/ahdifu/mountdir/
-[root@difu1909 ~]# df
+[root@difu1909 ~]## df
 Filesystem 1K-blocks Used Available Use% Mounted on
 /dev/mapper/rhel-root 18397184 4101352 14295832 23% /
 devtmpfs 914800 0 914800 0% /dev
@@ -3205,10 +3205,10 @@ tmpfs 186324 0 186324 0% /run/user/0
 <font style="color:rgb(0,0,0);">挂载普通分区： </font>
 
 ```shell
-[root@difu1909 ~]# vim /etc/fstab 
+[root@difu1909 ~]## vim /etc/fstab 
 /dev/sdb5/ /home/ahdifu/mountdir/ xfs defaults 0 0 
-[root@difu1909 ~]# mount -a [正常没有任何输出信息] 
-[root@difu1909 ~]# mount -a 
+[root@difu1909 ~]## mount -a [正常没有任何输出信息] 
+[root@difu1909 ~]## mount -a 
 mount: wrong fs type, bad option, bad superblock on /dev/sdb5, 
 missing codepage or helper program, or other error 
 In some cases useful info is found in syslog - try 
@@ -3218,9 +3218,9 @@ dmesg | tail or so.
 <font style="color:rgb(57,57,57);">挂载 </font><font style="color:rgb(57,57,57);">swap </font><font style="color:rgb(57,57,57);">分区： </font>
 
 ```shell
-[root@difu1909 ~]# vim /etc/fstab 
+[root@difu1909 ~]## vim /etc/fstab 
 /dev/sdb6 swap swap defaults 0 0 
-[root@difu1909 ~]# mount -a 
+[root@difu1909 ~]## mount -a 
 ```
 
 
@@ -3237,18 +3237,18 @@ dmesg | tail or so.
 <font style="color:rgb(57,57,57);">-km </font><font style="color:rgb(57,57,57);">结束使用目录</font><font style="color:rgb(57,57,57);">/</font><font style="color:rgb(57,57,57);">文件的进程 </font>
 
 ```shell
-[root@difu1909 ~]# cd /home/ahdifu/mountdir/
-[root@difu1909 mountdir]# umount /dev/sdb5 
+[root@difu1909 ~]## cd /home/ahdifu/mountdir/
+[root@difu1909 mountdir]## umount /dev/sdb5 
 umount: /home/ahdifu/mountdir: target is busy. 
 (In some cases useful info about processes that use 
 the device is found by lsof(8) or fuser(1)) 
-[root@difu1909 ~]# cd /home/ahdifu/mountdir/ 
-[root@difu1909 mountdir]# fuser -v /home/ahdifu/mountdir/ 
+[root@difu1909 ~]## cd /home/ahdifu/mountdir/ 
+[root@difu1909 mountdir]## fuser -v /home/ahdifu/mountdir/ 
 USER PID ACCESS COMMAND 
 /home/ahdifu/mountdir: 
 root kernel mount /home/ahdifu/mountdir 
 root 2872 ..c.. bash 
-[root@difu1909 mountdir]# ps 
+[root@difu1909 mountdir]## ps 
 PID TTY TIME CMD 
 2872 pts/0 00:00:00 bash 
 2930 pts/0 00:00:00 ps
@@ -3265,7 +3265,7 @@ PID TTY TIME CMD
 <font style="color:rgb(57,57,57);">-T </font><font style="color:rgb(57,57,57);">显示文件系统类型 </font>
 
 ```shell
-[root@difu1909 mountdir]# df -Th 
+[root@difu1909 mountdir]## df -Th 
 Filesystem Type Size Used Avail Use% Mounted on 
 /dev/mapper/rhel-root xfs 18G 4.0G 14G 23% / 
 devtmpfs devtmpfs 894M 0 894M 0% /dev 
@@ -3286,7 +3286,7 @@ tmpfs tmpfs 182M 0 182M 0% /run/user/0
 <font style="color:rgb(57,57,57);">-h </font><font style="color:rgb(57,57,57);">标准单位显示 </font>
 
 ```shell
-[root@difu1909 mountdir]# du -sh /home/ahdifu/ 
+[root@difu1909 mountdir]## du -sh /home/ahdifu/ 
 24M /home/ahdifu/
 ```
 
@@ -3306,8 +3306,8 @@ tmpfs tmpfs 182M 0 182M 0% /run/user/0
 <font style="color:rgb(57,57,57);">1</font><font style="color:rgb(57,57,57);">、安装服务程序 </font>
 
 ```shell
-[root@myth ~]# yum -y install autofs 
-[root@myth ~]# rpm -qc autofs 
+[root@myth ~]## yum -y install autofs 
+[root@myth ~]## rpm -qc autofs 
 /etc/auto.master 
 /etc/auto.misc 
 /etc/auto.net 
@@ -3321,19 +3321,19 @@ tmpfs tmpfs 182M 0 182M 0% /run/user/0
 <font style="color:rgb(57,57,57);">2</font><font style="color:rgb(57,57,57);">、编辑主配置文件 </font>
 
 ```shell
-[root@myth ~]# vim /etc/auto.master 
-# 
-# Sample auto.master file 
-# This is a 'master' automounter map and it has the following format: 
-# mount-point [map-type[,format]:]map [options] 
-# For details of the format look at auto.master(5). 
-# 
+[root@myth ~]## vim /etc/auto.master 
+## 
+## Sample auto.master file 
+## This is a 'master' automounter map and it has the following format: 
+## mount-point [map-type[,format]:]map [options] 
+## For details of the format look at auto.master(5). 
+## 
 /misc /etc/auto.misc 
-# 
+## 
 /home/myth/auto_dir /etc/auto.sdc 
-# NOTE: mounts done from a hosts map will be mounted with the 
-# "nosuid" and "nodev" options unless the "suid" and "dev" 
-# options are explicitly given. 
+## NOTE: mounts done from a hosts map will be mounted with the 
+## "nosuid" and "nodev" options unless the "suid" and "dev" 
+## options are explicitly given. 
 /home/myth/auto_dir 自动挂载点的目标位置 
 /etc/auto.sdc 定义子配置文件 
 ```
@@ -3341,7 +3341,7 @@ tmpfs tmpfs 182M 0 182M 0% /run/user/0
 <font style="color:rgb(57,57,57);">3</font><font style="color:rgb(57,57,57);">、编辑子配置文件： </font>
 
 ```shell
-[root@myth ~]# vim /etc/auto.sdc
+[root@myth ~]## vim /etc/auto.sdc
 * 挂载点目录（这里表示可以任意常见文件名作为挂载点目录） 
 -fstype=xfs 挂载的类型 
 :/dev/sdc5 需要挂载的设备
@@ -3350,23 +3350,23 @@ tmpfs tmpfs 182M 0 182M 0% /run/user/0
 <font style="color:rgb(57,57,57);">4</font><font style="color:rgb(57,57,57);">、开启并重启 </font><font style="color:rgb(57,57,57);">autofs </font><font style="color:rgb(57,57,57);">服务 </font>
 
 ```shell
-[root@myth ~]# systemctl enable autofs.service 
-[root@myth ~]# systemctl restart autofs.service
+[root@myth ~]## systemctl enable autofs.service 
+[root@myth ~]## systemctl restart autofs.service
 ```
 
 <font style="color:rgb(57,57,57);">查看当前的设备挂载状态： </font>
 
 ```shell
-[root@myth ~]# df -Th 
+[root@myth ~]## df -Th 
 ```
 
 <font style="color:rgb(57,57,57);">创建标签，激活本地挂载 </font>
 
 ```shell
-[root@myth ~]# cd /home/myth/auto_dir/ 
-[root@myth auto_dir]# touch 111 
-[root@myth auto_dir]# cd 111 
-[root@myth 111]# ll 
+[root@myth ~]## cd /home/myth/auto_dir/ 
+[root@myth auto_dir]## touch 111 
+[root@myth auto_dir]## cd 111 
+[root@myth 111]## ll 
 total 4 
 drwxr-xr-x. 2 root root 6 May 25 20:16 123 
 -rw-r--r--. 1 root root 10 May 25 20:23 1.txt 
@@ -3375,7 +3375,7 @@ drwxr-xr-x. 2 root root 6 May 25 20:16 123
 <font style="color:rgb(57,57,57);">再次查看设备挂载状态： </font>
 
 ```shell
-[root@myth 111]# df -Th 
+[root@myth 111]## df -Th 
 Filesystem Type Size Used Avail Use% Mounted on 
 /dev/mapper/rhel-root xfs 20G 3.5G 16G 18% / 
 devtmpfs devtmpfs 1.9G 0 1.9G 0% /dev 
@@ -3388,7 +3388,7 @@ tmpfs tmpfs 378M 36K 378M 1% /run/user/0
 /dev/sdc5 xfs 5.0G 33M 5.0G 1% /home/myth/auto_dir/111
 ```
 
-## LVM**<font style="color:rgb(0,0,0);">(Logical Volume Manager)</font>**逻辑卷管理
+### LVM**<font style="color:rgb(0,0,0);">(Logical Volume Manager)</font>**逻辑卷管理
 **<font style="color:rgb(0,0,0);">逻辑卷基本组成： </font>**
 
 **<font style="color:rgb(57,57,57);">PV</font>**<font style="color:rgb(57,57,57);">(Physical Volume): </font>
@@ -3426,7 +3426,7 @@ tmpfs tmpfs 378M 36K 378M 1% /run/user/0
 <font style="color:rgb(223,64,42);">#pvcreate /dev/sdb5 </font>
 
 ```shell
-[root@myth ~]# pvcreate /dev/sdb5 
+[root@myth ~]## pvcreate /dev/sdb5 
 Physical volume "/dev/sdb5" successfully created. 
 ```
 
@@ -3435,7 +3435,7 @@ Physical volume "/dev/sdb5" successfully created.
 <font style="color:rgb(223,64,42);">#vgcreate VG_NAME /dev/sdb5 </font>
 
 ```shell
-[root@myth ~]# vgcreate df_vg1 /dev/sdb5 
+[root@myth ~]## vgcreate df_vg1 /dev/sdb5 
 Volume group "df_vg1" successfully created 
 ```
 
@@ -3450,7 +3450,7 @@ Volume group "df_vg1" successfully created
 <font style="color:rgb(223,64,42);">#lvcreate -n LV_NAME -L 5G VG_NAME PV_NAME[</font><font style="color:rgb(223,64,42);">可选</font><font style="color:rgb(223,64,42);">] </font>
 
 ```shell
-[root@myth ~]# lvcreate -n df_lv01 -L 3G df_vg1 
+[root@myth ~]## lvcreate -n df_lv01 -L 3G df_vg1 
 Logical volume "df_lv01" created. 
 ```
 
@@ -3471,7 +3471,7 @@ Logical volume "df_lv01" created.
 <font style="color:rgb(223,64,42);">#mkfs -t xfs /dev/VG_NAME/LV_NAME </font>
 
 ```shell
-[root@myth ~]# mkfs.xfs /dev/mapper/df_vg1-df_lv01 
+[root@myth ~]## mkfs.xfs /dev/mapper/df_vg1-df_lv01 
 meta-data=/dev/mapper/df_vg1-df_lv01 isize=512 agcount=4, agsize=196608 blks 
 = sectsz=512 attr=2, projid32bit=1 
 = crc=1 finobt=0, sparse=0 
@@ -3482,8 +3482,8 @@ log =internal log bsize=4096 blocks=2560, version=2
 = sectsz=512 sunit=0 blks, lazy-count=1 
 realtime =none extsz=4096 blocks=0, rtextents=0 
 #mount /dev/VG_NAME/LV_NAME /MOUNT_POINT 
-[root@myth ~]# mkdir /home/myth/lv_dir 
-[root@myth ~]# mount /dev/df_vg1/df_lv01 /home/myth/lv_dir/
+[root@myth ~]## mkdir /home/myth/lv_dir 
+[root@myth ~]## mount /dev/df_vg1/df_lv01 /home/myth/lv_dir/
 ```
 
 **<font style="color:rgb(0,0,0);">逻辑卷的管理： </font>**
@@ -3495,7 +3495,7 @@ realtime =none extsz=4096 blocks=0, rtextents=0
 <font style="color:rgb(223,64,42);">#pvs </font>
 
 ```shell
-[root@myth ~]# pvs 
+[root@myth ~]## pvs 
 PV VG Fmt Attr PSize PFree 
 /dev/sda2 rhel lvm2 a-- 
 /dev/sdb5 df_vg1 lvm2 a-- <2.00g 
@@ -3504,7 +3504,7 @@ PV VG Fmt Attr PSize PFree
 <font style="color:rgb(223,64,42);">#pvdisplay </font>
 
 ```shell
-[root@myth ~]# pvdisplay 
+[root@myth ~]## pvdisplay 
 --- Physical volume --- 
 PV Name /dev/sdb5 
 VG Name df_vg1 
@@ -3517,9 +3517,9 @@ Allocated PE 768
 PV UUID 5v8Jxd-375L-nv2Q-wnAN-naG7-Fcs6-52Mdbv 
 ```
 
-<font style="color:rgb(223,64,42);"># pvscan </font>
+<font style="color:rgb(223,64,42);">## pvscan </font>
 
-<font style="color:rgb(0,0,0);">[root@myth ~]# pvscan </font>
+<font style="color:rgb(0,0,0);">[root@myth ~]## pvscan </font>
 
 ```shell
 PV /dev/sdb5 VG df_vg1 lvm2 [ 
@@ -3534,7 +3534,7 @@ Total: 4 [38.50 GiB] / in use: 3 [28.50 GiB] / in no VG: 1 [10.00 GiB]
 <font style="color:rgb(223,64,42);">#vgs </font>
 
 ```shell
-[root@myth ~]# vgs 
+[root@myth ~]## vgs 
 VG #PV #LV #SN Attr VSize VFree 
 df_vg1 1 1 0 wz--n- <2.00g 
 rhel 1 2 0 wz--n- 
@@ -3544,7 +3544,7 @@ rhel 1 2 0 wz--n-
 <font style="color:rgb(223,64,42);">#vgdisplay</font>
 
 ```shell
-[root@myth ~]# vgdisplay 
+[root@myth ~]## vgdisplay 
 --- Volume group --- 
 VG Name df_vg1 
 System ID 
@@ -3572,7 +3572,7 @@ VG UUID rdROCY-Ivvb-jZmg-6sZx-0gts-c99A-SS46hj
 <font style="color:rgb(223,64,42);">#lvs </font>
 
 ```shell
-[root@myth ~]# lvs 
+[root@myth ~]## lvs 
 LV VG Attr LSize Pool Origin Data% Meta% Move Log Cpy%Sync Convert 
 df_lv01 df_vg1 -wi-ao---- 3.00g 
 root rhel -wi-ao---- 19.31g 
@@ -3582,7 +3582,7 @@ swap rhel -wi-ao---- 200.00m
 <font style="color:rgb(223,64,42);">#lvdisplay </font>
 
 ```shell
-[root@myth ~]# lvdisplay 
+[root@myth ~]## lvdisplay 
 --- Logical volume --- 
 LV Path /dev/df_vg1/df_lv01 
 LV Name df_lv01 
@@ -3591,7 +3591,7 @@ LV UUID dnfZk5-ptIu-sND3-c0BQ-NHQb-2ewC-x1OHGo
 LV Write Access read/write 
 LV Creation host, time myth, 2019-05-24 16:07:21 -0400 
 LV Status available 
-# open 1 
+## open 1 
 LV Size 3.00 GiB 
 Current LE 768 
 Segments 1 
@@ -3611,7 +3611,7 @@ Block device 253:2
 
 <font style="color:rgb(223,64,42);">#vgextend VG_NAME /dev/sdb3 </font>
 
-**<font style="color:rgb(57,57,57);">[root@myth ~]# vgextend df_vg1 /dev/sdb6 </font>**
+**<font style="color:rgb(57,57,57);">[root@myth ~]## vgextend df_vg1 /dev/sdb6 </font>**
 
 <font style="color:rgb(57,57,57);">Volume group "df_vg1" successfully extended </font>
 
@@ -3622,7 +3622,7 @@ Block device 253:2
 <font style="color:rgb(223,64,42);">#lvextend -r -L +2G /dev/VG_NAME/LV_NAME </font>
 
 ```shell
-[root@myth ~]# lvextend -L +2G /dev/mapper/df_vg1-df_lv01 
+[root@myth ~]## lvextend -L +2G /dev/mapper/df_vg1-df_lv01 
 Size of logical volume df_vg1/df_lv01 changed from 3.00 GiB (768 extents) 
 to 5.00 GiB (1280 extents). 
 Logical volume df_vg1/df_lv01 successfully resized. 
@@ -3645,7 +3645,7 @@ Logical volume df_vg1/df_lv01 successfully resized.
 <font style="color:rgb(223,64,42);">#xfs_growfs /dev/VG_NAME/LV_NAME </font>
 
 ```shell
-[root@myth ~]# xfs_growfs /dev/mapper/df_vg1-df_lv01 
+[root@myth ~]## xfs_growfs /dev/mapper/df_vg1-df_lv01 
 meta-data=/dev/mapper/df_vg1-df_lv01 isize=512 agcount=4, agsize=196608 blks 
 = sectsz=512 attr=2, projid32bit=1 
 = crc=1 finobt=0 spinodes=0 
@@ -3656,7 +3656,7 @@ log =internal bsize=4096 blocks=2560, version=2
 = sectsz=512 sunit=0 blks, lazy-count=1 
 realtime =none extsz=4096 blocks=0, rtextents=0 
 data blocks changed from 786432 to 1310720 
-[root@myth ~]# df -Th 
+[root@myth ~]## df -Th 
 Filesystem Type Size Used Avail Use% Mounted on 
 /dev/mapper/rhel-root xfs 20G 3.4G 16G 18% /
 devtmpfs devtmpfs 1.9G 0 1.9G 0% /dev
@@ -3739,17 +3739,17 @@ tmpfs tmpfs 378M 36K 378M 1% /run/user/0
 
 ```shell
 安装软件包 
-[root@RHEL8 ~]# yum -y install stratis-cli.noarch stratisd.x86_64 
+[root@RHEL8 ~]## yum -y install stratis-cli.noarch stratisd.x86_64 
 激活服务 
-[root@RHEL8 ~]# systemctl start stratisd.service 
-[root@RHEL8 ~]# systemctl enable stratisd.service 
-[root@RHEL8 ~]# stratis pool create pool01 /dev/sda #创建池，先以一 
+[root@RHEL8 ~]## systemctl start stratisd.service 
+[root@RHEL8 ~]## systemctl enable stratisd.service 
+[root@RHEL8 ~]## stratis pool create pool01 /dev/sda #创建池，先以一 
 块盘为例子。 
-[root@RHEL8 ~]# stratis pool list 
+[root@RHEL8 ~]## stratis pool list 
 Name 
 Total Physical 
 pool01 100 GiB / 45.66 MiB / 99.96 GiB 
-[root@RHEL8 ~]# stratis blockdev list pool01 
+[root@RHEL8 ~]## stratis blockdev list pool01 
 Pool Name Device Node Physical Size Tier 
 pool01 
 /dev/sda 
@@ -3759,13 +3759,13 @@ pool01
 <font style="color:rgb(0,0,0);">#这两句命令的意思都是查看精简池的信息，但是因为是一块硬盘，所以显示的不是很明显，下面实验会看出来差别。 </font>
 
 ```shell
-[root@RHEL8 ~]# stratis pool add-data pool01 /dev/sdb #往精简池里面添加一块盘，
+[root@RHEL8 ~]## stratis pool add-data pool01 /dev/sdb #往精简池里面添加一块盘，
 增加池的容量。 
-[root@RHEL8 ~]# stratis pool list 
+[root@RHEL8 ~]## stratis pool list 
 Name 
 Total Physical 
 pool01 190 GiB / 56.09 MiB / 189.95 GiB 
-root@RHEL8 ~]# stratis blockdev list pool01 
+root@RHEL8 ~]## stratis blockdev list pool01 
 Pool Name Device Node Physical Size Tier 
 pool01 
 /dev/sda 
@@ -3784,13 +3784,13 @@ pool01
 **<font style="color:rgb(0,0,0);">创建文件系统 </font>**
 
 ```shell
-[root@RHEL8 ~]# stratis filesystem create pool01 fs01 #创建文件系统， 
+[root@RHEL8 ~]## stratis filesystem create pool01 fs01 #创建文件系统， 
 ```
 
 <font style="color:rgb(0,0,0);">用 </font><font style="color:rgb(0,0,0);">pool01 </font><font style="color:rgb(0,0,0);">这个池来创建 </font>
 
 ```shell
-[root@RHEL8 ~]# stratis filesystem list 
+[root@RHEL8 ~]## stratis filesystem list 
 Pool Name 
 Name 
 Used 
@@ -3807,14 +3807,14 @@ pool01 fs01 546 MiB Sep 19 2020 00:02 /stratis/pool01/fs01 0e06bfdb2f7c4d0e8c255
 <font style="color:rgb(0,0,0);">系统默认为 </font><font style="color:rgb(0,0,0);">xfs </font>
 
 ```shell
-[root@RHEL8 ~]# mount /stratis/pool01/fs01 /data 
-[root@guochanghe ~]# df -TH 
+[root@RHEL8 ~]## mount /stratis/pool01/fs01 /data 
+[root@guochanghe ~]## df -TH 
 ```
 
 <font style="color:rgb(0,0,0);">文件系统 类型 容量 已用 可用 已用</font><font style="color:rgb(0,0,0);">% </font><font style="color:rgb(0,0,0);">挂载点 </font>
 
 ```shell
-[root@RHEL8 ~]# df -h 
+[root@RHEL8 ~]## df -h 
 Filesystem Size Used Avail Use% Mounted on 
 devtmpfs 866M 0 866M 0% /dev 
 tmpfs 896M 0 896M 0% /dev/shm 
@@ -3834,12 +3834,12 @@ a5d8705b9 1.0T 7.2G 1017G 1% /data [root@RHEL8 ~]#
 <font style="color:rgb(0,0,0);">在创建快照之前要先把挂载给卸载掉 </font>
 
 ```shell
-[root@RHEL8 ~]# stratis filesystem snapshot pool01 fs01 snap01 #创 
+[root@RHEL8 ~]## stratis filesystem snapshot pool01 fs01 snap01 #创 
 建快照 
 ```
 
 ```shell
-[root@RHEL8 ~]# stratis filesystem list pool01 
+[root@RHEL8 ~]## stratis filesystem list pool01 
 Pool Name Name Used Created Device UUID 
 pool01 fs01 546 MiB Sep 19 2020 00:02 /stratis/pool01/fs01 
 0e06bfdb2f7c4d0e8c2552873c3500f9 
@@ -3853,9 +3853,9 @@ snap01 546 MiB Sep 19 2020
 <font style="color:rgb(0,0,0);">接下来进行恢复快照 </font>
 
 ```shell
-[root@RHEL8 ~]# stratis filesystem destroy pool01 fs01 #删除原文件系 
+[root@RHEL8 ~]## stratis filesystem destroy pool01 fs01 #删除原文件系 
 统 
-[root@RHEL8 ~]# stratis filesystem list pool01 
+[root@RHEL8 ~]## stratis filesystem list pool01 
 Pool Name Name Used Created Device UUID 
 pool01 snap01 546 MiB Sep 19 2020 
 00:06 /stratis/pool01/snap01 3d181b5b95414b03bad283f711667968 
@@ -3864,13 +3864,13 @@ pool01 snap01 546 MiB Sep 19 2020
 <font style="color:rgb(0,0,0);">#</font><font style="color:rgb(0,0,0);">查看，可以发现 </font><font style="color:rgb(0,0,0);">fs01 </font><font style="color:rgb(0,0,0);">没了 </font>
 
 ```shell
-[root@RHEL8 ~]# stratis filesystem snapshot pool01 snap01 fs01 # 
+[root@RHEL8 ~]## stratis filesystem snapshot pool01 snap01 fs01 ## 
 ```
 
 <font style="color:rgb(0,0,0);">根据快照再创建出原文件系统 </font>
 
 ```shell
-[root@RHEL8 ~]# stratis filesystem list pool01 
+[root@RHEL8 ~]## stratis filesystem list pool01 
 Pool Name Name Used Created Device UUID 
 pool01 snap01 546 MiB Sep 19 2020 
 00:06 /stratis/pool01/snap01 3d181b5b95414b03bad283f711667968
@@ -3915,13 +3915,13 @@ pool01 fs01 546 MiB Sep 19 2020
 <font style="color:rgb(0,0,0);">首先安装 </font><font style="color:rgb(0,0,0);">vdo </font><font style="color:rgb(0,0,0);">的软件包 </font>
 
 ```shell
-[root@RHEL8 ~]# yum -y install vdo kmod-kvdo #RHEL8 系统中默认已安装 
+[root@RHEL8 ~]## yum -y install vdo kmod-kvdo #RHEL8 系统中默认已安装 
 ```
 
 <font style="color:rgb(0,0,0);">创建 vdo 卷</font>
 
 ```shell
-[root@RHEL8 ~]# vdo create --name=vdo0 --device /dev/sdc
+[root@RHEL8 ~]## vdo create --name=vdo0 --device /dev/sdc
 --vdoLogicalSize=20G #创建一个 20G 的 VDO 卷
 Creating VDO vdo0
 The VDO volume can address 76 GB in 38 data slabs, each 2 GB.
@@ -3930,15 +3930,15 @@ If a larger maximum size might be needed, use bigger slabs.
 Starting VDO vdo0
 Starting compression on VDO vdo0
 VDO instance 0 volume is ready at /dev/mapper/vdo0
-[root@RHEL8 ~]# vdo list 查看 vdo 卷
+[root@RHEL8 ~]## vdo list 查看 vdo 卷
 vdo0
-[root@RHEL8 ~]# vdostats --human-readable #用 vdostatus 来查看卷的状
+[root@RHEL8 ~]## vdostats --human-readable #用 vdostatus 来查看卷的状
 态
 Device Size Used Available Use% Space
 saving%
 /dev/mapper/vdo0 80.0G 4.1G 75.9G 5%
 N/A
-[root@RHEL8 ~]# mkfs.xfs -K /dev/mapper/vdo0 #将 vdo 格式化为 xfs 文件
+[root@RHEL8 ~]## mkfs.xfs -K /dev/mapper/vdo0 #将 vdo 格式化为 xfs 文件
 系统
 meta-data=/dev/mapper/vdo0 isize=512 agcount=4,
 agsize=1310720 blks
@@ -3964,11 +3964,11 @@ realtime =none extsz=4096 blocks=0, rtextents=0
 返回
 
 ```shell
-[root@RHEL8 ~]# udevadm settle #注册新的设备节点
-[root@RHEL8 /]# mkdir /vdofile
-[root@RHEL8 /]# mount /dev/mapper/vdo0 /vdofile/ #挂载在 file01 目录
+[root@RHEL8 ~]## udevadm settle #注册新的设备节点
+[root@RHEL8 /]## mkdir /vdofile
+[root@RHEL8 /]## mount /dev/mapper/vdo0 /vdofile/ #挂载在 file01 目录
 上
-[root@RHEL8 /]# df -h
+[root@RHEL8 /]## df -h
 Filesystem Size Used Avail Use% Mounted on
 devtmpfs 1.9G 0 1.9G 0% /dev
 tmpfs 1.9G 0 1.9G 0% /dev/shm
@@ -3989,37 +3989,37 @@ tmpfs 376M 4.0K 376M 1% /run/user/0
 <font style="color:rgb(0,0,0);">使用 </font><font style="color:rgb(0,0,0);">dd </font><font style="color:rgb(0,0,0);">创建一个文件 </font>
 
 ```shell
-[root@RHEL8 ~]# dd if=/dev/urandom of=/root/vdofile bs=1M count=2048
+[root@RHEL8 ~]## dd if=/dev/urandom of=/root/vdofile bs=1M count=2048
 或者使用 Xftp 上传一个文件
-[root@RHEL8 vdofile]# ls
+[root@RHEL8 vdofile]## ls
 rhel3-workstation-vda-10G-8.0-20190521.qcow2
-[root@RHEL8 vdofile]# ll -h
+[root@RHEL8 vdofile]## ll -h
 rhel3-workstation-vda-10G-8.0-20190521.qcow2
 -rw-r--r-- 1 root root 2.1G Sep 19 00:43
 rhel3-workstation-vda-10G-8.0-20190521.qcow2
-[root@RHEL8 vdofile]# vdostats --human-readable
+[root@RHEL8 vdofile]## vdostats --human-readable
 Device Size Used Available Use% Space
 saving%
 /dev/mapper/vdo0 80.0G 9.0G 71.0G 11%
 1%
 #上传第一个文件后的物理空间
-[root@RHEL8 vdofile]# df -Th /vdofile/
+[root@RHEL8 vdofile]## df -Th /vdofile/
 Filesystem Type Size Used Avail Use% Mounted on
 /dev/mapper/vdo0 xfs 20G 2.3G 18G 12% /vdofile
-[root@RHEL8 vdofile]# mv
+[root@RHEL8 vdofile]## mv
 rhel3-workstation-vda-10G-8.0-20190521.qcow2
 rhel-workstation-bak.qcow2
-[root@RHEL8 vdofile]# ls
+[root@RHEL8 vdofile]## ls
 rhel-workstation-bak.qcow2
 #改个名字，使用 Xftp 再进行上传一次相等的数据。
-[root@RHEL8 vdofile]# ls
+[root@RHEL8 vdofile]## ls
 rhel3-workstation-vda-10G-8.0-20190521.qcow2 rhel-workstation-ba
 k.qcow2
-[root@RHEL8 vdofile]# df -Th /vdofile/
+[root@RHEL8 vdofile]## df -Th /vdofile/
 Filesystem Type Size Used Avail Use% Mounted on
 /dev/mapper/vdo0 xfs 20G 4.3G 16G 22% /vdofile
 #可以看到，两个文件都占用了逻辑空间。
-[root@RHEL8 vdofile]# vdostats --human-readable
+[root@RHEL8 vdofile]## vdostats --human-readable
 Device Size Used Available Use% Space
 saving%
 /dev/mapper/vdo0 80.0G 9.0G 71.0G 11% 42%
@@ -4030,11 +4030,11 @@ vdo 的永久挂载，其实和普通的永久挂载不一样。需要在 defaul
 上 ,x-systemd.requires=vdo.service
 挂载选项 ,x-systemd.requires=vdo.service 意思为可延迟挂在文件系统，直到
 vdo.service 启动为止。
-[root@RHEL8 ~]# vim /etc/fstab
+[root@RHEL8 ~]## vim /etc/fstab
 /dev/mapper/vdo0 /vdofile xfs
 defaults,x-systemd.requires=vdo.service 0 0
-[root@RHEL8 ~]# mount -a
-[root@RHEL8 ~]# df -Th
+[root@RHEL8 ~]## mount -a
+[root@RHEL8 ~]## df -Th
 Filesystem Type Size Used Avail Use% Mounted on
 devtmpfs devtmpfs 1.9G 0 1.9G 0% /dev
 tmpfs tmpfs 1.9G 0 1.9G 0% /dev/shm
@@ -4048,10 +4048,10 @@ tmpfs tmpfs 376M 1.2M 375M 1% /run/user/42
 tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 /dev/mapper/vdo0 xfs 20G 6.4G 14G 32% /vdofile
 可以正常挂载，重启测试
-[root@RHEL8 ~]# reboot
+[root@RHEL8 ~]## reboot
 ```
 
-# NFS网络文件系统
+## NFS网络文件系统
 <font style="color:rgb(0,0,0);">概述： </font>
 
 <font style="color:rgb(0,0,0);">nfs</font><font style="color:rgb(0,0,0);">（</font><font style="color:rgb(0,0,0);">Network File System</font><font style="color:rgb(0,0,0);">）：网络文件共享系统，架构方式为</font><font style="color:rgb(0,0,0);">c/s</font><font style="color:rgb(0,0,0);">架构。 </font>
@@ -4152,15 +4152,15 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">1</font><font style="color:rgb(0,0,0);">）添加一块</font><font style="color:rgb(0,0,0);">1T</font><font style="color:rgb(0,0,0);">的硬盘 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# lsblk</font>![](../../images/1717656576490-8714fbb6-ae83-45e8-a491-fe5ef5c3cea0.png)
+<font style="color:rgb(0,0,0);">[root@node1 ~]## lsblk</font>![](../../images/1717656576490-8714fbb6-ae83-45e8-a491-fe5ef5c3cea0.png)
 
 <font style="color:rgb(0,0,0);">2</font><font style="color:rgb(0,0,0);">）给这个</font><font style="color:rgb(0,0,0);">1T</font><font style="color:rgb(0,0,0);">硬盘做</font><font style="color:rgb(0,0,0);">lvm </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# fdisk /dev/sdb</font>![](../../images/1717656590491-92fce0fa-93c1-4e75-9253-b6dcb768590f.png)
+<font style="color:rgb(0,0,0);">[root@node1 ~]## fdisk /dev/sdb</font>![](../../images/1717656590491-92fce0fa-93c1-4e75-9253-b6dcb768590f.png)
 
 <font style="color:rgb(0,0,0);">查看分区情况 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# lsblk </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## lsblk </font>
 
 <font style="color:rgb(0,0,0);">NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT </font>
 
@@ -4184,13 +4184,13 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">创建</font><font style="color:rgb(0,0,0);">pv</font><font style="color:rgb(0,0,0);">物理卷 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# pvcreate /dev/sdb1 </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## pvcreate /dev/sdb1 </font>
 
 <font style="color:rgb(0,0,0);">Physical volume "/dev/sdb1" </font><font style="color:rgb(243,50,50);">successfully </font><font style="color:rgb(0,0,0);">created. </font>
 
 <font style="color:rgb(0,0,0);">查看</font><font style="color:rgb(0,0,0);">pv </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# pvs </font><font style="color:rgb(0,0,0);">或</font><font style="color:rgb(0,0,0);">pvdisplay </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## pvs </font><font style="color:rgb(0,0,0);">或</font><font style="color:rgb(0,0,0);">pvdisplay </font>
 
 <font style="color:rgb(0,0,0);">PV VG Fmt Attr PSize PFree </font>
 
@@ -4200,13 +4200,13 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">创建</font><font style="color:rgb(0,0,0);">vg</font><font style="color:rgb(0,0,0);">卷组 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# vgcreate vg0 /dev/sdb1 </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## vgcreate vg0 /dev/sdb1 </font>
 
 <font style="color:rgb(0,0,0);">Volume group "vg0" </font><font style="color:rgb(243,50,50);">successfully </font><font style="color:rgb(0,0,0);">created </font>
 
 <font style="color:rgb(0,0,0);">查看</font><font style="color:rgb(0,0,0);">vg </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# vgs </font><font style="color:rgb(0,0,0);">或</font><font style="color:rgb(0,0,0);">vgdisplay </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## vgs </font><font style="color:rgb(0,0,0);">或</font><font style="color:rgb(0,0,0);">vgdisplay </font>
 
 <font style="color:rgb(0,0,0);">VG #PV #LV #SN Attr VSize VFree </font>
 
@@ -4216,13 +4216,13 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">创建</font><font style="color:rgb(0,0,0);">lv</font><font style="color:rgb(0,0,0);">逻辑卷 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# lvcreate ­n lv0 ­l 262143 vg0 </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## lvcreate ­n lv0 ­l 262143 vg0 </font>
 
 <font style="color:rgb(0,0,0);">Logical volume "lv0" </font><font style="color:rgb(243,50,50);">created</font><font style="color:rgb(0,0,0);">. </font>
 
 <font style="color:rgb(0,0,0);">查看</font><font style="color:rgb(0,0,0);">lv </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# lvs </font><font style="color:rgb(0,0,0);">或 </font><font style="color:rgb(0,0,0);">lvdisplay </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## lvs </font><font style="color:rgb(0,0,0);">或 </font><font style="color:rgb(0,0,0);">lvdisplay </font>
 
 <font style="color:rgb(0,0,0);">LV VG Attr LSize Pool Origin Data% Meta% Move Log Cpy%Sync </font>
 
@@ -4238,7 +4238,7 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">创建文件系统 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# mkfs.xfs /dev/vg0/lv0 </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## mkfs.xfs /dev/vg0/lv0 </font>
 
 <font style="color:rgb(0,0,0);">meta­data=/dev/vg0/lv0 isize=512 agcount=4, agsize=67108608 blks </font>
 
@@ -4262,7 +4262,7 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">查看是否创建了文件系统 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# blkid /dev/mapper/vg0­lv0 </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## blkid /dev/mapper/vg0­lv0 </font>
 
 <font style="color:rgb(0,0,0);">/dev/mapper/vg0­lv0: </font><font style="color:rgb(243,50,50);">UUID="b79a3fef­6c2b­4be6­a688­8da1a2e9a1df" </font>
 
@@ -4270,15 +4270,15 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">挂载（永久） </font>
 
-<font style="color:rgb(0,0,0);">[</font><font style="color:rgb(0,0,0);">root@node1 ~]# vim /etc/fstab </font>
+<font style="color:rgb(0,0,0);">[</font><font style="color:rgb(0,0,0);">root@node1 ~]## vim /etc/fstab </font>
 
 <font style="color:rgb(0,0,0);">UUID=b79a3fef­6c2b­4be6­a688­8da1a2e9a1df /nfs xfs defaults 0 0 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# mount ­-a </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## mount ­-a </font>
 
 <font style="color:rgb(0,0,0);">验证 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# df ­Th</font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## df ­Th</font>
 
 ![](../../images/1717656634536-c188cea2-2f05-463f-98df-4c6fd9c3b404.png)
 
@@ -4286,13 +4286,13 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">查看</font><font style="color:rgb(0,0,0);">nfs</font><font style="color:rgb(0,0,0);">服务是否安装 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# rpm ­qa | grep nfs </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## rpm ­qa | grep nfs </font>
 
 <font style="color:rgb(243,50,50);">nfs­utils­2.3.3­35.el8.x86_64 </font>
 
 <font style="color:rgb(243,50,50);">修改</font><font style="color:rgb(243,50,50);">nfs</font><font style="color:rgb(243,50,50);">配置文件 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# vim /etc/exports </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## vim /etc/exports </font>
 
 <font style="color:rgb(0,0,0);">/nfs 172.25.250.0/24(rw,sync,no_root_squash) </font>
 
@@ -4304,36 +4304,36 @@ tmpfs tmpfs 376M 4.0K 376M 1% /run/user/0
 
 <font style="color:rgb(0,0,0);">确定</font><font style="color:rgb(0,0,0);">nfs</font><font style="color:rgb(0,0,0);">服务是否开启（</font><font style="color:rgb(0,0,0);">nfs­utils</font><font style="color:rgb(0,0,0);">和</font><font style="color:rgb(0,0,0);">nfs­server</font><font style="color:rgb(0,0,0);">） </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# systemctl status nfs­utils.service </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## systemctl status nfs­utils.service </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# systemctl status nfs­server.service</font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## systemctl status nfs­server.service</font>
 
 <font style="color:rgb(0,0,0);">管理nfs导出文件系统</font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# exportfs ­arv </font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## exportfs ­arv </font>
 
 <font style="color:rgb(0,0,0);">exporting 172.25.250.0/24:/nfs </font>
 
 <font style="color:rgb(0,0,0);">防火墙放行策略 </font>
 
-<font style="color:rgb(0,0,0);">[root@node1 ~]# systemctl status firewalld.service</font>
+<font style="color:rgb(0,0,0);">[root@node1 ~]## systemctl status firewalld.service</font>
 
 ![](../../images/1717658239409-3ce56859-31be-4a48-85dc-260b82d24556.png)
 
 ```shell
-[root@liyedong /]# firewall-cmd --permanent --add-service=nfs
+[root@liyedong /]## firewall-cmd --permanent --add-service=nfs
 success
-[root@liyedong /]# firewall-cmd --permanent --add-service=rpc-bind 
+[root@liyedong /]## firewall-cmd --permanent --add-service=rpc-bind 
 success
-[root@liyedong /]# firewall-cmd --permanent --add-service=mountd 
+[root@liyedong /]## firewall-cmd --permanent --add-service=mountd 
 success
-[root@liyedong /]# firewall-cmd --reload 
+[root@liyedong /]## firewall-cmd --reload 
 success
 ```
 
 <font style="color:rgb(0,0,0);">客户端（</font><font style="color:rgb(0,0,0);">clinet</font><font style="color:rgb(0,0,0);">） </font>
 
-<font style="color:rgb(0,0,0);">[root@node2 ~]# showmount ­e 172.25.250.10 </font>
+<font style="color:rgb(0,0,0);">[root@node2 ~]## showmount ­e 172.25.250.10 </font>
 
 <font style="color:rgb(0,0,0);">Export list for 172.25.250.10: </font>
 
@@ -4341,12 +4341,12 @@ success
 
 <font style="color:rgb(0,0,0);">挂载（临时） </font>
 
-<font style="color:rgb(0,0,0);">[root@node2 ~]# mount ­t nfs 172.25.250.10:/nfs /root/nfs_client/ </font>
+<font style="color:rgb(0,0,0);">[root@node2 ~]## mount ­t nfs 172.25.250.10:/nfs /root/nfs_client/ </font>
 
 <font style="color:rgb(0,0,0);">永久： </font>
 
 ```shell
-[root@node2 ~]# vim /etc/fstab 
+[root@node2 ~]## vim /etc/fstab 
 172.25.250.10:/nfs /root/nfs_client nfs defaults,_netdev 0 0 
 ```
 
@@ -4356,7 +4356,7 @@ success
 
 <font style="color:rgb(0,0,0);">验证： </font>
 
-<font style="color:rgb(0,0,0);">[root@node2 ~]# df ­Th</font>
+<font style="color:rgb(0,0,0);">[root@node2 ~]## df ­Th</font>
 
 ![](../../images/1717658255413-3ddb75f9-7bbf-4f0d-85a0-7c5b1bf99c36.png)
 
@@ -4364,7 +4364,7 @@ success
 
 <font style="color:rgb(0,0,0);">在服务端上创建一个目录，客户端是否能同步</font>
 
-# <font style="color:rgb(34,34,34);">Apache httpd 服务</font>
+## <font style="color:rgb(34,34,34);">Apache httpd 服务</font>
 **<font style="color:rgb(0,0,0);">HTTP </font>****<font style="color:rgb(0,0,0);">协议 </font>**
 
 <font style="color:rgb(57,57,57);">HTTP: Hyper Text Transport Protocol </font><font style="color:rgb(57,57,57);">超文本传输协议，是互联网中最为常见的 </font>
@@ -4395,7 +4395,7 @@ success
 
 <font style="color:rgb(57,57,57);">查看安装了哪些目录： </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# rpm -ql httpd </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## rpm -ql httpd </font>
 
 <font style="color:rgb(57,57,57);">/etc/httpd [</font><font style="color:rgb(57,57,57);">配置文件的根目录</font><font style="color:rgb(57,57,57);">] </font>
 
@@ -4437,29 +4437,29 @@ success
 
 **<font style="color:rgb(57,57,57);">启动 </font>****<font style="color:rgb(57,57,57);">httpd </font>**
 
-<font style="color:rgb(223,64,42);"># systemctl start httpd </font>
+<font style="color:rgb(223,64,42);">## systemctl start httpd </font>
 
 <font style="color:rgb(57,57,57);">查看本地服务监听端口 </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# ss -tanl </font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## ss -tanl </font>
 
 <font style="color:rgb(57,57,57);">在</font><font style="color:rgb(57,57,57);">/var/www/html/</font><font style="color:rgb(57,57,57);">下创建 </font><font style="color:rgb(57,57,57);">index.html </font><font style="color:rgb(57,57,57);">文件 </font>
 
-<font style="color:rgb(57,57,57);"># cd /var/www/html/ </font>
+<font style="color:rgb(57,57,57);">## cd /var/www/html/ </font>
 
-<font style="color:rgb(57,57,57);"># vim index.html [</font><font style="color:rgb(57,57,57);">编辑网页文件或者将开发的网页文件放入该目录</font><font style="color:rgb(57,57,57);">] </font>
+<font style="color:rgb(57,57,57);">## vim index.html [</font><font style="color:rgb(57,57,57);">编辑网页文件或者将开发的网页文件放入该目录</font><font style="color:rgb(57,57,57);">] </font>
 
-<font style="color:rgb(57,57,57);"># systemctl restart httpd </font>
+<font style="color:rgb(57,57,57);">## systemctl restart httpd </font>
 
 <font style="color:rgb(57,57,57);">在本机通过 </font><font style="color:rgb(57,57,57);">http://127.0.0.1/index.html </font><font style="color:rgb(57,57,57);">访问网页 </font>
 
 <font style="color:rgb(57,57,57);">开启防火墙放行 </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# </font><font style="color:rgb(223,64,42);">firewall-cmd --add-service=http --permanent </font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## </font><font style="color:rgb(223,64,42);">firewall-cmd --add-service=http --permanent </font>
 
 <font style="color:rgb(57,57,57);">success </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# </font><font style="color:rgb(223,64,42);">firewall-cmd --reload </font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## </font><font style="color:rgb(223,64,42);">firewall-cmd --reload </font>
 
 <font style="color:rgb(57,57,57);">测试： </font>
 
@@ -4519,17 +4519,17 @@ success
 
 <font style="color:rgb(57,57,57);">更改站文件点根目录： </font>
 
-<font style="color:rgb(57,57,57);">[root@server /]# cd var/ </font>
+<font style="color:rgb(57,57,57);">[root@server /]## cd var/ </font>
 
-<font style="color:rgb(57,57,57);">[root@server var]# mkdir www2 </font>
+<font style="color:rgb(57,57,57);">[root@server var]## mkdir www2 </font>
 
-<font style="color:rgb(57,57,57);">[root@server www2]# </font><font style="color:rgb(223,64,42);">vim index.html </font>
+<font style="color:rgb(57,57,57);">[root@server www2]## </font><font style="color:rgb(223,64,42);">vim index.html </font>
 
 <font style="color:rgb(57,57,57);">i like ahdifu! </font>
 
-<font style="color:rgb(57,57,57);">root@server ~]# cd /etc/httpd/conf/ </font>
+<font style="color:rgb(57,57,57);">root@server ~]## cd /etc/httpd/conf/ </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf]# </font><font style="color:rgb(223,64,42);">vim httpd.conf </font>
+<font style="color:rgb(57,57,57);">[root@server conf]## </font><font style="color:rgb(223,64,42);">vim httpd.conf </font>
 
 <font style="color:rgb(57,57,57);">#DocumentRoot "/var/www/html" </font>
 
@@ -4543,7 +4543,7 @@ success
 
 **<font style="color:rgb(57,57,57);"></Directory> </font>**
 
-<font style="color:rgb(57,57,57);">[root@server ~]# systemctl restart httpd </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## systemctl restart httpd </font>
 
 <font style="color:rgb(57,57,57);">测试： </font>
 
@@ -4551,31 +4551,31 @@ success
 
 <font style="color:rgb(57,57,57);">修改 </font><font style="color:rgb(57,57,57);">selinux </font><font style="color:rgb(57,57,57);">标签： </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# ls -ldZ /var/www/html </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## ls -ldZ /var/www/html </font>
 
 <font style="color:rgb(57,57,57);">drwxr-xr-x. root root system_u:object_r:</font><font style="color:rgb(223,64,42);">httpd_sys_content_t</font><font style="color:rgb(57,57,57);">:s0 </font>
 
 <font style="color:rgb(57,57,57);">/var/www/html </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# ls -ldZ /var/www2 </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## ls -ldZ /var/www2 </font>
 
 <font style="color:rgb(57,57,57);">drwxr-xr-x. root root unconfined_u:object_r:</font><font style="color:rgb(223,64,42);">var_t</font><font style="color:rgb(57,57,57);">:s0 /var/www2 </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# semanage fcontext -a -t </font><font style="color:rgb(223,64,42);">httpd_sys_content_t </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## semanage fcontext -a -t </font><font style="color:rgb(223,64,42);">httpd_sys_content_t </font>
 
 <font style="color:rgb(57,57,57);">'/var/www2(/.*)?' </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# restorecon -Rv /var/www2 </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## restorecon -Rv /var/www2 </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# ls -ldZ /var/www2 </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## ls -ldZ /var/www2 </font>
 
 <font style="color:rgb(57,57,57);">防火墙放行： </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# </font><font style="color:rgb(223,64,42);">firewall-cmd --add-service=http --permanent </font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## </font><font style="color:rgb(223,64,42);">firewall-cmd --add-service=http --permanent </font>
 
 <font style="color:rgb(57,57,57);">success </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# </font><font style="color:rgb(223,64,42);">firewall-cmd --reload</font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## </font><font style="color:rgb(223,64,42);">firewall-cmd --reload</font>
 
 <font style="color:rgb(57,57,57);">测试： </font>
 
@@ -4595,7 +4595,7 @@ success
 
 <font style="color:rgb(57,57,57);">虚拟主机配置示例： </font>
 
-<font style="color:rgb(57,57,57);"># vim /etc/httpd/conf.d/ahdifu.conf </font>
+<font style="color:rgb(57,57,57);">## vim /etc/httpd/conf.d/ahdifu.conf </font>
 
 <font style="color:rgb(223,64,42);">listen 8080 </font><font style="color:rgb(57,57,57);">[</font><font style="color:rgb(57,57,57);">非 </font><font style="color:rgb(57,57,57);">80 </font><font style="color:rgb(57,57,57);">端口，必须 </font><font style="color:rgb(57,57,57);">listen] </font>
 
@@ -4617,17 +4617,17 @@ success
 
 <font style="color:rgb(57,57,57);">防火墙、</font><font style="color:rgb(57,57,57);">selinux </font><font style="color:rgb(57,57,57);">放行 </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# semanage port -l | grep http </font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## semanage port -l | grep http </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# firewall-cmd --list-all </font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## firewall-cmd --list-all </font>
 
-<font style="color:rgb(223,64,42);"># semanage port -a -t http_port_t -p tcp 8080 </font>
+<font style="color:rgb(223,64,42);">## semanage port -a -t http_port_t -p tcp 8080 </font>
 
 <font style="color:rgb(223,64,42);">#semanage port -m -t http_port_t -p tcp 8080</font>
 
-<font style="color:rgb(223,64,42);"># firewall-cmd --permanent --add-port=8080/tcp </font>
+<font style="color:rgb(223,64,42);">## firewall-cmd --permanent --add-port=8080/tcp </font>
 
-<font style="color:rgb(223,64,42);"># firewall-cmd --reload </font>
+<font style="color:rgb(223,64,42);">## firewall-cmd --reload </font>
 
 <font style="color:rgb(57,57,57);">重启服务 </font>
 
@@ -4635,7 +4635,7 @@ success
 
 <font style="color:rgb(57,57,57);">查看本机监听的端口 </font>
 
-<font style="color:rgb(57,57,57);">[root@server conf.d]# ss -tanl </font>
+<font style="color:rgb(57,57,57);">[root@server conf.d]## ss -tanl </font>
 
 <font style="color:rgb(57,57,57);">State Recv-Q Send-Q Local Address:Port Peer Address:Port </font>
 
@@ -4735,11 +4735,11 @@ success
 
 <font style="color:rgb(57,57,57);">安装 </font><font style="color:rgb(57,57,57);">mod_ssl </font>
 
-<font style="color:rgb(57,57,57);"># yum -y install mod_ssl </font>
+<font style="color:rgb(57,57,57);">## yum -y install mod_ssl </font>
 
 <font style="color:rgb(57,57,57);">首先需要下载 </font><font style="color:rgb(57,57,57);">server </font><font style="color:rgb(57,57,57);">的证书、</font><font style="color:rgb(57,57,57);">server </font><font style="color:rgb(57,57,57);">的公钥、</font><font style="color:rgb(57,57,57);">CA </font><font style="color:rgb(57,57,57);">的证书 </font>
 
-<font style="color:rgb(57,57,57);"># </font><font style="color:rgb(223,64,42);">vim /etc/httpd/conf.d/ssl.conf </font>
+<font style="color:rgb(57,57,57);">## </font><font style="color:rgb(223,64,42);">vim /etc/httpd/conf.d/ssl.conf </font>
 
 <font style="color:rgb(57,57,57);">DocumentRoot "/var/www/html" </font>
 
@@ -4753,11 +4753,11 @@ success
 
 <font style="color:rgb(57,57,57);">防火墙放行： </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# firewall-cmd --permanent --add-service=https </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## firewall-cmd --permanent --add-service=https </font>
 
 <font style="color:rgb(57,57,57);">success </font>
 
-<font style="color:rgb(57,57,57);">[root@server ~]# firewall-cmd --reload </font>
+<font style="color:rgb(57,57,57);">[root@server ~]## firewall-cmd --reload </font>
 
 <font style="color:rgb(57,57,57);">success</font>
 
@@ -4773,7 +4773,7 @@ success
 
 **<font style="color:rgb(57,57,57);">2.</font>****<font style="color:rgb(57,57,57);">配置 </font>****<font style="color:rgb(57,57,57);">httpd </font>****<font style="color:rgb(57,57,57);">虚拟主机 </font>**
 
-<font style="color:rgb(223,64,42);"># vim /etc/httpd/conf.d/blog.conf </font>
+<font style="color:rgb(223,64,42);">## vim /etc/httpd/conf.d/blog.conf </font>
 
 <font style="color:rgb(57,57,57);"><Virtualhost *:80> </font>
 
@@ -4793,33 +4793,33 @@ success
 
 **<font style="color:rgb(57,57,57);">3.</font>****<font style="color:rgb(57,57,57);">创建文档根目录 </font>**
 
-<font style="color:rgb(223,64,42);"># mkdir /blog </font>
+<font style="color:rgb(223,64,42);">## mkdir /blog </font>
 
 <font style="color:rgb(223,64,42);">上传 </font><font style="color:rgb(223,64,42);">wordpress </font>
 
 <font style="color:rgb(223,64,42);">#rz </font>
 
-<font style="color:rgb(223,64,42);"># tar -xzvf wordpress-4.5.2-zh_CN.tar.gz </font>
+<font style="color:rgb(223,64,42);">## tar -xzvf wordpress-4.5.2-zh_CN.tar.gz </font>
 
-<font style="color:rgb(223,64,42);"># cp -a wordpress/* /blog/ </font>
+<font style="color:rgb(223,64,42);">## cp -a wordpress/* /blog/ </font>
 
-<font style="color:rgb(223,64,42);"># setfacl -R -m u:apache:rwx /blog/ </font>
+<font style="color:rgb(223,64,42);">## setfacl -R -m u:apache:rwx /blog/ </font>
 
 **<font style="color:rgb(57,57,57);">4.</font>****<font style="color:rgb(57,57,57);">调整 </font>****<font style="color:rgb(57,57,57);">selinux </font>****<font style="color:rgb(57,57,57);">和防火墙，启动服务 </font>**
 
-<font style="color:rgb(223,64,42);"># setenforce 0 </font>
+<font style="color:rgb(223,64,42);">## setenforce 0 </font>
 
-<font style="color:rgb(223,64,42);"># firewall-cmd --add-service=http --permanent </font>
+<font style="color:rgb(223,64,42);">## firewall-cmd --add-service=http --permanent </font>
 
-<font style="color:rgb(223,64,42);"># firewall-cmd --reload </font>
+<font style="color:rgb(223,64,42);">## firewall-cmd --reload </font>
 
-<font style="color:rgb(223,64,42);"># systemctl restart httpd </font>
+<font style="color:rgb(223,64,42);">## systemctl restart httpd </font>
 
 **<font style="color:rgb(57,57,57);">5.</font>****<font style="color:rgb(57,57,57);">配置 </font>****<font style="color:rgb(57,57,57);">mariadb </font>**
 
-<font style="color:rgb(223,64,42);"># systemctl restart mariadb </font>
+<font style="color:rgb(223,64,42);">## systemctl restart mariadb </font>
 
-<font style="color:rgb(223,64,42);"># mysql </font>
+<font style="color:rgb(223,64,42);">## mysql </font>
 
 <font style="color:rgb(223,64,42);">>create database blog; </font>
 
@@ -4839,7 +4839,7 @@ success
 
 ![](../../images/1717662859623-0d51c044-bd82-4c34-9709-65c2723abae4.png)
 
-# **<font style="color:rgb(0,0,0);">cron周期性计划任务 </font>**
+## **<font style="color:rgb(0,0,0);">cron周期性计划任务 </font>**
 <font style="color:rgb(0,0,0);">cron周期性计划任务用来定期执行程序，目前最主要的用途是定期备份数据 </font>
 
 <font style="color:rgb(0,0,0);">软件包名：cronie、crontabs </font>
@@ -4850,11 +4850,11 @@ success
 
 ```shell
 #软件包默认系统自动安装
-[root@localhost ~]# rpm -q cronie
+[root@localhost ~]## rpm -q cronie
 cronie-1.4.11-19.el7.x86_64
 
 #服务默认随机自启
-[root@localhost ~]# systemctl status crond
+[root@localhost ~]## systemctl status crond
 #cron定义时间格式
 * * * * * 执行的命令
  分 时 日 月 周
@@ -4907,31 +4907,31 @@ cronie-1.4.11-19.el7.x86_64
 
 ```shell
  #每一分钟执行一个任务
- [root@localhost ~]# crontab -e
+ [root@localhost ~]## crontab -e
  */1 * * * * date >> /opt/date.txt
 
- [root@localhost ~]# cat /opt/date.txt 
+ [root@localhost ~]## cat /opt/date.txt 
  2021年 05月 23日 星期日 17:30:02 CST
 
  #每周6凌晨3：30分备份/var/log/日志文件
- [root@localhost ~]# crontab -e
+ [root@localhost ~]## crontab -e
  30 3 * * 6 tar -czf `date +%F`-log.tar.gz /var/log/*.log
 
  #查看计划任务
- [root@localhost ~]# crontab -l
+ [root@localhost ~]## crontab -l
  30 3 * * 6 tar -czf `date +%F`-log.tar.gz /var/log/*.log
 
  #清除计划任务
- [root@localhost ~]# crontab -r
- [root@localhost ~]# crontab -l
+ [root@localhost ~]## crontab -r
+ [root@localhost ~]## crontab -l
  no crontab for root
 ```
 
-# NTP
+## NTP
 ```shell
-[root@liyedong ~]# systemctl is-enabled chronyd
+[root@liyedong ~]## systemctl is-enabled chronyd
 enabled
-[root@liyedong ~]# systemctl status chronyd
+[root@liyedong ~]## systemctl status chronyd
 vim /etc/chrony.conf   #配置客户端
 #pool 2.rhel.pool.ntp.org iburst
 server ntp1.aliyun.com iburst
@@ -4940,13 +4940,13 @@ systemctl restart chronyd
 #配置ntp服务端
 firewall-cmd --add-service=ntp
 vim /etc/chrony.conf 
-# Allow NTP client access from local network.
+## Allow NTP client access from local network.
 #allow 192.168.0.0/16
 allow *.*.*.*
 systemctl restart chronyd
 ```
 
-# 配置系统调优-tuned配置集
+## 配置系统调优-tuned配置集
 ![](../../images/1718030583086-e5e25c73-318c-45e7-96f7-b6ea24cf4b40.png)
 
 ```shell
@@ -4956,7 +4956,7 @@ tuned-adm profile virtual-guest #根据建议设置
 tuned-adm active #查看存活配置
 ```
 
-# **<font style="color:rgb(0,0,0);">SSH 介绍</font>**
+## **<font style="color:rgb(0,0,0);">SSH 介绍</font>**
 **<font style="color:rgb(57,57,57);">SSH(Secure SHell) </font>**<font style="color:rgb(57,57,57);">:</font><font style="color:rgb(57,57,57);">是一个提供数据通信安全、远程登录、远程指令执行等功能的安 </font>
 
 <font style="color:rgb(57,57,57);">全网络协议。 </font>
@@ -5095,7 +5095,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">默认已安装 openssh（没安装 可以使用 YUM 进行安装） </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# rpm -qa | grep openssh </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## rpm -qa | grep openssh </font>
 
 **<font style="color:rgb(223,64,42);">openssh</font>**<font style="color:rgb(57,57,57);">-7.4p1-16.el7.x86_64 </font>
 
@@ -5105,7 +5105,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">OPENSSH </font><font style="color:rgb(57,57,57);">同时提供了客户端、服务端和密钥生成工具 </font>
 
-## **<font style="color:rgb(0,0,0);">配置文件： /etc/ssh/ </font>**
+### **<font style="color:rgb(0,0,0);">配置文件： /etc/ssh/ </font>**
 <font style="color:rgb(57,57,57);">客户端配置文件：</font><font style="color:rgb(57,57,57);">ssh_config </font>
 
 <font style="color:rgb(57,57,57);">服务端配置文件：</font><font style="color:rgb(57,57,57);">sshd_config </font>
@@ -5120,7 +5120,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(223,64,42);">#systemctl restart sshd </font>
 
-## **<font style="color:rgb(0,0,0);">SSH 安全配置推荐 </font>**
+### **<font style="color:rgb(0,0,0);">SSH 安全配置推荐 </font>**
 <font style="color:rgb(57,57,57);">1.</font><font style="color:rgb(57,57,57);">修改默认端口 </font>
 
 <font style="color:rgb(57,57,57);">2.</font><font style="color:rgb(57,57,57);">修改监听的 </font><font style="color:rgb(57,57,57);">IP </font>
@@ -5143,9 +5143,9 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">可以临时关闭 </font><font style="color:rgb(57,57,57);">selinux </font><font style="color:rgb(57,57,57);">和 </font><font style="color:rgb(57,57,57);">firewalld</font><font style="color:rgb(57,57,57);">（后续课程中会介绍 </font><font style="color:rgb(57,57,57);">selinux </font><font style="color:rgb(57,57,57);">和 </font><font style="color:rgb(57,57,57);">firewalld </font><font style="color:rgb(57,57,57);">技术） </font>
 
-<font style="color:rgb(57,57,57);">[root@difu1909 ~]# setenforce 0</font>
+<font style="color:rgb(57,57,57);">[root@difu1909 ~]## setenforce 0</font>
 
-<font style="color:rgb(57,57,57);">[root@difu1909 ~]# systemctl stop firewalld.service</font>
+<font style="color:rgb(57,57,57);">[root@difu1909 ~]## systemctl stop firewalld.service</font>
 
 **<font style="color:rgb(0,0,0);">OPENSSH </font>****<font style="color:rgb(0,0,0);">相关操作 </font>**
 
@@ -5157,7 +5157,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">ssh </font><font style="color:rgb(57,57,57);">连接如果没有指定用户则以当前系统登录的用户作为远程登录的用户名 </font>
 
-## **<font style="color:rgb(0,0,0);">常用选项： </font>**
+### **<font style="color:rgb(0,0,0);">常用选项： </font>**
 <font style="color:rgb(223,64,42);">-l USER </font><font style="color:rgb(57,57,57);">指定远程登录用户 </font>
 
 <font style="color:rgb(223,64,42);">-p PORT </font><font style="color:rgb(57,57,57);">指定 </font><font style="color:rgb(57,57,57);">ssh </font><font style="color:rgb(57,57,57);">端口，默认端口是 </font><font style="color:rgb(57,57,57);">22 </font>
@@ -5178,11 +5178,11 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">密钥对创建：</font><font style="color:rgb(57,57,57);">#ssh-keygen </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# ssh-keygen </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## ssh-keygen </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# cd .ssh/ </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## cd .ssh/ </font>
 
-<font style="color:rgb(57,57,57);">[root@myth .ssh]# ls </font>
+<font style="color:rgb(57,57,57);">[root@myth .ssh]## ls </font>
 
 **<font style="color:rgb(223,64,42);">id_rsa id_rsa.pub </font>**<font style="color:rgb(57,57,57);">known_hosts </font>
 
@@ -5196,7 +5196,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">-P </font><font style="color:rgb(57,57,57);">指定密钥密码 </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# ssh-keygen </font><font style="color:rgb(223,64,42);">-t </font><font style="color:rgb(57,57,57);">rsa </font><font style="color:rgb(223,64,42);">-f </font><font style="color:rgb(57,57,57);">/root/myth_key/myth_rsa_key </font><font style="color:rgb(223,64,42);">-P </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## ssh-keygen </font><font style="color:rgb(223,64,42);">-t </font><font style="color:rgb(57,57,57);">rsa </font><font style="color:rgb(223,64,42);">-f </font><font style="color:rgb(57,57,57);">/root/myth_key/myth_rsa_key </font><font style="color:rgb(223,64,42);">-P </font>
 
 <font style="color:rgb(57,57,57);">ahdifu.com </font><font style="color:rgb(223,64,42);">-b </font><font style="color:rgb(57,57,57);">4096 </font>
 
@@ -5234,9 +5234,9 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">+-----------------+ </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# cd myth_key/ </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## cd myth_key/ </font>
 
-<font style="color:rgb(57,57,57);">[root@myth myth_key]# ls </font>
+<font style="color:rgb(57,57,57);">[root@myth myth_key]## ls </font>
 
 <font style="color:rgb(223,64,42);">myth_rsa_key myth_rsa_key.pub </font>
 
@@ -5248,7 +5248,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">-i </font><font style="color:rgb(57,57,57);">指定本地公钥文件 </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# </font>**<font style="color:rgb(57,57,57);">ssh-copy-id -i /root/myth_key/myth_rsa_key.pub </font>**
+<font style="color:rgb(57,57,57);">[root@myth ~]## </font>**<font style="color:rgb(57,57,57);">ssh-copy-id -i /root/myth_key/myth_rsa_key.pub </font>**
 
 **<font style="color:rgb(57,57,57);">root@192.168.200.114 </font>**
 
@@ -5268,19 +5268,19 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">and check to make sure that only the key(s) you wanted were added. </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## </font>
 
-<font style="color:rgb(57,57,57);">[root@difu1909 ~]# cd .ssh/ </font>
+<font style="color:rgb(57,57,57);">[root@difu1909 ~]## cd .ssh/ </font>
 
-<font style="color:rgb(57,57,57);">[root@difu1909 .ssh]# ls </font>
+<font style="color:rgb(57,57,57);">[root@difu1909 .ssh]## ls </font>
 
 **<font style="color:rgb(223,64,42);">authorized_keys </font>**<font style="color:rgb(57,57,57);">id_rsa id_rsa.pub known_hosts </font>
 
-<font style="color:rgb(57,57,57);">[root@difu1909 .ssh]# vim </font><font style="color:rgb(223,64,42);">authorized_keys</font>
+<font style="color:rgb(57,57,57);">[root@difu1909 .ssh]## vim </font><font style="color:rgb(223,64,42);">authorized_keys</font>
 
 ![](../../images/1717731735217-2419f6aa-5ae3-428e-a569-200dadd981d5.png)
 
-## **<font style="color:rgb(0,0,0);">SCP:基于 SSH 的跨主机复制 </font>**
+### **<font style="color:rgb(0,0,0);">SCP:基于 SSH 的跨主机复制 </font>**
 <font style="color:rgb(57,57,57);">将本地文件推送给远程主机 </font>
 
 <font style="color:rgb(223,64,42);">#scp [options] /path/file [user@]host:/path/file </font>
@@ -5299,13 +5299,13 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">-q </font><font style="color:rgb(57,57,57);">静默传送 </font>
 
-<font style="color:rgb(57,57,57);">推文件：</font><font style="color:rgb(223,64,42);"># scp -r </font>
+<font style="color:rgb(57,57,57);">推文件：</font><font style="color:rgb(223,64,42);">## scp -r </font>
 
 <font style="color:rgb(223,64,42);">-p /etc/ root@192.168.10.20:/tmp </font>
 
-<font style="color:rgb(57,57,57);">拉文件：</font><font style="color:rgb(223,64,42);"># scp root@192.168.10.20:/etc/passwd /tmp/</font>
+<font style="color:rgb(57,57,57);">拉文件：</font><font style="color:rgb(223,64,42);">## scp root@192.168.10.20:/etc/passwd /tmp/</font>
 
-# **<font style="color:rgb(0,0,0);">SELinux </font>****<font style="color:rgb(0,0,0);">介绍 </font>**
+## **<font style="color:rgb(0,0,0);">SELinux </font>****<font style="color:rgb(0,0,0);">介绍 </font>**
 **<font style="color:rgb(57,57,57);">系统中两种访问控制机制： </font>**
 
 <font style="color:rgb(57,57,57);">DAC: </font><font style="color:rgb(57,57,57);">自主访问控制，即传统的用户权限控制 </font>
@@ -5370,11 +5370,11 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">在</font><font style="color:rgb(57,57,57);">/var/www/html/</font><font style="color:rgb(57,57,57);">下创建 </font><font style="color:rgb(57,57,57);">index.html </font><font style="color:rgb(57,57,57);">文件 </font>
 
-<font style="color:rgb(57,57,57);"># cd /var/www/html/ </font>
+<font style="color:rgb(57,57,57);">## cd /var/www/html/ </font>
 
-<font style="color:rgb(57,57,57);"># vim index.html [</font><font style="color:rgb(57,57,57);">编辑网页文件</font><font style="color:rgb(57,57,57);">] </font>
+<font style="color:rgb(57,57,57);">## vim index.html [</font><font style="color:rgb(57,57,57);">编辑网页文件</font><font style="color:rgb(57,57,57);">] </font>
 
-<font style="color:rgb(57,57,57);"># systemctl restart httpd </font>
+<font style="color:rgb(57,57,57);">## systemctl restart httpd </font>
 
 <font style="color:rgb(57,57,57);">在本机通过 </font><font style="color:rgb(0,56,132);">http://127.0.0.1/index.html </font><font style="color:rgb(57,57,57);">访问网页 </font>
 
@@ -5382,7 +5382,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">修改 </font><font style="color:rgb(57,57,57);">httpd.conf </font><font style="color:rgb(57,57,57);">文件 </font>
 
-<font style="color:rgb(57,57,57);">[root@myth html]# vim /etc/httpd/conf/httpd.conf </font>
+<font style="color:rgb(57,57,57);">[root@myth html]## vim /etc/httpd/conf/httpd.conf </font>
 
 <font style="color:rgb(223,64,42);">#</font><font style="color:rgb(57,57,57);">DocumentRoot "/var/www/html" </font>
 
@@ -5402,13 +5402,13 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">再次访问 </font><font style="color:rgb(0,56,132);">http://127.0.0.1/index.html </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# ls -Z /var/www/html/index.html </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## ls -Z /var/www/html/index.html </font>
 
 <font style="color:rgb(57,57,57);">-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 </font>
 
 <font style="color:rgb(57,57,57);">/var/www/html/index.html </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# ls -Z /test/index.html </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## ls -Z /test/index.html </font>
 
 <font style="color:rgb(57,57,57);">-rw-r--r--. root root unconfined_u:object_r:default_t:s0 /test/index.html </font>
 
@@ -5438,7 +5438,7 @@ tuned-adm active #查看存活配置
 
 **<font style="color:rgb(57,57,57);">安全上下文修改： </font>**
 
-<font style="color:rgb(223,64,42);"># semanage fcontext [</font><font style="color:rgb(223,64,42);">修改默认标签，修改后无法还原</font><font style="color:rgb(223,64,42);">] </font>
+<font style="color:rgb(223,64,42);">## semanage fcontext [</font><font style="color:rgb(223,64,42);">修改默认标签，修改后无法还原</font><font style="color:rgb(223,64,42);">] </font>
 
 <font style="color:rgb(223,64,42);">选项</font>
 
@@ -5446,13 +5446,13 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(223,64,42);">-t </font><font style="color:rgb(223,64,42);">修改类型 </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# </font><font style="color:rgb(223,64,42);">semanage fcontext -a -t httpd_sys_content_t '/test(/.*)?' </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## </font><font style="color:rgb(223,64,42);">semanage fcontext -a -t httpd_sys_content_t '/test(/.*)?' </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# ls -Z /test/index.html </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## ls -Z /test/index.html </font>
 
 <font style="color:rgb(57,57,57);">-rw-r--r--. root root unconfined_u:object_r:default_t:s0 /test/index.html </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# </font><font style="color:rgb(223,64,42);">restorecon -Rv /test/* [</font><font style="color:rgb(223,64,42);">刷新下默认值</font><font style="color:rgb(223,64,42);">] </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## </font><font style="color:rgb(223,64,42);">restorecon -Rv /test/* [</font><font style="color:rgb(223,64,42);">刷新下默认值</font><font style="color:rgb(223,64,42);">] </font>
 
 <font style="color:rgb(57,57,57);">restorecon reset /test/index.html context </font>
 
@@ -5460,7 +5460,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">ent_t:s0 </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# ls -Z /test/index.html </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## ls -Z /test/index.html </font>
 
 <font style="color:rgb(57,57,57);">-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 </font>
 
@@ -5478,9 +5478,9 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(223,64,42);">-u </font><font style="color:rgb(223,64,42);">修改用户 </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# </font><font style="color:rgb(223,64,42);">chcon -t httpd_sys_content_t /test/index.html </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## </font><font style="color:rgb(223,64,42);">chcon -t httpd_sys_content_t /test/index.html </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# ls -Z /test/index.html </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## ls -Z /test/index.html </font>
 
 <font style="color:rgb(57,57,57);">-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 </font>
 
@@ -5490,7 +5490,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(223,64,42);">#semanage port -l </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# semanage port -l | grep ssh </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## semanage port -l | grep ssh </font>
 
 **<font style="color:rgb(223,64,42);">ssh</font>**<font style="color:rgb(57,57,57);">_port_t tcp </font><font style="color:rgb(223,64,42);">22 </font>
 
@@ -5498,7 +5498,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(0,0,0);">首选修改 </font><font style="color:rgb(0,0,0);">sshd_conf </font><font style="color:rgb(0,0,0);">配置文件，把 </font><font style="color:rgb(0,0,0);">SSH </font><font style="color:rgb(0,0,0);">的访问端口修改为 </font><font style="color:rgb(0,0,0);">2202 </font>
 
-<font style="color:rgb(57,57,57);">[root@myth ~]# vim /etc/ssh/sshd_config </font>
+<font style="color:rgb(57,57,57);">[root@myth ~]## vim /etc/ssh/sshd_config </font>
 
 <font style="color:rgb(57,57,57);">............... </font>
 
@@ -5508,7 +5508,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(0,0,0);">重启 </font><font style="color:rgb(0,0,0);">sshd </font><font style="color:rgb(0,0,0);">服务： </font>
 
-<font style="color:rgb(0,0,0);">[root@difu1909 ~]# systemctl restart sshd </font>
+<font style="color:rgb(0,0,0);">[root@difu1909 ~]## systemctl restart sshd </font>
 
 <font style="color:rgb(0,0,0);">Job for sshd.service failed because the control process exited with </font>
 
@@ -5516,25 +5516,25 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(0,0,0);">for details.</font>
 
-<font style="color:rgb(0,0,0);">[root@difu1909 ~]# </font><font style="color:rgb(223,64,42);">semanage port -a -t ssh_port_t -p tcp 2202 </font>
+<font style="color:rgb(0,0,0);">[root@difu1909 ~]## </font><font style="color:rgb(223,64,42);">semanage port -a -t ssh_port_t -p tcp 2202 </font>
 
-<font style="color:rgb(0,0,0);">[root@difu1909 ~]# semanage port --list | grep ssh </font>
+<font style="color:rgb(0,0,0);">[root@difu1909 ~]## semanage port --list | grep ssh </font>
 
 <font style="color:rgb(0,0,0);">ssh_port_t tcp 2202, 22 </font>
 
-<font style="color:rgb(0,0,0);">[root@difu1909 ~]# </font>
+<font style="color:rgb(0,0,0);">[root@difu1909 ~]## </font>
 
-<font style="color:rgb(0,0,0);">[root@difu1909 ~]# systemctl restart sshd </font>
+<font style="color:rgb(0,0,0);">[root@difu1909 ~]## systemctl restart sshd </font>
 
-<font style="color:rgb(0,0,0);">[root@difu1909 ~]# semanage port </font><font style="color:rgb(223,64,42);">-d </font><font style="color:rgb(0,0,0);">-t ssh_port_t -p tcp 2202 </font>
+<font style="color:rgb(0,0,0);">[root@difu1909 ~]## semanage port </font><font style="color:rgb(223,64,42);">-d </font><font style="color:rgb(0,0,0);">-t ssh_port_t -p tcp 2202 </font>
 
 <font style="color:rgb(0,0,0);">-d </font><font style="color:rgb(0,0,0);">删除 </font>
 
-<font style="color:rgb(0,0,0);">[root@difu1909 ~]# semanage port --list | grep ssh </font>
+<font style="color:rgb(0,0,0);">[root@difu1909 ~]## semanage port --list | grep ssh </font>
 
 <font style="color:rgb(0,0,0);">ssh_port_t tcp 22</font>
 
-# <font style="color:rgb(34,34,34);">防火墙管理配置 </font>
+## <font style="color:rgb(34,34,34);">防火墙管理配置 </font>
 <font style="color:rgb(0,0,0);">iptables </font><font style="color:rgb(0,0,0);">通过控制端口来控制服务，而 </font><font style="color:rgb(0,0,0);">firewalld </font><font style="color:rgb(0,0,0);">则是通过控制协议来控制端口 </font>
 
 **<font style="color:rgb(0,0,0);">Linux </font>****<font style="color:rgb(0,0,0);">防火墙介绍 </font>**
@@ -5557,7 +5557,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">查看 </font><font style="color:rgb(57,57,57);">firewalld </font><font style="color:rgb(57,57,57);">服务状态：默认情况 </font><font style="color:rgb(57,57,57);">firewalld </font><font style="color:rgb(57,57,57);">是开机自启动的 </font>
 
-<font style="color:rgb(223,64,42);"># systemctl status firewalld.service </font>
+<font style="color:rgb(223,64,42);">## systemctl status firewalld.service </font>
 
 **<font style="color:rgb(0,0,0);">firewalld </font>****<font style="color:rgb(0,0,0);">管理配置方法 </font>**
 
@@ -5591,7 +5591,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">zone </font>
 
-<font style="color:rgb(223,64,42);"># firewall-cmd --get-zones </font><font style="color:rgb(223,64,42);">查看有哪些区域 </font>
+<font style="color:rgb(223,64,42);">## firewall-cmd --get-zones </font><font style="color:rgb(223,64,42);">查看有哪些区域 </font>
 
 <font style="color:rgb(223,64,42);">--get-default-zone </font><font style="color:rgb(223,64,42);">查看当前默认区域 </font>
 
@@ -5645,7 +5645,7 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(223,64,42);">添加富规则： </font>
 
-<font style="color:rgb(223,64,42);"># firewall-cmd --add-rich-rule='rule [source] [destination] </font>
+<font style="color:rgb(223,64,42);">## firewall-cmd --add-rich-rule='rule [source] [destination] </font>
 
 <font style="color:rgb(223,64,42);">service|port|protocol|forward-port| [accept|drop|reject]' </font>
 
@@ -5679,8 +5679,8 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(57,57,57);">--富规则优先匹配，自上而下匹配</font>
 
-# <font style="color:rgb(57,57,57);">Podman容器</font>
-## **<font style="color:rgb(0,0,0);">容器的概念 </font>**
+## <font style="color:rgb(57,57,57);">Podman容器</font>
+### **<font style="color:rgb(0,0,0);">容器的概念 </font>**
 <font style="color:rgb(0,0,0);">容器是由一个或多个与系统其余部分隔离的进程组成的集合。我们可以理解为</font><font style="color:rgb(0,0,0);">“</font><font style="color:rgb(0,0,0);">集装箱</font><font style="color:rgb(0,0,0);">”</font><font style="color:rgb(0,0,0);">。 </font>
 
 <font style="color:rgb(0,0,0);">集装箱是打包和装运货物的标准方式。它作为一个箱子进行标记、装载、卸载，以及从一个位置运输到另一个位置。该容器的内容与其 </font>
@@ -5786,13 +5786,13 @@ tuned-adm active #查看存活配置
 <font style="color:rgb(0,0,0);">安装</font><font style="color:rgb(0,0,0);">container-tools</font><font style="color:rgb(0,0,0);">模块 </font>
 
 ```shell
-[root@example ~]# dnf install container-tools -y 
+[root@example ~]## dnf install container-tools -y 
 ```
 
 <font style="color:rgb(0,0,0);">使用登录容器注册表 </font>
 
 ```shell
-[root@example ~]# podman login registry.connect.redhat.com 
+[root@example ~]## podman login registry.connect.redhat.com 
 ```
 
 <font style="color:rgb(0,0,0);">Username: </font>
@@ -5889,32 +5889,32 @@ tuned-adm active #查看存活配置
 
 <font style="color:rgb(0,0,0);">根据使⽤注册表实施的</font><font style="color:rgb(0,0,0);"> Docker </font><font style="color:rgb(0,0,0);">分发</font><font style="color:rgb(0,0,0);"> API</font><font style="color:rgb(0,0,0);">，⼀些注册表可能不⽀持搜索功 能。 </font>
 
-<font style="color:rgb(0,0,0);">[root@example ~]# podman search rhel7</font>
+<font style="color:rgb(0,0,0);">[root@example ~]## podman search rhel7</font>
 
-## **<font style="color:rgb(0,0,0);">查找并管理容器镜像</font>**
+### **<font style="color:rgb(0,0,0);">查找并管理容器镜像</font>**
 <font style="color:rgb(0,0,0);">在</font><font style="color:rgb(0,0,0);">/etc/containers/registries.conf </font><font style="color:rgb(0,0,0);">文件中可以获取有关 </font>
 
 <font style="color:rgb(0,0,0);">使用容器注册表的信息 </font>
 
 ```shell
-[root@example ~]# cat 
+[root@example ~]## cat 
 /etc/containers/registries.conf 
 .... 
 [registries.search] 
 registries = ['registry.access.redhat.com', 
 'registry.redhat.io'] 
-# The following registries entry can be used for 
+## The following registries entry can be used for 
 convenience but includes 
-# container images built by the community. This 
+## container images built by the community. This 
 set of content comes with all 
-# of the risks of any user generated content 
+## of the risks of any user generated content 
 including security and performance
-# issues. To use this list first comment out the 
+## issues. To use this list first comment out the 
 default list, then uncomment 
-# the following list 
+## the following list 
 #registries = ['registry.access.redhat.com', 
 'registry.redhat.io', 'docker.io', 'quay.io'] 
-# Registries that do not use TLS when pulling 
+## Registries that do not use TLS when pulling 
 images or uses self-signed 
 ```
 
@@ -5927,7 +5927,7 @@ images or uses self-signed
 <font style="color:rgb(0,0,0);"></font>
 
 ```shell
-[root@example ~]# podman info 
+[root@example ~]## podman info 
 host: 
  BuildahVersion: 1.12.0-dev 
  CgroupVersion: v1 
@@ -6005,7 +6005,7 @@ store:
 <font style="color:rgb(0,0,0);">将镜像提取到本地系统 </font>
 
 ```shell
-[root@example ~]# skopeo inspect 
+[root@example ~]## skopeo inspect 
 docker://registry.access.redhat.com/quarkus/mandrel-20-rhel8
 ```
 
@@ -6016,18 +6016,18 @@ docker://registry.access.redhat.com/quarkus/mandrel-20-rhel8
 <font style="color:rgb(0,0,0);">要多（看情况而定） </font>
 
 ```shell
-[root@example ~]# podman images 
+[root@example ~]## podman images 
 REPOSITORY TAG 
 IMAGE ID CREATED SIZE 
 registry.access.redhat.com/rhel7.0 latest 
 bc668af2b27f 6 years ago 153 MB 
-[root@example ~]# podman inspect 
+[root@example ~]## podman inspect 
 registry.access.redhat.com/rhel7.0
 ```
 
 ![](../../images/1718085509740-c217ab19-1575-4e85-80d8-b84e7208aa55.png)
 
-## **<font style="color:rgb(0,0,0);">管理容器即服务 </font>**
+### **<font style="color:rgb(0,0,0);">管理容器即服务 </font>**
 **<font style="color:rgb(0,0,0);">初级概念： </font>**
 
 <font style="color:rgb(0,0,0);">在将数据库或 </font><font style="color:rgb(0,0,0);">Web </font><font style="color:rgb(0,0,0);">服务器等服务部署为容器时，通常希望这些容器 </font>
@@ -6109,7 +6109,7 @@ registry.access.redhat.com/rhel7.0
 
 <font style="color:rgb(0,0,0);">2</font><font style="color:rgb(0,0,0);">）每次服务启动的时候创建并运行容器，在停止服务时删除容器</font><font style="color:rgb(0,0,0);">. </font>
 
-<font style="color:rgb(0,0,0);">版本：</font><font style="color:rgb(0,0,0);">[root@example ~]# podman --version </font>
+<font style="color:rgb(0,0,0);">版本：</font><font style="color:rgb(0,0,0);">[root@example ~]## podman --version </font>
 
 <font style="color:rgb(0,0,0);">podman version 1.6.4 </font>
 
@@ -6120,8 +6120,8 @@ registry.access.redhat.com/rhel7.0
 <font style="color:rgb(0,0,0);">1</font><font style="color:rgb(0,0,0);">）创建用户 </font><font style="color:rgb(0,0,0);">contsvc </font>
 
 ```shell
-[root@example ~]# useradd contsvc 
-[root@example ~]# passwd contsvc 
+[root@example ~]## useradd contsvc 
+[root@example ~]## passwd contsvc 
 Changing password for user contsvc. 
 New password: redhat 
 BAD PASSWORD: The password is shorter than 8 
@@ -6317,7 +6317,7 @@ hello world
 重启： 
 [contsvc@example user]$ su - 
 Password: redhat 
-[root@example ~]# systemctl reboot 
+[root@example ~]## systemctl reboot 
 ... 
 ssh contsvc@192.168.0.118
 ```

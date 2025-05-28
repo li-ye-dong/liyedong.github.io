@@ -1,5 +1,5 @@
-# Mongodb基础笔记
-# 安装Mongodb
+## Mongodb基础笔记
+## 安装Mongodb
 [下载地址](https://www.mongodb.com/try/download/community)
 
 ```shell
@@ -20,9 +20,9 @@ fi
 ```
 
 ```shell
-[root@node01 app]# cat /sys/kernel/mm/transparent_hugepage/enabled 
+[root@node01 app]## cat /sys/kernel/mm/transparent_hugepage/enabled 
 always madvise [never]
- [root@node01 app]# cat /sys/kernel/mm/transparent_hugepage/defrag
+ [root@node01 app]## cat /sys/kernel/mm/transparent_hugepage/defrag
  always madvise [never]
 ```
 
@@ -51,9 +51,9 @@ source .bash_profile
 ```
 
 #  使用配置文件  
-## 普通配置文件
+### 普通配置文件
 ```shell
-# 普通配置文件应用
+## 普通配置文件应用
 vim /mongodb/conf/mongodb.conf
 logpath=/mongodb/log/mongodb.log
 dbpath=/mongodb/data 
@@ -64,76 +64,76 @@ fork=true
 
 ```
 
-## yaml格式配置文件
+### yaml格式配置文件
 ```yaml
-# YAML 配置文件应用--
-# 系统日志配置
+## YAML 配置文件应用--
+## 系统日志配置
 systemLog:
-  # 日志目标：文件
+  ## 日志目标：文件
   destination: file
-  # 日志文件路径
+  ## 日志文件路径
   path: "/mongodb/log/mongodb.log"
-  # 日志以追加模式记录
+  ## 日志以追加模式记录
   logAppend: true
 
-# 存储配置
+## 存储配置
 storage:
-  # 日志
+  ## 日志
   journal:
-    # 启用日志
+    ## 启用日志
     enabled: true
-    # 数据路径
+    ## 数据路径
     dbPath: "/mongodb/data"
 
-# 进程管理配置
+## 进程管理配置
 processManagement:
-  # 启用后台守护进程
+  ## 启用后台守护进程
   fork: true
-  # pid 文件的位置
+  ## pid 文件的位置
   pidFilePath: <string>
 
-# 网络配置
+## 网络配置
 net:
-  # 绑定的 IP 地址
+  ## 绑定的 IP 地址
   bindIp: <ip>
-  # 端口号
+  ## 端口号
   port: <port>
 
-# 安全配置
+## 安全配置
 security:
-  # 启用授权
+  ## 启用授权
   authorization: enabled
 
-# 复制配置
+## 复制配置
 replication:
-  # oplog 大小（MB）
+  ## oplog 大小（MB）
   oplogSizeMB: <NUM>
-  # 复制集名称
+  ## 复制集名称
   replSetName: "<REPSETNAME>"
-  # 次要索引预取模式
+  ## 次要索引预取模式
   secondaryIndexPrefetch: "all"
-  # 本地 ping 阈值（毫秒）
+  ## 本地 ping 阈值（毫秒）
   localPingThresholdMs: <int>
 
-# 分片配置
+## 分片配置
 sharding:
-  # 集群角色
+  ## 集群角色
   clusterRole: <string>
-  # 归档已移动块（仅适用于 mongos）
+  ## 归档已移动块（仅适用于 mongos）
   archiveMovedChunks: <boolean> 
-  # 配置数据库的地址
+  ## 配置数据库的地址
   configDB: <string>
 ```
 
-## 启动和关闭mongodb
+### 启动和关闭mongodb
 ```shell
-# 关闭mongodb
+## 关闭mongodb
 mongod -f /mongodb/conf/mongodb.conf --shutdown
 使用配置文件启动mongodb
 mongod -f /mongodb/conf/mongodb.conf
 ```
 
-## 实例
+### 实例
 ```yaml
 systemLog:
   destination: file
@@ -150,7 +150,7 @@ net:
   bindIp: 本机ip,127.0.0.1
 ```
 
-# 用户管理
+## 用户管理
 注意  
 验证库，建立用户时use到的库，在使用用户时，要加上验证库才能登陆。  
 对于管理员用户,必须在admin下创建.
@@ -160,7 +160,7 @@ net:
 3. 通常,管理员用的验证库是admin,普通用户的验证库一般是所管理的库设置为验证库
 4. 如果直接登录到数据库,不进行use,默认的验证库是test,不是我们生产建议的.
 
-## 基本语法
+### 基本语法
 ```shell
 use admin 
 mongo 192.168.107.23/admin
@@ -258,7 +258,7 @@ use app
 mongo -uroot -proot123 10.0.51/admin
 db.system.users.find().pretty()
 6、删除用户（root身份登录，use到验证库）
-# mongo -uroot -proot123 10.0.51/admin
+## mongo -uroot -proot123 10.0.51/admin
 use app
 db.dropUser("admin")
 ```
@@ -318,7 +318,7 @@ test> use local
 查看当前数据库的连接机器地址
 > db.getMongo()
  // 指定数据库进行连接：（默认连接本机test数据库）
-# mongo 192.168.1.24/admin
+## mongo 192.168.1.24/admin
  [mongod@mongodb ~]$ mongo 192.168.1.24/admin
  c. 库和表的操作 
 // 建库 
@@ -366,10 +366,10 @@ for(i=0;i<10000;i++){
 
 ##  使用 find 查询文档  
 ```javascript
- # 关于 find:
+ ## 关于 find:
  find 是 MongoDB 中查询数据的基本指令，相当于 SQL 中的 SELECT 。
 find 返回的是游标。
-# find 示例：
+## find 示例：
 db.movies.find( { "year" : 1975 } ) //单条件查询
 db.movies.find( { "year" : 1989, "title" : "Batman" } ) //多条件and查询
 db.movies.find( { $and : [ {"title" : "Batman"}, { "category" : "action" }] } 

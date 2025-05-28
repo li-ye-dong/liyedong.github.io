@@ -1,6 +1,6 @@
 # 知识库索引
 
-> 自动生成时间 2025-05-28 11:19
+> 自动生成时间 2025-05-28 11:35
 
 
 ## ☸️ k8s和容器
@@ -205,10 +205,8 @@
 ### 🐍 开发
  - [Elasticsearch 教程](开发/开发/Elasticsearch 教程.md)
  - [Git教程](开发/开发/Git教程.md)
- - [JavaScript学习](开发/开发/JavaScript学习.md)
  - [Uniapp学习笔记（Vue2）](开发/开发/Uniapp学习笔记（Vue2）.md)
  - [Vue3学习笔记](开发/开发/Vue3学习笔记.md)
- - [java](开发/开发/java.md)
  - [rust学习](开发/开发/rust学习.md)
  - [typescript学习](开发/开发/typescript学习.md)
  - [前端包管理器](开发/开发/前端包管理器.md)
@@ -236,7 +234,6 @@
 ### 📂 RHEL9
  - [RHEL9-RHCE学习](操作系统/RHEL9/RHEL9-RHCE学习.md)
  - [RHEL9-RHCSA学习](操作系统/RHEL9/RHEL9-RHCSA学习.md)
-### 🖥️ 操作系统
 ### 📂 计算机维护
  - [ventoy启动失败。](操作系统/计算机维护/ventoy启动失败。.md)
  - [ventoy启动盘制作](操作系统/计算机维护/ventoy启动盘制作.md)

@@ -1,4 +1,4 @@
-# Haproxy+Keeplived实践
+## Haproxy+Keeplived实践
 
 在 **RHEL 7.9** 上配置 **HAProxy** 和 **Keepalived** 的高可用负载均衡架构时，目标是确保高可用性、负载均衡和自动故障转移。以下是配置 **HAProxy + Keepalived** 的最佳实践步骤。
 
@@ -106,12 +106,12 @@ listen stats
 ```bash
 vrrp_instance VI_1 {
     state MASTER
-    interface eth0  # 根据实际网卡调整
+    interface eth0  ## 根据实际网卡调整
     virtual_router_id 51
-    priority 101  # 主节点优先级高
+    priority 101  ## 主节点优先级高
     advert_int 1
     virtual_ipaddress {
-        192.168.1.100  # 配置虚拟 IP 地址
+        192.168.1.100  ## 配置虚拟 IP 地址
     }
 }
 ```
@@ -121,12 +121,12 @@ vrrp_instance VI_1 {
 ```bash
 vrrp_instance VI_1 {
     state BACKUP
-    interface eth0  # 根据实际网卡调整
+    interface eth0  ## 根据实际网卡调整
     virtual_router_id 51
-    priority 100  # 从节点优先级低
+    priority 100  ## 从节点优先级低
     advert_int 1
     virtual_ipaddress {
-        192.168.1.100  # 配置虚拟 IP 地址
+        192.168.1.100  ## 配置虚拟 IP 地址
     }
 }
 ```
@@ -299,40 +299,40 @@ vrrp_instance VI_1 {
 ```sh
 #!/bin/bash
 set -x
-# 打印调试信息
+## 打印调试信息
 echo "Checking HAProxy status..."
 
-# 使用curl检查HAProxy是否在端口上响应
+## 使用curl检查HAProxy是否在端口上响应
 A=$(pidof -x haproxy | wc -l)
 
-# 打印调试信息
+## 打印调试信息
 echo "curl response count: $A"
 
-# 如果HAProxy不可用（没有找到 200 OK），则认为HAProxy不可用
+## 如果HAProxy不可用（没有找到 200 OK），则认为HAProxy不可用
 if [ $A -eq 0 ]; then
   echo "HAProxy is down"
 
-  # 尝试杀掉HAProxy进程
+  ## 尝试杀掉HAProxy进程
   echo "Killing HAProxy..."
   pkill -x haproxy
 
-  # 重启HAProxy
+  ## 重启HAProxy
   echo "Restarting HAProxy..."
   systemctl restart haproxy
-  sleep 2  # 等待2秒
+  sleep 2  ## 等待2秒
   
-  # 再次检查HAProxy状态
+  ## 再次检查HAProxy状态
   A=$(pidof -x haproxy | wc -l)
   if [ $A -eq 0 ]; then
     echo "HAProxy still down, stopping keepalived..."
-    systemctl stop keepalived  # 停止 keepalived
-    exit 1  # 如果HAProxy依然不可用，返回1
+    systemctl stop keepalived  ## 停止 keepalived
+    exit 1  ## 如果HAProxy依然不可用，返回1
   else 
     echo "HAProxy already started success!"
   fi
 else
   echo "HAProxy is up"
-  exit 0  # 如果HAProxy服务可用，返回0
+  exit 0  ## 如果HAProxy服务可用，返回0
 fi
 ```
 
@@ -352,7 +352,7 @@ chmod +x /etc/keepalived/haproxy_check.sh
 global_defs {
 router_id HA-01
 vrrp_skip_check_adv_addr
-# vrrp_strict
+## vrrp_strict
 vrrp_garp_interval 0
 vrrp_gna_interval 0
 script_user root 
@@ -396,7 +396,7 @@ track_script {
 global_defs {
 router_id HA-01
 vrrp_skip_check_adv_addr
-# vrrp_strict
+## vrrp_strict
 vrrp_garp_interval 0
 vrrp_gna_interval 0
 script_user root 

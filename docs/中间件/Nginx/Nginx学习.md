@@ -1,6 +1,6 @@
-# Nginx学习
+## Nginx学习
 
-## 1.Tengine介绍
+### 1.Tengine介绍
 
 由淘宝对Nginx进行二次开发的一个分支服务器，一般用在高并发长场景
 
@@ -10,7 +10,7 @@
 https://tengine.taobao.org/
 ```
 
-## 2.安装Nginx
+### 2.安装Nginx
 
 ### A.yum源安装
 
@@ -49,10 +49,10 @@ netstat -lnp|grep 80 #查看80端口占用情况
 ps -ef|grep nginx #查看nginx进程
 ```
 
-## 3.Nginx配置文件详解
+### 3.Nginx配置文件详解
 
 ```shell
-[root@master nginx]# ll
+[root@master nginx]## ll
 总用量 4
 drwxr-xr-x. 2 root root 4096 8月  21 10:21 conf #配置文件目录
 drwxr-xr-x. 2 root root   40 8月  21 09:40 html #html目录
@@ -206,21 +206,21 @@ gzip_proxied any;
 
     #error_page  404              /404.html;  //定义404页面
 
-    # redirect server error pages to the static page /50x.html
+    ## redirect server error pages to the static page /50x.html
     #
     error_page   500 502 503 504  /50x.html;  //当状态码为500、502、503、504时，则访问50x.html
     location = /50x.html {
         root   html;  //定义50x.html所在路径
     }
 
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    ## proxy the PHP scripts to Apache listening on 127.0.0.1:80
     #
     #定义访问php脚本时，将会执行本location{}部分指令
     #location ~ \.php$ {
     #    proxy_pass   http://127.0.0.1;  //proxy_pass后面指定要访问的url链接，用proxy_pass实现代理。
     #}
 
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    ## pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
     #
     #location ~ \.php$ {
     #    root           html;
@@ -230,16 +230,16 @@ gzip_proxied any;
     #    include        fastcgi_params; //引用prefix/conf/fastcgi_params文件，该文件定义了fastcgi相关的变量
     #}
 
-    # deny access to .htaccess files, if Apache's document root
-    # concurs with nginx's one
-    # 
+    ## deny access to .htaccess files, if Apache's document root
+    ## concurs with nginx's one
+    ## 
     #location ~ /\.ht {   //访问的url中，以/.ht开头的，如，www.example.com/.htaccess，会被拒绝，返回403状态码。
     #    deny  all;  //这里的all指的是所有的请求。
     #}
 }
 
 
-# another virtual host using mix of IP-, name-, and port-based configuration
+## another virtual host using mix of IP-, name-, and port-based configuration
 #
 #server {
 #    listen       8000;  //监听8000端口
@@ -253,7 +253,7 @@ gzip_proxied any;
 #}
 
 
-# HTTPS server
+## HTTPS server
 #
 #server {
 #    listen       443 ssl;  //监听443端口，即ssl
@@ -278,7 +278,7 @@ gzip_proxied any;
 ### E.范例
 
 ```nginx
-user nobody; # 定义运行nginx服务的用户,还可以加上组,如 user nobody nobody
+user nobody; ## 定义运行nginx服务的用户,还可以加上组,如 user nobody nobody
 
 worker_processes  8; #开启8个工作进程
 worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 10000000; #将8个工作进程固定在8个cpu上
@@ -302,7 +302,7 @@ events {
 } 
 
 http {
-    include        /etc/nginx/mime.types; # 定义nginx能识别的网络资源媒体类型（如，文本、html、js、css、流媒体等
+    include        /etc/nginx/mime.types; ## 定义nginx能识别的网络资源媒体类型（如，文本、html、js、css、流媒体等
     default_type  application/octet-stream; #定义默认的type，如果不定义该项，默认为text/plain.
     client_max_body_size 1024M; #定义允许最大可以上传多大的文件，超过该值就会报413
     log_format main  '$remote_addr $http_x_forwarded_for [$time_local]'
@@ -406,7 +406,7 @@ server {
 
 }
 
-## 反向代理示例
+### 反向代理示例
 server {
     listen 80;
     server_name bbb.com;
@@ -422,13 +422,13 @@ server {
     {
         proxy_pass http://123.23.13.11/; #后端服务器的ip地址
         proxy_set_header Host   $host; #访问后端服务器时，用哪个域名访问呢，这里的$host就是server_name。
-        proxy_set_header X-Real-IP      $remote_addr; # 用来设置被代理端接收到的远程客户端IP，如果不设置，则header信息中并不会透传远程真实客户端的IP地址。
+        proxy_set_header X-Real-IP      $remote_addr; ## 用来设置被代理端接收到的远程客户端IP，如果不设置，则header信息中并不会透传远程真实客户端的IP地址。
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; #同上
     }
 } 
 ```
 
-## 4.架构分析
+### 4.架构分析
 
 ### A.Nginx模块化
 
@@ -618,10 +618,10 @@ Nginx服务器使用 master/worker 多进程模式。
 
 [![img](https://camo.githubusercontent.com/efa1c7acafb7fde344e5fe7d7c7024d25498839e4016b15d1dec09f6f27f64e0/687474703a2f2f61736b2e6170656c6561726e2e636f6d2f75706c6f6164732f6e67696e782f6e67696e785f6d2e6a7067)](https://camo.githubusercontent.com/efa1c7acafb7fde344e5fe7d7c7024d25498839e4016b15d1dec09f6f27f64e0/687474703a2f2f61736b2e6170656c6561726e2e636f6d2f75706c6f6164732f6e67696e782f6e67696e785f6d2e6a7067)
 
-## 5.虚拟主机配置
+### 5.虚拟主机配置
 
 ```nginx
-user nobody; # 定义运行nginx服务的用户,还可以加上组,如 user nobody nobody
+user nobody; ## 定义运行nginx服务的用户,还可以加上组,如 user nobody nobody
 worker_processes  1;
 events {
     worker_connections  1024;
@@ -664,7 +664,7 @@ mkdir -p /data/wwwroot
 
 
 
-## 6.rewrite配置
+### 6.rewrite配置
 
 ### nginx 常用全局变量
 
@@ -1220,7 +1220,7 @@ location /{
 }
 ```
 
-## 7.location配置
+### 7.location配置
 
 ### A.安装echo模块
 
@@ -1312,7 +1312,7 @@ www.aminglinux.com/123/admin/1.php 不匹配
 注意：location优先级小于if
 ```
 
-## 8.nginx代理
+### 8.nginx代理
 
 ### A.正向代理
 
@@ -1394,11 +1394,11 @@ server {
      listen                         3128;
 
 
-     # dns resolver used by forward proxying
+     ## dns resolver used by forward proxying
      resolver                       119.29.29.29;
 
 
-     # forward proxy for CONNECT request
+     ## forward proxy for CONNECT request
      proxy_connect;
      proxy_connect_allow            80 443 3000 9070 9074;
      proxy_connect_connect_timeout  10s;
@@ -1406,7 +1406,7 @@ server {
      proxy_connect_send_timeout     10s;
 
 
-     # forward proxy for non-CONNECT request
+     ## forward proxy for non-CONNECT request
      location / {
          proxy_pass http://$host;
          proxy_set_header Host $host;
@@ -1678,7 +1678,7 @@ server {
 }
 ```
 
-## 9.buffer与cache
+### 9.buffer与cache
 
 ### A.buffer
 
@@ -1880,7 +1880,7 @@ http
 
 
 
-## 10.Nginx的负载均衡配置
+### 10.Nginx的负载均衡配置
 
 ```
 Nginx通过upstream和proxy_pass实现了负载均衡。本质上也是Nginx的反向代理功能，只不过后端的server为多个。
@@ -1974,15 +1974,15 @@ proxy_next_upstream，通过后端服务器返回的响应状态码，表示服�
 语法: proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 |http_404 | off ...; 
 默认值: proxy_next_upstream error timeout
 
-error      # 和后端服务器建立连接时，或者向后端服务器发送请求时，或者从后端服务器接收响应头时，出现错误
-timeout    # 和后端服务器建立连接时，或者向后端服务器发送请求时，或者从后端服务器接收响应头时，出现超时
-invalid_header  # 后端服务器返回空响应或者非法响应头
-http_500   # 后端服务器返回的响应状态码为500
-http_502   # 后端服务器返回的响应状态码为502
-http_503   # 后端服务器返回的响应状态码为503
-http_504   # 后端服务器返回的响应状态码为504
-http_404   # 后端服务器返回的响应状态码为404
-off        # 停止将请求发送给下一台后端服务器
+error      ## 和后端服务器建立连接时，或者向后端服务器发送请求时，或者从后端服务器接收响应头时，出现错误
+timeout    ## 和后端服务器建立连接时，或者向后端服务器发送请求时，或者从后端服务器接收响应头时，出现超时
+invalid_header  ## 后端服务器返回空响应或者非法响应头
+http_500   ## 后端服务器返回的响应状态码为500
+http_502   ## 后端服务器返回的响应状态码为502
+http_503   ## 后端服务器返回的响应状态码为503
+http_504   ## 后端服务器返回的响应状态码为504
+http_404   ## 后端服务器返回的响应状态码为404
+off        ## 停止将请求发送给下一台后端服务器
 ```
 
 
@@ -2067,7 +2067,7 @@ server {
 }
 ```
 
-## 11.Nginx访问控制
+### 11.Nginx访问控制
 
 ```
 Nginx的deny和allow指令是由ngx_http_access_module模块提供，Nginx安装默认内置了该模块。
@@ -2111,7 +2111,7 @@ location ~ "admin"
 说明：访问的uri中包含admin的请求，只允许110.21.33.121这个IP的请求。
 ```
 
-## 12.Nginx基于$document_uri的访问控制
+### 12.Nginx基于$document_uri的访问控制
 
 ```
 这就用到了变量$document_uri，根据前面所学内容，该变量等价于$uri，其实也等价于location匹配。
@@ -2171,7 +2171,7 @@ if ($document_uri ~ '/data/|/cache/.*\.php$')
 2. www.aminglinux.com/cache1/123.php 不匹配
 ```
 
-## 13.nginx基于$request_uri访问控制
+### 13.nginx基于$request_uri访问控制
 
 ```
 $request_uri比$docuemnt_uri多了请求的参数。
@@ -2200,7 +2200,7 @@ if ($request_uri ~ "gid=\d{9,12}")
 所以，可以直接针对这样的请求，return 403状态码。
 ```
 
-## 14.Nginx基于$user_agent的访问控制
+### 14.Nginx基于$user_agent的访问控制
 
 ```nginx
 user_agent大家并不陌生，可以简单理解成浏览器标识，包括一些蜘蛛爬虫都可以通过user_agent来辨识。
@@ -2225,7 +2225,7 @@ if ($user_agent ~ 'YisouSpider|MJ12bot/v1.4.2|YoudaoBot|Tomato')
 2. curl -A "MJ12bot/v1.4.1"
 ```
 
-## 15.Nginx基于$http_referer的访问控制
+### 15.Nginx基于$http_referer的访问控制
 
 ```
 在前面讲解rewrite时，曾经用过该变量，当时实现了防盗链功能。
@@ -2254,7 +2254,7 @@ if ($http_referer ~ 'baidu.com')
 }
 ```
 
-## 16.Nginx的限速
+### 16.Nginx的限速
 
 ```
 可以通过ngx_http_limit_conn_module和ngx_http_limit_req_module模块来实现限速的功能。
@@ -2429,7 +2429,7 @@ http {
 }
 ```
 
-## 17.Nginx的用户认证（类似tomcatbasic认证）
+### 17.Nginx的用户认证（类似tomcatbasic认证）
 
 ```
 当访问一些私密资源时，最好配置用户认证，增加安全性。
@@ -2476,7 +2476,7 @@ echo i am admin > /data/wwwroot/www.1.com/admin/admin.html
 http://www.1.com/admin/admin.html
 ```
 
-## 18.CA证书
+### 18.CA证书
 
 ### 什么是CA？
 
@@ -2561,7 +2561,7 @@ CA证书的作用有很多，只列出常用的几个。
 那么页面就直接打开，否则的话，浏览器会给出一个警告，告诉你该网站的证书存在某某问题，是否继续访问该站点。
 ```
 
-## 19.SSL原理
+### 19.SSL原理
 
 ```
 要想弄明白SSL认证原理，首先要对CA有有所了解，它在SSL认证过程中有非常重要的作用。
@@ -2633,7 +2633,7 @@ CA证书的作用有很多，只列出常用的几个。
 10.后续客户端与服务端使用该密钥key进行加密通信
 ```
 
-## 20.自制ca证书
+### 20.自制ca证书
 
 ### 生成CA根证书
 
@@ -2720,7 +2720,7 @@ sed -i 's/unique_subject = yes/unique_subject = no/' /etc/pki/ca_test/index.txt.
 #执行完，再次重复执行签名client.csr那个操作
 ```
 
-## 21.Nginx配置SSL
+### 21.Nginx配置SSL
 
 ### Nginx配置示例（单向）
 
@@ -2820,7 +2820,7 @@ openssl pkcs12 -export -inkey client.key -in client.crt -out client.pfx
 
 ![image-20230822204257603](Nginx学习.assets/image-20230822204257603.png)
 
-## 22.Nginx的错误日志
+### 22.Nginx的错误日志
 
 ```
 Nginx错误日志平时不用太关注，但是一旦出了问题，就需要借助错误日志来判断问题所在。
@@ -2853,7 +2853,7 @@ error_log  /var/log/nginx/error.log crit;
 error_log /dev/null;
 ```
 
-## 23.Nginx访问日志配置
+### 23.Nginx访问日志配置
 
 ```nginx
 web服务器的访问日志是非常重要的，我们可以通过访问日志来分析用户的访问情况，
@@ -2880,7 +2880,7 @@ server
 说明：若不指定log_format，则按照默认的格式写日志。
 ```
 
-## 24.Nginx访问日志格式
+### 24.Nginx访问日志格式
 
 ```
 Nginx访问日志可以设置自定义的格式，来满足特定的需求。
@@ -2975,7 +2975,7 @@ tail -f /data/logs/localhost.log
 | $request_uri            | 比$uri多了参数，即$uri+$args                                 |
 | $http_x_forwarded_for   | 如果使用了代理，这个参数会记录代理服务器的ip和客户端的ip     |
 
-## 25.Nginx访问日志过滤
+### 25.Nginx访问日志过滤
 
 ```
 一个网站，会包含很多元素，尤其是有大量的图片、js、css等静态元素。
@@ -3019,7 +3019,7 @@ tail -f /data/logs/localhost.log
 192.168.107.254 192.168.107.1 [23/Aug/2023:09:44:35 +0800]192.168.107.254 "/1.css2" 404"-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
 ```
 
-## 26.Nginx访问日志切割
+### 26.Nginx访问日志切割
 
 ```
 如果任由访问日志写下去，日志文件会变得越来越大，甚至是写满磁盘。
@@ -3090,7 +3090,7 @@ vi /etc/logrotate.d/nginx
 
 
 
-## 27.Nginx配置参数优化
+### 27.Nginx配置参数优化
 
 ```
 Nginx作为高性能web服务器，即使不特意调整配置参数也可以处理大量的并发请求。
@@ -3376,7 +3376,7 @@ ssl_session_cache   shared:SSL:10m; //缓存为10M
 ssl_session_timeout 10m; //会话超时时间为10分钟
 ```
 
-## 28.调整Linux内核参数
+### 28.调整Linux内核参数
 
 ```
 作为高性能WEB服务器，只调整Nginx本身的参数是不行的，因为Nginx服务依赖于高性能的操作系统。
@@ -3529,7 +3529,7 @@ net.ipv4.tcp_keepalive_probes = 2
 sysctl -p
 ```
 
-## 29.监控nginx
+### 29.监控nginx
 
 ```
 top
@@ -3544,7 +3544,7 @@ tcpdump -i eth0
 
 
 
-## 30.配置Nginx状态
+### 30.配置Nginx状态
 
 ```shell
 #Nginx有内置一个状态页，需要在编译的时候指定参数--with-http_stub_status_module参数方可打开。
@@ -3616,7 +3616,7 @@ writing — 响应数据到客户端的数量
 waiting — 开启 keep-alive 的情况下,这个值等于 active – (reading+writing), 意思就是 Nginx 已经处理完正在等候下一次请求指令的驻留连接.
 ```
 
-## 31.Nginx架构-LNMP
+### 31.Nginx架构-LNMP
 
 Linux：Linux 操作系统
 
@@ -3681,8 +3681,8 @@ vi /etc/yum.repos.d/MariaDB.repo
 
 
 ```bash
-# MariaDB 10.4 CentOS repository list - created 2019-11-05 11:56 UTC
-# http://downloads.mariadb.org/mariadb/repositories/
+## MariaDB 10.4 CentOS repository list - created 2019-11-05 11:56 UTC
+## http://downloads.mariadb.org/mariadb/repositories/
 [mariadb]
 name = MariaDB
 baseurl = https://mirrors.cloud.tencent.com/mariadb/yum/10.4/centos7-amd64
@@ -3857,13 +3857,13 @@ server{
 测试:
 
 ```
-[root@localhost nginx]# curl localhost/2.php
+[root@localhost nginx]## curl localhost/2.php
 测试php是否解析[root@localhost nginx]#
 ```
 
 ![image-20230823154155297](Nginx学习.assets/image-20230823154155297.png)
 
-## 32.Nginx+Tomcat架构
+### 32.Nginx+Tomcat架构
 
 ```nginx
 配置文件示例
@@ -3893,7 +3893,7 @@ server
 2 其他请求直接代理8080端口，即tomcat服务,也可使用负载均衡。
 ```
 
-## 33.nginx+keepalived高可用架构
+### 33.nginx+keepalived高可用架构
 
 |  ip  | 192.168.107.254（eth0）  |  192.168.107.253(eth0)   | 192.168.107.188（虚拟ip） |
 | :--: | :----------------------: | :----------------------: | :-----------------------: |
@@ -3934,33 +3934,33 @@ vi /etc/keepalived/keepalived.conf
 
 ```nginx
 global_defs {
-    notification_email {   # keepalived服务宕机异常出现的时候，发送通知邮件 可以是多个
+    notification_email {   ## keepalived服务宕机异常出现的时候，发送通知邮件 可以是多个
       acassen@firewall.loc  #  收件人邮箱1
       failover@firewall.loc   #  收件人邮箱2
       sysadmin@firewall.loc   #  收件人邮箱3
     }
     notification_email_from Alexandre.Cassen@firewall.loc   #邮件发件人
     smtp_ server 192.168.107.254  #主服务器的ip地址。邮件服务器地址
-    smtp_connect_timeout 30    # 超时时间
-    router_id LVS_DEVEL    # 机器标识 局域网内唯一即可。 LVS_DEVEL这字段在/etc/hosts文件中看；通过它访问到主机
+    smtp_connect_timeout 30    ## 超时时间
+    router_id LVS_DEVEL    ## 机器标识 局域网内唯一即可。 LVS_DEVEL这字段在/etc/hosts文件中看；通过它访问到主机
 }
 vrrp_script chk_http_ port {
     script "/usr/local/nginx/sbin/nginx_check.sh"   #检测脚本
-    interval 2   # 检测脚本执行的间隔，即检测脚本每隔2s会自动执行一次
+    interval 2   ## 检测脚本执行的间隔，即检测脚本每隔2s会自动执行一次
     weight 2  #权重，如果这个脚本检测为真，服务器权重+2
 }
 vrrp_instance VI_1 {
-    state MASTER    # 指定keepalived的角色，MASTER为主，BACKUP为备。备份服务器上需将MASTER 改为BACKUP
-    interface eth0  # 通信端口 通过ip addr可以看到，根据自己的机器配置
-    virtual_router_id 51 # vrrp实例id  keepalived集群的实例id必须一致，即主、备机的virtual_router_id必须相同
+    state MASTER    ## 指定keepalived的角色，MASTER为主，BACKUP为备。备份服务器上需将MASTER 改为BACKUP
+    interface eth0  ## 通信端口 通过ip addr可以看到，根据自己的机器配置
+    virtual_router_id 51 ## vrrp实例id  keepalived集群的实例id必须一致，即主、备机的virtual_router_id必须相同
     priority 100         #优先级，数值越大，获取处理请求的优先级越高。主、备机取不同的优先级，主机值较大，备份机值较小
     advert_int 1    #心跳间隔，默认为1s。keepalived多机器集群 通过心跳检测当前服务器是否还正常工作，如果发送心跳没反应，备份服务器就会立刻接管；
-    authentication {     # 服务器之间通信密码
+    authentication {     ## 服务器之间通信密码
         auth type PASS   #设置验证类型和密码，MASTER和BACKUP必须使用相同的密码才能正常通信
         auth pass 1111
     }
-    virtual_ipaddress { # 自定义虚拟IP。自定义的虚拟ip得根据真实ip设置。比如真实ip是192.168.91.138，那么虚拟ip可以设置为192.168.91.139~255，前面三个数得一致
-        192.168.107.188 # 定义虚拟ip(VIP)，可多设，每行一个
+    virtual_ipaddress { ## 自定义虚拟IP。自定义的虚拟ip得根据真实ip设置。比如真实ip是192.168.91.138，那么虚拟ip可以设置为192.168.91.139~255，前面三个数得一致
+        192.168.107.188 ## 定义虚拟ip(VIP)，可多设，每行一个
     }
 }
 ```
@@ -3979,25 +3979,25 @@ global_defs {
     notification_email_from Alexandre.Cassen@firewall.loc
     smtp_ server 192.168.107.253    #备份服务器的ip地址
     smtp_connect_timeout 30
-    router_id LVS_DEVEL    # LVS_DEVEL这字段在/etc/hosts文件中看；通过它访问到主机
+    router_id LVS_DEVEL    ## LVS_DEVEL这字段在/etc/hosts文件中看；通过它访问到主机
 }
 vrrp_script chk_http_ port {
     script "/usr/local/nginx/sbin/nginx_check.sh"   #检测脚本
-    interval 2   # (检测脚本执行的间隔)2s
+    interval 2   ## (检测脚本执行的间隔)2s
     weight 2  #权重，如果这个脚本检测为真，服务器权重+2
 }
 vrrp_instance VI_1 {
-    state BACKUP    # 指定keepalived的角色，MASTER为主，BACKUP为备。备份服务器上需将MASTER 改为BACKUP
-    interface eth0 # 当前进行vrrp通讯的网络接口卡(当前centos的网卡) 用ifconfig查看你具体的网卡
-    virtual_router_id 51 # 虚拟路由编号，主、备机的virtual_router_id必须相同
+    state BACKUP    ## 指定keepalived的角色，MASTER为主，BACKUP为备。备份服务器上需将MASTER 改为BACKUP
+    interface eth0 ## 当前进行vrrp通讯的网络接口卡(当前centos的网卡) 用ifconfig查看你具体的网卡
+    virtual_router_id 51 ## 虚拟路由编号，主、备机的virtual_router_id必须相同
     priority 90         #优先级，数值越大，获取处理请求的优先级越高。主、备机取不同的优先级，主机值较大，备份机值较小
-    advert_int 1    # 检查间隔，默认为1s(vrrp组播周期秒数)，每隔1s发送一次心跳
-    authentication {     # 校验方式， 类型是密码，密码1111
+    advert_int 1    ## 检查间隔，默认为1s(vrrp组播周期秒数)，每隔1s发送一次心跳
+    authentication {     ## 校验方式， 类型是密码，密码1111
         auth type PASS   #设置验证类型和密码，MASTER和BACKUP必须使用相同的密码才能正常通信
         auth pass 1111
     }
-    virtual_ipaddress { # 虛拟ip
-        192.168.107.188 # 定义虚拟ip(VIP)，可多设，每行一个
+    virtual_ipaddress { ## 虛拟ip
+        192.168.107.188 ## 定义虚拟ip(VIP)，可多设，每行一个
     }
 }
 ```
@@ -4053,8 +4053,8 @@ echo 'i am backup' > /usr/local/nginx/html/testkeeplived.php
 
 
 ```sh
-systemctl stop keepalived.service   # 关闭keepalived
-/usr/local/nginx/sbin/nginx -s stop  # 关闭Nginx
+systemctl stop keepalived.service   ## 关闭keepalived
+/usr/local/nginx/sbin/nginx -s stop  ## 关闭Nginx
 ```
 
 ![image-20230823173524605](Nginx学习.assets/image-20230823173524605.png)
@@ -4072,7 +4072,7 @@ systemctl start keepalived.service
 
 ![image-20230823173840441](Nginx学习.assets/image-20230823173840441.png)
 
-## 34.nginx运维规范
+### 34.nginx运维规范
 
 ```shell
 vi /etc/init.d/nginx
@@ -4080,11 +4080,11 @@ vi /etc/init.d/nginx
 
 ```sh
 #!/bin/bash
-# chkconfig: - 30 21
-# description: http service.
-# Source Function Library
+## chkconfig: - 30 21
+## description: http service.
+## Source Function Library
 . /etc/init.d/functions
-# Nginx Settings
+## Nginx Settings
 
 NGINX_SBIN="/usr/local/nginx/sbin/nginx"
 NGINX_CONF="/usr/local/nginx/conf/nginx.conf"

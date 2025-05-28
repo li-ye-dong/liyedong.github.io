@@ -1,6 +1,6 @@
-# MongoDB 数据一致性和隔离
-# **<font style="color:rgb(51,51,51);">1.writeConcern </font>**
-## **<font style="color:rgb(51,51,51);">1.1 什么是 writeConcern</font>**
+## MongoDB 数据一致性和隔离
+## **<font style="color:rgb(51,51,51);">1.writeConcern </font>**
+### **<font style="color:rgb(51,51,51);">1.1 什么是 writeConcern</font>**
 ```shell
 writeConcern 决定一个写操作落到多少个节点上才算成功。类似于MySQL中的半同步复制。主要保证
 数据最终一致性
@@ -33,7 +33,7 @@ writeConcern 决定一个写操作落到多少个节点上才算成功。类似�
 
 ![](../../images/1714117810221-05b723dd-be2a-48f5-84ef-10b7eeffa3a8.png)
 
-## **<font style="color:rgb(51,51,51);">1.2 journal日志</font>**
+### **<font style="color:rgb(51,51,51);">1.2 journal日志</font>**
 ```shell
 writeConcern 可以决定写操作到达多少个节点才算成功，journal 则定义如何才算成
 功。journal日志类似于MySQL中的redo日志。是在WriteConcern基础上对于数据安全的进一步保
@@ -45,7 +45,7 @@ writeConcern 可以决定写操作到达多少个节点才算成功，journal �
 
 ![](../../images/1714117829215-4e3dcb8b-fd11-486c-b477-c9cb08f3798c.png)
 
-## **<font style="color:rgb(51,51,51);">1.3 writeConcern 测试 </font>**
+### **<font style="color:rgb(51,51,51);">1.3 writeConcern 测试 </font>**
 ```shell
 在复制集测试writeConcern参数
 db.test.insert( {count: 1}, {writeConcern: {w: "majority"}})
@@ -61,7 +61,7 @@ db.test.insert( {count: 1}, {writeConcern: {w: 3})
 db.test.insert( {count: 1}, {writeConcern: {w: 3, wtimeout:3000 }})
 ```
 
-## **<font style="color:rgb(51,51,51);">1.4 注意事项</font>**
+### **<font style="color:rgb(51,51,51);">1.4 注意事项</font>**
 <font style="color:rgb(51,51,51);">• </font><font style="color:rgb(51,51,51);">虽然多于半数的 </font><font style="color:rgb(51,51,51);">writeConcern </font><font style="color:rgb(51,51,51);">都是安全的，但通常只会设置 </font><font style="color:rgb(51,51,51);">majority</font><font style="color:rgb(51,51,51);">，因为这是等待写入延迟 </font>
 
 <font style="color:rgb(51,51,51);">时间最短的选择； </font>
@@ -74,8 +74,8 @@ db.test.insert( {count: 1}, {writeConcern: {w: 3, wtimeout:3000 }})
 
 <font style="color:rgb(51,51,51);">• 应对重要数据应用 {w: “majority”}，普通数据可以应用 {w: 1} 以确保最佳性能。</font>
 
-# **<font style="color:rgb(51,51,51);">2.readPreference读配置 </font>**
-## **<font style="color:rgb(51,51,51);">2.1 介绍</font>**
+## **<font style="color:rgb(51,51,51);">2.readPreference读配置 </font>**
+### **<font style="color:rgb(51,51,51);">2.1 介绍</font>**
 ```shell
 readPreference 决定使用哪一个节点来满足正在发起的读请求。
 可选值包括：
@@ -88,7 +88,7 @@ readPreference 决定使用哪一个节点来满足正在发起的读请求。
 
 ![](../../images/1714117885531-d696afaa-be03-4986-a439-75305e57c684.png)
 
-## **<font style="color:rgb(51,51,51);">2.2. readPreference 场景举例</font>**
+### **<font style="color:rgb(51,51,51);">2.2. readPreference 场景举例</font>**
 ```shell
 • 用户下订单后马上将用户转到订单详情页——primary/primaryPreferred。因为此时从节点可能还
 没复制到新订单；
@@ -100,7 +100,7 @@ readPreference 决定使用哪一个节点来满足正在发起的读请求。
 节点读取数据。
 ```
 
-## **<font style="color:rgb(51,51,51);">2.3 readPreference 与 Tag</font>**
+### **<font style="color:rgb(51,51,51);">2.3 readPreference 与 Tag</font>**
 ```shell
 readPreference 只能控制使用一类节点。Tag 则可以将节点选择控制到一个或几个节点。
 考虑以下场景：
@@ -116,7 +116,7 @@ readPreference 只能控制使用一类节点。Tag 则可以将节点选择控�
 
 ![](../../images/1714117927376-e8820dd8-8099-462d-ab58-700bd8153946.png)
 
-## **<font style="color:rgb(51,51,51);">2.4 readPreference 配置</font>**
+### **<font style="color:rgb(51,51,51);">2.4 readPreference 配置</font>**
 ```shell
 通过 MongoDB 的连接串参数：
 • mongodb://host1:27107,host2:27107,host3:27017/?
@@ -127,7 +127,7 @@ Mongo Shell：
 • db.collection.find({}).readPref( “secondary” )
 ```
 
-## **<font style="color:rgb(51,51,51);">2.5 readPreference 实验: 从节点读</font>**
+### **<font style="color:rgb(51,51,51);">2.5 readPreference 实验: 从节点读</font>**
 ```shell
 • 主节点写入 {x:1}, 观察该条数据在各个节点均可见
 • 在两个从节点分别执行 db.fsyncLock() 来锁定写入（同步）
@@ -138,7 +138,7 @@ Mongo Shell：
 • db.test.find().readPref(“secondary”)
 ```
 
-## **<font style="color:rgb(51,51,51);">2.6 注意事项</font>**
+### **<font style="color:rgb(51,51,51);">2.6 注意事项</font>**
 ```shell
 • 指定 readPreference 时也应注意高可用问题。例如将 readPreference 指定 primary，则发
 生故障转移不存在 primary 期间将没有节点可读。如果业务允许，则应选择 primaryPreferred；
@@ -151,8 +151,8 @@ Mongo Shell：
 应为 0。
 ```
 
-# 3.readConcern读隔离性保证
-## **<font style="color:rgb(51,51,51);">3.1 什么是 readConcern？</font>**
+## 3.readConcern读隔离性保证
+### **<font style="color:rgb(51,51,51);">3.1 什么是 readConcern？</font>**
 ```shell
 在 readPreference 选择了指定的节点后，readConcern 决定这个节点上的数据哪些是可读的，类
 似于关系数据库的隔离级别。可选值包括：
@@ -163,7 +163,7 @@ Mongo Shell：
 • linearizable：可线性化读取文档;
 ```
 
-## **<font style="color:rgb(51,51,51);">3.2 readConcern: local 和 available</font>**
+### **<font style="color:rgb(51,51,51);">3.2 readConcern: local 和 available</font>**
 ```shell
 在复制集中 local 和 available 是没有区别的。两者的区别主要体现在分片集上。
 考虑以下场景：
@@ -185,7 +185,7 @@ available（向前兼容原因）。
 
 ![](../../images/1714118046661-e1d0e944-9c99-4056-8d83-388c7bfeff4f.png)
 
-## **<font style="color:rgb(51,51,51);">3.3 readConcern: majority</font>**
+### **<font style="color:rgb(51,51,51);">3.3 readConcern: majority</font>**
 ```shell
 只读取大多数据节点上都提交了的数据。考虑如下场景：
 ● 集合中原有文档 {x: 0}；
@@ -194,7 +194,7 @@ available（向前兼容原因）。
 
 ![](../../images/1714118066539-6b65378a-9d67-4eaa-ad36-b658bf041701.png)![](../../images/1714118072153-225db5a1-4317-42f6-a60a-f52ab884313f.png)
 
-## **<font style="color:rgb(51,51,51);">3.4 readConcern: majority 的实现方式</font>**
+### **<font style="color:rgb(51,51,51);">3.4 readConcern: majority 的实现方式</font>**
 ```shell
 考虑 t3 时刻的 Secondary1，此时：
 • 对于要求 majority 的读操作，它将返回 x=0；
@@ -207,7 +207,7 @@ available（向前兼容原因）。
 
 ![](../../images/1714118090828-22414421-a0b8-42c5-a766-21cc04b6ca7c.png)
 
-## **<font style="color:rgb(51,51,51);">3.5 实验： readConcern : ”majority” vs “local”</font>**
+### **<font style="color:rgb(51,51,51);">3.5 实验： readConcern : ”majority” vs “local”</font>**
 ```shell
 安装 3 节点复制集。
 • 注意配置文件内 server 参数 enableMajorityReadConcern
@@ -216,7 +216,7 @@ available（向前兼容原因）。
 
 ![](../../images/1714118114460-0a8e5f0d-05f3-4e82-9d82-cc77c8bff142.png)
 
-## **<font style="color:rgb(51,51,51);">3.6 readConcern 验证</font>**
+### **<font style="color:rgb(51,51,51);">3.6 readConcern 验证</font>**
 ```shell
 • db.test.save({“A”:1})
 • db.test.find().readConcern(“local”)
@@ -228,7 +228,7 @@ available（向前兼容原因）。
 • update 与 remove 与上同理。
 ```
 
-## **<font style="color:rgb(51,51,51);">3.7 readConcern: majority 与脏读</font>**
+### **<font style="color:rgb(51,51,51);">3.7 readConcern: majority 与脏读</font>**
 ```shell
 MongoDB 中的回滚：
 • 写操作到达大多数节点之前都是不安全的，一旦主节点崩溃，而从节还没复制到该次操作，刚才的写操
@@ -240,7 +240,7 @@ MongoDB 中的回滚：
 读问题；使用 {readConcern: “majority”} 可以有效避免脏读
 ```
 
-## **<font style="color:rgb(51,51,51);">3.8 readConcern: 如何实现安全的读写分离</font>**
+### **<font style="color:rgb(51,51,51);">3.8 readConcern: 如何实现安全的读写分离</font>**
 ```shell
 考虑如下场景：
 向主节点写入一条数据；立即从从节点读取这条数据。如何保证自己能够读到刚刚写入的数据？
@@ -264,8 +264,8 @@ readCocnern： majority 对应于MysQL事务中隔离级别中的哪一级？
 
 ![](../../images/1714118193276-64a3e8ed-6fb6-46bb-9b56-9966df4c6aeb.png)
 
-# **<font style="color:rgb(51,51,51);">4.MongoDB的ACID事务支持 </font>**
-## **<font style="color:rgb(51,51,51);">4.1 介绍</font>**
+## **<font style="color:rgb(51,51,51);">4.MongoDB的ACID事务支持 </font>**
+### **<font style="color:rgb(51,51,51);">4.1 介绍</font>**
 ```shell
 MongoDB 虽然已经在 4.2 开始全面支持了多文档事务，但并不代表大家应该毫无节制地使用它。相
 反，对事务的使用原则应该是：能不用尽量不用。
@@ -274,10 +274,10 @@ MongoDB 虽然已经在 4.2 开始全面支持了多文档事务，但并不代�
 事务 = 锁，节点协调，额外开销，性能影响.
 ```
 
-## **<font style="color:rgb(51,51,51);">4.2 MongoDB ACID 多文档事务支持</font>**
+### **<font style="color:rgb(51,51,51);">4.2 MongoDB ACID 多文档事务支持</font>**
 ![](../../images/1714118227412-c4b92eb2-71ee-4381-9595-183a309a5720.png)
 
-## **<font style="color:rgb(51,51,51);">4.3 使用方法</font>**
+### **<font style="color:rgb(51,51,51);">4.3 使用方法</font>**
 ```shell
 MongoDB 多文档事务的使用方式与关系数据库非常相似：
 try (ClientSession clientSession = client.startSession()) {
@@ -288,13 +288,13 @@ clientSession.commitTransaction();
 }
 ```
 
-## **<font style="color:rgb(51,51,51);">4.4 事务的隔离级别</font>**
+### **<font style="color:rgb(51,51,51);">4.4 事务的隔离级别</font>**
 ```shell
 ● 事务完成前，事务外的操作对该事务所做的修改不可访问
 ● 如果事务内使用 {readConcern: “snapshot”}，则可以达到可重复读 Repeatable Read
 ```
 
-## **<font style="color:rgb(51,51,51);">4.5 实验：启用事务后的隔离性</font>**
+### **<font style="color:rgb(51,51,51);">4.5 实验：启用事务后的隔离性</font>**
 ```shell
 db.tx.insertMany([{ x: 1 }, { x: 2 }]);
 var session = db.getMongo().startSession();
@@ -308,7 +308,7 @@ session.abortTransaction();
 
 ![](../../images/1714118275091-c5927576-7e38-49ba-b21a-8017dfb01200.png)
 
-## **<font style="color:rgb(51,51,51);">4.6 实验：可重复读 Repeatable Read</font>**
+### **<font style="color:rgb(51,51,51);">4.6 实验：可重复读 Repeatable Read</font>**
 ```shell
 var session = db.getMongo().startSession();
 session.startTransaction({
@@ -324,7 +324,7 @@ session.abortTransaction();
 
 ![](../../images/1714118294778-2288b210-d759-4663-afef-c75b734e4823.png)
 
-## **<font style="color:rgb(51,51,51);">4.7 事务写机制</font>**
+### **<font style="color:rgb(51,51,51);">4.7 事务写机制</font>**
 ```shell
 MongoDB 的事务错误处理机制不同于关系数据库：
 ● 当一个事务开始后，如果事务要修改的文档在事务外部被修改过，则事务修改这个文档时会触发
@@ -334,7 +334,7 @@ Abort 错误，因为此时的修改冲突了；
 完成才能继续进行
 ```
 
-## **<font style="color:rgb(51,51,51);">4.8 实验：写冲突 </font>**
+### **<font style="color:rgb(51,51,51);">4.8 实验：写冲突 </font>**
 ```shell
 继续使用上个实验的tx集合 
 开两个 mongo shell 均执行下述语句 
@@ -355,7 +355,7 @@ coll.updateOne({x: 1}, {$set: {y: 2}});
 db.tx.updateOne({x: 1}, {$set: {y: 3}});
 ```
 
-## **<font style="color:rgb(51,51,51);">4.9 注意事项 </font>**
+### **<font style="color:rgb(51,51,51);">4.9 注意事项 </font>**
 ```shell
 • 可以实现和关系型数据库类似的事务场景
 • 必须使用与 MongoDB 4.2 兼容的驱动；

@@ -1,4 +1,4 @@
-# 安装和卸载
+## 安装和卸载
 ```python
 pipx install poetry
 pipx install poetry==1.2.0
@@ -23,16 +23,16 @@ pipx upgrade poetry
 pipx uninstall poetry
 ```
 
-# <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">为 Bash启用制表符补全</font>
-## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">自动加载（推荐）</font>
+## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">为 Bash启用制表符补全</font>
+### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">自动加载（推荐）</font>
 ```bash
 poetry completions bash >> ~/.bash_completion
 ```
 
-# 基础用法
+## 基础用法
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">为了介绍基本用法，我们将安装</font>`**pendulum**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">日期时间库。如果您尚未安装 Poetry，请参阅</font>[简介](https://python-poetry.org/docs/)<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">章节</font>
 
-## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">项目设置</font>
+### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">项目设置</font>
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">首先，让我们创建我们的新项目，我们称之为</font>`**poetry-demo**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">：</font>
 
 ```python
@@ -75,7 +75,7 @@ build-backend = "poetry.core.masonry.api"
 
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">类似地，传统的文件被、和 部分</font>`**MANIFEST.in**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">所取代。另外还由您的 隐式填充。有关项目格式的完整文档，请参阅文档的</font>[<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">pyproject 部分。</font>](https://python-poetry.org/docs/pyproject/)`**tool.poetry.readme**``**tool.poetry.include**``**tool.poetry.exclude**``**tool.poetry.exclude**``**.gitignore**`
 
-## pyproject.toml详细配置
+### pyproject.toml详细配置
 `pyproject.toml` 文件的 `tool.poetry` 部分是 Poetry 配置的核心，包含以下主要配置项：
 
 1. **基本信息**：
@@ -109,53 +109,53 @@ build-backend = "poetry.core.masonry.api"
 
 ```toml
 [tool.poetry]
-# 包名称（PEP 508 标准）
+## 包名称（PEP 508 标准）
 name = "my-package" 
 
-# 包版本（PEP 440 标准）
+## 包版本（PEP 440 标准）
 version = "0.1.0"  
 
-# 包描述
+## 包描述
 description = "这是一个简单的Python示例包"
 
-# 包的许可证类型（SPDX 许可标识）
+## 包的许可证类型（SPDX 许可标识）
 license = "MIT"  
 
-# 包作者（姓名和邮箱，至少填写一个）
+## 包作者（姓名和邮箱，至少填写一个）
 authors = ["Your Name <your.email@example.com>"]
 
-# 包维护者信息（可选）
+## 包维护者信息（可选）
 maintainers = ["Maintainer Name <maintainer.email@example.com>"]
 
-# README 文件路径，可以是相对路径或数组形式
+## README 文件路径，可以是相对路径或数组形式
 readme = "README.md"  
 
-# 项目主页链接
+## 项目主页链接
 homepage = "https://example.com"
 
-# 项目代码库链接
+## 项目代码库链接
 repository = "https://github.com/your-username/my-package"
 
-# 项目文档链接
+## 项目文档链接
 documentation = "https://example.com/docs"
 
-# 关键字标签，用于描述项目相关内容
+## 关键字标签，用于描述项目相关内容
 keywords = ["example", "package", "poetry"]
 
-# 分类器标签，用于描述项目性质（主要用于 PyPI）
+## 分类器标签，用于描述项目性质（主要用于 PyPI）
 classifiers = [
     "Programming Language :: Python",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent"
 ]
 
-# 包定义，如果包结构非标准，可以自定义包路径
+## 包定义，如果包结构非标准，可以自定义包路径
 packages = [
     { include = "my_package", from = "lib" },
     { include = "extra_package/**/*.py" },
 ]
 
-# 包的包含和排除设置，支持特定构建格式
+## 包的包含和排除设置，支持特定构建格式
 include = [
     { path = "CHANGELOG.md", format = "sdist" },
     { path = "LICENSE.txt", format = ["sdist", "wheel"] }
@@ -163,35 +163,35 @@ include = [
 exclude = ["my_package/excluded.py"]
 
 [tool.poetry.dependencies]
-# Python 版本要求
+## Python 版本要求
 python = "^3.7"  #要求3.7及其更高
-# python = ">=3.7,<3.14"
-# 必要依赖项及版本
+## python = ">=3.7,<3.14"
+## 必要依赖项及版本
 requests = "^2.25.1"
 
-# 可选依赖项
+## 可选依赖项
 psycopg2 = { version = "^2.9", optional = true }
 mysqlclient = { version = "^1.3", optional = true }
 
 [tool.poetry.extras]
-# 可选依赖组（如数据库支持）
+## 可选依赖组（如数据库支持）
 mysql = ["mysqlclient"]
 pgsql = ["psycopg2"]
 
 [tool.poetry.scripts]
-# 定义脚本，通过命令行调用包功能
+## 定义脚本，通过命令行调用包功能
 my_package_cli = "my_package.console:run"
 
 [tool.poetry.urls]
-# 自定义项目链接
+## 自定义项目链接
 "Bug Tracker" = "https://github.com/your-username/my-package/issues"
 
 [build-system]
-# 构建系统要求，使用 poetry-core 作为构建后端
+## 构建系统要求，使用 poetry-core 作为构建后端
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-# 配置项目下载源
+## 配置项目下载源
 [[tool.poetry.source]]
 name = "tsinghua"
 priority = "primary"
@@ -202,7 +202,7 @@ url = "https://mirrors.aliyun.com/pypi/simple/"
 priority = "supplemental"
 ```
 
-## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">初始化现有项目</font>
+### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">初始化现有项目</font>
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">无需创建新项目，Poetry 可用于“初始化”预填充的目录。要</font>`**pyproject.toml**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">在目录中以交互方式创建文件</font>`**pre-existing-project**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">：</font>
 
 ![](../../images/1730614914524-9545ef18-3eb3-40a7-ae0e-c12bf84d0311.svg)
@@ -212,7 +212,7 @@ cd pre-existing-project
 poetry init
 ```
 
-## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">打包操作模式</font>
+### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">打包操作模式</font>
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">Poetry 可以在两种不同的模式下运行。默认模式是</font>**<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">包模式</font>**<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">，如果你想将项目打包到 sdist 或 wheel 中，并将其发布到包索引中，这是正确的模式。在此模式下，打包所需的一些元数据（如</font>`**name**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">和</font>`**version**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">）是必需的。此外，运行时项目本身将以可编辑模式安装</font>`**poetry install**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">。</font>
 
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">如果你只想使用 Poetry 进行依赖管理而不是打包，那么可以使用</font>**<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">非打包模式</font>**<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">：</font>
@@ -226,7 +226,7 @@ package-mode = false
 
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">在此模式下，元数据（例如</font>`**name**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">和 ）</font>`**version**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">是可选的。因此，无法构建分发版或将项目发布到包索引。此外，在运行 时</font>`**poetry install**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">，Poetry 不会尝试安装项目本身，而只会安装其依赖项（与 相同</font>`**poetry install --no-root**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">）。</font>
 
-## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">指定依赖项</font>
+### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">指定依赖项</font>
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">如果您想向您的项目添加依赖项，您可以在</font>`**tool.poetry.dependencies**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">部分中指定它们。</font>
 
 ![](../../images/1730614998275-d78e5506-aa39-4baf-b676-a3352597be72.svg)
@@ -252,7 +252,7 @@ $ poetry add pendulum
 
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">Poetry 支持丰富的</font>[<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">依赖规范</font>](https://python-poetry.org/docs/dependency-specification/)<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">语法，包括插入符号、波浪号、通配符、不等式和 </font>[<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">多重约束</font>](https://python-poetry.org/docs/dependency-specification/#multiple-constraints-dependencies)<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">要求。</font>
 
-## 虚拟环境
+### 虚拟环境
 使用外部虚拟环境venv
 
 ```bash
@@ -268,13 +268,13 @@ poetry remove pyexecjs #删除一个已有包
 ./venv/Scripts/deactivate #退出虚拟环境linux则是 deactivate  #export已导出，无需指定路径
 ```
 
-## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">更新依赖项至最新版本</font>
+### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">更新依赖项至最新版本</font>
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">如上所述，该</font>`**poetry.lock**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">文件会阻止您自动获取依赖项的最新版本。要更新到最新版本，请使用该</font>`**update**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">命令。这将获取最新的匹配版本（根据您的</font>`**pyproject.toml**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">文件）并使用新版本更新锁定文件。（这相当于删除</font>`**poetry.lock**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">文件并</font>`**install**`<font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">再次运行。）</font>
 
 如果和 不同步，Poetry在执行安装命令时将显示**警告。**`**poetry.lock**``**pyproject.toml**`
 
-# 高级用法
-## 多组依赖管理
+## 高级用法
+### 多组依赖管理
 对于使用 Poetry 管理依赖关系时，要有效地区分和管理开发环境、测试环境以及生产环境的依赖项，可以借助依赖项组（dependency groups）以及可选依赖项（extras）来实现。下面通过示例展示如何配置这些不同环境的依赖项。
 
 ### 1. 项目结构配置
@@ -287,20 +287,20 @@ version = "0.1.0"
 description = "Example project with dependency groups"
 authors = ["Your Name <youremail@example.com>"]
 
-# 主依赖项（生产环境）
+## 主依赖项（生产环境）
 [tool.poetry.dependencies]
 httpx = "^0.22.0"
 pendulum = "^2.1.2"
 
-# 开发环境依赖项组
+## 开发环境依赖项组
 [tool.poetry.group.dev.dependencies]
-black = "^21.12b0"   # 代码格式化工具
-mypy = "^0.910"      # 类型检查工具
+black = "^21.12b0"   ## 代码格式化工具
+mypy = "^0.910"      ## 类型检查工具
 
-# 测试环境依赖项组
+## 测试环境依赖项组
 [tool.poetry.group.test.dependencies]
-pytest = "^6.2.5"    # 测试框架
-pytest-mock = "^3.6.1"  # Mock工具，用于单元测试
+pytest = "^6.2.5"    ## 测试框架
+pytest-mock = "^3.6.1"  ## Mock工具，用于单元测试
 ```
 
 在这个配置中，`httpx` 和 `pendulum` 属于主依赖项组，即生产环境会用到的库。在开发环境中，我们会用到 `black` 和 `mypy`，而测试环境需要 `pytest` 和 `pytest-mock`。
@@ -347,10 +347,10 @@ poetry remove mypy --group dev
 例如：
 
 ```bash
-# 仅同步生产环境依赖项
+## 仅同步生产环境依赖项
 poetry install --only main --sync
 
-# 同步生产和测试环境依赖项
+## 同步生产和测试环境依赖项
 poetry install --with test --sync
 ```
 
@@ -358,9 +358,9 @@ poetry install --with test --sync
 对于在生产环境中可能不常用到的依赖项，可以将它们配置为可选依赖项。使用 `extras` 可以方便用户在安装包时选择性地安装特定功能：
 
 ```toml
-# 可选依赖项定义
+## 可选依赖项定义
 [tool.poetry.extras]
-docs = ["mkdocs"]  # 文档构建工具
+docs = ["mkdocs"]  ## 文档构建工具
 ```
 
 使用可选依赖项的安装命令如下：
@@ -372,7 +372,7 @@ poetry install --extras "docs"
 ### 总结
 通过上述配置和命令，Poetry 能够轻松管理开发、测试和生产环境的依赖项。
 
-## 打包管理
+### 打包管理
 使用 Poetry 进行库管理和发布可以简化 Python 库的创建、打包和发布流程。以下是使用 Poetry 进行库管理的流程总结、实例以及相关介绍：
 
 ### 1. 版本控制
@@ -450,7 +450,7 @@ version = "0.1.0"
 description = ""
 authors = ["liyedong <lyd1446034545@gmail.com>"]
 readme = "README.md"
-# 包定义，如果包结构非标准，可以自定义包路径
+## 包定义，如果包结构非标准，可以自定义包路径
 packages = [{include = "poetry_demo"}]
 
 [tool.poetry.dependencies]
@@ -483,13 +483,13 @@ BiBGU2UDZxJyE8x5dvPmLbJ-jHTtcEKCKeRLG6lzT3A1CQ
 
 #### 打包和发布命令
 ```bash
-# 打包库
+## 打包库
 poetry build
 
-# 发布到 PyPI
+## 发布到 PyPI
 poetry publish --build
 
-# 发布到私有仓库（需要预先配置私有仓库）
+## 发布到私有仓库（需要预先配置私有仓库）
 poetry publish -r my-repository --build
 ```
 
@@ -505,7 +505,7 @@ poetry publish -r my-repository --build
 + 支持源码和 Wheel 格式打包
 + 选择发布到 PyPI 或私有仓库
 
-## 命令及其参数
+### 命令及其参数
 以下是 Poetry 的常用命令及其参数的详细总结和解释。
 
 ### 1. 项目初始化
@@ -585,7 +585,7 @@ poetry publish -r my-repository --build
 清除 Poetry 缓存，释放空间或解决缓存问题。
     - `--all`: 删除所有缓存
 
-## 配置
+### 配置
 ### 配置 Poetry
 Poetry 可以通过 `config` 命令进行配置，您可以在首次运行命令时自动创建的 `config.toml` 文件中进行配置。该文件通常位于以下目录之一：
 
@@ -627,7 +627,7 @@ virtualenvs.options.always-copy = false
 virtualenvs.options.no-pip = false
 virtualenvs.options.no-setuptools = false
 virtualenvs.options.system-site-packages = false
-virtualenvs.path = "{cache-dir}\\virtualenvs"  # C:\Users\Administrator\AppData\Local\pypoetry\Cache\virtualenvs
+virtualenvs.path = "{cache-dir}\\virtualenvs"  ## C:\Users\Administrator\AppData\Local\pypoetry\Cache\virtualenvs
 virtualenvs.prefer-active-python = false
 virtualenvs.prompt = "{project_name}-py{python_version}"
 warnings.export = true
@@ -726,7 +726,7 @@ Poetry 使用的缓存目录路径。
 
 通过以上配置和命令，您可以根据需要自定义 Poetry 的行为，以更好地满足您的开发需求。
 
-## 仓库配置
+### 仓库配置
 ```toml
 [tool.poetry]
 name = "liyedong-poetry-demo"
@@ -734,7 +734,7 @@ version = "0.1.0"
 description = ""
 authors = ["liyedong <lyd1446034545@gmail.com>"]
 readme = "README.md"
-# 包定义，如果包结构非标准，可以自定义包路径
+## 包定义，如果包结构非标准，可以自定义包路径
 packages = [{include = "poetry_demo"}]
 
 [tool.poetry.dependencies]
@@ -748,7 +748,7 @@ pypiwin32 = "^223"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-# 配置项目下载源
+## 配置项目下载源
 [[tool.poetry.source]]
 name = "tsinghua"
 priority = "primary"
@@ -759,14 +759,14 @@ url = "https://mirrors.aliyun.com/pypi/simple/"
 priority = "supplemental"
 ```
 
-## 多个解释器切换
+### 多个解释器切换
 <font style="color:rgb(47, 41, 151);background-color:rgb(245, 245, 252);">如果你使用</font>[<font style="color:rgb(47, 41, 151);background-color:rgb(245, 245, 252);">pyenv</font>](https://github.com/pyenv/pyenv)<font style="color:rgb(47, 41, 151);background-color:rgb(245, 245, 252);">这样的工具来管理不同的Python版本，你可以将实验性的</font>`<font style="background-color:rgb(245, 245, 252);">virtualenvs.prefer-active-python</font>`<font style="color:rgb(47, 41, 151);background-color:rgb(245, 245, 252);">选项设置为</font>`<font style="background-color:rgb(245, 245, 252);">true</font>`<font style="color:rgb(47, 41, 151);background-color:rgb(245, 245, 252);">。Poetry将尝试找到当前的</font>`<font style="background-color:rgb(245, 245, 252);">python</font>`<font style="color:rgb(47, 41, 151);background-color:rgb(245, 245, 252);">shell。</font>
 
 <font style="color:rgb(47, 41, 151);background-color:rgb(245, 245, 252);">例如，如果您的项目需要比您的系统可用的更新的Python，则标准工作流程将是：</font>
 
 ```bash
 pyenv install 3.9.8
-pyenv local 3.9.8  # Activate Python 3.9 for the current project
+pyenv local 3.9.8  ## Activate Python 3.9 for the current project
 poetry install
 ```
 
@@ -857,7 +857,7 @@ poetry env remove --all
 
 <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">如果您删除当前激活的虚拟环境，它将自动停用。</font>
 
-## <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">依赖关系规范</font>
+### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">依赖关系规范</font>
 [https://python-poetry.org/docs/dependency-specification/](https://python-poetry.org/docs/dependency-specification/)
 
 #### <font style="color:rgb(9, 61, 141);background-color:rgb(251, 251, 255);">版本限制</font>

@@ -1,5 +1,5 @@
-# RHEL9-RHCE学习
-# 部署ansible
+## RHEL9-RHCE学习
+## 部署ansible
 
 
 ```shell
@@ -10,7 +10,7 @@ ansible-navigator images
 
 
 
-# 配置文件
+## 配置文件
 **<font style="color:rgb(0,0,0);">管理配置文件 </font>**
 
 <font style="color:rgb(0,0,0);">ansible</font><font style="color:rgb(0,0,0);">的配置文件名为</font>**<font style="color:rgb(0,0,0);">ansible.cfg</font>**<font style="color:rgb(0,0,0);">,RHEL8</font><font style="color:rgb(0,0,0);">版本默认位于</font>**<font style="color:rgb(0,0,0);">/etc/ansible/ansible.cfg </font>**<font style="color:rgb(0,0,0);">。此 </font>
@@ -104,17 +104,17 @@ become_ask_pass=False
 
 **<font style="color:rgb(0,0,0);">inventory </font>****<font style="color:rgb(0,0,0);">文件的内置变量 </font>**
 
-<font style="color:rgb(0,0,0);">ansible_ssh_host # </font><font style="color:rgb(0,0,0);">要连接的主机名 </font><font style="color:rgb(0,0,0);">ansible_ssh_port # </font><font style="color:rgb(0,0,0);">端口号，默认</font><font style="color:rgb(0,0,0);">22 </font>
+<font style="color:rgb(0,0,0);">ansible_ssh_host ## </font><font style="color:rgb(0,0,0);">要连接的主机名 </font><font style="color:rgb(0,0,0);">ansible_ssh_port ## </font><font style="color:rgb(0,0,0);">端口号，默认</font><font style="color:rgb(0,0,0);">22 </font>
 
-<font style="color:rgb(0,0,0);">ansible_ssh_user # ssh</font><font style="color:rgb(0,0,0);">连接时默认使用的用户名 </font><font style="color:rgb(0,0,0);">ansible_ssh_pass # ssh</font><font style="color:rgb(0,0,0);">连接时的密码 </font>
+<font style="color:rgb(0,0,0);">ansible_ssh_user ## ssh</font><font style="color:rgb(0,0,0);">连接时默认使用的用户名 </font><font style="color:rgb(0,0,0);">ansible_ssh_pass ## ssh</font><font style="color:rgb(0,0,0);">连接时的密码 </font>
 
-<font style="color:rgb(0,0,0);">ansible_sudo_pass # </font><font style="color:rgb(0,0,0);">使用</font><font style="color:rgb(0,0,0);">sudo</font><font style="color:rgb(0,0,0);">连接用户时的密码 </font><font style="color:rgb(0,0,0);">ansible_ssh_private_key_file # </font><font style="color:rgb(0,0,0);">秘 </font>
+<font style="color:rgb(0,0,0);">ansible_sudo_pass ## </font><font style="color:rgb(0,0,0);">使用</font><font style="color:rgb(0,0,0);">sudo</font><font style="color:rgb(0,0,0);">连接用户时的密码 </font><font style="color:rgb(0,0,0);">ansible_ssh_private_key_file ## </font><font style="color:rgb(0,0,0);">秘 </font>
 
-<font style="color:rgb(0,0,0);">钥文件如果不想使用</font><font style="color:rgb(0,0,0);">sshagent</font><font style="color:rgb(0,0,0);">管理时可以使用此选项 </font><font style="color:rgb(0,0,0);">ansible_shell_type # shell</font><font style="color:rgb(0,0,0);">类型，默 </font>
+<font style="color:rgb(0,0,0);">钥文件如果不想使用</font><font style="color:rgb(0,0,0);">sshagent</font><font style="color:rgb(0,0,0);">管理时可以使用此选项 </font><font style="color:rgb(0,0,0);">ansible_shell_type ## shell</font><font style="color:rgb(0,0,0);">类型，默 </font>
 
-<font style="color:rgb(0,0,0);">认</font><font style="color:rgb(0,0,0);">sh ansible_connection # SSH</font><font style="color:rgb(0,0,0);">连接类型：</font><font style="color:rgb(0,0,0);">local</font><font style="color:rgb(0,0,0);">、</font><font style="color:rgb(0,0,0);">ssh</font><font style="color:rgb(0,0,0);">、</font><font style="color:rgb(0,0,0);">paramiko</font><font style="color:rgb(0,0,0);">在</font><font style="color:rgb(0,0,0);">ansible 1.2</font><font style="color:rgb(0,0,0);">之前默 </font>
+<font style="color:rgb(0,0,0);">认</font><font style="color:rgb(0,0,0);">sh ansible_connection ## SSH</font><font style="color:rgb(0,0,0);">连接类型：</font><font style="color:rgb(0,0,0);">local</font><font style="color:rgb(0,0,0);">、</font><font style="color:rgb(0,0,0);">ssh</font><font style="color:rgb(0,0,0);">、</font><font style="color:rgb(0,0,0);">paramiko</font><font style="color:rgb(0,0,0);">在</font><font style="color:rgb(0,0,0);">ansible 1.2</font><font style="color:rgb(0,0,0);">之前默 </font>
 
-<font style="color:rgb(0,0,0);">认</font><font style="color:rgb(0,0,0);">paramiko ansible_python_interpreter # </font><font style="color:rgb(0,0,0);">用来指定</font><font style="color:rgb(0,0,0);">Python</font><font style="color:rgb(0,0,0);">解释器的路径，同样可以指定 </font>
+<font style="color:rgb(0,0,0);">认</font><font style="color:rgb(0,0,0);">paramiko ansible_python_interpreter ## </font><font style="color:rgb(0,0,0);">用来指定</font><font style="color:rgb(0,0,0);">Python</font><font style="color:rgb(0,0,0);">解释器的路径，同样可以指定 </font>
 
 <font style="color:rgb(0,0,0);">ruby</font><font style="color:rgb(0,0,0);">、</font><font style="color:rgb(0,0,0);">Perl</font><font style="color:rgb(0,0,0);">的路径 </font>
 
@@ -202,8 +202,8 @@ $ ansible dev --list-hosts
 [devops@workstation ansible]$ ansible all -m ping
 ```
 
-# 即时命令和文档查看
-## **<font style="color:rgb(0,0,0);">运行Ad-hoc命令</font>**
+## 即时命令和文档查看
+### **<font style="color:rgb(0,0,0);">运行Ad-hoc命令</font>**
 **<font style="color:rgb(0,0,0);">ansible</font>****<font style="color:rgb(0,0,0);">执行有两种方式，一种是</font>****<font style="color:rgb(0,0,0);">ad-hoc</font>****<font style="color:rgb(0,0,0);">，另一种是</font>****<font style="color:rgb(0,0,0);">playbooks </font>**
 
 **<font style="color:rgb(0,0,0);">什么是ad-hoc命令 </font>**
@@ -233,7 +233,7 @@ $ ansible dev --list-hosts
 <font style="color:rgb(0,0,0);">受管主机必须是已经在inventory文件中定义的主机，可以写主机名也可以写主机组名。</font>
 
 ```shell
-[devops@workstation ansible]# ansible all -a 'hostname'
+[devops@workstation ansible]## ansible all -a 'hostname'
 ```
 
 **<font style="color:rgb(0,0,0);">ansible </font>****<font style="color:rgb(0,0,0);">命令其他选项 </font>**
@@ -268,7 +268,7 @@ $ ansible dev --list-hosts
 
 <font style="color:rgb(0,0,0);">断是否要执行。 </font>
 
-## **<font style="color:rgb(0,0,0);">获取模块帮助 </font>**
+### **<font style="color:rgb(0,0,0);">获取模块帮助 </font>**
 <font style="color:rgb(0,0,0);">可以使用</font><font style="color:rgb(0,0,0);">ansible-doc</font><font style="color:rgb(0,0,0);">获取模块名称和模块的使用帮助。 </font>
 
 ```shell
@@ -277,13 +277,13 @@ $ ansible dev --list-hosts
 
 <font style="color:rgb(0,0,0);">获取相应模块的使用帮助信息 </font>
 
-<font style="color:rgb(0,0,0);"># ansible-doc Module_Name </font>
+<font style="color:rgb(0,0,0);">## ansible-doc Module_Name </font>
 
 ```shell
 [difu@control ~]$ ansible-doc yum
 ```
 
-## **<font style="color:rgb(0,0,0);">常用模块 </font>**
+### **<font style="color:rgb(0,0,0);">常用模块 </font>**
 <font style="color:rgb(0,0,0);">1.</font>**<font style="color:rgb(0,0,0);">ansible.builtin.</font>****<font style="color:rgb(0,0,0);">command </font>**<font style="color:rgb(0,0,0);">模块 </font>
 
 <font style="color:rgb(0,0,0);">ansible.builtin.command </font><font style="color:rgb(0,0,0);">模块是</font><font style="color:rgb(0,0,0);">ansible </font><font style="color:rgb(0,0,0);">的默认模块，</font><font style="color:rgb(0,0,0);">ansible.builtin.command </font><font style="color:rgb(0,0,0);">模块 </font>
@@ -557,7 +557,7 @@ dest=/etc/motd mode=644'
 
 <font style="color:rgb(0,0,0);">https://docs.ansible.com/ansible/latest/plugins/module.html</font>
 
-# playbook编写
+## playbook编写
 **<font style="color:rgb(0,0,0);">创建并运行playbook </font>**
 
 **<font style="color:rgb(0,0,0);">playbook(剧本) </font>**
@@ -727,7 +727,7 @@ autocmd filetype yaml setlocal ai ts=2 sw=2 et
 
 <font style="color:rgb(0,0,0);">3.tasks中还可以通过include和import来导入其他的playbook文件</font>
 
-# <font style="color:rgb(0,0,0);">使用</font>**<font style="color:rgb(0,0,0);">ansible vault加密</font>**
+## <font style="color:rgb(0,0,0);">使用</font>**<font style="color:rgb(0,0,0);">ansible vault加密</font>**
 **<font style="color:rgb(0,0,0);">为什么要加密 </font>**
 
 <font style="color:rgb(0,0,0);">在</font><font style="color:rgb(0,0,0);">playbook</font><font style="color:rgb(0,0,0);">或主机清单中，通常会为了配置方便，可能会把密码或密钥等敏感数据以明文的方式存储 </font>
@@ -926,7 +926,7 @@ Vault password: （输入旧密码）
   Decryption successful
 ```
 
-# **<font style="color:rgb(0,0,0);">变量的定义和引用</font>**
+## **<font style="color:rgb(0,0,0);">变量的定义和引用</font>**
 <font style="color:rgb(0,0,0);">Ansible</font><font style="color:rgb(0,0,0);">支持变量功能，能将</font><font style="color:rgb(0,0,0);">value(</font><font style="color:rgb(0,0,0);">值</font><font style="color:rgb(0,0,0);">)</font><font style="color:rgb(0,0,0);">存储到变量中，这样就能在</font><font style="color:rgb(0,0,0);">Ansible</font><font style="color:rgb(0,0,0);">项目中重复使用 </font>
 
 <font style="color:rgb(0,0,0);">了。这样就可以简化项目的创建和维护，减少错误率。 </font>
@@ -1353,14 +1353,14 @@ PLAY [test debug] **************************************************************
 
 <font style="color:rgb(0,0,0);">可以通过这些值进行判断。 </font>
 
-# **<font style="color:rgb(0,0,0);">管理Facts </font>**
+## **<font style="color:rgb(0,0,0);">管理Facts </font>**
 <font style="color:rgb(0,0,0);">ansible facts </font><font style="color:rgb(0,0,0);">是受管主机上通过</font><font style="color:rgb(0,0,0);">ansible</font><font style="color:rgb(0,0,0);">自动发现的一系列变量。</font><font style="color:rgb(0,0,0);">ansible facts</font><font style="color:rgb(0,0,0);">包含了受管 </font>
 
 <font style="color:rgb(0,0,0);">主机的详细信息</font><font style="color:rgb(0,0,0);">,</font><font style="color:rgb(0,0,0);">如主机名，</font><font style="color:rgb(0,0,0);">ip</font><font style="color:rgb(0,0,0);">地址，系统版本，磁盘分区信息，</font><font style="color:rgb(0,0,0);">CPU</font><font style="color:rgb(0,0,0);">信息等。这些信息可以在 </font>
 
 <font style="color:rgb(0,0,0);">playbook</font><font style="color:rgb(0,0,0);">中直接使用 </font>
 
-## **<font style="color:rgb(0,0,0);">setup模块 </font>**
+### **<font style="color:rgb(0,0,0);">setup模块 </font>**
 <font style="color:rgb(0,0,0);">在执行</font><font style="color:rgb(0,0,0);">playbook</font><font style="color:rgb(0,0,0);">时候，</font><font style="color:rgb(0,0,0);">ansible</font><font style="color:rgb(0,0,0);">会自动执行第一个</font><font style="color:rgb(0,0,0);">task </font><font style="color:rgb(0,0,0);">运行</font><font style="color:rgb(0,0,0);">setup</font><font style="color:rgb(0,0,0);">模块，用于收集</font><font style="color:rgb(0,0,0);">facts</font><font style="color:rgb(0,0,0);">信息。 </font>
 
 <font style="color:rgb(0,0,0);">setup模块的作用就是收集受管主机的各种信息，也可以通过ad-hoc方式来运行setup模块。</font>
@@ -1381,7 +1381,7 @@ PLAY [test debug] **************************************************************
 [difu@control ansible]$ ansible-playbook site1.yml
 ```
 
-## **<font style="color:rgb(0,0,0);">关闭facts</font>**
+### **<font style="color:rgb(0,0,0);">关闭facts</font>**
 ```shell
 ---
  - name: 测试变量
@@ -1456,8 +1456,8 @@ gathering = explicit
 <font style="color:rgb(57,57,57);">自定义一个facts</font>
 
 ```shell
- root@control ~]# mkdir -p /etc/ansible/facts.d
- [root@control ~]# vim /etc/ansible/facts.d/my.fact
+ root@control ~]## mkdir -p /etc/ansible/facts.d
+ [root@control ~]## vim /etc/ansible/facts.d/my.fact
  [info]
  name=redhat
  age=28
@@ -1500,7 +1500,7 @@ gathering = explicit
 <font style="color:rgb(57,57,57);">此时，我们可以在被控端看到新的</font><font style="color:rgb(57,57,57);">facts</font><font style="color:rgb(57,57,57);">已经生成： </font>
 
 ```shell
-# ansible test -m setup 
+## ansible test -m setup 
 192.168.0.187 | SUCCESS => { "ansible_facts": { 
 ...output omitted... 
 "ansible_local": { 
@@ -1516,8 +1516,8 @@ gathering = explicit
 }
 ```
 
-# **<font style="color:rgb(0,0,0);">task 任务控制</font>**
-## **<font style="color:rgb(0,0,0);">Ansible循环 </font>**
+## **<font style="color:rgb(0,0,0);">task 任务控制</font>**
+### **<font style="color:rgb(0,0,0);">Ansible循环 </font>**
 <font style="color:rgb(0,0,0);">在</font><font style="color:rgb(0,0,0);">playbook</font><font style="color:rgb(0,0,0);">中可以使用循环语句来完成重复性的动作。 </font>
 
 <font style="color:rgb(0,0,0);">使用</font><font style="color:rgb(243,50,50);">loop </font><font style="color:rgb(0,0,0);">关键词来定义循环项目，使用 </font><font style="color:rgb(243,50,50);">item</font><font style="color:rgb(0,0,0);">来调用循环。</font>
@@ -1582,7 +1582,7 @@ gathering = explicit
 <font style="color:rgb(57,57,57);">先定义一个组的变量，变量名称为userlist</font>
 
 ```shell
-[root@workstation ansible]# vim group_vars/all.yml
+[root@workstation ansible]## vim group_vars/all.yml
 userlist:
  - username: myth
  group: developer
@@ -1593,7 +1593,7 @@ userlist:
 <font style="color:rgb(57,57,57);">开始循环这个变量</font>
 
 ```shell
-[root@workstation ansible]# vim site1.yml
+[root@workstation ansible]## vim site1.yml
 ---
 - name: test loop
  hosts: web
@@ -1609,7 +1609,7 @@ userlist:
  loop: "{{ userlist }}"
 ```
 
-## **<font style="color:rgb(0,0,0);">Ansible条件判断 </font>**
+### **<font style="color:rgb(0,0,0);">Ansible条件判断 </font>**
 <font style="color:rgb(0,0,0);">在</font><font style="color:rgb(0,0,0);">playbook</font><font style="color:rgb(0,0,0);">中使用</font><font style="color:rgb(0,0,0);">"when"</font><font style="color:rgb(0,0,0);">来实现条件判断，即通过测试条件来决定任务是否会被执行，一般是只有测试条件成立时任 </font>
 
 <font style="color:rgb(0,0,0);">务才会被执行。这样可以避免很多</font><font style="color:rgb(0,0,0);">task</font><font style="color:rgb(0,0,0);">意外的失败，还可以提高代码的执行效率。 </font>
@@ -1802,7 +1802,7 @@ failed=0
 <font style="color:rgb(0,0,0);">正常执行时，handler没有被触发</font>
 
 ```shell
-[root@workstation ansible]# ansible-navigator run site5.yml -m stdout
+[root@workstation ansible]## ansible-navigator run site5.yml -m stdout
 PLAY [test handler]
 *****************************************************************************************
 ***************
@@ -1838,7 +1838,7 @@ rescued=0 ignored=0
 <font style="color:rgb(0,0,0);">修改了被copy的文件之后，再次执行会发现handler被触发了。</font>
 
 ```shell
-[root@workstation ansible]# ansible-navigator run site5.yml -m stdout
+[root@workstation ansible]## ansible-navigator run site5.yml -m stdout
 PLAY [test handler]
 ************************************************************************
 ********************************
@@ -2020,7 +2020,7 @@ node4 : ok=2 changed=1 unreachable=0
 failed=0 skipped=0 rescued=0 ignored=0
 ```
 
-# **<font style="color:rgb(0,0,0);">roles结构</font>**
+## **<font style="color:rgb(0,0,0);">roles结构</font>**
 <font style="color:rgb(0,0,0);">roles </font><font style="color:rgb(0,0,0);">其实就是</font><font style="color:rgb(223,64,42);">变量</font><font style="color:rgb(0,0,0);">文件、</font><font style="color:rgb(223,64,42);">模板</font><font style="color:rgb(0,0,0);">文件、</font><font style="color:rgb(223,64,42);">handlers</font><font style="color:rgb(0,0,0);">文件、</font><font style="color:rgb(223,64,42);">tasks</font><font style="color:rgb(0,0,0);">文件的一 </font>
 
 <font style="color:rgb(0,0,0);">个集合，我们将各个文件放在</font><font style="color:rgb(0,0,0);">roles</font><font style="color:rgb(0,0,0);">的指定目录下，使用一个主</font><font style="color:rgb(0,0,0);">playbook</font><font style="color:rgb(0,0,0);">来调 </font>
@@ -2030,7 +2030,7 @@ failed=0 skipped=0 rescued=0 ignored=0
 <font style="color:rgb(0,0,0);">roles 有一个标准的目录结构：</font>
 
 ```shell
-[root@workstation ansible]# tree lamp
+[root@workstation ansible]## tree lamp
 lamp
 ├── defaults
 │ └── main.yml
@@ -2085,7 +2085,7 @@ lamp
 <font style="color:rgb(0,0,0);">使用</font>**<font style="color:rgb(0,0,0);">ansible­galaxy init roles_NAME</font>**<font style="color:rgb(0,0,0);">来自动初始化一个角色</font>
 
 ```shell
-[root@workstation ansible]# ansible­galaxy init lamp
+[root@workstation ansible]## ansible­galaxy init lamp
 ```
 
 **<font style="color:rgb(0,0,0);">roles</font>****<font style="color:rgb(0,0,0);">的引用和执行 </font>**
@@ -2236,19 +2236,19 @@ dependencies:
 <font style="color:rgb(0,0,0);">1.搜索角色</font>
 
 ```shell
-# ansible-galaxy search 'roels_name'
+## ansible-galaxy search 'roels_name'
 ```
 
 <font style="color:rgb(0,0,0);">2. </font><font style="color:rgb(0,0,0);">获取角色信息 </font>
 
 ```shell
-# ansible­-galaxy info roels_name 
+## ansible­-galaxy info roels_name 
 ```
 
 <font style="color:rgb(0,0,0);">3. </font><font style="color:rgb(0,0,0);">安装角色 </font>
 
 ```shell
-# ansible­-galaxy install roels_name ­p roles/ 
+## ansible­-galaxy install roels_name ­p roles/ 
 ```
 
 <font style="color:rgb(0,0,0);">­p </font><font style="color:rgb(0,0,0);">指定安装路径 </font>
@@ -2256,7 +2256,7 @@ dependencies:
 <font style="color:rgb(0,0,0);">4. </font><font style="color:rgb(0,0,0);">从指定文件中安装角色 </font>
 
 ```shell
-# ansible­galaxy install roels_name ­p roles/ ­r require.yml
+## ansible­galaxy install roels_name ­p roles/ ­r require.yml
 ```
 
 <font style="color:rgb(0,0,0);">把安装请求信息写入到yml文件中，可以指定请求的位置、角色版本、请求 </font>
@@ -2285,7 +2285,7 @@ name: myrole
 **<font style="color:rgb(0,0,0);">安装</font>****<font style="color:rgb(0,0,0);">rhel­system roles </font>**
 
 ```shell
-# yum -y install rhel-system-roles 
+## yum -y install rhel-system-roles 
 ```
 
 <font style="color:rgb(0,0,0);">安装好之后，相关的角色都是在</font><font style="color:rgb(0,0,0);">/usr/share/ansible/roles</font><font style="color:rgb(0,0,0);">目录下 </font>
@@ -2335,7 +2335,7 @@ roles:
 - rhel-system-roles.timesync
 ```
 
-# 常用文件操作模块
+## 常用文件操作模块
 <font style="color:rgb(0,0,0);">常见的文件操作模块有copy、file、fetch、blockinfile、lineinfile 等</font>
 
 <font style="color:rgb(57,57,57);">copy</font><font style="color:rgb(57,57,57);">模块和</font><font style="color:rgb(57,57,57);">fetch</font><font style="color:rgb(57,57,57);">模块类似，</font><font style="color:rgb(57,57,57);">copy</font><font style="color:rgb(57,57,57);">模块是将文件从</font><font style="color:rgb(57,57,57);">ansible </font><font style="color:rgb(57,57,57);">主机拷贝到受管主机上。 </font>
@@ -2354,16 +2354,16 @@ roles:
 
 <font style="color:rgb(0,0,0);">入。（默认所有文本都是一行） </font>
 
-<font style="color:rgb(0,0,0);">marker: </font><font style="color:rgb(0,0,0);">指定标记，在写入文本时，这一段文本默认会有两个标记，一个是起始标记 </font><font style="color:rgb(57,57,57);"># </font>
+<font style="color:rgb(0,0,0);">marker: </font><font style="color:rgb(0,0,0);">指定标记，在写入文本时，这一段文本默认会有两个标记，一个是起始标记 </font><font style="color:rgb(57,57,57);">## </font>
 
-<font style="color:rgb(57,57,57);">BEGIN ANSIBLE MANAGED BLOCK</font><font style="color:rgb(0,0,0);">，一个是结束标记</font><font style="color:rgb(57,57,57);"># END ANSIBLE MANAGED BLOCK</font><font style="color:rgb(57,57,57);">，也可以 </font>
+<font style="color:rgb(57,57,57);">BEGIN ANSIBLE MANAGED BLOCK</font><font style="color:rgb(0,0,0);">，一个是结束标记</font><font style="color:rgb(57,57,57);">## END ANSIBLE MANAGED BLOCK</font><font style="color:rgb(57,57,57);">，也可以 </font>
 
 <font style="color:rgb(57,57,57);">自定义，如</font><font style="color:rgb(57,57,57);">marker=#test </font>
 
 ```yaml
-# BEGIN ANSIBLE MANAGED BLOCK 
+## BEGIN ANSIBLE MANAGED BLOCK 
 test world 
-# END ANSIBLE MANAGED BLOCK 
+## END ANSIBLE MANAGED BLOCK 
 ```
 
 <font style="color:rgb(0,0,0);">state: </font><font style="color:rgb(0,0,0);">默认值是</font><font style="color:rgb(0,0,0);">present,</font><font style="color:rgb(0,0,0);">表示写入文本，如果值是</font><font style="color:rgb(0,0,0);">absent</font><font style="color:rgb(0,0,0);">，则表示删除相应的文本 </font>
@@ -2383,10 +2383,10 @@ test world
  first line 
  second line 
  create: yes 
-# BEGIN ANSIBLE MANAGED BLOCK 
+## BEGIN ANSIBLE MANAGED BLOCK 
 first line 
 second line 
-# END ANSIBLE MANAGED BLOCK
+## END ANSIBLE MANAGED BLOCK
 ```
 
 <font style="color:rgb(57,57,57);">lineinfile </font><font style="color:rgb(57,57,57);">模块用于向文件中写入一行文本，如果写入的文本已经存在于文件中了，则不会写 </font>
@@ -2464,7 +2464,7 @@ second line
  content: "Development"
 ```
 
-# **<font style="color:rgb(0,0,0);">使用Jinja2模板部署自定义文件 </font>**
+## **<font style="color:rgb(0,0,0);">使用Jinja2模板部署自定义文件 </font>**
 <font style="color:rgb(0,0,0);">jinja2 是在python中被广泛使用的一个模板引擎，ansible 可以通过jinja2模板来实现动 态表达式和变量引用。 </font>
 
 <font style="color:rgb(0,0,0);">template模块使用来复制模板到受管主机的，template 使用jinja2模板语言，会对模板文件 中的变量进行替换。 </font>
@@ -2508,7 +2508,7 @@ HOSTNAME: {{ ansible_fqdn }}
 <font style="color:rgb(0,0,0);">执行后在各个受管主机得到结果： </font>
 
 ```yaml
-[root@workstation ansible]# ansible all -m shell -a 'cat /tmp/host.txt' 
+[root@workstation ansible]## ansible all -m shell -a 'cat /tmp/host.txt' 
 node1 | CHANGED | rc=0 >> 
 IP: 172.16.1.11 
 HOSTNAME: node1 
@@ -2599,7 +2599,7 @@ vdb_size: NONE
 <font style="color:rgb(0,0,0);">在受管主机上生成的文件 </font>
 
 ```yaml
-[root@workstation ansible]# ansible all -m shell -a 'cat 
+[root@workstation ansible]## ansible all -m shell -a 'cat 
 /tmp/diskinfo.txt' 
 node1 | CHANGED | rc=0 >> 
 vdb_size: NONE 

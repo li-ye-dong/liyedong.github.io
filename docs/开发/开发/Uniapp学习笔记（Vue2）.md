@@ -1,12 +1,12 @@
-# Uniapp学习笔记（Vue2）
-# 1.uview框架
+## Uniapp学习笔记（Vue2）
+## 1.uview框架
 <font style="color:rgb(64, 72, 91);">uView UI，是</font>[uni-app](https://gitee.com/link?target=https%3A%2F%2Funiapp.dcloud.io%2F)<font style="color:rgb(64, 72, 91);">全面兼容nvue的uni-app生态框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水</font>
 
 [https://github.com/umicro/uView2.0](https://github.com/umicro/uView2.0)
 
 [https://gitee.com/umicro/uView2.0](https://gitee.com/umicro/uView2.0)
 
-# 2.uview安装
+## 2.uview安装
 [https://ext.dcloud.net.cn/plugin?id=1593](https://ext.dcloud.net.cn/plugin?id=1593)
 
 hbuildx安装后配置
@@ -61,10 +61,10 @@ App.vue引入
 
 ```
 
-# 3.开始使用
+## 3.开始使用
 [https://www.yuque.com/liyedong/zqilp1/zsgmvtx47dlwe4zg#xOYXO](#xOYXO)
 
-# 4.使用状态管理
+## 4.使用状态管理
 ```javascript
 //main.js 引入
 import store from "./stores/index.js"
@@ -157,7 +157,7 @@ export default store;
 
 ```
 
-# 5.图标无法使用修复
+## 5.图标无法使用修复
 下载[https://www.uviewui.com/components/resource.html](https://www.uviewui.com/components/resource.html)
 
 [iconfont.ttf.txt](https://www.yuque.com/attachments/yuque/0/2024/txt/40598547/1710582580700-8199155e-7ae9-4d25-af26-2a4a9745a9a3.txt)
@@ -195,8 +195,8 @@ AAEAAAALAIAAAwAwR1NVQiCLJXoAAAE4AAAAVE9TLzI8FUxdAAABjAAAAGBjbWFwmJlvCwAABTwAAA50
 
 至此，就可以修复u-icon失效的问题
 
-# 6.编译微信小程序问题总结
-## 1.字符值为null时
+## 6.编译微信小程序问题总结
+### 1.字符值为null时
 搜索框值为null时，会导致编译微信小程序错误
 
 如
@@ -219,7 +219,7 @@ AAEAAAALAIAAAwAwR1NVQiCLJXoAAAE4AAAAVE9TLzI8FUxdAAABjAAAAGBjbWFwmJlvCwAABTwAAA50
 				},
 ```
 
-## 2.动态获取设备高度
+### 2.动态获取设备高度
 ```javascript
 //异步
 uni.getSystemInfo({

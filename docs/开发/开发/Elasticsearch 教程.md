@@ -1,5 +1,5 @@
-# Elasticsearch 教程
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 安装</font>
+## Elasticsearch 教程
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 安装</font>
 <font style="color:rgb(51, 51, 51);">在本章中，我们将详细了解Elasticsearch的安装过程。</font>
 
 <font style="color:rgb(51, 51, 51);">要在本地计算机上安装Elasticsearch，您将必须执行以下步骤-</font>
@@ -88,13 +88,13 @@ sudo yum install elasticsearch
 
 **<font style="color:rgb(51, 51, 51);">Step 4</font>**<font style="color:rgb(51, 51, 51);">−转到Elasticsearch主目录并位于bin文件夹中。如果使用Windows，则运行elasticsearch.bat文件；如果使用UNIX rum弹性搜索文件，则可以使用命令提示符并通过终端执行相同的操作。</font>
 
-## <font style="color:rgb(51, 51, 51);">在Windows中</font>
+### <font style="color:rgb(51, 51, 51);">在Windows中</font>
 ```plain
 > cd elasticsearch-2.1.0/bin
 > elasticsearch
 ```
 
-## <font style="color:rgb(51, 51, 51);">在Linux中</font>
+### <font style="color:rgb(51, 51, 51);">在Linux中</font>
 ```plain
 $ cd elasticsearch-2.1.0/bin
 $ ./elasticsearch
@@ -143,23 +143,23 @@ CD c:\kibana-7.0.0-windows-x86_64
 .\bin\kibana.bat
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 填充</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 填充</font>
 <font style="color:rgb(51, 51, 51);">在本章中，我们将学习如何向 Elasticsearch 添加一些索引、映射和数据。注意，这些数据中的一些将在本教程中解释的示例中使用。</font>
 
-## <font style="color:rgb(51, 51, 51);">创建索引</font>
+### <font style="color:rgb(51, 51, 51);">创建索引</font>
 <font style="color:rgb(51, 51, 51);">您可以使用以下命令创建索引-</font>
 
 PUT school
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 <font style="color:rgb(51, 51, 51);">如果创建了索引，则可以看到以下输出-</font>
 
 {"acknowledged": true}
 
-## <font style="color:rgb(51, 51, 51);">添加数据</font>
+### <font style="color:rgb(51, 51, 51);">添加数据</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch将存储我们添加到索引中的文档，如以下代码所示。给文档提供了一些ID，这些ID用于识别文档。</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 POST school/_doc/10
 {
@@ -170,7 +170,7 @@ POST school/_doc/10
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 ```plain
 {
    "_index" : "school",
@@ -200,7 +200,7 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 ```plain
 {
    "_index" : "school",
@@ -220,7 +220,7 @@ POST school/_doc/16
 
 <font style="color:rgb(51, 51, 51);">这样，我们将在接下来的章节中继续添加工作所需的任何示例数据。</font>
 
-## <font style="color:rgb(51, 51, 51);">在Kibana中添加样本数据</font>
+### <font style="color:rgb(51, 51, 51);">在Kibana中添加样本数据</font>
 <font style="color:rgb(51, 51, 51);">Kibana是一个GUI驱动的工具，用于访问数据和创建可视化。在本节中，让我们了解如何向其中添加样本数据。</font>
 
 <font style="color:rgb(51, 51, 51);">在Kibana主页中，选择以下选项以添加示例电子商务数据-</font>
@@ -232,7 +232,7 @@ POST school/_doc/16
   
  ![](../../images/1731764183002-fbc4fbd8-2d29-4be9-8602-ca3947945a7e.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 版本升级</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 版本升级</font>
 <font style="color:rgb(51, 51, 51);">在任何系统或软件中，当我们升级到较新版本时，我们需要遵循一些步骤来维护应用程序设置，配置，数据和其他内容。这些步骤是使应用程序在新系统中稳定或维护数据完整性（防止数据损坏）所必需的。</font>
 
 <font style="color:rgb(51, 51, 51);">您需要按照以下步骤升级Elasticsearch-</font>
@@ -242,7 +242,7 @@ POST school/_doc/16
 + <font style="color:rgb(51, 51, 51);">请注意，如果没有数据备份，则无法回滚到先前的Elasticsearch版本。因此，建议在升级到更高版本之前进行数据备份。</font>
 + <font style="color:rgb(51, 51, 51);">我们可以使用完全集群重启或滚动升级进行升级。滚动升级适用于新版本。请注意，在使用滚动升级方法进行迁移时，不会出现服务中断的情况。</font>
 
-## <font style="color:rgb(51, 51, 51);">升级步骤</font>
+### <font style="color:rgb(51, 51, 51);">升级步骤</font>
 + <font style="color:rgb(51, 51, 51);">在升级生产集群之前，请在开发环境中测试升级。</font>
 + <font style="color:rgb(51, 51, 51);">备份您的数据。除非您具有数据快照，否则无法回滚到早期版本。</font>
 + <font style="color:rgb(51, 51, 51);">在开始升级过程之前，请考虑关闭机器学习作业。虽然机器学习作业可以在滚动升级期间继续运行，但会在升级过程中增加群集的开销。</font>
@@ -253,10 +253,10 @@ POST school/_doc/16
     - <font style="color:rgb(51, 51, 51);">Beats</font>
     - <font style="color:rgb(51, 51, 51);">APM Server</font>
 
-## <font style="color:rgb(51, 51, 51);">从6.6或更早版本升级</font>
+### <font style="color:rgb(51, 51, 51);">从6.6或更早版本升级</font>
 <font style="color:rgb(51, 51, 51);">要从6.0-6.6版本直接升级到Elasticsearch 7.1.0，您必须手动重新索引需要继承的所有5.x索引，并执行完整的集群重新启动。</font>
 
-## <font style="color:rgb(51, 51, 51);">完整集群重启</font>
+### <font style="color:rgb(51, 51, 51);">完整集群重启</font>
 <font style="color:rgb(51, 51, 51);">完全集群重新启动的过程包括关闭集群中的每个节点，将每个节点升级到7x，然后重新启动集群。</font>
 
 <font style="color:rgb(51, 51, 51);">以下是完整集群重新启动需要执行的高级步骤-</font>
@@ -272,18 +272,18 @@ POST school/_doc/16
 
 <font style="color:rgb(51, 51, 51);">重新启用分配后，集群将开始将副本碎片分配给数据节点。此时，恢复索引和搜索是安全的，但是如果您可以等到所有主碎片和副本碎片都已成功分配并且所有节点的状态都为绿色时，集群将更快地恢复。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch API约定</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch API约定</font>
 <font style="color:rgb(51, 51, 51);">Web中的应用程序编程接口(API)是一组函数调用或其他编程指令，用于访问该特定Web应用程序中的软件组件。例如，Facebook API通过访问来自Facebook的数据或其他功能来帮助开发人员创建应用程序；它可以是出生日期或状态更新。</font>
 
 <font style="color:rgb(51, 51, 51);">Elasticsearch提供了一个REST API，JSON可以通过HTTP访问该API。Elasticsearch使用一些约定，我们现在将对其进行讨论。</font>
 
-## <font style="color:rgb(51, 51, 51);">多个索引</font>
+### <font style="color:rgb(51, 51, 51);">多个索引</font>
 <font style="color:rgb(51, 51, 51);">API中的大多数操作，主要是搜索和其他操作，都是针对一个或多个索引的。这有助于用户只需执行一次查询，就可以在多个位置或所有可用数据中进行搜索。许多不同的符号用于在多个索引中执行操作。我们将在本章中讨论其中的一些。</font>
 
-## <font style="color:rgb(51, 51, 51);">逗号分隔符号</font>
+### <font style="color:rgb(51, 51, 51);">逗号分隔符号</font>
 <font style="color:rgb(51, 51, 51);">POST /index1,index2,index3/_search</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -294,13 +294,13 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 <font style="color:rgb(51, 51, 51);">来自index1, index2, index3的JSON对象中包含any_string。</font>
 
-## <font style="color:rgb(51, 51, 51);">_all 所有索引的关键字</font>
+### <font style="color:rgb(51, 51, 51);">_all 所有索引的关键字</font>
 <font style="color:rgb(51, 51, 51);">POST /_all/_search</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -311,13 +311,13 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 <font style="color:rgb(51, 51, 51);">来自所有索引的JSON对象，其中包含any_string。</font>
 
-## <font style="color:rgb(51, 51, 51);">通配符（*，+，–）</font>
+### <font style="color:rgb(51, 51, 51);">通配符（*，+，–）</font>
 <font style="color:rgb(51, 51, 51);">POST /school*/_search</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -328,14 +328,14 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 <font style="color:rgb(51, 51, 51);">来自所有索引的JSON对象，这些索引始于其中包含CBSE的学校。</font>
 
 <font style="color:rgb(51, 51, 51);">另外，您也可以使用以下代码-</font>
 
 <font style="color:rgb(51, 51, 51);">POST /school*,-schools_gov /_search</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -346,7 +346,7 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 <font style="color:rgb(51, 51, 51);">JSON对象来自所有以“ school”开头的索引，但不是来自school_gov并包含CBSE的索引。</font>
 
 <font style="color:rgb(51, 51, 51);">还有一些URL查询字符串参数-</font>
@@ -355,7 +355,7 @@ POST school/_doc/16
 
 <font style="color:rgb(51, 51, 51);">POST /school*,book_shops/_search</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -366,7 +366,7 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "error":{
@@ -386,7 +386,7 @@ POST school/_doc/16
 
 <font style="color:rgb(51, 51, 51);">POST /school*,book_shops/_search?ignore_unavailable = true</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -397,15 +397,15 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应（无错误）</font>
+### <font style="color:rgb(51, 51, 51);">响应（无错误）</font>
 <font style="color:rgb(51, 51, 51);">来自所有索引的JSON对象，这些索引始于其中包含CBSE的学校。</font>
 
-## <font style="color:rgb(51, 51, 51);">allow_no_indices</font>
+### <font style="color:rgb(51, 51, 51);">allow_no_indices</font>
 **<font style="color:rgb(51, 51, 51);">true</font>**<font style="color:rgb(51, 51, 51);">如果带有通配符的URL没有索引，则此参数的值将防止错误。例如，没有以schools_pri开头的索引-</font>
 
 <font style="color:rgb(51, 51, 51);">POST /schools_pri*/_search?allow_no_indices = true</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -414,7 +414,7 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应（无错误）</font>
+### <font style="color:rgb(51, 51, 51);">响应（无错误）</font>
 ```plain
 {
    "took":1,"timed_out": false, "_shards":{"total":0, "successful":0, "failed":0},
@@ -422,21 +422,21 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">expand_wildcards</font>
+### <font style="color:rgb(51, 51, 51);">expand_wildcards</font>
 <font style="color:rgb(51, 51, 51);">此参数决定通配符是否需要扩展为开放索引或封闭索引，或同时执行这两者。此参数的值可以是打开和关闭的，也可以是没有。</font>
 
 <font style="color:rgb(51, 51, 51);">例如，封闭索引学校-</font>
 
 <font style="color:rgb(51, 51, 51);">POST /schools/_close</font>
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 <font style="color:rgb(51, 51, 51);">{"acknowledged":true}</font>
 
 <font style="color:rgb(51, 51, 51);">考虑以下代码-</font>
 
 <font style="color:rgb(51, 51, 51);">POST /school*/_search?expand_wildcards = closed</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -445,7 +445,7 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 ```plain
 {
    "error":{
@@ -457,7 +457,7 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">索引名称中的日期数学支持</font>
+### <font style="color:rgb(51, 51, 51);">索引名称中的日期数学支持</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch提供了根据日期和时间搜索索引的功能。我们需要以特定格式指定日期和时间。例如，accountdetail-2015.12.30，索引将存储2015年12月30日的银行帐户详细信息。可以执行数学运算以获取特定日期或日期和时间范围的详细信息。</font>
 
 <font style="color:rgb(51, 51, 51);">日期数学索引名称的格式-</font>
@@ -478,12 +478,12 @@ POST school/_doc/16
 
 <font style="color:rgb(51, 51, 51);">现在，我们将看到Elasticsearch中提供的一些常用选项，这些选项可用于获取指定格式的响应。</font>
 
-## <font style="color:rgb(51, 51, 51);">美化的结果</font>
+### <font style="color:rgb(51, 51, 51);">美化的结果</font>
 <font style="color:rgb(51, 51, 51);">我们可以通过添加URL查询参数（即pretty = true）来在格式良好的JSON对象中获得响应。</font>
 
 <font style="color:rgb(51, 51, 51);">POST /schools/_search?pretty = true</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -492,7 +492,7 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 ```plain
 ……………………..
 {
@@ -507,15 +507,15 @@ POST school/_doc/16
 ………………….
 ```
 
-## <font style="color:rgb(51, 51, 51);">人类可读的输出</font>
+### <font style="color:rgb(51, 51, 51);">人类可读的输出</font>
 <font style="color:rgb(51, 51, 51);">此选项可以将统计响应更改为人类可读形式（如果human = true）或计算机可读形式（如果human = false）。例如，如果human = true，则distance_kilometer = 20KM；如果human = false，则distance_meter = 20000，此时需要其他计算机程序使用响应。</font>
 
-## <font style="color:rgb(51, 51, 51);">响应过滤</font>
+### <font style="color:rgb(51, 51, 51);">响应过滤</font>
 <font style="color:rgb(51, 51, 51);">通过将它们添加到field_path参数中，我们可以过滤对较少字段的响应。例如，</font>
 
 <font style="color:rgb(51, 51, 51);">POST /schools/_search?filter_path = hits.total</font>
 
-## <font style="color:rgb(51, 51, 51);">请求正文</font>
+### <font style="color:rgb(51, 51, 51);">请求正文</font>
 ```plain
 {
    "query":{
@@ -524,15 +524,15 @@ POST school/_doc/16
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">响应</font>
+### <font style="color:rgb(51, 51, 51);">响应</font>
 ```bash
 {"hits":{"total":3}}
 ```
 
-# <font style="color:rgb(51, 51, 51);">Elasticsearch 文档API</font>
+## <font style="color:rgb(51, 51, 51);">Elasticsearch 文档API</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch提供了单文档API和多文档API，其中API调用分别针对单个文档和多个文档。</font>
 
-## <font style="color:rgb(51, 51, 51);">索引API</font>
+### <font style="color:rgb(51, 51, 51);">索引API</font>
 <font style="color:rgb(51, 51, 51);">当对具有特定映射的相应索引进行请求时，它有助于在索引中添加或更新JSON文档。例如，以下请求会将JSON对象添加到索引学校和学校映射下-</font>
 
 ```plain
@@ -565,7 +565,7 @@ PUT schools/_doc/5
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">自动索引创建</font>
+### <font style="color:rgb(51, 51, 51);">自动索引创建</font>
 <font style="color:rgb(51, 51, 51);">当请求将JSON对象添加到特定索引时，如果该索引不存在，则此API会自动创建该索引以及该特定JSON对象的基础映射。可以通过将elasticsearch.yml文件中存在的以下参数的值更改为false来禁用此功能。</font>
 
 ```plain
@@ -579,7 +579,7 @@ action.auto_create_index:+acc*,-bank*
 
 **<font style="color:rgb(51, 51, 51);">注意</font>**<font style="color:rgb(51, 51, 51);">：此处 + 表示允许，而 – 表示不允许。</font>
 
-## <font style="color:rgb(51, 51, 51);">版本控制</font>
+### <font style="color:rgb(51, 51, 51);">版本控制</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch还提供了版本控制工具。我们可以使用版本查询参数来指定特定文档的版本。</font>
 
 ```plain
@@ -614,13 +614,13 @@ PUT schools/_doc/5?version=7&version_type=external
 
 <font style="color:rgb(51, 51, 51);">有两种最重要的版本控制类型-</font>
 
-## <font style="color:rgb(51, 51, 51);">内部版本控制</font>
+### <font style="color:rgb(51, 51, 51);">内部版本控制</font>
 <font style="color:rgb(51, 51, 51);">内部版本控制是默认版本，从1开始，并随着每次更新（包括删除）而递增。</font>
 
-## <font style="color:rgb(51, 51, 51);">外部版本控制</font>
+### <font style="color:rgb(51, 51, 51);">外部版本控制</font>
 <font style="color:rgb(51, 51, 51);">当文档的版本控制存储在外部系统（如第三方版本控制系统）中时，将使用此功能。要启用此功能，我们需要将version_type设置为external。在这里，Elasticsearch将存储外部系统指定的版本号，并且不会自动对其进行递增。</font>
 
-## <font style="color:rgb(51, 51, 51);">操作类型</font>
+### <font style="color:rgb(51, 51, 51);">操作类型</font>
 <font style="color:rgb(51, 51, 51);">操作类型用于强制执行创建操作。这有助于避免覆盖现有文档。</font>
 
 ```plain
@@ -649,7 +649,7 @@ PUT chapter/_doc/1?op_type=create
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">自动ID生成</font>
+### <font style="color:rgb(51, 51, 51);">自动ID生成</font>
 <font style="color:rgb(51, 51, 51);">如果在索引操作中未指定ID，则Elasticsearch会自动为该文档生成ID。</font>
 
 ```plain
@@ -680,7 +680,7 @@ POST chapter/_doc/
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">获取API</font>
+### <font style="color:rgb(51, 51, 51);">获取API</font>
 <font style="color:rgb(51, 51, 51);">API通过对特定文档执行get请求来帮助提取类型JSON对象。</font>
 
 pre class="prettyprint notranslate" > GET schools/_doc/5
@@ -780,7 +780,7 @@ GET schools/_doc/5?_source
 
 <font style="color:rgb(51, 51, 51);">您还可以通过将refresh参数设置为true来刷新分片，然后再执行get操作。</font>
 
-## <font style="color:rgb(51, 51, 51);">删除API</font>
+### <font style="color:rgb(51, 51, 51);">删除API</font>
 <font style="color:rgb(51, 51, 51);">您可以通过向Elasticsearch发送HTTP DELETE请求来删除特定的索引，映射或文档。</font>
 
 DELETE schools/_doc/4
@@ -796,7 +796,7 @@ DELETE schools/_doc/4
 
 <font style="color:rgb(51, 51, 51);">可以指定文档的版本以删除该特定版本。可以指定路由参数以从特定用户删除文档，并且如果文档不属于该特定用户，则操作将失败。在此操作中，您可以像GET API一样指定刷新和超时选项。</font>
 
-## <font style="color:rgb(51, 51, 51);">更新API</font>
+### <font style="color:rgb(51, 51, 51);">更新API</font>
 <font style="color:rgb(51, 51, 51);">脚本用于执行此操作，版本控制用于确保在获取和重新编制索引期间未发生任何更新。例如，您可以使用脚本更新学费-</font>
 
 ```plain
@@ -833,10 +833,10 @@ POST schools/_update/4
 
 <font style="color:rgb(51, 51, 51);">您可以通过向更新的文档发送获取请求来检查更新。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 搜索API</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 搜索API</font>
 <font style="color:rgb(51, 51, 51);">该API用于在Elasticsearch中搜索内容。用户可以通过发送带有查询字符串作为参数的get请求进行搜索，或者可以在发布请求的消息正文中发布查询。搜索 api 主要是多索引、多类型的。</font>
 
-## <font style="color:rgb(51, 51, 51);">多索引</font>
+### <font style="color:rgb(51, 51, 51);">多索引</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch允许我们搜索所有索引或某些特定索引中存在的文档。例如，如果我们需要搜索名称包含“ central”的所有文档，则可以执行以下操作：</font>
 
 <font style="color:rgb(51, 51, 51);">GET /_all/_search?q=city:paprola</font>
@@ -889,7 +889,7 @@ POST schools/_update/4
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">URI搜索</font>
+### <font style="color:rgb(51, 51, 51);">URI搜索</font>
 <font style="color:rgb(51, 51, 51);">可以使用统一资源标识符在搜索操作中传递许多参数-</font>
 
 | <font style="color:rgb(254, 254, 254);">序号</font> | <font style="color:rgb(254, 254, 254);">参数及说明</font> |
@@ -904,7 +904,7 @@ POST schools/_update/4
 | <font style="color:rgb(51, 51, 51);">8</font> | **<font style="color:rgb(51, 51, 51);">size</font>**<br/><font style="color:rgb(51, 51, 51);">它表示要返回的命中数，默认值为10。</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">请求正文搜索</font>
+### <font style="color:rgb(51, 51, 51);">请求正文搜索</font>
 <font style="color:rgb(51, 51, 51);">我们还可以在请求正文中使用查询DSL来指定查询，并且在前面的章节中已经给出了很多示例。这里给出一个这样的实例-</font>
 
 ```plain
@@ -965,7 +965,7 @@ POST /schools/_search
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 聚合</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 聚合</font>
 <font style="color:rgb(51, 51, 51);">聚合框架收集搜索查询选择的所有数据，并由许多构建块组成，这有助于构建数据的复杂摘要。聚合的基本结构如下所示-</font>
 
 ```plain
@@ -984,12 +984,12 @@ POST /schools/_search
 
 <font style="color:rgb(51, 51, 51);">聚合有不同的类型，每种类型都有自己的目的。本章将详细讨论这些问题。</font>
 
-## <font style="color:rgb(51, 51, 51);">指标聚合</font>
+### <font style="color:rgb(51, 51, 51);">指标聚合</font>
 <font style="color:rgb(51, 51, 51);">这些聚合有助于根据聚合文档的字段值计算矩阵，有时还可以从脚本生成一些值。</font>
 
 <font style="color:rgb(51, 51, 51);">数值矩阵既可以是单值（如平均聚合），也可以是多值（如统计数据）。</font>
 
-## <font style="color:rgb(51, 51, 51);">平均聚合</font>
+### <font style="color:rgb(51, 51, 51);">平均聚合</font>
 <font style="color:rgb(51, 51, 51);">此聚合用于获取聚合文档中存在的任何数字字段的平均值。例如，</font>
 
 ```plain
@@ -1077,7 +1077,7 @@ POST /schools/_search
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">基数聚合</font>
+### <font style="color:rgb(51, 51, 51);">基数聚合</font>
 <font style="color:rgb(51, 51, 51);">此聚合提供了特定字段的不同值的计数。</font>
 
 ```plain
@@ -1119,7 +1119,7 @@ POST /schools/_search?size=0
 
 **<font style="color:rgb(51, 51, 51);">Note</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">−基数的值为2，因为费用有两个不同的值。</font>
 
-## <font style="color:rgb(51, 51, 51);">扩展统计数据聚合</font>
+### <font style="color:rgb(51, 51, 51);">扩展统计数据聚合</font>
 <font style="color:rgb(51, 51, 51);">此聚合将生成有关聚合文档中特定数字字段的所有统计信息。</font>
 
 ```plain
@@ -1170,7 +1170,7 @@ POST /schools/_search?size=0
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">最大聚集</font>
+### <font style="color:rgb(51, 51, 51);">最大聚集</font>
 <font style="color:rgb(51, 51, 51);">此聚合查找聚合文档中特定数字字段的最大值。</font>
 
 ```plain
@@ -1210,7 +1210,7 @@ POST /schools/_search?size=0
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">最小聚合</font>
+### <font style="color:rgb(51, 51, 51);">最小聚合</font>
 <font style="color:rgb(51, 51, 51);">此聚合在聚合的文档中查找特定数字字段的最小值。</font>
 
 ```plain
@@ -1250,7 +1250,7 @@ POST /schools/_search?size=0
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">聚合总和</font>
+### <font style="color:rgb(51, 51, 51);">聚合总和</font>
 <font style="color:rgb(51, 51, 51);">此聚合计算聚合文档中特定数值字段的和。</font>
 
 ```plain
@@ -1292,7 +1292,7 @@ POST /schools/_search?size=0
 
 <font style="color:rgb(51, 51, 51);">在特殊情况下还有其他一些度量标准聚合，例如地理边界聚合和地理质心聚合，以实现地理位置。</font>
 
-## <font style="color:rgb(51, 51, 51);">统计聚合</font>
+### <font style="color:rgb(51, 51, 51);">统计聚合</font>
 <font style="color:rgb(51, 51, 51);">一种多值度量标准聚合，可根据从聚合文档中提取的数值来计算统计信息。</font>
 
 ```plain
@@ -1336,7 +1336,7 @@ POST /schools/_search?size=0
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">聚合元数据</font>
+### <font style="color:rgb(51, 51, 51);">聚合元数据</font>
 <font style="color:rgb(51, 51, 51);">您可以在请求时使用meta标记添加一些有关聚合的数据，并作为响应获取。</font>
 
 ```plain
@@ -1383,10 +1383,10 @@ POST /schools/_search?size=0
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 索引API</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 索引API</font>
 <font style="color:rgb(51, 51, 51);">这些API负责管理索引的所有方面，例如设置，别名，映射，索引模板。</font>
 
-## <font style="color:rgb(51, 51, 51);">创建索引</font>
+### <font style="color:rgb(51, 51, 51);">创建索引</font>
 <font style="color:rgb(51, 51, 51);">该API可帮助您创建索引。当用户将JSON对象传递给任何索引时，可以自动创建索引，也可以在此之前创建索引。要创建索引，您只需要发送带有设置，映射和别名的PUT请求，或者仅发送不带正文的简单请求。</font>
 
 PUT colleges
@@ -1425,14 +1425,14 @@ PUT colleges
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">删除索引</font>
+### <font style="color:rgb(51, 51, 51);">删除索引</font>
 <font style="color:rgb(51, 51, 51);">此API可帮助您删除任何索引。您只需要传递带有该特定索引名称的删除请求即可。</font>
 
 DELETE /colleges
 
 <font style="color:rgb(51, 51, 51);">您可以仅使用_all或*删除所有索引。</font>
 
-## <font style="color:rgb(51, 51, 51);">获取索引</font>
+### <font style="color:rgb(51, 51, 51);">获取索引</font>
 <font style="color:rgb(51, 51, 51);">可以通过仅将get请求发送到一个或多个索引来调用此API。这将返回有关索引的信息。</font>
 
 GET colleges
@@ -1473,7 +1473,7 @@ GET colleges
 
 <font style="color:rgb(51, 51, 51);">您可以使用_all或*获取所有索引的信息。</font>
 
-## <font style="color:rgb(51, 51, 51);">索引存在</font>
+### <font style="color:rgb(51, 51, 51);">索引存在</font>
 <font style="color:rgb(51, 51, 51);">索引的存在可以通过仅向该索引发送get请求来确定。如果HTTP响应是200，则存在。如果是404，则不存在。</font>
 
 HEAD colleges
@@ -1482,7 +1482,7 @@ HEAD colleges
 
 200-OK
 
-## <font style="color:rgb(51, 51, 51);">索引设置</font>
+### <font style="color:rgb(51, 51, 51);">索引设置</font>
 <font style="color:rgb(51, 51, 51);">您只需在网址末尾附加_settings关键字即可获取索引设置。</font>
 
 GET /colleges/_settings
@@ -1508,7 +1508,7 @@ GET /colleges/_settings
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">索引统计</font>
+### <font style="color:rgb(51, 51, 51);">索引统计</font>
 <font style="color:rgb(51, 51, 51);">该API可帮助您提取有关特定索引的统计信息。您只需要在末尾发送带有索引URL和_stats关键字的get请求。</font>
 
 GET /_stats
@@ -1532,7 +1532,7 @@ GET /_stats
 } ………………………………………………
 ```
 
-## <font style="color:rgb(51, 51, 51);">冲洗(Flush)  
+### <font style="color:rgb(51, 51, 51);">冲洗(Flush)  
 </font>
 <font style="color:rgb(51, 51, 51);">索引的刷新过程可确保当前仅保留在事务日志中的所有数据也将永久保留在Lucene中。这减少了恢复时间，因为在打开Lucene索引之后，不需要从事务日志中重新索引数据。</font>
 
@@ -1550,12 +1550,12 @@ POST colleges/_flush
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch Cat API</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch Cat API</font>
 <font style="color:rgb(51, 51, 51);">通常，来自各种Elasticsearch API的结果以JSON格式显示。但是，JSON并非总是易于阅读。因此，Elasticsearch中提供了cat APIs功能，有助于使结果的打印格式更易于阅读和理解。cat API中使用了各种参数，这些参数具有不同的用途，例如-术语V使输出变得冗长。</font>
 
 <font style="color:rgb(51, 51, 51);">让我们在本章中更详细地了解cat API。</font>
 
-## <font style="color:rgb(51, 51, 51);">详细</font>
+### <font style="color:rgb(51, 51, 51);">详细</font>
 <font style="color:rgb(51, 51, 51);">详细的输出可以很好地显示cat命令的结果。在下面给出的示例中，我们获得了集群中存在的各种索引的详细信息。</font>
 
 GET /_cat/indices?v
@@ -1570,7 +1570,7 @@ yellow open sensor-2018-01-01 KIrrHwABRB-ilGqTu3OaVQ 1 1 1 0 4.2kb 4.2kb
 yellow open colleges 3ExJbdl2R1qDLssIkwDAug 1 1 0 0 283b 283b
 ```
 
-## <font style="color:rgb(51, 51, 51);">标头</font>
+### <font style="color:rgb(51, 51, 51);">标头</font>
 <font style="color:rgb(51, 51, 51);">h参数（也称为标头）仅用于显示命令中提到的那些列。</font>
 
 GET /_cat/nodes?h=ip,port
@@ -1579,7 +1579,7 @@ GET /_cat/nodes?h=ip,port
 
 127.0.0.1 9300
 
-## <font style="color:rgb(51, 51, 51);">Sort - 排序</font>
+### <font style="color:rgb(51, 51, 51);">Sort - 排序</font>
 <font style="color:rgb(51, 51, 51);">sort命令接受查询字符串，该字符串可以按查询中的指定列对表进行排序。默认排序是升序的，但是可以通过在列中添加：desc来更改。</font>
 
 <font style="color:rgb(51, 51, 51);">下面的示例给出了按字段索引模式的降序排列的模板的结果。</font>
@@ -1596,7 +1596,7 @@ name index_patterns order version
 .kibana_task_manager [.kibana_task_manager] 0 7000099
 ```
 
-## <font style="color:rgb(51, 51, 51);">计数 - Count</font>
+### <font style="color:rgb(51, 51, 51);">计数 - Count</font>
 <font style="color:rgb(51, 51, 51);">count参数提供整个集群中文档总数的计数。</font>
 
 GET /_cat/count?v
@@ -1608,7 +1608,7 @@ epoch timestamp count
 1557633536 03:58:56 17809
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 集群API</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 集群API</font>
 <font style="color:rgb(51, 51, 51);">群集API用于获取有关群集及其节点的信息并在其中进行更改。要调用此API，我们需要指定节点名称，地址或_local。</font>
 
 GET /_nodes/_local
@@ -1638,7 +1638,7 @@ cluster_name" : "elasticsearch",
 ………………………………………………
 ```
 
-## <font style="color:rgb(51, 51, 51);">集群运行状况</font>
+### <font style="color:rgb(51, 51, 51);">集群运行状况</font>
 <font style="color:rgb(51, 51, 51);">API用于通过附加'health'关键字来获取集群运行状况的状态。</font>
 
 GET /_cluster/health
@@ -1665,7 +1665,7 @@ GET /_cluster/health
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">集群状态</font>
+### <font style="color:rgb(51, 51, 51);">集群状态</font>
 <font style="color:rgb(51, 51, 51);">该API用于通过附加'state'关键字URL来获取有关集群的状态信息。状态信息包含版本，主节点，其他节点，路由表，元数据和块。</font>
 
 GET /_cluster/state
@@ -1690,7 +1690,7 @@ GET /_cluster/state
 ………………………………………………
 ```
 
-## <font style="color:rgb(51, 51, 51);">集群统计</font>
+### <font style="color:rgb(51, 51, 51);">集群统计</font>
 <font style="color:rgb(51, 51, 51);">该API通过使用'stats'关键字来帮助检索有关群集的统计信息。该API返回分片号，存储大小，内存使用率，节点数，角色，操作系统和文件系统。</font>
 
 GET /_cluster/stats
@@ -1728,10 +1728,10 @@ GET /_cluster/stats
 ………………………………………….
 ```
 
-## <font style="color:rgb(51, 51, 51);">群集更新设置</font>
+### <font style="color:rgb(51, 51, 51);">群集更新设置</font>
 <font style="color:rgb(51, 51, 51);">使用此API，您可以使用“设置”关键字来更新集群的设置。有两种类型的设置-持久性（在重新启动中应用）和瞬态（在完整的集群重新启动后无法生存）。</font>
 
-## <font style="color:rgb(51, 51, 51);">节点统计</font>
+### <font style="color:rgb(51, 51, 51);">节点统计</font>
 <font style="color:rgb(51, 51, 51);">该API用于检索集群中另外一个节点的统计信息。节点统计信息与集群几乎相同。</font>
 
 GET /_nodes/stats
@@ -1766,7 +1766,7 @@ GET /_nodes/stats
 ………………………………………………………….
 ```
 
-## <font style="color:rgb(51, 51, 51);">节点hot_threads</font>
+### <font style="color:rgb(51, 51, 51);">节点hot_threads</font>
 <font style="color:rgb(51, 51, 51);">该API可帮助您检索有关群集中每个节点上的当前热线程的信息。</font>
 
 GET /_nodes/hot_threads
@@ -1780,7 +1780,7 @@ xpack.installed=true, ml.max_open_jobs=20}
 ignoreIdleThreads=true:
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 查询DSL</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 查询DSL</font>
 <font style="color:rgb(51, 51, 51);">在Elasticsearch中，搜索是通过使用基于JSON的查询来进行的。查询由两个子句组成-</font>
 
 + <font style="color:rgb(51, 51, 51);">叶子查询子句——这些子句是匹配的、术语或范围，它们在特定字段中查找特定的值。</font>
@@ -1788,7 +1788,7 @@ ignoreIdleThreads=true:
 
 <font style="color:rgb(51, 51, 51);">Elasticsearch支持大量查询。查询以查询关键字开头，然后以JSON对象的形式包含条件和过滤器。下面描述了不同类型的查询。</font>
 
-## <font style="color:rgb(51, 51, 51);">匹配所有查询</font>
+### <font style="color:rgb(51, 51, 51);">匹配所有查询</font>
 <font style="color:rgb(51, 51, 51);">这是最基本的查询；它返回所有内容，每个对象的得分为1.0。</font>
 
 ```plain
@@ -1871,10 +1871,10 @@ POST /schools/_search
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">全文查询</font>
+### <font style="color:rgb(51, 51, 51);">全文查询</font>
 <font style="color:rgb(51, 51, 51);">这些查询用于搜索全文，例如章节或新闻文章。该查询根据与该特定索引或文档相关联的分析器工作。在本节中，我们将讨论全文查询的不同类型。</font>
 
-## <font style="color:rgb(51, 51, 51);">匹配查询</font>
+### <font style="color:rgb(51, 51, 51);">匹配查询</font>
 <font style="color:rgb(51, 51, 51);">此查询将文本或短语与一个或多个字段的值匹配。</font>
 
 ```plain
@@ -1935,7 +1935,7 @@ POST /schools*/_search
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">多重比对查询</font>
+### <font style="color:rgb(51, 51, 51);">多重比对查询</font>
 <font style="color:rgb(51, 51, 51);">此查询将一个或多个字段匹配的文本或短语匹配。</font>
 
 ```plain
@@ -1998,7 +1998,7 @@ POST /schools*/_search
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">查询字符串查询</font>
+### <font style="color:rgb(51, 51, 51);">查询字符串查询</font>
 <font style="color:rgb(51, 51, 51);">该查询使用查询解析器和query_string关键字。</font>
 
 ```plain
@@ -2032,7 +2032,7 @@ POST /schools*/_search
 ………………………………….
 ```
 
-## <font style="color:rgb(51, 51, 51);">词级查询</font>
+### <font style="color:rgb(51, 51, 51);">词级查询</font>
 <font style="color:rgb(51, 51, 51);">这些查询主要处理结构化数据，例如数字，日期和枚举。</font>
 
 ```plain
@@ -2071,7 +2071,7 @@ hits" : [
 …………………………………………..
 ```
 
-## <font style="color:rgb(51, 51, 51);">范围查询</font>
+### <font style="color:rgb(51, 51, 51);">范围查询</font>
 <font style="color:rgb(51, 51, 51);">该查询用于查找具有给定值范围之间的值的对象。为此，我们需要使用运算符，例如-</font>
 
 + **<font style="color:rgb(51, 51, 51);">gte</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">−大于等于</font>
@@ -2147,7 +2147,7 @@ POST /schools*/_search
 + **<font style="color:rgb(51, 51, 51);">缺少查询</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">−这与存在查询完全相反，该查询搜索没有特定字段或值为空的对象。</font>
 + **<font style="color:rgb(51, 51, 51);">通配符或regexp查询</font>****<font style="color:rgb(51, 51, 51);"> </font>**<font style="color:rgb(51, 51, 51);">−此查询使用正则表达式在对象中查找模式。</font>
 
-## <font style="color:rgb(51, 51, 51);">复合查询</font>
+### <font style="color:rgb(51, 51, 51);">复合查询</font>
 <font style="color:rgb(51, 51, 51);">这些查询是不同查询的集合，这些查询通过使用布尔运算符（例如和/或，或不）或针对不同的索引或具有函数调用等彼此合并。</font>
 
 ```plain
@@ -2191,7 +2191,7 @@ POST /schools/_search
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">地理查询</font>
+### <font style="color:rgb(51, 51, 51);">地理查询</font>
 <font style="color:rgb(51, 51, 51);">这些查询处理地理位置和地理位置。这些查询有助于找出学校或任何其他地理位置附近的地理对象。您需要使用地理位置数据类型。</font>
 
 ```plain
@@ -2266,7 +2266,7 @@ POST /geo_example/_doc?refresh
    }
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 映射</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 映射</font>
 <font style="color:rgb(51, 51, 51);">映射是存储在索引中的文档的轮廓。它定义了数据类型，如geo_point或字符串，以及文档中显示的字段的格式和规则，以控制动态添加字段的映射。</font>
 
 ```plain
@@ -2291,13 +2291,13 @@ PUT bankaccountdetails
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">字段数据类型</font>
+### <font style="color:rgb(51, 51, 51);">字段数据类型</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch为文档中的字段支持多种不同的数据类型。这里详细讨论了用于在Elasticsearch中存储字段的数据类型。</font>
 
-## <font style="color:rgb(51, 51, 51);">核心数据类型</font>
+### <font style="color:rgb(51, 51, 51);">核心数据类型</font>
 <font style="color:rgb(51, 51, 51);">这些是基本数据类型，例如文本，关键字，日期，长整型，双精度型，布尔型或ip，几乎所有系统都支持。</font>
 
-## <font style="color:rgb(51, 51, 51);">复杂数据类型</font>
+### <font style="color:rgb(51, 51, 51);">复杂数据类型</font>
 <font style="color:rgb(51, 51, 51);">这些数据类型是核心数据类型的组合。这些包括数组，JSON对象和嵌套数据类型。嵌套数据类型的示例如下所示＆minus</font>
 
 ```plain
@@ -2366,10 +2366,10 @@ POST /accountdetails/_doc/1
 
 GET /accountdetails/_mappings?include_type_name=false
 
-## <font style="color:rgb(51, 51, 51);">删除映射类型</font>
+### <font style="color:rgb(51, 51, 51);">删除映射类型</font>
 <font style="color:rgb(51, 51, 51);">在Elasticsearch 7.0.0或更高版本中创建的索引不再接受_default_映射。中创建的索引6.x将继续在Elasticsearch 6.x中像以前一样起作用。在7.0中的API中已弃用类型。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 分析</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 分析</font>
 <font style="color:rgb(51, 51, 51);">当在搜索操作期间处理查询时，分析模块会分析任何索引中的内容。该模块由分析器，令牌生成器，令牌过滤器和字符过滤器组成。如果未定义分析器，则默认情况下，内置分析器，令牌，过滤器和令牌生成器会在分析模块中注册。</font>
 
 <font style="color:rgb(51, 51, 51);">在下面的示例中，我们使用一个标准分析器，该分析器在没有指定其他分析器时使用。它将根据语法对句子进行分析，并生成句子中使用的单词。</font>
@@ -2419,7 +2419,7 @@ POST _analyze
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">配置标准分析器</font>
+### <font style="color:rgb(51, 51, 51);">配置标准分析器</font>
 <font style="color:rgb(51, 51, 51);">我们可以使用各种参数配置标准分析器，以获取我们的自定义要求。</font>
 
 <font style="color:rgb(51, 51, 51);">在以下示例中，我们将标准分析器配置为max_token_length为5。</font>
@@ -2514,7 +2514,7 @@ POST index_4_analysis/_analyze
 | <font style="color:rgb(51, 51, 51);">4</font> | **<font style="color:rgb(51, 51, 51);">停止分析器 (stop)</font>**<br/><font style="color:rgb(51, 51, 51);">可以配置stopwords和stopwords_path。默认情况下，stopwords初始化为英文停止词，stopwords_path包含包含停止词的文本文件的路径</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">分词器</font>
+### <font style="color:rgb(51, 51, 51);">分词器</font>
 <font style="color:rgb(51, 51, 51);">令牌生成器用于从Elasticsearch中的文本生成令牌。通过将空格或其他标点符号考虑在内，可以将文本分解为标记。Elasticsearch有很多内置的标记器，可以在自定义分析器中使用。</font>
 
 <font style="color:rgb(51, 51, 51);">下面显示了一个分词器的示例，该分词器在遇到非字母的字符时将文本分解为多个词，但也会将所有词都小写，如下所示-</font>
@@ -2595,7 +2595,7 @@ POST _analyze
 | <font style="color:rgb(51, 51, 51);">4</font> | **<font style="color:rgb(51, 51, 51);">字母标记器(letter)</font>**<br/><font style="color:rgb(51, 51, 51);">这将捕获整个单词，直到遇到一个非字母。</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 模块</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 模块</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch由许多模块组成，这些模块负责其功能。这些模块具有两种类型的设置，如下所示：</font>
 
 + **<font style="color:rgb(51, 51, 51);">静态设置</font>**<font style="color:rgb(51, 51, 51);">−在启动Elasticsearch之前，需要在config(elasticsearch.yml)文件中配置这些设置。您需要更新集群中的所有关注节点，以反映这些设置的更改。</font>
@@ -2603,10 +2603,10 @@ POST _analyze
 
 <font style="color:rgb(51, 51, 51);">我们将在本章以下各节中讨论Elasticsearch的不同模块。</font>
 
-## <font style="color:rgb(51, 51, 51);">集群级路由和分片分配</font>
+### <font style="color:rgb(51, 51, 51);">集群级路由和分片分配</font>
 <font style="color:rgb(51, 51, 51);">集群级设置决定将碎片分配给不同的节点，并重新分配碎片以重新平衡集群。以下是控制碎片分配的设置。</font>
 
-## <font style="color:rgb(51, 51, 51);">集群级别碎片分配</font>
+### <font style="color:rgb(51, 51, 51);">集群级别碎片分配</font>
 | <font style="color:rgb(254, 254, 254);">设置</font> | <font style="color:rgb(254, 254, 254);">可能的值</font> | <font style="color:rgb(254, 254, 254);">描述</font> |
 | :---: | --- | --- |
 | <font style="color:rgb(51, 51, 51);">cluster.routing.allocation.enable</font> | <font style="color:rgb(51, 51, 51);">   </font> | <font style="color:rgb(51, 51, 51);">   </font> |
@@ -2634,7 +2634,7 @@ POST _analyze
 | <font style="color:rgb(51, 51, 51);">cluster.routing.allocation .balance.threshold</font> | <font style="color:rgb(51, 51, 51);">非负浮点值（默认为1.0f）</font> | <font style="color:rgb(51, 51, 51);">这是应该执行的操作的最小优化值。</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">基于磁盘的分片分配</font>
+### <font style="color:rgb(51, 51, 51);">基于磁盘的分片分配</font>
 | <font style="color:rgb(254, 254, 254);">设置</font> | <font style="color:rgb(254, 254, 254);">可能的值</font> | <font style="color:rgb(254, 254, 254);">描述</font> |
 | --- | --- | --- |
 | <font style="color:rgb(51, 51, 51);">cluster.routing.allocation.disk.threshold_enabled</font> | <font style="color:rgb(51, 51, 51);">布尔值（默认为true）</font> | <font style="color:rgb(51, 51, 51);">这将启用和禁用磁盘分配决策程序。</font> |
@@ -2644,7 +2644,7 @@ POST _analyze
 | <font style="color:rgb(51, 51, 51);">cluster.routing.allocation.disk.include_relocations</font> | <font style="color:rgb(51, 51, 51);">布尔值(默认情况下为 true)</font> | <font style="color:rgb(51, 51, 51);">这决定了在计算磁盘使用率时是否考虑当前分配的分片。</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">发现</font>
+### <font style="color:rgb(51, 51, 51);">发现</font>
 <font style="color:rgb(51, 51, 51);">这个模块帮助集群发现并维护集群中所有节点的状态。当从集群中添加或删除节点时，集群的状态会发生变化。集群名称设置用于创建不同集群之间的逻辑差异。有一些模块可以帮助您使用云供应商提供的API，如下所示-</font>
 
 + <font style="color:rgb(51, 51, 51);">Azure发现</font>
@@ -2652,7 +2652,7 @@ POST _analyze
 + <font style="color:rgb(51, 51, 51);">Google计算引擎发现</font>
 + <font style="color:rgb(51, 51, 51);">禅Zen发现</font>
 
-## <font style="color:rgb(51, 51, 51);">网关</font>
+### <font style="color:rgb(51, 51, 51);">网关</font>
 <font style="color:rgb(51, 51, 51);">该模块在整个集群重新启动时维护集群状态和分片数据。以下是该模块的静态设置-</font>
 
 | <font style="color:rgb(254, 254, 254);">设置</font> | <font style="color:rgb(254, 254, 254);">可能的值</font> | <font style="color:rgb(254, 254, 254);">描述</font> |
@@ -2664,7 +2664,7 @@ POST _analyze
 | <font style="color:rgb(51, 51, 51);">cluster.routing.allocation. disk.include_relocations</font> | <font style="color:rgb(51, 51, 51);">布尔值（默认为true）</font> | <font style="color:rgb(51, 51, 51);">这指定了恢复过程将等待开始的时间，而不管群集中加入的节点数量如何。</font><br/><font style="color:rgb(51, 51, 51);">gateway.recover_ after_nodes   </font><font style="color:rgb(51, 51, 51);">gateway.recover_after_master_nodes   </font><font style="color:rgb(51, 51, 51);">gateway.recover_after_data_nodes</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">HTTP</font>
+### <font style="color:rgb(51, 51, 51);">HTTP</font>
 <font style="color:rgb(51, 51, 51);">该模块管理HTTP客户端和Elasticsearch API之间的通信。可以通过将值更改http.enabled为false来禁用此模块。</font>
 
 <font style="color:rgb(51, 51, 51);">以下是用于控制此模块的设置（在elasticsearch.yml中配置）-</font>
@@ -2683,22 +2683,22 @@ POST _analyze
 | <font style="color:rgb(51, 51, 51);">10</font> | **<font style="color:rgb(51, 51, 51);">http.pipelining.max_events</font>**<br/><font style="color:rgb(51, 51, 51);">这限制了在关闭HTTP请求之前要排队的事件数。</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">索引</font>
+### <font style="color:rgb(51, 51, 51);">索引</font>
 <font style="color:rgb(51, 51, 51);">此模块维护为每个索引全局设置的设置。以下设置主要与内存使用有关-</font>
 
-## <font style="color:rgb(51, 51, 51);">断路器</font>
+### <font style="color:rgb(51, 51, 51);">断路器</font>
 <font style="color:rgb(51, 51, 51);">这用于防止操作引起OutOfMemroyError。该设置主要限制JVM堆大小。例如，indexs.breaker.total.limit设置，默认为JVM堆的70％。</font>
 
-## <font style="color:rgb(51, 51, 51);">现场数据缓存</font>
+### <font style="color:rgb(51, 51, 51);">现场数据缓存</font>
 <font style="color:rgb(51, 51, 51);">主要用于在字段上聚合时使用。建议有足够的内存来分配它。可以使用index.fielddata.cache.size设置来控制用于字段数据缓存的内存量。</font>
 
-## <font style="color:rgb(51, 51, 51);">节点查询缓存</font>
+### <font style="color:rgb(51, 51, 51);">节点查询缓存</font>
 <font style="color:rgb(51, 51, 51);">该内存用于缓存查询结果。该缓存使用最近最少使用(LRU)驱逐策略。Indices.queries.cahce.size设置控制此缓存的内存大小。</font>
 
-## <font style="color:rgb(51, 51, 51);">索引缓冲区</font>
+### <font style="color:rgb(51, 51, 51);">索引缓冲区</font>
 <font style="color:rgb(51, 51, 51);">该缓冲区将新创建的文档存储在索引中，并在缓冲区已满时刷新它们。像indexs.memory.index_buffer_size这样的设置控制为此缓冲区分配的堆数量。</font>
 
-## <font style="color:rgb(51, 51, 51);">分片请求缓存</font>
+### <font style="color:rgb(51, 51, 51);">分片请求缓存</font>
 <font style="color:rgb(51, 51, 51);">该缓存用于存储每个分片的本地搜索数据。可以在创建索引期间启用缓存，也可以通过发送URL参数来禁用缓存。</font>
 
 ```plain
@@ -2706,7 +2706,7 @@ Disable cache - ?request_cache = true
 Enable cache "index.requests.cache.enable": true
 ```
 
-## <font style="color:rgb(51, 51, 51);">索引恢复</font>
+### <font style="color:rgb(51, 51, 51);">索引恢复</font>
 <font style="color:rgb(51, 51, 51);">它在恢复过程中控制资源。以下是设置-</font>
 
 | <font style="color:rgb(254, 254, 254);">设置</font> | <font style="color:rgb(254, 254, 254);">默认值</font> |
@@ -2720,7 +2720,7 @@ Enable cache "index.requests.cache.enable": true
 | <font style="color:rgb(51, 51, 51);">indices.recovery.max_bytes_per_sec</font> | <font style="color:rgb(51, 51, 51);">40mb</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">TTL间隔</font>
+### <font style="color:rgb(51, 51, 51);">TTL间隔</font>
 <font style="color:rgb(51, 51, 51);">生存时间(TTL)间隔定义了文档的时间，之后该文档将被删除。以下是用于控制此过程的动态设置-</font>
 
 | <font style="color:rgb(254, 254, 254);">设置</font> | <font style="color:rgb(254, 254, 254);">默认值</font> |
@@ -2729,16 +2729,16 @@ Enable cache "index.requests.cache.enable": true
 | <font style="color:rgb(51, 51, 51);">indices.ttl.bulk_size</font> | <font style="color:rgb(51, 51, 51);">1000</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">节点</font>
+### <font style="color:rgb(51, 51, 51);">节点</font>
 <font style="color:rgb(51, 51, 51);">每个节点都可以选择是否为数据节点。可以通过更改 node.data 设置来更改此属性。将该值设置为 false 将定义该节点不是数据节点。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 索引模块</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 索引模块</font>
 <font style="color:rgb(51, 51, 51);">这些是为每个索引创建的模块，用于控制索引的设置和行为。例如，索引可以使用多少个分片或该索引的主分片可以具有的副本数等。索引设置有两种类型-</font>
 
 + **<font style="color:rgb(51, 51, 51);">静态</font>**<font style="color:rgb(51, 51, 51);">−这些只能在创建索引时或在关闭的索引上进行设置。</font>
 + **<font style="color:rgb(51, 51, 51);">动态</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">−这些可以在实时索引上更改。</font>
 
-## <font style="color:rgb(51, 51, 51);">静态索引设置</font>
+### <font style="color:rgb(51, 51, 51);">静态索引设置</font>
 <font style="color:rgb(51, 51, 51);">下表显示了静态索引设置的列表-</font>
 
 | <font style="color:rgb(254, 254, 254);">设置   </font> | <font style="color:rgb(254, 254, 254);">可能的值</font> | <font style="color:rgb(254, 254, 254);">描述</font> |
@@ -2750,7 +2750,7 @@ Enable cache "index.requests.cache.enable": true
 | <font style="color:rgb(51, 51, 51);">index.load_fixed_bitset_filters_eagerly</font> | <font style="color:rgb(51, 51, 51);">false</font> | <font style="color:rgb(51, 51, 51);">指示是否为嵌套查询预先加载缓存筛选器</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">动态索引设置</font>
+### <font style="color:rgb(51, 51, 51);">动态索引设置</font>
 <font style="color:rgb(51, 51, 51);">下表显示了动态索引设置的列表-</font>
 
 | <font style="color:rgb(254, 254, 254);">设置   </font> | <font style="color:rgb(254, 254, 254);">可能的值</font> | <font style="color:rgb(254, 254, 254);">描述</font> |
@@ -2761,7 +2761,7 @@ Enable cache "index.requests.cache.enable": true
 | <font style="color:rgb(51, 51, 51);">index.refresh_interval</font> | <font style="color:rgb(51, 51, 51);">1 second</font> | <font style="color:rgb(51, 51, 51);">执行刷新操作的频率，刷新操作使最近对索引的更改可见以供搜索。</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch Ingest节点</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch Ingest节点</font>
 | <font style="color:rgb(51, 51, 51);">index.blocks.read_only</font> | <font style="color:rgb(51, 51, 51);">1 true/false</font> | <font style="color:rgb(51, 51, 51);">设置为true将使索引和索引元数据为只读，设置为false将允许写入和元数据更改。</font> |
 | --- | --- | --- |
 
@@ -2770,13 +2770,13 @@ Enable cache "index.requests.cache.enable": true
 
 <font style="color:rgb(51, 51, 51);">群集中的每个节点都具有提取功能，但也可以对其进行自定义以仅由特定节点进行处理。</font>
 
-## <font style="color:rgb(51, 51, 51);">步骤</font>
+### <font style="color:rgb(51, 51, 51);">步骤</font>
 <font style="color:rgb(51, 51, 51);">摄取节点的工作涉及两个步骤-</font>
 
 + <font style="color:rgb(51, 51, 51);">创建管道</font>
 + <font style="color:rgb(51, 51, 51);">建立文件</font>
 
-## <font style="color:rgb(51, 51, 51);">创建管道</font>
+### <font style="color:rgb(51, 51, 51);">创建管道</font>
 <font style="color:rgb(51, 51, 51);">首先创建一个包含处理器的管道，然后执行该管道，如下所示-</font>
 
 ```plain
@@ -2802,7 +2802,7 @@ PUT _ingest/pipeline/int-converter
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">建立文件</font>
+### <font style="color:rgb(51, 51, 51);">建立文件</font>
 <font style="color:rgb(51, 51, 51);">接下来，我们使用管道转换器创建一个文档。</font>
 
 ```plain
@@ -2858,7 +2858,7 @@ GET /logs/_doc/1
 
 <font style="color:rgb(51, 51, 51);">您可以在上方看到21变为整数。</font>
 
-## <font style="color:rgb(51, 51, 51);">无管道</font>
+### <font style="color:rgb(51, 51, 51);">无管道</font>
 <font style="color:rgb(51, 51, 51);">现在，我们无需使用管道即可创建文档。</font>
 
 ```plain
@@ -2892,12 +2892,12 @@ GET /logs/_doc/2
 
 <font style="color:rgb(51, 51, 51);">您可以在上面看到11是一个不使用管道的字符串。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 管理索引生命周期</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 管理索引生命周期</font>
 <font style="color:rgb(51, 51, 51);">管理索引生命周期涉及基于分片大小和性能要求等因素执行管理操作。索引生命周期管理(ILM)API使您能够随着时间自动管理索引。</font>
 
 <font style="color:rgb(51, 51, 51);">本章列出了ILM API及其用法。</font>
 
-## <font style="color:rgb(51, 51, 51);">策略管理API</font>
+### <font style="color:rgb(51, 51, 51);">策略管理API</font>
 | <font style="color:rgb(254, 254, 254);">API名称</font> | <font style="color:rgb(254, 254, 254);">作用   </font> | <font style="color:rgb(254, 254, 254);">实例</font> |
 | --- | --- | --- |
 | <font style="color:rgb(51, 51, 51);">创建生命周期策略。</font> | <font style="color:rgb(51, 51, 51);">创建生命周期策略。如果指定的策略存在，则替换该策略，并增加策略版本。</font> | <font style="color:rgb(51, 51, 51);">PUT_ilm / policy / policy_id</font> |
@@ -2905,7 +2905,7 @@ GET /logs/_doc/2
 | <font style="color:rgb(51, 51, 51);">删除生命周期策略</font> | <font style="color:rgb(51, 51, 51);">删除指定的生命周期策略定义。您无法删除当前正在使用的策略。如果该策略用于管理任何索引，则请求将失败并返回错误。</font> | <font style="color:rgb(51, 51, 51);">DELETE_ilm / policy / policy_id</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">索引管理API</font>
+### <font style="color:rgb(51, 51, 51);">索引管理API</font>
 | <font style="color:rgb(254, 254, 254);">API名称</font> | <font style="color:rgb(254, 254, 254);">作用   </font> | <font style="color:rgb(254, 254, 254);">实例</font> |
 | --- | --- | --- |
 | <font style="color:rgb(51, 51, 51);">转移到生命周期步骤 API。</font> | <font style="color:rgb(51, 51, 51);">手动将索引移至指定步骤并执行该步骤。</font> | <font style="color:rgb(51, 51, 51);">POST_ilm/move/index</font> |
@@ -2913,7 +2913,7 @@ GET /logs/_doc/2
 | <font style="color:rgb(51, 51, 51);">从索引API编辑中删除策略。</font> | <font style="color:rgb(51, 51, 51);">删除分配的生命周期策略，并停止管理指定的索引。如果指定了索引模式，则从所有匹配的索引中删除分配的策略。</font> | <font style="color:rgb(51, 51, 51);">POST index/_ilm/remove</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">操作管理API</font>
+### <font style="color:rgb(51, 51, 51);">操作管理API</font>
 | <font style="color:rgb(254, 254, 254);">API名称</font> | <font style="color:rgb(254, 254, 254);">作用</font> | <font style="color:rgb(254, 254, 254);">实例</font> |
 | --- | --- | --- |
 | <font style="color:rgb(51, 51, 51);">获取索引生命周期管理状态API。</font> | <font style="color:rgb(51, 51, 51);">返回ILM插件的状态。响应中的operation_mode字段显示以下三种状态之一：STARTED，STOPPING或STOPPED。</font> | <font style="color:rgb(51, 51, 51);">GET /_ilm/status</font> |
@@ -2925,15 +2925,15 @@ GET /logs/_doc/2
 <font style="color:rgb(51, 51, 51);">  
 </font><font style="color:rgb(51, 51, 51);"> </font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch SQL访问</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch SQL访问</font>
 <font style="color:rgb(51, 51, 51);">它是一个组件，允许对 Elasticsearch 实时执行类似 sql 的查询。您可以将 Elasticsearch SQL 看作是一个翻译器，它同时理解 SQL 和 Elasticsearch，并且通过 Elasticsearch 功能，可以方便地实时读取和处理数据。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch SQL的优点</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch SQL的优点</font>
 + **<font style="color:rgb(51, 51, 51);">它具有本地集成</font>****<font style="color:rgb(51, 51, 51);"> </font>**<font style="color:rgb(51, 51, 51);">−根据底层存储，对相关节点高效地执行每个查询。</font>
 + **<font style="color:rgb(51, 51, 51);">没有外部部件</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">−不需要额外的硬件、进程、运行时或库来查询Elasticsearch。</font>
 + **<font style="color:rgb(51, 51, 51);">轻量级和高效率</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">−它包含并公开了SQL，以便实时进行适当的全文本搜索。</font>
 
-## <font style="color:rgb(51, 51, 51);">实例</font>
+### <font style="color:rgb(51, 51, 51);">实例</font>
 ```plain
 PUT /schoollist/_bulk?refresh
    {"index":{"_id": "CBSE"}}
@@ -3012,7 +3012,7 @@ PUT /schoollist/_bulk?refresh
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">SQL查询</font>
+### <font style="color:rgb(51, 51, 51);">SQL查询</font>
 <font style="color:rgb(51, 51, 51);">以下示例显示了如何构建SQL查询-</font>
 
 ```plain
@@ -3033,7 +3033,7 @@ Main Street         |Sunshine       |1965-06-01T00:00:00.000Z|604
 
 **<font style="color:rgb(51, 51, 51);">Note</font>**<font style="color:rgb(51, 51, 51);"> −通过更改上面的SQL查询，您可以获得不同的结果集。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 监视</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 监视</font>
 <font style="color:rgb(51, 51, 51);">为了监视集群的运行状况，监视功能从每个节点收集度量并将它们存储在Elasticsearch索引中。与Elasticsearch中的监视相关的所有设置必须在elasticsearch.yml 每个节点的文件，或者在可能的情况下，在动态集群设置中。</font>
 
 <font style="color:rgb(51, 51, 51);">为了开始监视，我们需要检查集群设置，可以通过以下方式完成：</font>
@@ -3048,12 +3048,12 @@ GET _cluster/settings
 
 <font style="color:rgb(51, 51, 51);">堆栈中的每个组件负责监视自身，然后将这些文档转发到Elasticsearch生产集群以进行路由和索引编制（存储）。Elasticsearch中的路由和索引过程由所谓的收集器和导出器处理。</font>
 
-## <font style="color:rgb(51, 51, 51);">收集器</font>
+### <font style="color:rgb(51, 51, 51);">收集器</font>
 <font style="color:rgb(51, 51, 51);">收集器在每个收集间隔运行一次，以从它选择监视的Elasticsearch中的公共API获取数据。数据收集完成后，数据将批量交给导出器，并发送到监控集群。</font>
 
 <font style="color:rgb(51, 51, 51);">每种数据类型仅收集一个收集器。每个收集器可以创建零个或多个监视文档。</font>
 
-## <font style="color:rgb(51, 51, 51);">导出器</font>
+### <font style="color:rgb(51, 51, 51);">导出器</font>
 <font style="color:rgb(51, 51, 51);">导出器将从任何Elastic Stack源收集的数据路由到监视集群。可以配置多个导出器，但是常规设置和默认设置是使用一个导出器。导出器可以在节点级别和群集级别进行配置。</font>
 
 <font style="color:rgb(51, 51, 51);">Elasticsearch中有两种类型的导出器-</font>
@@ -3063,7 +3063,7 @@ GET _cluster/settings
 
 <font style="color:rgb(51, 51, 51);">在导出程序可以路由监控数据之前，它们必须设置一定的Elasticsearch资源。这些资源包括模板和摄取管道</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 汇总数据</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 汇总数据</font>
 <font style="color:rgb(51, 51, 51);">汇总作业是一项周期性任务，它汇总索引模式指定的索引中的数据，并将其汇总到新索引中。在下面的示例中，我们创建了一个名为sensor的索引，该索引具有不同的日期时间戳。然后我们创建一个rollup作业，使用cron job周期性地从这些索引中汇总数据。</font>
 
 ```plain
@@ -3107,7 +3107,7 @@ PUT /sensor-2018-01-01/_doc/2
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">创建汇总作业</font>
+### <font style="color:rgb(51, 51, 51);">创建汇总作业</font>
 ```plain
 PUT _rollup/job/sensor
 {
@@ -3155,12 +3155,12 @@ GET /sensor_rollup/_rollup_search
 }
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 冻结索引</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 冻结索引</font>
 <font style="color:rgb(51, 51, 51);">频繁搜索的索引保存在内存中，因为重建索引和帮助进行高效搜索需要时间。另一方面，可能有我们很少访问的索引。这些索引不需要占用内存，可以在需要时重新构建。这类指数被称为冻结索引。</font>
 
 <font style="color:rgb(51, 51, 51);">每当搜索分片时，Elasticsearch都会构建冻结索引的每个分片的瞬态数据结构，并在搜索完成后立即丢弃这些数据结构。由于Elasticsearch不会在内存中维护这些临时数据结构，因此冻结索引消耗的堆要比普通索引少得多。与其他方式相比，这允许更高的磁盘与堆的比率。</font>
 
-## <font style="color:rgb(51, 51, 51);">冻结和解冻示例</font>
+### <font style="color:rgb(51, 51, 51);">冻结和解冻示例</font>
 <font style="color:rgb(51, 51, 51);">以下示例冻结和解冻索引-</font>
 
 ```plain
@@ -3170,26 +3170,26 @@ POST /index_name/_unfreeze
 
 <font style="color:rgb(51, 51, 51);">预期对冻结索引的搜索将缓慢执行。冻结索引不适用于较高的搜索负载。即使对未冻结的索引进行的搜索在几毫秒内完成，对冻结索引的搜索也可能需要数秒或数分钟才能完成。</font>
 
-## <font style="color:rgb(51, 51, 51);">搜索冻结索引</font>
+### <font style="color:rgb(51, 51, 51);">搜索冻结索引</font>
 <font style="color:rgb(51, 51, 51);">每个节点的并发加载的冻结索引数受search_throttled线程池中的线程数限制，默认情况下为1。要包含冻结索引，必须使用查询参数−</font><font style="color:rgb(51, 51, 51);"> </font>_<font style="color:rgb(51, 51, 51);">ignore_throttled = false</font>_<font style="color:rgb(51, 51, 51);">来执行搜索请求</font>_<font style="color:rgb(51, 51, 51);">。</font>_
 
 GET /index_name/_search?q=user:tpoint&ignore_throttled=false
 
-## <font style="color:rgb(51, 51, 51);">监视冻结的索引</font>
+### <font style="color:rgb(51, 51, 51);">监视冻结的索引</font>
 <font style="color:rgb(51, 51, 51);">冻结索引是使用搜索限制和内存有效分片实现的普通索引。</font>
 
 ```bash
 GET /_cat/indices/index_name?v&h=i,sth
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 测试</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 测试</font>
 <font style="color:rgb(51, 51, 51);">Elasticsearch提供了一个jar文件，可以将其添加到任何Java IDE中，并可以用于测试与Elasticsearch相关的代码。使用Elasticsearch提供的框架可以执行一系列测试。在本章中，我们将详细讨论这些测试-</font>
 
 + <font style="color:rgb(51, 51, 51);">单元测试</font>
 + <font style="color:rgb(51, 51, 51);">整合测试</font>
 + <font style="color:rgb(51, 51, 51);">随机测试</font>
 
-## <font style="color:rgb(51, 51, 51);">先决条件</font>
+### <font style="color:rgb(51, 51, 51);">先决条件</font>
 <font style="color:rgb(51, 51, 51);">要开始测试，您需要将Elasticsearch测试依赖项添加到您的程序中。您可以将maven用于此目的，并可以在pom.xml中添加以下内容。</font>
 
 ```plain
@@ -3206,10 +3206,10 @@ EsSetup esSetup = new EsSetup();
 
 <font style="color:rgb(51, 51, 51);">esSetup.execute() 带有createIndex的函数将创建索引，您需要指定设置，类型和数据。</font>
 
-## <font style="color:rgb(51, 51, 51);">单元测试</font>
+### <font style="color:rgb(51, 51, 51);">单元测试</font>
 <font style="color:rgb(51, 51, 51);">单元测试是通过使用JUnit和Elasticsearch测试框架进行的。可以使用Elasticsearch类创建节点和索引，并且可以使用test方法执行测试。ESTestCase和ESTokenStreamTestCase类用于此测试。</font>
 
-## <font style="color:rgb(51, 51, 51);">整合测试</font>
+### <font style="color:rgb(51, 51, 51);">整合测试</font>
 <font style="color:rgb(51, 51, 51);">集成测试使用群集中的多个节点。ESIntegTestCase类用于此测试。有多种方法可以简化准备测试用例的工作。</font>
 
 | <font style="color:rgb(254, 254, 254);">序号</font> | <font style="color:rgb(254, 254, 254);">方法与说明</font> |
@@ -3225,7 +3225,7 @@ EsSetup esSetup = new EsSetup();
 | <font style="color:rgb(51, 51, 51);">9</font> | **<font style="color:rgb(51, 51, 51);">cluster()</font>**<br/><font style="color:rgb(51, 51, 51);">返回测试群集类</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">测试集群方法</font>
+### <font style="color:rgb(51, 51, 51);">测试集群方法</font>
 | <font style="color:rgb(254, 254, 254);">序号</font> | <font style="color:rgb(254, 254, 254);">方法与说明</font> |
 | --- | --- |
 | <font style="color:rgb(51, 51, 51);">1</font> | **<font style="color:rgb(51, 51, 51);">ensureAtLeastNumNodes(n)</font>**<br/><font style="color:rgb(51, 51, 51);">确保群集中最多的最小节点数大于或等于指定的数目</font> |
@@ -3238,7 +3238,7 @@ EsSetup esSetup = new EsSetup();
 | <font style="color:rgb(51, 51, 51);">8</font> | **<font style="color:rgb(51, 51, 51);">nodeSettings()</font>**<br/><font style="color:rgb(51, 51, 51);">重写此方法以更改节点设置</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">访问客户端</font>
+### <font style="color:rgb(51, 51, 51);">访问客户端</font>
 <font style="color:rgb(51, 51, 51);">客户机用于访问集群中的不同节点并执行某些操作。ESIntegTestCase.client()方法用于获取随机客户端。Elasticsearch还提供了访问客户端的其他方法，这些方法可以使用ESIntegTestCase.internalCluster()方法。</font>
 
 | <font style="color:rgb(254, 254, 254);">序号</font> | <font style="color:rgb(254, 254, 254);">方法与说明</font> |
@@ -3249,10 +3249,10 @@ EsSetup esSetup = new EsSetup();
 | <font style="color:rgb(51, 51, 51);">4</font> | **<font style="color:rgb(51, 51, 51);">clientNodeClient()</font>**<br/><font style="color:rgb(51, 51, 51);">这将返回当前处于客户端节点上的客户端</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">随机测试</font>
+### <font style="color:rgb(51, 51, 51);">随机测试</font>
 <font style="color:rgb(51, 51, 51);">此测试用于测试用户代码与所有可能的数据，以便将来不会出现任何类型的数据失败。随机数据是执行此测试的最佳选择。</font>
 
-## <font style="color:rgb(51, 51, 51);">生成随机数据</font>
+### <font style="color:rgb(51, 51, 51);">生成随机数据</font>
 <font style="color:rgb(51, 51, 51);">在此测试中，Random类由RandomizedTest提供的实例实例化，并提供了许多用于获取不同类型数据的方法。</font>
 
 | <font style="color:rgb(254, 254, 254);">方法</font> | <font style="color:rgb(254, 254, 254);">返回值</font> |
@@ -3270,7 +3270,7 @@ EsSetup esSetup = new EsSetup();
 | <font style="color:rgb(51, 51, 51);">randomFrom()</font> | <font style="color:rgb(51, 51, 51);">Random element from array</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">断言</font>
+### <font style="color:rgb(51, 51, 51);">断言</font>
 <font style="color:rgb(51, 51, 51);">ElasticsearchAssertions和ElasticsearchGeoAssertions类包含断言，这些断言用于在测试时执行一些常规检查。例如，观察此处给出的代码-</font>
 
 ```plain
@@ -3280,10 +3280,10 @@ assertFirstHit(searchResponse, hasId("6"));
 assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 ```
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch Kibana仪表板</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch Kibana仪表板</font>
 <font style="color:rgb(51, 51, 51);">Kibana仪表板是可视化和搜索的集合。您可以排列，调整和编辑仪表板内容，然后保存仪表板以便共享。在本章中，我们将了解如何创建和编辑仪表板。</font>
 
-## <font style="color:rgb(51, 51, 51);">仪表盘创建</font>
+### <font style="color:rgb(51, 51, 51);">仪表盘创建</font>
 <font style="color:rgb(51, 51, 51);">在“ Kibana主页”中，从左侧控制栏中选择仪表板选项，如下所示。这将提示您创建一个新的仪表板。</font>![](../../images/1731764723638-50f2bd0b-c507-43ad-857b-656d7f419a7e.png)
 
 <font style="color:rgb(51, 51, 51);">要将可视化添加到仪表板，我们选择菜单“添加”，然后从可用的预建可视化中进行选择。我们从列表中选择了以下可视化选项。</font>
@@ -3294,27 +3294,27 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731764753789-7399e49b-2c19-42dd-adae-9bf59787a32a.png)
 
-## <font style="color:rgb(51, 51, 51);">检查元素</font>
+### <font style="color:rgb(51, 51, 51);">检查元素</font>
 <font style="color:rgb(51, 51, 51);">我们可以通过选择可视化面板菜单并选择来检查仪表板元素</font>**<font style="color:rgb(51, 51, 51);">Inspect</font>**<font style="color:rgb(51, 51, 51);">。这将显示出元素背后的数据，这些数据也可以下载。</font>
 
 ![](../../images/1731765415939-ddfac75f-ab88-45c9-8fa4-3b23fd5fdb01.png)
 
-## <font style="color:rgb(51, 51, 51);">共享仪表板</font>
+### <font style="color:rgb(51, 51, 51);">共享仪表板</font>
 <font style="color:rgb(51, 51, 51);">我们可以通过选择共享菜单并选择选项来共享仪表板，以获取超链接，如下所示：</font>
 
 ![](../../images/1731765424051-e455b9e4-2e1c-4334-b789-52934d54bab1.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 按字段过滤</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 按字段过滤</font>
 <font style="color:rgb(51, 51, 51);">Kibana主页提供的discover功能允许我们从不同角度探索数据集。您可以搜索和筛选所选索引模式的数据。数据通常以值在一段时间内的分布形式提供。</font>
 
 <font style="color:rgb(51, 51, 51);">要浏览电子商务数据示例，请点击下</font>**<font style="color:rgb(51, 51, 51);">Discover</font>**<font style="color:rgb(51, 51, 51);">图所示的图标。这将随图表一起显示数据。</font>
 
-## <font style="color:rgb(51, 51, 51);">按时间过滤</font>
+### <font style="color:rgb(51, 51, 51);">按时间过滤</font>
 <font style="color:rgb(51, 51, 51);">要按特定的时间间隔过滤出数据，我们使用时间过滤器选项，如下所示。默认情况下，过滤器设置为15分钟。</font>
 
 ![](../../images/1731765443572-5a984221-dc50-4f24-8b41-06e2eff2e990.png)
 
-## <font style="color:rgb(51, 51, 51);">按字段过滤</font>
+### <font style="color:rgb(51, 51, 51);">按字段过滤</font>
 <font style="color:rgb(51, 51, 51);">也可以使用</font>**<font style="color:rgb(51, 51, 51);">Add Filter</font>**<font style="color:rgb(51, 51, 51);">如下所示的选项按字段过滤数据集。在这里，我们添加了一个或多个字段，并在应用过滤器后获得了相应的结果。在我们的示例中，我们选择字段</font>**<font style="color:rgb(51, 51, 51);">day_of_week</font>**<font style="color:rgb(51, 51, 51);">，然后选择该字段的运算符，</font>**<font style="color:rgb(51, 51, 51);">is</font>**<font style="color:rgb(51, 51, 51);">并将值设为</font>**<font style="color:rgb(51, 51, 51);">Sunday</font>**<font style="color:rgb(51, 51, 51);">。</font>
 
 ![](../../images/1731765677921-25d4e3ce-b537-4322-aabf-632a73351dd5.png)
@@ -3324,38 +3324,38 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
   
  ![](../../images/1731765690325-7c64c5f1-f392-4d1e-a871-16936fce09c5.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 数据表</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 数据表</font>
 <font style="color:rgb(51, 51, 51);">数据表是可视化类型，用于显示组合聚合的原始数据。使用数据表可以提供多种类型的聚合。为了创建数据表，我们应该完成此处详细讨论的步骤。</font>
 
-## <font style="color:rgb(51, 51, 51);">可视化</font>
+### <font style="color:rgb(51, 51, 51);">可视化</font>
 <font style="color:rgb(51, 51, 51);">在Kibana主屏幕中，我们找到选项名称Visualize，该名称使我们能够从Elasticsearch中存储的索引创建可视化和聚合。下图显示了该选项。</font>
 
 ![](../../images/1731765709898-447329d3-f39c-4815-a3a4-cd6391d97ab3.png)
 
-## <font style="color:rgb(51, 51, 51);">选择数据表</font>
+### <font style="color:rgb(51, 51, 51);">选择数据表</font>
 <font style="color:rgb(51, 51, 51);">接下来，我们从可用的各种可视化选项中选择“数据表”选项。下图＆miuns;中显示了该选项。</font>
 
 ![](../../images/1731765824955-801a51c6-7e4b-42bb-8ede-42f00133abf6.png)
 
-## <font style="color:rgb(51, 51, 51);">选择索引</font>
+### <font style="color:rgb(51, 51, 51);">选择索引</font>
 <font style="color:rgb(51, 51, 51);">然后，我们选择创建数据表可视化所需的索引。这个选择决定了我们将要使用的聚合类型。为此，我们从电子商务数据集中选择下面显示的特定字段。</font>
 
   
  ![](../../images/1731766453468-93a3fcad-4693-401d-a3fb-491a5060dfde.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 区域地图</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 区域地图</font>
 <font style="color:rgb(51, 51, 51);">区域映射会在地理映射上显示指标。在查看以不同强度锚定到不同地理区域的数据时很有用。较深的阴影通常表示较高的值，较浅的阴影通常表示较低的值。</font>
 
 <font style="color:rgb(51, 51, 51);">创建此可视化的步骤详细说明如下-</font>
 
-## <font style="color:rgb(51, 51, 51);">可视化</font>
+### <font style="color:rgb(51, 51, 51);">可视化</font>
 <font style="color:rgb(51, 51, 51);">在这一步中，我们转到Kibana主屏幕左侧栏中的可视化按钮，然后选择添加新的可视化的选项。</font>
 
 <font style="color:rgb(51, 51, 51);">以下屏幕显示了我们如何选择Region Map选项。</font>
 
 ![](../../images/1731766765010-471e9078-a3fb-4e69-b882-cc4586397431.png)
 
-## <font style="color:rgb(51, 51, 51);">选择索引</font>
+### <font style="color:rgb(51, 51, 51);">选择索引</font>
 <font style="color:rgb(51, 51, 51);">下一个屏幕提示我们选择用于创建“区域映射”的度量。在这里，我们选择“平均价格”作为索引，并选择“ country_iso_code”作为存储桶中将用于创建可视化文件的字段。</font>
 
 ![](../../images/1731766773794-f4a5ccf0-3fc4-4f98-993e-f2f63432fe00.png)
@@ -3364,15 +3364,15 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731766781781-4d47a69b-4890-45d0-b761-ddb0bbd0ca81.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 饼图</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 饼图</font>
 <font style="color:rgb(51, 51, 51);">饼图是最简单和著名的可视化工具之一。它表示数据为一个圆形的切片，每个切片的颜色不同。标签以及百分比数据值可以与圆一起显示。圆也可以采取甜甜圈的形状。</font>
 
-## <font style="color:rgb(51, 51, 51);">可视化</font>
+### <font style="color:rgb(51, 51, 51);">可视化</font>
 <font style="color:rgb(51, 51, 51);">在Kibana主屏幕中，我们找到选项名称Visualize，该选项使我们能够从Elasticsearch中存储的索引创建可视化和聚合。我们选择添加一个新的可视化并选择饼图作为如下所示的选项。</font>
 
 ![](../../images/1731766865702-71726bc1-6051-417b-b0d0-e8b3f04a5fb5.png)
 
-## <font style="color:rgb(51, 51, 51);">选择索引</font>
+### <font style="color:rgb(51, 51, 51);">选择索引</font>
 <font style="color:rgb(51, 51, 51);">下一个屏幕提示我们选择将用于创建饼图的度量。这里我们选择基本单价作为度量，桶聚集作为直方图。另外，最小间隔选择为20。因此，价格将显示为以20为范围的值块。</font>
 
   
@@ -3382,35 +3382,35 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731766890734-9d46700e-0468-4059-9fe0-42d74279507c.png)
 
-## <font style="color:rgb(51, 51, 51);">饼图选项</font>
+### <font style="color:rgb(51, 51, 51);">饼图选项</font>
 <font style="color:rgb(51, 51, 51);">转到饼图下方的选项选项卡时，我们可以看到各种配置选项，以更改饼图的外观以及数据显示的排列方式。在以下示例中，饼图显示为甜甜圈，标签显示在顶部。</font>
 
 ![](../../images/1731766903664-07558cc5-647c-4d33-8128-d2edf7af2620.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 面积图和条形图</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 面积图和条形图</font>
 <font style="color:rgb(51, 51, 51);">面积图是折线图的扩展，其中折线图和轴之间的区域以某些颜色突出显示。条形图表示将数据组织成一系列值，然后相对于轴进行绘制的图表。它可以由水平条或垂直条组成。</font>
 
 <font style="color:rgb(51, 51, 51);">在本章中，我们将看到使用Kibana创建的所有这三种图形。如前几章所述，我们将继续使用电子商务索引中的数据。</font>
 
-## <font style="color:rgb(51, 51, 51);">面积图</font>
+### <font style="color:rgb(51, 51, 51);">面积图</font>
 <font style="color:rgb(51, 51, 51);">在Kibana主屏幕中，我们找到选项名称Visualize，该选项使我们能够从Elasticsearch中存储的索引创建可视化和聚合。我们选择添加一个新的可视化效果，然后选择“面积图”作为下图所示的选项。</font>
 
   
  ![](../../images/1731766948296-08b7417f-5591-4c8a-8c5e-8f74596cb243.png)
 
-## <font style="color:rgb(51, 51, 51);">选择索引</font>
+### <font style="color:rgb(51, 51, 51);">选择索引</font>
 <font style="color:rgb(51, 51, 51);">下一个屏幕提示我们选择用于创建面积图的度量。在这里，我们选择总和作为聚合指标的类型。然后，我们选择total_quantity字段作为要用作度量的字段。在X轴上，我们选择了order_date字段，并使用给定的指标将系列划分为5</font>![](../../images/1731766961792-77338319-b264-4c3d-9062-dceb38594283.png)
 
 <font style="color:rgb(51, 51, 51);">在运行上述配置时，我们得到以下区域图作为输出-</font>
 
 ![](../../images/1731767007243-86798a39-da3b-433b-807a-358370475ffa.png)
 
-## <font style="color:rgb(51, 51, 51);">水平条形图</font>
+### <font style="color:rgb(51, 51, 51);">水平条形图</font>
 <font style="color:rgb(51, 51, 51);">同样，对于水平条形图，我们从Kibana主屏幕中选择新的可视化效果，然后为“水平条形”选择选项。然后我们选择指标，如下图所示。在这里，我们选择“总和”作为归档命名产品数量的汇总。然后，我们选择带有日期直方图的存储桶作为现场订单日期。</font>
 
 ![](../../images/1731767133234-11050757-8ec1-49e4-b857-cdcfa620d6b7.png)
 
-## <font style="color:rgb(51, 51, 51);">垂直条形图</font>
+### <font style="color:rgb(51, 51, 51);">垂直条形图</font>
 <font style="color:rgb(51, 51, 51);">对于垂直条形图，我们从Kibana主屏幕中选择新的可视化效果，然后选择“垂直条形”选项。然后我们选择指标，如下图所示。</font>
 
 <font style="color:rgb(51, 51, 51);">在这里，我们选择“总和”作为名为“产品数量”的字段的汇总。然后，我们选择带有日期直方图的存储桶作为每周间隔的现场订购日期。</font>
@@ -3421,14 +3421,14 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731767682823-e674465b-2d07-4128-933a-cfb7d82946a1.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 时间序列</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 时间序列</font>
 <font style="color:rgb(51, 51, 51);">时间序列表示特定时间序列中的数据序列。例如，从每月的第一天到最后一天的每一天的数据。数据点之间的间隔保持不变。包含时间成分的任何数据集都可以表示为时间序列。</font>
 
 <font style="color:rgb(51, 51, 51);">在本章中，我们将使用示例电子商务数据集并绘制每天的订单数计数以创建时间序列。</font>
 
 ![](../../images/1731767774306-81952889-edaf-42c7-88c8-12248ab6006b.png)
 
-## <font style="color:rgb(51, 51, 51);">选择索引</font>
+### <font style="color:rgb(51, 51, 51);">选择索引</font>
 <font style="color:rgb(51, 51, 51);">首先，我们选择将用于创建时间序列的索引模式，数据字段和间隔。从示例电子商务数据集中，我们选择order_date作为字段，并选择1d作为间隔。我们使用</font>**<font style="color:rgb(51, 51, 51);">Panel Options</font>**<font style="color:rgb(51, 51, 51);">选项卡进行这些选择。另外，我们将此选项卡中的其他值保留为默认值，以获取时间序列的默认颜色和格式。</font>
 
 ![](../../images/1731767786498-5dba6534-bd58-43cf-8d5b-0497037c7873.png)
@@ -3437,21 +3437,21 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731767842870-aed7cd75-cb2d-4549-9201-8ffb3c733d95.png)
 
-## <font style="color:rgb(51, 51, 51);">结果</font>
+### <font style="color:rgb(51, 51, 51);">结果</font>
 <font style="color:rgb(51, 51, 51);">此配置的最终结果如下所示。请注意，我们在</font>**<font style="color:rgb(51, 51, 51);">Month to Date</font>**<font style="color:rgb(51, 51, 51);">此图中使用了一个时间段。不同的时间段将给出不同的结果。</font>
 
 ![](../../images/1731767984906-3ea237e3-1b7d-47a0-8351-2378f861d2f7.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 标签云</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 标签云</font>
 <font style="color:rgb(51, 51, 51);">标签云以吸引人的形式表示文本，这些文本主要是关键字和元数据。它们以不同的角度对齐，并以不同的颜色和字体大小表示。它有助于找出数据中最突出的术语。可以由一个或多个因素（例如术语的频率，标签的唯一性或基于附加到特定术语的权重等）确定突出程度。下面我们将介绍创建标签云的步骤。</font>
 
-## <font style="color:rgb(51, 51, 51);">可视化</font>
+### <font style="color:rgb(51, 51, 51);">可视化</font>
 <font style="color:rgb(51, 51, 51);">在Kibana主屏幕中，我们找到选项名称Visualize，该选项使我们能够从Elasticsearch中存储的索引创建可视化和聚合。我们选择添加一个新的可视化并选择标签云作为如下所示的选项-</font>
 
   
  ![](../../images/1731768338372-8282aa09-f15e-450d-8dd0-4df9891f1769.png)
 
-## <font style="color:rgb(51, 51, 51);">选择索引</font>
+### <font style="color:rgb(51, 51, 51);">选择索引</font>
 <font style="color:rgb(51, 51, 51);">下一个屏幕提示我们选择将在创建标签云中使用的索引。在这里，我们选择计数作为聚合索引的类型。然后，我们选择productname字段作为要用作标签的关键字。</font>
 
 ![](../../images/1731768349296-d110d38f-4cbd-4006-811f-900b22589b7b.png)
@@ -3460,12 +3460,12 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731768454913-a0c4f080-9769-4da2-bc90-60cfebd177cc.png)
 
-## <font style="color:rgb(51, 51, 51);">标签云选项</font>
+### <font style="color:rgb(51, 51, 51);">标签云选项</font>
 <font style="color:rgb(51, 51, 51);">转到</font>**<font style="color:rgb(51, 51, 51);">options</font>**<font style="color:rgb(51, 51, 51);">标签云下的选项卡，我们可以看到各种配置选项，以更改标签云中的外观以及数据显示的排列方式。在下面的示例中，标签云显示，标签沿水平和垂直方向分布。</font>
 
 ![](../../images/1731768463901-3aceb3cc-245b-428e-9adf-96df5fce2a21.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 热图</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 热图</font>
 <font style="color:rgb(51, 51, 51);">热图是一种可视化类型，其中不同的颜色阴影代表图形中的不同区域。该值可以连续变化，因此颜色的颜色阴影随该值而变化。它们对于表示连续变化的数据和离散数据都非常有用。</font>
 
 <font style="color:rgb(51, 51, 51);">在本章中，我们将使用名为sample_data_flights的数据集来构建热图。在其中，我们考虑了名为航班的出发地国家和目的地国家的变量，并进行了计数。</font>
@@ -3475,7 +3475,7 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
   
  ![](../../images/1731768478260-d2ff041e-ae02-4809-955e-5d69b0b9f130.png)
 
-## <font style="color:rgb(51, 51, 51);">选择索引</font>
+### <font style="color:rgb(51, 51, 51);">选择索引</font>
 <font style="color:rgb(51, 51, 51);">下一个屏幕提示我们选择将在创建热图图表时使用的索引。在这里，我们选择计数作为聚合指标的类型。然后，对于Y轴中的存储桶，我们选择“条款”作为OriginCountry字段的汇总。对于X轴，我们选择与DestCountry相同的聚合作为要使用的字段。在这两种情况下，我们将存储桶的大小选择为5。</font>
 
 ![](../../images/1731768630475-bee1dda9-260d-4b06-af65-c0e480b485ca.png)
@@ -3486,13 +3486,13 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 **<font style="color:rgb(51, 51, 51);">Note</font>**<font style="color:rgb(51, 51, 51);"> −必须将日期范围设置为“今年”，以便图形收集一年的数据以生成有效的热图。</font>
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 画布</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 画布</font>
 <font style="color:rgb(51, 51, 51);">画布应用程序是Kibana的一部分，它使我们能够创建动态，多页和像素完美的数据显示。它具有创建图表的能力，而不仅仅是图表和指标，这使其具有独特性和吸引力。在本章中，我们将看到画布的各种功能以及如何使用画布工作台。</font>
 
-## <font style="color:rgb(51, 51, 51);">打开画布</font>
+### <font style="color:rgb(51, 51, 51);">打开画布</font>
 <font style="color:rgb(51, 51, 51);">转到Kibana主页，然后选择选项，如下图所示。它会打开您拥有的画布工作台列表。我们为研究选择电子商务收入跟踪。</font>![](../../images/1731768723613-8b9a8001-e16b-4b41-8190-a9c41de34730.png)
 
-## <font style="color:rgb(51, 51, 51);">克隆工作台</font>
+### <font style="color:rgb(51, 51, 51);">克隆工作台</font>
 <font style="color:rgb(51, 51, 51);">我们克隆了</font>**<font style="color:rgb(51, 51, 51);">[eCommerce] Revenue Tracking</font>**<font style="color:rgb(51, 51, 51);">要在我们的研究中使用的工作台。要克隆它，我们突出显示具有此工作台名称的行，然后使用克隆按钮，如下图所示：</font>
 
 ![](../../images/1731768732352-8b6e871c-a1d2-473c-877c-e7c943e251e9.png)
@@ -3503,15 +3503,15 @@ assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
 
 ![](../../images/1731768741812-32de32cd-9976-4de5-9ca3-856ebc37752d.png)
 
-## <font style="color:rgb(51, 51, 51);">修改工作台</font>
+### <font style="color:rgb(51, 51, 51);">修改工作台</font>
 <font style="color:rgb(51, 51, 51);">我们可以使用右侧选项卡中的可用选项来更改工作台中的样式和图形。在这里，我们旨在通过选择不同的颜色来更改工作台的背景颜色，如下图所示。颜色选择立即生效，我们得到如下所示的结果-</font>
 
 ![](../../images/1731768765028-6433d80a-5f95-4cd3-8c02-518c24fd81d1.png)
 
-## <font style="color:rgb(51, 51, 51);">Elasticsearch 日志UI</font>
+### <font style="color:rgb(51, 51, 51);">Elasticsearch 日志UI</font>
 <font style="color:rgb(51, 51, 51);">Kibana还可以帮助可视化来自各种来源的日志数据。日志是基础结构运行状况，性能需求和安全漏洞分析等的重要分析来源。Kibana可以连接到各种日志，例如Web服务器日志，elasticsearch日志和cloudwatch日志等。</font>
 
-## <font style="color:rgb(51, 51, 51);">Logstash日志</font>
+### <font style="color:rgb(51, 51, 51);">Logstash日志</font>
 <font style="color:rgb(51, 51, 51);">在Kibana中，我们可以连接到logstash日志以进行可视化。首先，我们从Kibana主屏幕中选择“日志”按钮，如下所示-</font>
 
 ![](../../images/1731768804579-0f190459-cc21-4bd9-9da4-6d90bad835f1.png)
