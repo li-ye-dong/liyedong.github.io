@@ -1,0 +1,5504 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E5%BC%80%E5%8F%91/Flask/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">
+      
+      
+        <link rel="prev" href="../%E8%B0%83%E8%AF%95%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%94%99%E8%AF%AF/">
+      
+      
+        <link rel="next" href="../../Pandas/Pandas%20DataFrame/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>配置管理 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#配置入门" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              配置管理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDF/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../golang/GO%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  Golang
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../PDF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../golang/GO%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Golang
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            开发
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FastApi学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fastapi%E6%89%93%E5%8C%85exe%E5%92%8Cvue%E6%89%93%E5%8C%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastapi打包exe和vue打包
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GithubPage%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GithubPage搭建博客
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mkdocs%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mkdocs文档生成器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93ORM%E7%9B%B8%E5%85%B3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据库ORM相关
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    DRF框架
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            DRF框架
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/JWT%E8%AE%A4%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JWT认证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/RESTful%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RESTful规范
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E4%BB%A5%E5%8D%9A%E5%AE%A2%E4%B8%BA%E4%BE%8B%E4%BD%BF%E7%94%A8DRF%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%87%BD%E6%95%B0%E7%9A%84%E8%A7%86%E5%9B%BE%E5%BC%80%E5%8F%91API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    以博客为例使用DRF的序列化器和基于函数的视图开发API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E5%88%86%E9%A1%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    分页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%A7%86%E5%9B%BEAPIView%2C%20GenericAPIView%E5%92%8C%E8%A7%86%E5%9B%BE%E9%9B%86%28ViewSet%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于类的视图APIView, GenericAPIView和视图集(ViewSet)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E7%8E%A9%E8%BD%AC%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%28Serializer%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    玩转序列化器(Serializer)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%AE%A4%E8%AF%81%E4%B8%8E%E6%9D%83%E9%99%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    认证与权限
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%AE%A4%E8%AF%81%E8%AF%A6%E8%A7%A3%E4%B8%8EToken%E8%AE%A4%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    认证详解与Token认证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E8%BF%87%E6%BB%A4%E4%B8%8E%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    过滤与排序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DRF%E6%A1%86%E6%9E%B6/%E9%99%90%E6%B5%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    限流
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Django
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            Django
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%20%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AEURLConf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django 路由配置URLConf
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django上传文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E7%A4%BA%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django中间件原理及示例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E4%BF%A1%E5%8F%B7%E6%9C%BA%E5%88%B6%E5%8F%8A%E7%A4%BA%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django信号机制及示例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87%E5%A4%84%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django全局上下文处理器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%9B%BD%E9%99%85%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django国际化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E5%A4%9A%E7%A7%8D%E7%BC%93%E5%AD%98%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django多种缓存配置方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E5%85%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django性能优化大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django日志管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%9D%83%E9%99%90%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django权限详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django模型详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E8%BF%9E%E6%8E%A5MySQL%E5%92%8CPostgreSQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django连接MySQL和PostgreSQL数据库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django配置文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Django%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8Celery%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E5%92%8C%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django项目中使用Celery执行异步和周期性任务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Docker%E9%83%A8%E7%BD%B2Django/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker部署Django
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/ORM%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORM数据增删改查接口
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/Queryset%E7%89%B9%E6%80%A7%E5%8F%8A%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Queryset特性及高级查询技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/uWSGI%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uWSGI的安装及配置详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Django/%E8%87%AA%E5%AE%9A%E4%B9%89Django-admin%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自定义Django admin管理命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Flask
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            Flask
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Flask%20%E6%96%B9%E6%A1%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask 方案
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Flask%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%BF%E7%94%A8%20async%20%E5%92%8C%20await/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 async 和 await
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%BF%E7%94%A8%E8%93%9D%E5%9B%BE%E8%BF%9B%E8%A1%8C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用蓝图进行应用模块化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BF%A1%E5%8F%B7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    信号
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    命令行接口
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9C%A8%20Shell%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Flask/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    在 Shell 中使用 Flask
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于类的视图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%AE%89%E5%85%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安全注意事项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BA%94%E7%94%A8%E6%83%85%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用情境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用程序结构和生命周期
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BA%94%E7%94%A8%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    应用错误处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开发服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    快速上手
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%89%A9%E5%B1%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%97%A5%E5%BF%97/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模板
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%B5%8B%E8%AF%95%20Flask%20%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测试 Flask 应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    生产部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%AF%B7%E6%B1%82%E6%83%85%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    请求情境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%B0%83%E8%AF%95%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%94%99%E8%AF%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调试应用程序错误
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    配置管理
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    配置管理
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#配置入门" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置入门
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#调试模式" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试模式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#内置配置变量" class="md-nav__link">
+    <span class="md-ellipsis">
+      内置配置变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#使用-python-配置文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 Python 配置文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#使用数据文件来配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用数据文件来配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#使用环境变量来配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用环境变量来配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#配置的最佳实践" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置的最佳实践
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#开发生产" class="md-nav__link">
+    <span class="md-ellipsis">
+      开发/生产
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#实例文件夹" class="md-nav__link">
+    <span class="md-ellipsis">
+      实例文件夹
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Pandas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            Pandas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20DataFrame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas DataFrame
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20GroupBy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas GroupBy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20IO%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas IO操作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Panel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Panel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20SQL%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas SQL操作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Series/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Series
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20Timedelta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas Timedelta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E4%B8%B2%E8%81%94/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 串联
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%87%BD%E6%95%B0%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 函数应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 分类数据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%8F%AF%E8%A7%86%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 可视化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 基本方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 排序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 描述性统计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 数据丢失
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 数据结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 文本处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 日期函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 注意事项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%A8%80%E7%96%8F%E6%95%B0%E6%8D%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 稀疏数据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%B4%A2%E5%BC%95%E5%92%8C%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 索引和数据查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 统计函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%81%9A%E5%90%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 聚合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%89%E9%A1%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 自定义选项
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%BF%9E%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 连接
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E8%BF%AD%E4%BB%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 迭代
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Pandas%20%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 重建索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pandas/Python%20Pandas%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 聚合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python基础
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            Python基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20gui%E8%87%AA%E5%8A%A8%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python gui自动化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E5%BC%82%E5%B8%B8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 错误和内置异常
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python中的数字数据类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 文件I/O
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 日期时间(datetime)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%20%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 命名空间和作用域
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E4%B9%8BPandas%20%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python之Pandas 常用函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%85%83%E7%B1%BB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python元类
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 参考手册大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python垃圾回收
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    镜像源
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python多进程与多线程编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E5%AE%9E%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 实例大全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 面向对象编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%9F%BA%E7%A1%80/%E5%8D%8F%E7%A8%8B%20%26%20%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%28asyncio%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协程 &amp; 异步编程(asyncio)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_11" id="__nav_7_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python工程化
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_11">
+            <span class="md-nav__icon md-icon"></span>
+            Python工程化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Docker%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker初始化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Fastapi%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastapi项目工程化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Python-Poetry%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Poetry包管理器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/Python%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python项目搭建
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/cookiecutter%20%E7%9A%84%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cookiecutter 的使用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python%E5%B7%A5%E7%A8%8B%E5%8C%96/%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目初始化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_12" id="__nav_7_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    图像处理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_12">
+            <span class="md-nav__icon md-icon"></span>
+            图像处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/Python%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python实现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/Python%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E6%AF%94%E5%AF%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python实现图像比对
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图像处理概念
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_13" id="__nav_7_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_13">
+            <span class="md-nav__icon md-icon"></span>
+            开发
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elasticsearch 教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Git%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git教程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Uniapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88Vue2%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uniapp学习笔记（Vue2）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/Vue3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue3学习笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/rust%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rust学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/typescript%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Typescript学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前端包管理器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_14" id="__nav_7_14_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    爬虫和web自动化
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_14">
+            <span class="md-nav__icon md-icon"></span>
+            爬虫和web自动化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Base64%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base64编码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/CSS%E5%AD%97%E4%BD%93%E5%8A%A0%E5%AF%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSS字体加密
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Charles%E6%8A%93%E5%8C%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Charles抓包
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Playwright/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playwright
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Playwright%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playwright高级
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/Python%E8%B0%83%E7%94%A8js%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python调用js文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/drissionpage%E6%A1%86%E6%9E%B6%E4%B9%8B%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drissionpage框架之爬虫和web自动化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/js%E5%AF%B9%E8%B1%A1%E7%9B%91%E8%A7%86%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Js对象监视器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/requests%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/requests%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests高级
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/webpack%E9%80%86%E5%90%91/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webpack逆向
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E5%8A%A0%E5%AF%86%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    加密类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8Cpandas%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据库和pandas处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据解析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E6%97%A0%E9%99%90debugger%E9%80%86%E5%90%91%E5%92%8CF12%E7%A6%81%E6%AD%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无限debugger逆向和F12禁止
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E7%91%9E%E6%95%B0%E6%8A%80%E6%9C%AF%E9%80%86%E5%90%91/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    瑞数技术逆向
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%88%AC%E8%99%AB%E5%92%8Cweb%E8%87%AA%E5%8A%A8%E5%8C%96/%E9%80%86%E5%90%91%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    逆向技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_15" id="__nav_7_15_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自学项目
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_15">
+            <span class="md-nav__icon md-icon"></span>
+            自学项目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%87%AA%E5%AD%A6%E9%A1%B9%E7%9B%AE/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    架构设计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>配置管理</h1>
+
+<p><font style="color:rgb(62, 67, 73);">应用总是需要一定的配置的。根据应用环境不同，会需要不同的配置。比如开关 调试模式、设置密钥以及其他依赖于环境的东西。</font></p>
+<p><font style="color:rgb(62, 67, 73);">Flask 的设计思路是在应用开始时载入配置。你可以在代码中直接硬编码写入配 置，对于许多小应用来说这不一定是一件坏事，但是还有更好的方法。</font></p>
+<p><font style="color:rgb(62, 67, 73);">不管你使用何种方式载入配置，都可以使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Flask"><font style="color:rgb(62, 67, 73);">Flask</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">对象的</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Flask.config"><font style="color:rgb(62, 67, 73);">config</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">属性来操作配置的值。 Flask 本身就使用这个对 象来保存一些配置，扩展也可以使用这个对象保存配置。同时这也是你保存配置 的地方。</font></p>
+<h2 id="配置入门"><font style="color:black;">配置入门</font><a class="headerlink" href="#配置入门" title="Permanent link">&para;</a></h2>
+<p><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Flask.config"><font style="color:rgb(62, 67, 73);">config</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">实质上是一个字典的子类，可以像字典一样操作:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;TESTING&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">某些配置值还转移到了</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Flask"><font style="color:rgb(62, 67, 73);">Flask</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">对象中，可以直接通过</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Flask"><font style="color:rgb(62, 67, 73);">Flask</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">来操作:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">app</span><span class="o">.</span><span class="n">testing</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">一次更新多个配置值可以使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://docs.python.org/3/library/stdtypes.html#dict.update"><font style="color:rgb(62, 67, 73);">dict.update()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">方法:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">TESTING</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="n">SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="调试模式"><font style="color:black;">调试模式</font><a class="headerlink" href="#调试模式" title="Permanent link">&para;</a></h2>
+<p><a href="https://dormousehole.readthedocs.io/en/2.3.2/config.html#DEBUG"><font style="color:rgb(62, 67, 73);">DEBUG</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">是一个特殊的配置值，因为这个值如果在应用设置完成之后改变， 那么可能表现出不同的行为。为了获得可靠的调试模式，应当在</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;flask&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">命令 上使用</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;--debug&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">参数或者使用</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;flask&lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt; &lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;run&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">命令。</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;flask&lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt; &lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;run&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">命令 默认在调试模式下使用交互调试器和重载器。</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="err">$</span> <span class="n">flask</span> <span class="o">--</span><span class="n">app</span> <span class="n">hello</span> <span class="n">run</span> <span class="o">--</span><span class="n">debug</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">推荐使用参数。尽管可以在你的配置中或者代码中设置</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/config.html#DEBUG"><font style="color:rgb(62, 67, 73);">DEBUG</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">，但是强 烈不推荐这样做。因为它们不能被</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;flask&lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt; &lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;run&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">命令提前使用，并且一些系统 或扩展可能会根据前面的值来配置自己。</font></p>
+<h2 id="内置配置变量"><font style="color:black;">内置配置变量</font><a class="headerlink" href="#内置配置变量" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(62, 67, 73);">以下配置变量由 Flask 内部使用：</font></p>
+<p><strong><font style="color:rgb(62, 67, 73);">DEBUG</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">是否开启调试模式。使用</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;flask&lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt; &lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;run&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">启动开发服务器时，遇到未能处理 的异常时会显示一个交互调试器，并且当代码变动后服务器会重启。</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Flask.debug"><font style="color:rgb(62, 67, 73);">debug</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">属性映射了这个配置键。这是由</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;FLASK_DEBUG&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">环境变量设置的，如果只是在代码中设置，那么可能会出 问题。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;False&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">TESTING</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">开启测试模式。异常会被广播而不是被应用的错误处理器处理。扩展可能也 会为了测试方便而改变它们的行为。你应当在自己的调试中开启本变量。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;False&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">PROPAGATE_EXCEPTIONS</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">异常会重新引发而不是被应用的错误处理器处理。在没有设置本变量的情况 下，当</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;TESTING&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">或</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;DEBUG&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">开启时，本变量隐式地为真。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">TRAP_HTTP_EXCEPTIONS</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">如果没有处理</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;HTTPException&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">类型异常的处理器，重新引发该异常用于 被交互调试器处理，而不是作为一个简单的错误响应来返回。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;False&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">TRAP_BAD_REQUEST_ERRORS</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">尝试操作一个请求字典中不存在的键，如</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;args&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">和</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;form&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">，会返回 一个 400 Bad Request error 页面。开启本变量，可以把这种错误作为一个 未处理的异常处理，这样就可以使用交互调试器了。本变量是一个特殊版本 的</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;TRAP_HTTP_EXCEPTIONS&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。如果没有设置，本变量会在调试模式下开 启。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SECRET_KEY</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">密钥用于会话 cookie 的安全签名，并可用于应用或者扩展的其他安全需求。 密钥应当是一个长的随机的</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;bytes&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">或者</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;str&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。例如，复制下面的 输出到你的配置中:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="err">$</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import secrets; print(secrets.token_hex())&#39;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="s1">&#39;192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong><font style="color:rgb(62, 67, 73);">当发贴提问或者提交代码时，不要泄露密钥。</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SESSION_COOKIE_NAME</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">会话 cookie 的名称。假如已存在同名 cookie ，本变量可改变。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;'session'&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SESSION_COOKIE_DOMAIN</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">会话 cookie 上的</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;Domain&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">参数值。如果不设置，浏览器将只把 cookie 发送到它所设定的确切域。否则，它们也会把它发送到给定值的任何 子域。</font></p>
+<p><font style="color:rgb(62, 67, 73);">不设置这个值比设置它更有限制性和安全性。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><em><font style="color:rgb(62, 67, 73);">Changed in version 2.3:</font>__<font style="color:rgb(62, 67, 73);"> </font></em><font style="color:rgb(62, 67, 73);">默认情况下不设置，不会回落到</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;SERVER_NAME&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SESSION_COOKIE_PATH</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">认可会话 cookie 的路径。如果没有设置本变量，那么路径为</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;APPLICATION_ROOT&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">，如果</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;APPLICATION_ROOT&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">也没有设置，那么会 是</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;/&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SESSION_COOKIE_HTTPONLY</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">为了安全，浏览器不会允许 JavaScript 操作标记为“ HTTP only ”的 cookie 。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;True&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SESSION_COOKIE_SECURE</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">如果 cookie 标记为“ secure ”，那么浏览器只会使用基于 HTTPS 的请求 发送 cookie 。应用必须使用 HTTPS 服务来启用本变量。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;False&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SESSION_COOKIE_SAMESITE</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">限制来自外部站点的请求如何发送 cookie 。可以被设置为</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;'Lax'&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">（推 荐）或者</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;'Strict'&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。参见</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/security.html#security-cookie"><font style="color:rgb(62, 67, 73);">Set-Cookie 选项</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><em><font style="color:rgb(62, 67, 73);">Changelog</font></em></p>
+<p><strong><font style="color:rgb(62, 67, 73);">PERMANENT_SESSION_LIFETIME</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">如果</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;session.permanent&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">为真， cookie 的有效期为本变量设置的数字， 单位为秒。本变量可能是一个</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta"><font style="color:rgb(62, 67, 73);">datetime.timedelta</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">或者一个</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;int&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><font style="color:rgb(62, 67, 73);">Flask 的缺省 cookie 机制会验证电子签章不老于这个变量的值。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;timedelta(days=31)&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">（</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;2678400&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">秒）</font></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SESSION_REFRESH_EACH_REQUEST</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">当</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;session.permanent&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">为真时，控制是否每个响应都发送 cookie 。每 次都发送 cookie （缺省情况）可以有效地防止会话过期，但是会使用更多 的带宽。 会持续会话不受影响。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;True&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">USE_X_SENDFILE</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">当使用 Flask 提供文件服务时，设置</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;X-Sendfile&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">头部。有些网络服务 器，如 Apache ，识别这种头部，以利于更有效地提供数据服务。本变量只 有使用这种服务器时才有效。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;False&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SEND_FILE_MAX_AGE_DEFAULT</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">当提供文件服务时，设置缓存控制最长存活期，以秒为单位。可以是一个</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta"><font style="color:rgb(62, 67, 73);">datetime.timedelta</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">或者一个</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;int&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。在一个应用或者蓝图上 使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Flask.get_send_file_max_age"><font style="color:rgb(62, 67, 73);">get_send_file_max_age()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">可以基于单个文件重 载本变量。</font></p>
+<p><font style="color:rgb(62, 67, 73);">如果设置为</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">，那么</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;send_file&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">会告诉浏览器使用条件请求代 替一个计时缓存，这样做比较推荐。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">SERVER_NAME</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">通知应用其所绑定的主机和端口。子域路由匹配需要本变量。</font></p>
+<p><font style="color:rgb(62, 67, 73);">如果这样配置了，</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;url_for&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">可以为应用生成一个单独的外部 URL ，而 不是一个请求情境。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><em><font style="color:rgb(62, 67, 73);">Changed in version 2.3:</font>__<font style="color:rgb(62, 67, 73);"> </font></em><font style="color:rgb(62, 67, 73);">不影响</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;SESSION_COOKIE_DOMAIN&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><strong><font style="color:rgb(62, 67, 73);">APPLICATION_ROOT</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">通知应用应用的根路径是什么。这个变量用于生成请求环境之外的 URL （请 求内的会根据</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;SCRIPT_NAME&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">生成；参见</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/patterns/appdispatch.html"><font style="color:rgb(62, 67, 73);">应用调度</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">）。</font></p>
+<p><font style="color:rgb(62, 67, 73);">如果</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;SESSION_COOKIE_PATH&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">没有配置，那么本变量会用于会话 cookie 路径。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;'/'&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">PREFERRED_URL_SCHEME</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">当不在请求情境内时使用些预案生成外部 URL 。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;'http'&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">MAX_CONTENT_LENGTH</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">在进来的请求数据中读取的最大字节数。如果本变量没有配置，并且请求没 有指定</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;CONTENT_LENGTH&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">，那么为了安全原因，不会读任何数据。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">TEMPLATES_AUTO_RELOAD</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">当模板改变时重载它们。如果没有配置，在调试模式下会启用。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;None&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">EXPLAIN_TEMPLATE_LOADING</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">记录模板文件如何载入的调试信息。使用本变量有助于查找为什么模板没有 载入或者载入了错误的模板的原因。</font></p>
+<p><font style="color:rgb(62, 67, 73);">缺省值：</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;False&lt;/font&gt;</code></p>
+<p><strong><font style="color:rgb(62, 67, 73);">MAX_COOKIE_SIZE</font></strong></p>
+<p><font style="color:rgb(62, 67, 73);">当 cookie 头部大于本变量配置的字节数时发出警告。缺省值为</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;4093&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。 更大的 cookie 会被浏览器悄悄地忽略。本变量设置为</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;0&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">时关闭警告。</font></p>
+<p><em><font style="color:rgb(62, 67, 73);">Changed in version 2.3:</font>__<font style="color:rgb(62, 67, 73);"> </font></em><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;JSON_AS_ASCII&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">、</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;JSON_SORT_KEYS&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">、</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;JSONIFY_MIMETYPE&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">和</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;JSONIFY_PRETTYPRINT_REGULAR&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">被移除。默认的</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;app.json&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">提供了 相等的属性可以替代。</font></p>
+<p><em><font style="color:rgb(62, 67, 73);">Changed in version 2.3:</font>__<font style="color:rgb(62, 67, 73);"> </font></em><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;ENV&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">被移除。</font></p>
+<p><em><font style="color:rgb(62, 67, 73);">Changelog</font></em></p>
+<h2 id="使用-python-配置文件"><font style="color:black;">使用 Python 配置文件</font><a class="headerlink" href="#使用-python-配置文件" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(62, 67, 73);">如果把配置放在一个单独的文件中会更有用。理想情况下配置文件应当放在应用 包之外。你针对不同的部署使用特定的配置。</font></p>
+<p><font style="color:rgb(62, 67, 73);">常见用法如下:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;yourapplication.default_settings&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_envvar</span><span class="p">(</span><span class="s1">&#39;YOURAPPLICATION_SETTINGS&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">首先从</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">yourapplication.default_settings</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">模块载入配置，然后根据</font><font style="color:rgb(62, 67, 73);"> </font><code>**&lt;font style="color:rgb(34, 34, 34);"&gt;YOURAPPLICATION_SETTINGS&lt;/font&gt;**</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">环境变量所指向的文件的内容重载配置的 值。在启动服务器前，这个环境变量可以在终端中设置:</font></p>
+<p><strong><font style="color:rgb(29, 92, 135);background-color:#FFFFFF;">Bash</font></strong><font style="color:rgb(29, 92, 135);">Fish</font><font style="color:rgb(29, 92, 135);">CMD</font><font style="color:rgb(29, 92, 135);">Powershell</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="err">$</span> <span class="n">export</span> <span class="n">YOURAPPLICATION_SETTINGS</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">settings</span><span class="o">.</span><span class="n">cfg</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="err">$</span> <span class="n">flask</span> <span class="n">run</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="o">*</span> <span class="n">Running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">配置文件本身实质是 Python 文件。只有全部是大写字母的变量才会被配置对象 所使用。因此请确保使用大写字母。</font></p>
+<p><font style="color:rgb(62, 67, 73);">一个配置文件的例子:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># Example configuration</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">请确保尽早载入配置，以便于扩展在启动时可以访问相关配置。除了从文件载入 配置外，配置对象还有其他方法可以载入配置，详见</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config"><font style="color:rgb(62, 67, 73);">Config</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">对象的文档。</font></p>
+<h2 id="使用数据文件来配置"><font style="color:black;">使用数据文件来配置</font><a class="headerlink" href="#使用数据文件来配置" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(62, 67, 73);">也可以使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config.from_file"><font style="color:rgb(62, 67, 73);">from_file()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">从其他格式的文件来加载配置。 例如，从 TOML 文件加载：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">toml</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;config.toml&quot;</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">或者从 JSON 文件加载：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;config.json&quot;</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="使用环境变量来配置"><font style="color:black;">使用环境变量来配置</font><a class="headerlink" href="#使用环境变量来配置" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(62, 67, 73);">除了使用环境变量指向配置文件之外，你可能会发现直接从环境中控制配置值很 有用（或者很有必要）。 Flask 可以使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config.from_prefixed_env"><font style="color:rgb(62, 67, 73);">from_prefixed_env()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">来指定载入以特定前缀开头的所有 环境变量。</font></p>
+<p><font style="color:rgb(62, 67, 73);">在启动服务器前，可以在终端中设置环境变量:</font></p>
+<p><strong><font style="color:rgb(29, 92, 135);background-color:#FFFFFF;">Bash</font></strong><font style="color:rgb(29, 92, 135);">Fish</font><font style="color:rgb(29, 92, 135);">CMD</font><font style="color:rgb(29, 92, 135);">Powershell</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="err">$</span> <span class="n">export</span> <span class="n">FLASK_SECRET_KEY</span><span class="o">=</span><span class="s2">&quot;5f352379324c22463451387a0aec5d2f&quot;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="err">$</span> <span class="n">export</span> <span class="n">FLASK_MAIL_ENABLED</span><span class="o">=</span><span class="n">false</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="err">$</span> <span class="n">flask</span> <span class="n">run</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="o">*</span> <span class="n">Running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">这样变量就可以被载入了，使用时键名要去掉前缀。</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_prefixed_env</span><span class="p">()</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">]</span>  <span class="c1"># Is &quot;5f352379324c22463451387a0aec5d2f&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">缺省的前缀是</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;FLASK_&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。前缀可以通过</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config.from_prefixed_env"><font style="color:rgb(62, 67, 73);">from_prefixed_env()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">的</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;prefix&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">参数来变更。</font></p>
+<p><font style="color:rgb(62, 67, 73);">变量在解析的时候会优先转换为更特殊的数据类型，如果无法转换为其他类型， 那么最后会转换为字符串类型。变量解析缺省使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://docs.python.org/3/library/json.html#json.loads"><font style="color:rgb(62, 67, 73);">json.loads()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">，因此 可以使用任何合法的 JSON 值，包括列表和字典。解析的行为是可以自定义的， 通过</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config.from_prefixed_env"><font style="color:rgb(62, 67, 73);">from_prefixed_env()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">的</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;loads&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">参数可以自定 义解析的行为。</font></p>
+<p><font style="color:rgb(62, 67, 73);">当使用缺省的 JSON 解析时，只有小写的</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;true&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">和</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;false&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">是合法的布尔 值。请牢记，所有非空的字符在 Python 中都会被视为</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;True&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><font style="color:rgb(62, 67, 73);">使用双下划线（</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;__&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">）可以设置嵌套的字典，如果嵌套字典的中间键不存 在话会被初始化为空字典。</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="err">$</span> <span class="n">export</span> <span class="n">FLASK_MYAPI__credentials__username</span><span class="o">=</span><span class="n">user123</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;MYAPI&quot;</span><span class="p">][</span><span class="s2">&quot;credentials&quot;</span><span class="p">][</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>  <span class="c1"># Is &quot;user123&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">在 Windows 系统下，环境变量总是大写的，因此上面的例子最终会变成</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;MYAPI__CREDENTIALS__USERNAME&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><font style="color:rgb(62, 67, 73);">更多的配置载入功能，包括合并和 Windows 系统中小写变量名的支持等等功能， 请尝试使用其他更专门的库，比如</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://www.dynaconf.com/"><font style="color:rgb(62, 67, 73);">Dynaconf</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">库。</font></p>
+<h2 id="配置的最佳实践"><font style="color:black;">配置的最佳实践</font><a class="headerlink" href="#配置的最佳实践" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(62, 67, 73);">前面提到的方法的缺点是它使测试更加困难。一般来说，这个问题没有一个 100％ 完美的解决方案，但你可以牢记几件事以改善这种体验：</font></p>
+<ol>
+<li><font style="color:rgb(62, 67, 73);">在一个函数中创建你的应用并注册“蓝图”。这样就可以使用不同配置创建 多个实例，极大方便单元测试。你可以按需载入配置。</font></li>
+<li><font style="color:rgb(62, 67, 73);">不要编写在导入时就访问配置的代码。如果你限制自己只能通过请求访问代 码，那么就可以在以后按需重设配置对象。</font></li>
+<li><font style="color:rgb(62, 67, 73);">确保尽早载入配置，这样扩展就可以在调用</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;init_app&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">时读取配置。</font></li>
+</ol>
+<h2 id="开发生产"><font style="color:black;">开发/生产</font><a class="headerlink" href="#开发生产" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(62, 67, 73);">大多数应用需要一个以上的配置。最起码需要一个配置用于生产服务器，另一个 配置用于开发。应对这种情况的最简单的方法总是载入一个缺省配置，并把这个 缺省配置作为版本控制的一部分。然后，把需要重载的配置，如前文所述，放在 一个独立的文件中:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;yourapplication.default_settings&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_envvar</span><span class="p">(</span><span class="s1">&#39;YOURAPPLICATION_SETTINGS&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">然后你只要增加一个独立的</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">config.py</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">文件并导出</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;YOURAPPLICATION_SETTINGS=/path/to/config.py&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">即可。当然还有其他方法 可选，例如可以使用导入或子类。</font></p>
+<p><font style="color:rgb(62, 67, 73);">在 Django 应用中，通常的做法是在文件的开关增加</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;from&lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt; &lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;yourapplication.default_settings&lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt; &lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;import&lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt; &lt;/font&gt;&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;*&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">进行显式地导入，然后 手工重载配置。你还可以通过检查一个</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;YOURAPPLICATION_MODE&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">之类的环境 变量（变量值设置为</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">production</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">或</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">development</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">等等）来导入不同的配置 文件。</font></p>
+<p><font style="color:rgb(62, 67, 73);">一个有趣的方案是使用类和类的继承来配置:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductionConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>    <span class="n">DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;mysql://user@localhost/foo&#39;</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a>    <span class="n">DATABASE_URI</span> <span class="o">=</span> <span class="s2">&quot;sqlite:////tmp/foo.db&quot;</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a>
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestingConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a>    <span class="n">DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;sqlite:///:memory:&#39;</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12"></a>    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">如果要使用这样的方案，那么必须使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config.from_object"><font style="color:rgb(62, 67, 73);">from_object()</font></a><font style="color:rgb(62, 67, 73);">:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;configmodule.ProductionConfig&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">注意</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config.from_object"><font style="color:rgb(62, 67, 73);">from_object()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">不会实例化类对象。如果要操作已经 实例化的类，比如读取一个属性，那么在调用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://dormousehole.readthedocs.io/en/2.3.2/api.html#flask.Config.from_object"><font style="color:rgb(62, 67, 73);">from_object()</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">之前应当先实例化这个类:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span>
+<span class="normal"><a href="#__codelineno-17-6">6</a></span>
+<span class="normal"><a href="#__codelineno-17-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">configmodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProductionConfig</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">ProductionConfig</span><span class="p">())</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="c1"># Alternatively, import via string:</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_string</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="n">cfg</span> <span class="o">=</span> <span class="n">import_string</span><span class="p">(</span><span class="s1">&#39;configmodule.ProductionConfig&#39;</span><span class="p">)()</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">在你的配置类中，实例化配置对象时允许使用</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;@property&lt;/font&gt;</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span>
+<span class="normal"><a href="#__codelineno-18-13">13</a></span>
+<span class="normal"><a href="#__codelineno-18-14">14</a></span>
+<span class="normal"><a href="#__codelineno-18-15">15</a></span>
+<span class="normal"><a href="#__codelineno-18-16">16</a></span>
+<span class="normal"><a href="#__codelineno-18-17">17</a></span>
+<span class="normal"><a href="#__codelineno-18-18">18</a></span>
+<span class="normal"><a href="#__codelineno-18-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Base config, uses staging database server.&quot;&quot;&quot;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a>    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a>    <span class="n">DB_SERVER</span> <span class="o">=</span> <span class="s1">&#39;192.168.1.56&#39;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a>
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a>    <span class="nd">@property</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">DATABASE_URI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># Note: all caps</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;mysql://user@</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">DB_SERVER</span><span class="si">}</span><span class="s2">/foo&quot;</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductionConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Uses production database server.&quot;&quot;&quot;</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12"></a>    <span class="n">DB_SERVER</span> <span class="o">=</span> <span class="s1">&#39;192.168.19.32&#39;</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13"></a>
+<a id="__codelineno-18-14" name="__codelineno-18-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15"></a>    <span class="n">DB_SERVER</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16"></a>
+<a id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestingConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18"></a>    <span class="n">DB_SERVER</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19"></a>    <span class="n">DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;sqlite:///:memory:&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">配置的方法多种多样，由你定度。以下是一些好的建议：</font></p>
+<ul>
+<li><font style="color:rgb(62, 67, 73);">在版本控制中保存一个缺省配置。要么在应用中使用这些缺省配置，要么先导入 缺省配置然后用你自己的配置文件来重载缺省配置。</font></li>
+<li><font style="color:rgb(62, 67, 73);">使用一个环境变量来切换不同的配置。这样就可以在 Python 解释器外进行切换， 而根本不用改动代码，使开发和部署更方便，更快捷。如果你经常在不同的项目 间切换，那么你甚至可以创建代码来激活 virtualenv 并导出开发配置。</font></li>
+<li><font style="color:rgb(62, 67, 73);">在生产应用中使用</font><font style="color:rgb(62, 67, 73);"> </font><a href="https://www.fabfile.org/"><font style="color:rgb(62, 67, 73);">fabric</font></a><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">之类的工具，向服务器分别传送代码和配置。</font></li>
+</ul>
+<h2 id="实例文件夹"><font style="color:black;">实例文件夹</font><a class="headerlink" href="#实例文件夹" title="Permanent link">&para;</a></h2>
+<p><em><font style="color:rgb(62, 67, 73);">Changelog</font></em></p>
+<p><font style="color:rgb(62, 67, 73);">Flask 0.8 引入了实例文件夹。 Flask 花了很长时间才能够直接使用应用文件夹 的路径（通过</font><font style="color:rgb(62, 67, 73);"> </font><code>**&lt;font style="color:rgb(34, 34, 34);"&gt;Flask.root_path&lt;/font&gt;**</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">）。这也是许多开发者载入应用文件夹 外的配置的方法。不幸的是这种方法只能用于应用不是一个包的情况下，即根路 径指向包的内容的情况。</font></p>
+<p><font style="color:rgb(62, 67, 73);">Flask 0.8 引入了一个新的属性：</font><font style="color:rgb(62, 67, 73);"> </font><code>**&lt;font style="color:rgb(34, 34, 34);"&gt;Flask.instance_path&lt;/font&gt;**</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。它指向一个 新名词：“实例文件夹”。实例文件夹应当处于版本控制中并进行特殊部署。这 个文件夹特别适合存放需要在应用运行中改变的东西或者配置文件。</font></p>
+<p><font style="color:rgb(62, 67, 73);">可以要么在创建 Flask 应用时显式地提供实例文件夹的路径，要么让 Flask 自 动探测实例文件夹。显式定义使用</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">instance_path</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">参数:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">instance_path</span><span class="o">=</span><span class="s1">&#39;/path/to/instance/folder&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">请记住，这里提供的路径</font><font style="color:rgb(62, 67, 73);"> </font><em><font style="color:rgb(62, 67, 73);">必须</font></em><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">是绝对路径。</font></p>
+<p><font style="color:rgb(62, 67, 73);">如果</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">instance_path</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">参数没有提供，那么会使用以下缺省位置：</font></p>
+<ul>
+<li><font style="color:rgb(62, 67, 73);">未安装的模块:</font></li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="o">/</span><span class="n">myapp</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="o">/</span><span class="n">instance</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><font style="color:rgb(62, 67, 73);">未安装的包:</font></li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="o">/</span><span class="n">myapp</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="o">/</span><span class="n">instance</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><font style="color:rgb(62, 67, 73);">已安装的模块或包:</font></li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="err">$</span><span class="n">PREFIX</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">pythonX</span><span class="o">.</span><span class="n">Y</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">myapp</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="err">$</span><span class="n">PREFIX</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">myapp</span><span class="o">-</span><span class="n">instance</span>
+</code></pre></div></td></tr></table></div>
+<p><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;$PREFIX&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">是你的 Python 安装的前缀。可能是</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;/usr&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">或你的 virtualenv 的路径。可以通过打印</font><font style="color:rgb(62, 67, 73);"> </font><code>&lt;font style="color:rgb(34, 34, 34);background-color:rgb(232, 239, 240);"&gt;sys.prefix&lt;/font&gt;</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">的值来查看当前的前缀 的值。</font></p>
+<p><font style="color:rgb(62, 67, 73);">既然可以通过使用配置对象来根据关联文件名从文件中载入配置，那么就可以通 过改变与实例路径相关联的文件名来按需要载入不同配置。在配置文件中的关联 路径的行为可以在 “关联到应用的根路径”（缺省的）和 “关联到实例文件夹” 之间变换，具体通过应用构建函数中的</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">instance_relative_config</font><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">来实现:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">instance_relative_config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">以下是一个完整的配置 Flask 的例子，从一个模块预先载入配置，然后从实例文 件夹中的一个配置文件（如果这个文件存在的话）载入要重载的配置:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">instance_relative_config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;yourapplication.default_settings&#39;</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_pyfile</span><span class="p">(</span><span class="s1">&#39;application.cfg&#39;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(62, 67, 73);">通过</font><font style="color:rgb(62, 67, 73);"> </font><code>**&lt;font style="color:rgb(34, 34, 34);"&gt;Flask.instance_path&lt;/font&gt;**</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">可以找到实例文件夹的路径。Flask 还提供 一个打开实例文件夹中的文件的快捷方法：</font><font style="color:rgb(62, 67, 73);"> </font><code>**&lt;font style="color:rgb(34, 34, 34);"&gt;Flask.open_instance_resource()&lt;/font&gt;**</code><font style="color:rgb(62, 67, 73);"> </font><font style="color:rgb(62, 67, 73);">。</font></p>
+<p><font style="color:rgb(62, 67, 73);">举例说明:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span>
+<span class="normal"><a href="#__codelineno-25-5">5</a></span>
+<span class="normal"><a href="#__codelineno-25-6">6</a></span>
+<span class="normal"><a href="#__codelineno-25-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">instance_path</span><span class="p">,</span> <span class="s1">&#39;application.cfg&#39;</span><span class="p">)</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="c1"># or via open_instance_resource:</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">open_instance_resource</span><span class="p">(</span><span class="s1">&#39;application.cfg&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(10, 10, 10);background-color:rgb(238, 238, 238);"><br />
+</font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../%E8%B0%83%E8%AF%95%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%94%99%E8%AF%AF/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 调试应用程序错误">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                调试应用程序错误
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Pandas/Pandas%20DataFrame/" class="md-footer__link md-footer__link--next" aria-label="下一页: Pandas DataFrame">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Pandas DataFrame
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

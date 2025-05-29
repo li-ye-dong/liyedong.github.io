@@ -1,0 +1,3500 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/">
+      
+      
+        <link rel="prev" href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/%E5%90%84%E5%93%81%E7%89%8C%E4%B8%BB%E6%9D%BFbios%E6%8C%89%E9%94%AE/">
+      
+      
+        <link rel="next" href="../Mongodb%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>MongoDB 数据一致性和隔离 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mongodb-数据一致性和隔离" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MongoDB 数据一致性和隔离
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDF/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../golang/GO%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  Golang
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../PDF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../golang/GO%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Golang
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            数据库笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    MongoDB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_1">
+            <span class="md-nav__icon md-icon"></span>
+            MongoDB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MongoDB 数据一致性和隔离
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB 数据一致性和隔离
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mongodb-数据一致性和隔离" class="md-nav__link">
+    <span class="md-ellipsis">
+      MongoDB 数据一致性和隔离
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1writeconcern" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.writeConcern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.writeConcern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-什么是-writeconcern" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 什么是 writeConcern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-journal日志" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 journal日志
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-writeconcern-测试" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 writeConcern 测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 注意事项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2readpreference读配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.readPreference读配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.readPreference读配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-介绍" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 介绍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-readpreference-场景举例" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. readPreference 场景举例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-readpreference-与-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 readPreference 与 Tag
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-readpreference-配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 readPreference 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-readpreference-实验-从节点读" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 readPreference 实验: 从节点读
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 注意事项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3readconcern读隔离性保证" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.readConcern读隔离性保证
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.readConcern读隔离性保证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-什么是-readconcern" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 什么是 readConcern？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-readconcern-local-和-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 readConcern: local 和 available
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-readconcern-majority" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 readConcern: majority
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-readconcern-majority-的实现方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 readConcern: majority 的实现方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-实验-readconcern--majority-vs-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 实验： readConcern : ”majority” vs “local”
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-readconcern-验证" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 readConcern 验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-readconcern-majority-与脏读" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7 readConcern: majority 与脏读
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-readconcern-如何实现安全的读写分离" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.8 readConcern: 如何实现安全的读写分离
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4mongodb的acid事务支持" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.MongoDB的ACID事务支持
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.MongoDB的ACID事务支持">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-介绍" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 介绍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-mongodb-acid-多文档事务支持" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 MongoDB ACID 多文档事务支持
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-使用方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 使用方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-事务的隔离级别" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 事务的隔离级别
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-实验启用事务后的隔离性" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 实验：启用事务后的隔离性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-实验可重复读-repeatable-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 实验：可重复读 Repeatable Read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-事务写机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 事务写机制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-实验写冲突" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.8 实验：写冲突
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.9 注意事项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mongodb%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongodb基础笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mongodb%E9%AB%98%E7%BA%A7%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongodb高级运维笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Redis
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            Redis
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Redis/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis学习笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQLite3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            SQLite3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20ALIAS%E8%AF%AD%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite ALIAS语法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20ALTER%20TABLE%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite ALTER TABLE命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20AND%EF%BC%86OR%20%E8%BF%90%E7%AE%97%E7%AC%A6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite AND＆OR 运算符
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20Autoincrement%EF%BC%88%E8%87%AA%E5%8A%A8%E9%80%92%E5%A2%9E%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Autoincrement（自动递增）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20C%20or%20C%20%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite C or C ++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20DELETE%20%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite DELETE 查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20DISTINCT%E5%85%B3%E9%94%AE%E5%AD%97/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite DISTINCT关键字
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20Explain%EF%BC%88%E8%A7%A3%E9%87%8A%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Explain（解释）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20GLOB%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite GLOB 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20GROUP%20BY%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite GROUP BY子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20HAVING%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite HAVING 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20Java/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20LIKE%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite LIKE 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20LIMIT%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite LIMIT 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20NULL%E5%80%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite NULL值
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20ORDER%20BY%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite ORDER BY子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20PHP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite PHP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20PRAGMA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite PRAGMA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20Perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Perl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20Python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20SELECT%20%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite SELECT 查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20TRUNCATE%20TABLE%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite TRUNCATE TABLE命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20UNION%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite UNION子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20UPDATE%20%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite UPDATE 查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20Vacuum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Vacuum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20WHERE%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite WHERE 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E4%BA%8B%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 事务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%88%86%E7%A6%BB%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88DETACH%20DATABASE%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 分离数据库（DETACH DATABASE）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 创建数据库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%88%9B%E5%BB%BA%E8%A1%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 创建表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%88%A0%E9%99%A4%E8%A1%A8%EF%BC%88DROP%20TABLE%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 删除表（DROP TABLE）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%AD%90%E5%8F%A5%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 子句索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%AD%90%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 子查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 常用函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%EF%BC%88INSERT%20INTO%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 插入数据（INSERT INTO）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 数据类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 日期和时间
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E6%B3%A8%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 注入
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E7%AE%80%E4%BB%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E7%BA%A6%E6%9D%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 约束
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E8%81%94%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 联接
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 表达式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 视图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%88Trigger%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 触发器（Trigger）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E8%AF%AD%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 语法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite%20%E9%99%84%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88ATTACH%20DATABASE%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 附加数据库（ATTACH DATABASE）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQLite3/SQLite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>MongoDB 数据一致性和隔离</h1>
+
+<h2 id="mongodb-数据一致性和隔离">MongoDB 数据一致性和隔离<a class="headerlink" href="#mongodb-数据一致性和隔离" title="Permanent link">&para;</a></h2>
+<h2 id="1writeconcern"><strong><font style="color:rgb(51,51,51);">1.writeConcern </font></strong><a class="headerlink" href="#1writeconcern" title="Permanent link">&para;</a></h2>
+<h3 id="11-什么是-writeconcern"><strong><font style="color:rgb(51,51,51);">1.1 什么是 writeConcern</font></strong><a class="headerlink" href="#11-什么是-writeconcern" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>writeConcern<span class="w"> </span>决定一个写操作落到多少个节点上才算成功。类似于MySQL中的半同步复制。主要保证
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>数据最终一致性
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>•<span class="w"> </span><span class="m">0</span>：默认值。发起写操作，不关心是否成功；
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>•<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>集群最大数据节点数：写操作需要被复制到指定节点数才算成功；
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>•<span class="w"> </span>majority：写操作需要被复制到大多数节点上才算成功。
+</code></pre></div></td></tr></table></div>
+<p><strong><font style="color:rgb(51,51,51);">默认行为</font></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="m">3</span><span class="w"> </span>节点复制集不作任何特别设定（默认值）。
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714117764933-8813585f-535d-4b0c-a861-81dfcd7b0679.png" /></p>
+<p><strong><font style="color:rgb(51,51,51);">w: "majority"</font></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>大多数节点确认模式,其中包括主节点
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714117796765-1437848a-2c49-46d0-9cfb-126321c1fc72.png" /></p>
+<p><strong><font style="color:rgb(51,51,51);">w: "all"</font></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>全部节点确认模式。
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714117810221-05b723dd-be2a-48f5-84ef-10b7eeffa3a8.png" /></p>
+<h3 id="12-journal日志"><strong><font style="color:rgb(51,51,51);">1.2 journal日志</font></strong><a class="headerlink" href="#12-journal日志" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>writeConcern<span class="w"> </span>可以决定写操作到达多少个节点才算成功，journal<span class="w"> </span>则定义如何才算成
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>功。journal日志类似于MySQL中的redo日志。是在WriteConcern基础上对于数据安全的进一步保
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>证。
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>取值包括：
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>•<span class="w"> </span>true:<span class="w"> </span>写操作落到journal<span class="w"> </span>文件中才算成功；
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>•<span class="w"> </span>false:<span class="w"> </span>写操作到达内存即算作成功。
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714117829215-4e3dcb8b-fd11-486c-b477-c9cb08f3798c.png" /></p>
+<h3 id="13-writeconcern-测试"><strong><font style="color:rgb(51,51,51);">1.3 writeConcern 测试 </font></strong><a class="headerlink" href="#13-writeconcern-测试" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>在复制集测试writeConcern参数
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>db.test.insert<span class="o">(</span><span class="w"> </span><span class="o">{</span>count:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>writeConcern:<span class="w"> </span><span class="o">{</span>w:<span class="w"> </span><span class="s2">&quot;majority&quot;</span><span class="o">}})</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>db.test.insert<span class="o">(</span><span class="w"> </span><span class="o">{</span>count:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>writeConcern:<span class="w"> </span><span class="o">{</span>w:<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">}})</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>db.test.insert<span class="o">(</span><span class="w"> </span><span class="o">{</span>count:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>writeConcern:<span class="w"> </span><span class="o">{</span>w:<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">}})</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>配置延迟节点，模拟网络延迟（复制延迟）
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="nv">conf</span><span class="o">=</span>rs.conf<span class="o">()</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>conf.members<span class="o">[</span><span class="m">2</span><span class="o">]</span>.slaveDelay<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>conf.members<span class="o">[</span><span class="m">2</span><span class="o">]</span>.priority<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>rs.reconfig<span class="o">(</span>conf<span class="o">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>观察复制延迟下的写入，以及timeout参数
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>db.test.insert<span class="o">(</span><span class="w"> </span><span class="o">{</span>count:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>writeConcern:<span class="w"> </span><span class="o">{</span>w:<span class="w"> </span><span class="m">3</span><span class="o">})</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>db.test.insert<span class="o">(</span><span class="w"> </span><span class="o">{</span>count:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>writeConcern:<span class="w"> </span><span class="o">{</span>w:<span class="w"> </span><span class="m">3</span>,<span class="w"> </span>wtimeout:3000<span class="w"> </span><span class="o">}})</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="14-注意事项"><strong><font style="color:rgb(51,51,51);">1.4 注意事项</font></strong><a class="headerlink" href="#14-注意事项" title="Permanent link">&para;</a></h3>
+<p><font style="color:rgb(51,51,51);">• </font><font style="color:rgb(51,51,51);">虽然多于半数的 </font><font style="color:rgb(51,51,51);">writeConcern </font><font style="color:rgb(51,51,51);">都是安全的，但通常只会设置 </font><font style="color:rgb(51,51,51);">majority</font><font style="color:rgb(51,51,51);">，因为这是等待写入延迟 </font></p>
+<p><font style="color:rgb(51,51,51);">时间最短的选择； </font></p>
+<p><font style="color:rgb(51,51,51);">• </font><font style="color:rgb(51,51,51);">不要设置 </font><font style="color:rgb(51,51,51);">writeConcern </font><font style="color:rgb(51,51,51);">等于总节点数，因为一旦有一个节点故障，所有写操作都将失败； </font></p>
+<p><font style="color:rgb(51,51,51);">• writeConcern </font><font style="color:rgb(51,51,51);">虽然会增加写操作延迟时间，但并不会显著增加集群压力，因此无论是否等待，写操 </font></p>
+<p><font style="color:rgb(51,51,51);">作最终都会复制到所有节点上。设置 </font><font style="color:rgb(51,51,51);">writeConcern </font><font style="color:rgb(51,51,51);">只是让写操作等待复制后再返回而已； </font></p>
+<p><font style="color:rgb(51,51,51);">• 应对重要数据应用 {w: “majority”}，普通数据可以应用 {w: 1} 以确保最佳性能。</font></p>
+<h2 id="2readpreference读配置"><strong><font style="color:rgb(51,51,51);">2.readPreference读配置 </font></strong><a class="headerlink" href="#2readpreference读配置" title="Permanent link">&para;</a></h2>
+<h3 id="21-介绍"><strong><font style="color:rgb(51,51,51);">2.1 介绍</font></strong><a class="headerlink" href="#21-介绍" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>readPreference<span class="w"> </span>决定使用哪一个节点来满足正在发起的读请求。
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>可选值包括：
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>•<span class="w"> </span>primary:<span class="w"> </span>只选择主节点
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>•<span class="w"> </span>primaryPreferred：优先选择主节点，如果不可用则选择从节点
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>•<span class="w"> </span>secondary：只选择从节点
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>•<span class="w"> </span>secondaryPreferred：优先选择从节点，如果从节点不可用则选择主节点
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>•<span class="w"> </span>nearest：选择最近的节点
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714117885531-d696afaa-be03-4986-a439-75305e57c684.png" /></p>
+<h3 id="22-readpreference-场景举例"><strong><font style="color:rgb(51,51,51);">2.2. readPreference 场景举例</font></strong><a class="headerlink" href="#22-readpreference-场景举例" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>•<span class="w"> </span>用户下订单后马上将用户转到订单详情页——primary/primaryPreferred。因为此时从节点可能还
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>没复制到新订单；
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>•<span class="w"> </span>用户查询自己下过的订单——secondary/secondaryPreferred。查询历史订单对时效性通常没有太
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>高要求；
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>•<span class="w"> </span>生成报表——secondary。报表对时效性要求不高，但资源需求大，可以在从节点单独处理，避免对线
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>上用户造成影响；
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>•<span class="w"> </span>将用户上传的图片分发到全世界，让各地用户能够就近读取——nearest。每个地区的应用选择最近的
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>节点读取数据。
+</code></pre></div></td></tr></table></div>
+<h3 id="23-readpreference-与-tag"><strong><font style="color:rgb(51,51,51);">2.3 readPreference 与 Tag</font></strong><a class="headerlink" href="#23-readpreference-与-tag" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>readPreference<span class="w"> </span>只能控制使用一类节点。Tag<span class="w"> </span>则可以将节点选择控制到一个或几个节点。
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>考虑以下场景：
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>•<span class="w"> </span>一个<span class="w"> </span><span class="m">5</span><span class="w"> </span>个节点的复制集
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>•<span class="w"> </span><span class="m">3</span><span class="w"> </span>个节点硬件较好，专用于服务线上客户
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>•<span class="w"> </span><span class="m">2</span><span class="w"> </span>个节点硬件较差，专用于生成报表
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>可以使用<span class="w"> </span>Tag<span class="w"> </span>来达到这样的控制目的
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>•<span class="w"> </span>为<span class="w"> </span><span class="m">3</span><span class="w"> </span>个较好的节点打上<span class="w"> </span><span class="o">{</span>purpose:<span class="w"> </span><span class="s2">&quot;online&quot;</span><span class="o">}</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>•<span class="w"> </span>为<span class="w"> </span><span class="m">2</span><span class="w"> </span>个较差的节点打上<span class="w"> </span><span class="o">{</span>purpose:<span class="w"> </span><span class="s2">&quot;analyse&quot;</span><span class="o">}</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>•<span class="w"> </span>在线应用读取时指定<span class="w"> </span>online，报表读取时指定reporting
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>更多信息请参考官方文档：readPreference
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714117927376-e8820dd8-8099-462d-ab58-700bd8153946.png" /></p>
+<h3 id="24-readpreference-配置"><strong><font style="color:rgb(51,51,51);">2.4 readPreference 配置</font></strong><a class="headerlink" href="#24-readpreference-配置" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>通过<span class="w"> </span>MongoDB<span class="w"> </span>的连接串参数：
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>•<span class="w"> </span>mongodb://host1:27107,host2:27107,host3:27017/?
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="nv">replicaSet</span><span class="o">=</span>rs<span class="p">&amp;</span><span class="nv">readPreference</span><span class="o">=</span>secondary
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>通过<span class="w"> </span>MongoDB<span class="w"> </span>驱动程序<span class="w"> </span>API：
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>•<span class="w"> </span>MongoCollection.withReadPreference<span class="o">(</span>ReadPreference<span class="w"> </span>readPref<span class="o">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>Mongo<span class="w"> </span>Shell：
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>•<span class="w"> </span>db.collection.find<span class="o">({})</span>.readPref<span class="o">(</span><span class="w"> </span>“secondary”<span class="w"> </span><span class="o">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="25-readpreference-实验-从节点读"><strong><font style="color:rgb(51,51,51);">2.5 readPreference 实验: 从节点读</font></strong><a class="headerlink" href="#25-readpreference-实验-从节点读" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>•<span class="w"> </span>主节点写入<span class="w"> </span><span class="o">{</span>x:1<span class="o">}</span>,<span class="w"> </span>观察该条数据在各个节点均可见
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>•<span class="w"> </span>在两个从节点分别执行<span class="w"> </span>db.fsyncLock<span class="o">()</span><span class="w"> </span>来锁定写入（同步）
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>•<span class="w"> </span>主节点写入<span class="w"> </span><span class="o">{</span>x:2<span class="o">}</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>•<span class="w"> </span>db.test.find<span class="o">()</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>•<span class="w"> </span>db.test.find<span class="o">()</span>.readPref<span class="o">(</span>“secondary”<span class="o">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>•<span class="w"> </span>解除从节点锁定<span class="w"> </span>db.fsyncUnlock<span class="o">()</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a>•<span class="w"> </span>db.test.find<span class="o">()</span>.readPref<span class="o">(</span>“secondary”<span class="o">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="26-注意事项"><strong><font style="color:rgb(51,51,51);">2.6 注意事项</font></strong><a class="headerlink" href="#26-注意事项" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span>
+<span class="normal"><a href="#__codelineno-11-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>•<span class="w"> </span>指定<span class="w"> </span>readPreference<span class="w"> </span>时也应注意高可用问题。例如将<span class="w"> </span>readPreference<span class="w"> </span>指定<span class="w"> </span>primary，则发
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>生故障转移不存在<span class="w"> </span>primary<span class="w"> </span>期间将没有节点可读。如果业务允许，则应选择<span class="w"> </span>primaryPreferred；
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>•<span class="w"> </span>使用<span class="w"> </span>Tag<span class="w"> </span>时也会遇到同样的问题，如果只有一个节点拥有一个特定<span class="w"> </span>Tag，则在这个节点失效时将无
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>节点可读。这在有时候是期望的结果，有时候不是。例如：
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>•<span class="w"> </span>如果报表使用的节点失效，即使不生成报表，通常也不希望将报表负载转移到其他节点上，此时只有一
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>个节点有报表<span class="w"> </span>Tag<span class="w"> </span>是合理的选择；
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>•<span class="w"> </span>如果线上节点失效，通常希望有替代节点，所以应该保持多个节点有同样的<span class="w"> </span>Tag；
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>•<span class="w"> </span>Tag<span class="w"> </span>有时需要与优先级、选举权综合考虑。例如做报表的节点通常不会希望它成为主节点，则优先级
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>应为<span class="w"> </span><span class="m">0</span>。
+</code></pre></div></td></tr></table></div>
+<h2 id="3readconcern读隔离性保证">3.readConcern读隔离性保证<a class="headerlink" href="#3readconcern读隔离性保证" title="Permanent link">&para;</a></h2>
+<h3 id="31-什么是-readconcern"><strong><font style="color:rgb(51,51,51);">3.1 什么是 readConcern？</font></strong><a class="headerlink" href="#31-什么是-readconcern" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>在<span class="w"> </span>readPreference<span class="w"> </span>选择了指定的节点后，readConcern<span class="w"> </span>决定这个节点上的数据哪些是可读的，类
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>似于关系数据库的隔离级别。可选值包括：
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>•<span class="w"> </span>available：读取所有可用的数据<span class="p">;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>•<span class="w"> </span>local：读取所有可用且属于当前分片的数据<span class="p">;</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>•<span class="w"> </span>majority：读取在大多数节点上提交完成的数据<span class="p">;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>•<span class="w"> </span>snapshot：读取最近快照中的数据<span class="p">;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a>•<span class="w"> </span>linearizable：可线性化读取文档<span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="32-readconcern-local-和-available"><strong><font style="color:rgb(51,51,51);">3.2 readConcern: local 和 available</font></strong><a class="headerlink" href="#32-readconcern-local-和-available" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>在复制集中<span class="w"> </span><span class="nb">local</span><span class="w"> </span>和<span class="w"> </span>available<span class="w"> </span>是没有区别的。两者的区别主要体现在分片集上。
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>考虑以下场景：
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>•<span class="w"> </span>一个<span class="w"> </span>chunk<span class="w"> </span>x<span class="w"> </span>正在从<span class="w"> </span>shard1<span class="w"> </span>向<span class="w"> </span>shard2<span class="w"> </span>迁移；
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>•<span class="w"> </span>整个迁移过程中<span class="w"> </span>chunk<span class="w"> </span>x<span class="w"> </span>中的部分数据会在<span class="w"> </span>shard1<span class="w"> </span>和<span class="w"> </span>shard2<span class="w"> </span>中同时存在，但源分片
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>shard1仍然是chunk<span class="w"> </span>x<span class="w"> </span>的负责方：
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>•<span class="w"> </span>所有对<span class="w"> </span>chunk<span class="w"> </span>x<span class="w"> </span>的读写操作仍然进入<span class="w"> </span>shard1；
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>•<span class="w"> </span>config<span class="w"> </span>中记录的信息<span class="w"> </span>chunk<span class="w"> </span>x<span class="w"> </span>仍然属于<span class="w"> </span>shard1；
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>•<span class="w"> </span>此时如果读<span class="w"> </span>shard2，则会体现出<span class="w"> </span><span class="nb">local</span><span class="w"> </span>和<span class="w"> </span>available<span class="w"> </span>的区别：
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a>local：只取应该由<span class="w"> </span>shard2<span class="w"> </span>负责的数据（不包括<span class="w"> </span>x）；
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a>available：shard2<span class="w"> </span>上有什么就读什么（包括<span class="w"> </span>x）；
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a>注意事项：
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a>•<span class="w"> </span>虽然看上去总是应该选择<span class="w"> </span>local，但毕竟对结果集进行过滤会造成额外消耗。在一些无关紧要的场
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a>景（例如统计）下，也可以考虑<span class="w"> </span>available；
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a>•<span class="w"> </span>MongoDB<span class="w"> </span>&lt;<span class="o">=</span><span class="m">3</span>.6<span class="w"> </span>不支持对从节点使用<span class="w"> </span><span class="o">{</span>readConcern:<span class="w"> </span><span class="s2">&quot;local&quot;</span><span class="o">}</span>；
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a>•<span class="w"> </span>从主节点读取数据时默认<span class="w"> </span>readConcern<span class="w"> </span>是<span class="w"> </span>local，从从节点读取数据时默认readConcern是
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a>available（向前兼容原因）。
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118046661-e1d0e944-9c99-4056-8d83-388c7bfeff4f.png" /></p>
+<h3 id="33-readconcern-majority"><strong><font style="color:rgb(51,51,51);">3.3 readConcern: majority</font></strong><a class="headerlink" href="#33-readconcern-majority" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>只读取大多数据节点上都提交了的数据。考虑如下场景：
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>●<span class="w"> </span>集合中原有文档<span class="w"> </span><span class="o">{</span>x:<span class="w"> </span><span class="m">0</span><span class="o">}</span>；
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>●<span class="w"> </span>将x值更新为<span class="w"> </span><span class="m">1</span>；
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118066539-6b65378a-9d67-4eaa-ad36-b658bf041701.png" /><img alt="" src="../../../images/1714118072153-225db5a1-4317-42f6-a60a-f52ab884313f.png" /></p>
+<h3 id="34-readconcern-majority-的实现方式"><strong><font style="color:rgb(51,51,51);">3.4 readConcern: majority 的实现方式</font></strong><a class="headerlink" href="#34-readconcern-majority-的实现方式" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>考虑<span class="w"> </span>t3<span class="w"> </span>时刻的<span class="w"> </span>Secondary1，此时：
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>•<span class="w"> </span>对于要求<span class="w"> </span>majority<span class="w"> </span>的读操作，它将返回<span class="w"> </span><span class="nv">x</span><span class="o">=</span><span class="m">0</span>；
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>•<span class="w"> </span>对于不要求<span class="w"> </span>majority<span class="w"> </span>的读操作，它将返回<span class="w"> </span><span class="nv">x</span><span class="o">=</span><span class="m">1</span>；
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>如何实现？
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>节点上维护多个<span class="w"> </span>x<span class="w"> </span>版本，MVCC<span class="w"> </span>机制MongoDB<span class="w"> </span>通过维护多个快照来链接不同的版本：
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>•<span class="w"> </span>每个被大多数节点确认过的版本都将是一个快照；
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a>•<span class="w"> </span>快照持续到没有人使用为止才被删除；
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118090828-22414421-a0b8-42c5-a766-21cc04b6ca7c.png" /></p>
+<h3 id="35-实验-readconcern--majority-vs-local"><strong><font style="color:rgb(51,51,51);">3.5 实验： readConcern : ”majority” vs “local”</font></strong><a class="headerlink" href="#35-实验-readconcern--majority-vs-local" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>安装<span class="w"> </span><span class="m">3</span><span class="w"> </span>节点复制集。
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a>•<span class="w"> </span>注意配置文件内<span class="w"> </span>server<span class="w"> </span>参数<span class="w"> </span>enableMajorityReadConcern
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a>•<span class="w"> </span>将复制集中的两个从节点使用<span class="w"> </span>db.fsyncLock<span class="o">()</span><span class="w"> </span>锁住写入（模拟同步延迟）
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118114460-0a8e5f0d-05f3-4e82-9d82-cc77c8bff142.png" /></p>
+<h3 id="36-readconcern-验证"><strong><font style="color:rgb(51,51,51);">3.6 readConcern 验证</font></strong><a class="headerlink" href="#36-readconcern-验证" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span>
+<span class="normal"><a href="#__codelineno-17-6">6</a></span>
+<span class="normal"><a href="#__codelineno-17-7">7</a></span>
+<span class="normal"><a href="#__codelineno-17-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>•<span class="w"> </span>db.test.save<span class="o">({</span>“A”:1<span class="o">})</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>•<span class="w"> </span>db.test.find<span class="o">()</span>.readConcern<span class="o">(</span>“local”<span class="o">)</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a>•<span class="w"> </span>db.test.find<span class="o">()</span>.readConcern<span class="o">(</span>“majority”<span class="o">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a>•<span class="w"> </span>在从节点上执行<span class="w"> </span>db.fsyncUnlock<span class="o">()</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a>结论：
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a>•<span class="w"> </span>使用<span class="w"> </span><span class="nb">local</span><span class="w"> </span>参数，则可以直接查询到写入数据
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a>•<span class="w"> </span>使用<span class="w"> </span>majority，只能查询到已经被多数节点确认过的数据
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a>•<span class="w"> </span>update<span class="w"> </span>与<span class="w"> </span>remove<span class="w"> </span>与上同理。
+</code></pre></div></td></tr></table></div>
+<h3 id="37-readconcern-majority-与脏读"><strong><font style="color:rgb(51,51,51);">3.7 readConcern: majority 与脏读</font></strong><a class="headerlink" href="#37-readconcern-majority-与脏读" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span>
+<span class="normal"><a href="#__codelineno-18-7">7</a></span>
+<span class="normal"><a href="#__codelineno-18-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>MongoDB<span class="w"> </span>中的回滚：
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a>•<span class="w"> </span>写操作到达大多数节点之前都是不安全的，一旦主节点崩溃，而从节还没复制到该次操作，刚才的写操
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a>作就丢失了；
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a>•<span class="w"> </span>把一次写操作视为一个事务，从事务的角度，可以认为事务被回滚了。所以从分布式系统的角度来看，
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a>事务的提交被提升到了分布式集群的多个节点级别的“提交”，而不再是单个节点上的“提交”。在可能发生
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a>回滚的前提下考虑脏读问题
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a>•<span class="w"> </span>如果在一次写操作到达大多数节点前读取了这个写操作，然后因为系统故障该操作回滚了，则发生了脏
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a>读问题；使用<span class="w"> </span><span class="o">{</span>readConcern:<span class="w"> </span>“majority”<span class="o">}</span><span class="w"> </span>可以有效避免脏读
+</code></pre></div></td></tr></table></div>
+<h3 id="38-readconcern-如何实现安全的读写分离"><strong><font style="color:rgb(51,51,51);">3.8 readConcern: 如何实现安全的读写分离</font></strong><a class="headerlink" href="#38-readconcern-如何实现安全的读写分离" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span>
+<span class="normal"><a href="#__codelineno-19-7">7</a></span>
+<span class="normal"><a href="#__codelineno-19-8">8</a></span>
+<span class="normal"><a href="#__codelineno-19-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>考虑如下场景：
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a>向主节点写入一条数据；立即从从节点读取这条数据。如何保证自己能够读到刚刚写入的数据？
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>下述方式有可能读不到刚写入的订单:
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a>db.orders.insert<span class="o">({</span><span class="w"> </span>oid:<span class="w"> </span><span class="m">101</span>,<span class="w"> </span>sku:<span class="w"> </span>”kite<span class="s2">&quot;, q: 1})</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="s2">db.orders.find({oid:101}).readPref(&quot;</span>secondary<span class="s2">&quot;)</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="s2">使用 writeConcern + readConcern majority 来解决:</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="s2">db.orders.insert({ oid: 101, sku: &quot;</span>kiteboar<span class="s2">&quot;, q: 1}, {writeConcern:{w:</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="s2">&quot;</span>majority”<span class="o">}})</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9"></a>db.orders.find<span class="o">({</span>oid:101<span class="o">})</span>.readPref<span class="o">(</span>“secondary”<span class="o">)</span>.readConcern<span class="o">(</span><span class="s2">&quot;majority&quot;</span><span class="o">)</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118169508-654e87d1-4644-4362-a60a-dd1ba10624a4.png" /></p>
+<p><strong><font style="color:rgb(51,51,51);">读隔离性和MySQL的对比</font></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>readConcern<span class="w"> </span>主要关注读的隔离性，<span class="w"> </span>ACID<span class="w"> </span>中的<span class="w"> </span>Isolation，但是是分布式数据库里特有的概念
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>readCocnern：<span class="w"> </span>majority<span class="w"> </span>对应于MysQL事务中隔离级别中的哪一级？
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118193276-64a3e8ed-6fb6-46bb-9b56-9966df4c6aeb.png" /></p>
+<h2 id="4mongodb的acid事务支持"><strong><font style="color:rgb(51,51,51);">4.MongoDB的ACID事务支持 </font></strong><a class="headerlink" href="#4mongodb的acid事务支持" title="Permanent link">&para;</a></h2>
+<h3 id="41-介绍"><strong><font style="color:rgb(51,51,51);">4.1 介绍</font></strong><a class="headerlink" href="#41-介绍" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>MongoDB<span class="w"> </span>虽然已经在<span class="w"> </span><span class="m">4</span>.2<span class="w"> </span>开始全面支持了多文档事务，但并不代表大家应该毫无节制地使用它。相
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a>反，对事务的使用原则应该是：能不用尽量不用。
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a>通过合理地设计文档模型，可以规避绝大部分使用事务的必要性
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a>为什么？
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="nv">事务</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>锁，节点协调，额外开销，性能影响.
+</code></pre></div></td></tr></table></div>
+<h3 id="42-mongodb-acid-多文档事务支持"><strong><font style="color:rgb(51,51,51);">4.2 MongoDB ACID 多文档事务支持</font></strong><a class="headerlink" href="#42-mongodb-acid-多文档事务支持" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../../../images/1714118227412-c4b92eb2-71ee-4381-9595-183a309a5720.png" /></p>
+<h3 id="43-使用方法"><strong><font style="color:rgb(51,51,51);">4.3 使用方法</font></strong><a class="headerlink" href="#43-使用方法" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span>
+<span class="normal"><a href="#__codelineno-22-5">5</a></span>
+<span class="normal"><a href="#__codelineno-22-6">6</a></span>
+<span class="normal"><a href="#__codelineno-22-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>MongoDB<span class="w"> </span>多文档事务的使用方式与关系数据库非常相似：
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a>try<span class="w"> </span><span class="o">(</span>ClientSession<span class="w"> </span><span class="nv">clientSession</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>client.startSession<span class="o">())</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a>clientSession.startTransaction<span class="o">()</span><span class="p">;</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a>collection.insertOne<span class="o">(</span>clientSession,<span class="w"> </span>docOne<span class="o">)</span><span class="p">;</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a>collection.insertOne<span class="o">(</span>clientSession,<span class="w"> </span>docTwo<span class="o">)</span><span class="p">;</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a>clientSession.commitTransaction<span class="o">()</span><span class="p">;</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="o">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="44-事务的隔离级别"><strong><font style="color:rgb(51,51,51);">4.4 事务的隔离级别</font></strong><a class="headerlink" href="#44-事务的隔离级别" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>●<span class="w"> </span>事务完成前，事务外的操作对该事务所做的修改不可访问
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a>●<span class="w"> </span>如果事务内使用<span class="w"> </span><span class="o">{</span>readConcern:<span class="w"> </span>“snapshot”<span class="o">}</span>，则可以达到可重复读<span class="w"> </span>Repeatable<span class="w"> </span>Read
+</code></pre></div></td></tr></table></div>
+<h3 id="45-实验启用事务后的隔离性"><strong><font style="color:rgb(51,51,51);">4.5 实验：启用事务后的隔离性</font></strong><a class="headerlink" href="#45-实验启用事务后的隔离性" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span>
+<span class="normal"><a href="#__codelineno-24-5">5</a></span>
+<span class="normal"><a href="#__codelineno-24-6">6</a></span>
+<span class="normal"><a href="#__codelineno-24-7">7</a></span>
+<span class="normal"><a href="#__codelineno-24-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>db.tx.insertMany<span class="o">([{</span><span class="w"> </span>x:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="w"> </span>x:<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">}])</span><span class="p">;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a>var<span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>db.getMongo<span class="o">()</span>.startSession<span class="o">()</span><span class="p">;</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a>session.startTransaction<span class="o">()</span><span class="p">;</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a>var<span class="w"> </span><span class="nv">coll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>session.getDatabase<span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span>.getCollection<span class="o">(</span><span class="s2">&quot;tx&quot;</span><span class="o">)</span><span class="p">;</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a>coll.updateOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="nv">$set</span>:<span class="w"> </span><span class="o">{</span>y:<span class="w"> </span><span class="m">1</span><span class="o">}})</span><span class="p">;</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a>coll.findOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">})</span><span class="p">;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a>db.tx.findOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">})</span><span class="p">;</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a>session.abortTransaction<span class="o">()</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118275091-c5927576-7e38-49ba-b21a-8017dfb01200.png" /></p>
+<h3 id="46-实验可重复读-repeatable-read"><strong><font style="color:rgb(51,51,51);">4.6 实验：可重复读 Repeatable Read</font></strong><a class="headerlink" href="#46-实验可重复读-repeatable-read" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>var<span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>db.getMongo<span class="o">()</span>.startSession<span class="o">()</span><span class="p">;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>session.startTransaction<span class="o">({</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>readConcern:<span class="w"> </span><span class="o">{</span>level:<span class="w"> </span><span class="s2">&quot;snapshot&quot;</span><span class="o">}</span>,
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a>writeConcern:<span class="w"> </span><span class="o">{</span>w:<span class="w"> </span><span class="s2">&quot;majority&quot;</span><span class="o">}})</span><span class="p">;</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a>var<span class="w"> </span><span class="nv">coll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>session.getDatabase<span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span>.getCollection<span class="o">(</span><span class="s2">&quot;tx&quot;</span><span class="o">)</span><span class="p">;</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a>coll.findOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">})</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>返回：<span class="o">{</span>x:<span class="w"> </span><span class="m">1</span><span class="o">}</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a>db.tx.updateOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="nv">$set</span>:<span class="w"> </span><span class="o">{</span>y:<span class="w"> </span><span class="m">1</span><span class="o">}})</span><span class="p">;</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a>db.tx.findOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">})</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>返回：<span class="o">{</span>x:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>y:<span class="w"> </span><span class="m">1</span><span class="o">}</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a>coll.findOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">})</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>返回：<span class="o">{</span>x:<span class="w"> </span><span class="m">1</span><span class="o">}</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a>session.abortTransaction<span class="o">()</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118294778-2288b210-d759-4663-afef-c75b734e4823.png" /></p>
+<h3 id="47-事务写机制"><strong><font style="color:rgb(51,51,51);">4.7 事务写机制</font></strong><a class="headerlink" href="#47-事务写机制" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span>
+<span class="normal"><a href="#__codelineno-26-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>MongoDB<span class="w"> </span>的事务错误处理机制不同于关系数据库：
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>●<span class="w"> </span>当一个事务开始后，如果事务要修改的文档在事务外部被修改过，则事务修改这个文档时会触发
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a>Abort<span class="w"> </span>错误，因为此时的修改冲突了；
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a>●<span class="w"> </span>这种情况下，只需要简单地重做事务就可以了；
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a>●<span class="w"> </span>如果一个事务已经开始修改一个文档，在事务以外尝试修改同一个文档，则事务以外的修改会等待事务
+<a id="__codelineno-26-6" name="__codelineno-26-6"></a>完成才能继续进行
+</code></pre></div></td></tr></table></div>
+<h3 id="48-实验写冲突"><strong><font style="color:rgb(51,51,51);">4.8 实验：写冲突 </font></strong><a class="headerlink" href="#48-实验写冲突" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span>
+<span class="normal"><a href="#__codelineno-27-4">4</a></span>
+<span class="normal"><a href="#__codelineno-27-5">5</a></span>
+<span class="normal"><a href="#__codelineno-27-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>继续使用上个实验的tx集合<span class="w"> </span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a>开两个<span class="w"> </span>mongo<span class="w"> </span>shell<span class="w"> </span>均执行下述语句<span class="w"> </span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a>var<span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>db.getMongo<span class="o">()</span>.startSession<span class="o">()</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a>session.startTransaction<span class="o">({</span><span class="w"> </span>readConcern:<span class="w"> </span><span class="o">{</span>level:<span class="w"> </span><span class="s2">&quot;snapshot&quot;</span><span class="o">}</span>,<span class="w"> </span>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a>writeConcern:<span class="w"> </span><span class="o">{</span>w:<span class="w"> </span><span class="s2">&quot;majority&quot;</span><span class="o">}})</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a>var<span class="w"> </span><span class="nv">coll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>session.getDatabase<span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span>.getCollection<span class="o">(</span><span class="s2">&quot;tx&quot;</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../../images/1714118338162-3a268f9e-b902-4f34-9baa-46f4d11535ad.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span>
+<span class="normal"><a href="#__codelineno-28-4">4</a></span>
+<span class="normal"><a href="#__codelineno-28-5">5</a></span>
+<span class="normal"><a href="#__codelineno-28-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>窗口1：第一个事务，正常提交
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>coll.updateOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="nv">$set</span>:<span class="w"> </span><span class="o">{</span>y:<span class="w"> </span><span class="m">1</span><span class="o">}})</span><span class="p">;</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a>窗口2：另一个事务更新同一条数据，异常
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a>coll.updateOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="nv">$set</span>:<span class="w"> </span><span class="o">{</span>y:<span class="w"> </span><span class="m">2</span><span class="o">}})</span><span class="p">;</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a>窗口3：事务外更新，需等待
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a>db.tx.updateOne<span class="o">({</span>x:<span class="w"> </span><span class="m">1</span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span><span class="nv">$set</span>:<span class="w"> </span><span class="o">{</span>y:<span class="w"> </span><span class="m">3</span><span class="o">}})</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="49-注意事项"><strong><font style="color:rgb(51,51,51);">4.9 注意事项 </font></strong><a class="headerlink" href="#49-注意事项" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span>
+<span class="normal"><a href="#__codelineno-29-4">4</a></span>
+<span class="normal"><a href="#__codelineno-29-5">5</a></span>
+<span class="normal"><a href="#__codelineno-29-6">6</a></span>
+<span class="normal"><a href="#__codelineno-29-7">7</a></span>
+<span class="normal"><a href="#__codelineno-29-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>•<span class="w"> </span>可以实现和关系型数据库类似的事务场景
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a>•<span class="w"> </span>必须使用与<span class="w"> </span>MongoDB<span class="w"> </span><span class="m">4</span>.2<span class="w"> </span>兼容的驱动；
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a>•<span class="w"> </span>事务默认必须在<span class="w"> </span><span class="m">60</span><span class="w"> </span>秒（可调）内完成，否则将被取消；
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a>•<span class="w"> </span>涉及事务的分片不能使用仲裁节点；
+<a id="__codelineno-29-5" name="__codelineno-29-5"></a>•<span class="w"> </span>事务会影响<span class="w"> </span>chunk<span class="w"> </span>迁移效率。正在迁移的<span class="w"> </span>chunk也可能造成事务提交失败（重试即可）；
+<a id="__codelineno-29-6" name="__codelineno-29-6"></a>•<span class="w"> </span>多文档事务中的读操作必须使用主节点读；
+<a id="__codelineno-29-7" name="__codelineno-29-7"></a>•<span class="w"> </span>readConcern<span class="w"> </span>只应该在事务级别设置，不能设置在每次读写操作上。
+<a id="__codelineno-29-8" name="__codelineno-29-8"></a>•<span class="w"> </span>必须是WT引擎才支持事务。
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/%E5%90%84%E5%93%81%E7%89%8C%E4%B8%BB%E6%9D%BFbios%E6%8C%89%E9%94%AE/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 各品牌主板bios按键">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                各品牌主板bios按键
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Mongodb%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="md-footer__link md-footer__link--next" aria-label="下一页: Mongodb基础笔记">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Mongodb基础笔记
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

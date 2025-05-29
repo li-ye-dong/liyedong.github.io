@@ -1,0 +1,3324 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/SQLite3/SQLite%20Perl/">
+      
+      
+        <link rel="prev" href="../SQLite%20PRAGMA/">
+      
+      
+        <link rel="next" href="../SQLite%20Python/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>SQLite Perl - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#安装" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQLite Perl
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDF/" class="md-tabs__link">
+          
+  
+    
+  
+  PDF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../golang/GO%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  Golang
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../PDF/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    PDF
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../golang/GO%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Golang
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%BC%80%E5%8F%91/FastApi%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            数据库笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    MongoDB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_1">
+            <span class="md-nav__icon md-icon"></span>
+            MongoDB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MongoDB/MongoDB%20%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E9%9A%94%E7%A6%BB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB 数据一致性和隔离
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MongoDB/Mongodb%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongodb基础笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MongoDB/Mongodb%E9%AB%98%E7%BA%A7%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongodb高级运维笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Redis
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            Redis
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Redis/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis学习笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SQLite3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            SQLite3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20ALIAS%E8%AF%AD%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite ALIAS语法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20ALTER%20TABLE%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite ALTER TABLE命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20AND%EF%BC%86OR%20%E8%BF%90%E7%AE%97%E7%AC%A6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite AND＆OR 运算符
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20Autoincrement%EF%BC%88%E8%87%AA%E5%8A%A8%E9%80%92%E5%A2%9E%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Autoincrement（自动递增）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20C%20or%20C%20%2B%2B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite C or C ++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20DELETE%20%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite DELETE 查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20DISTINCT%E5%85%B3%E9%94%AE%E5%AD%97/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite DISTINCT关键字
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20Explain%EF%BC%88%E8%A7%A3%E9%87%8A%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Explain（解释）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20GLOB%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite GLOB 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20GROUP%20BY%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite GROUP BY子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20HAVING%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite HAVING 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20Java/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20LIKE%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite LIKE 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20LIMIT%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite LIMIT 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20NULL%E5%80%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite NULL值
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20ORDER%20BY%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite ORDER BY子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20PHP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite PHP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20PRAGMA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite PRAGMA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SQLite Perl
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Perl
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#安装" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dbi-接口-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      DBI 接口 API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#连接数据库" class="md-nav__link">
+    <span class="md-ellipsis">
+      连接数据库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#创建表" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建表
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert-操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      INSERT 操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#select-操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECT 操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      UPDATE 操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE 操作
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20Python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20SELECT%20%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite SELECT 查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20TRUNCATE%20TABLE%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite TRUNCATE TABLE命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20UNION%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite UNION子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20UPDATE%20%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite UPDATE 查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20Vacuum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite Vacuum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20WHERE%20%E5%AD%90%E5%8F%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite WHERE 子句
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E4%BA%8B%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 事务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%88%86%E7%A6%BB%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88DETACH%20DATABASE%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 分离数据库（DETACH DATABASE）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 创建数据库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%88%9B%E5%BB%BA%E8%A1%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 创建表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%88%A0%E9%99%A4%E8%A1%A8%EF%BC%88DROP%20TABLE%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 删除表（DROP TABLE）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 命令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%AD%90%E5%8F%A5%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 子句索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%AD%90%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 子查询
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 常用函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%EF%BC%88INSERT%20INTO%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 插入数据（INSERT INTO）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 数据类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 日期和时间
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E6%B3%A8%E5%85%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 注入
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E7%AE%80%E4%BB%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E7%BA%A6%E6%9D%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 约束
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E8%81%94%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 联接
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 表达式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 视图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%88Trigger%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 触发器（Trigger）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E8%AF%AD%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 语法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite%20%E9%99%84%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88ATTACH%20DATABASE%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite 附加数据库（ATTACH DATABASE）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQLite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>SQLite Perl</h1>
+
+<h2 id="安装"><font style="color:rgb(51, 51, 51);">安装</font><a class="headerlink" href="#安装" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">SQLite3 可使用 Perl DBI 模块与 Perl 进行集成。Perl DBI 模块是 Perl 编程语言的数据库访问模块。它定义了一组提供标准数据库接口的方法、变量及规则。</font></p>
+<p><font style="color:rgb(51, 51, 51);">下面显示了在 Linux/UNIX 机器上安装 DBI 模块的简单步骤：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nv">$</span><span class="w"> </span><span class="nv">wget</span><span class="w"> </span><span class="n">http:</span><span class="sr">//s</span><span class="n">earch</span><span class="o">.</span><span class="n">cpan</span><span class="o">.</span><span class="n">org</span><span class="sr">/CPAN/</span><span class="n">authors</span><span class="sr">/id/</span><span class="n">T</span><span class="sr">/TI/</span><span class="n">TIMB</span><span class="o">/</span><span class="n">DBI</span><span class="o">-</span><span class="mf">1.625</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nv">$</span><span class="w"> </span><span class="nv">tar</span><span class="w"> </span><span class="n">xvfz</span><span class="w"> </span><span class="n">DBI</span><span class="o">-</span><span class="mf">1.625</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nv">$</span><span class="w"> </span><span class="nv">cd</span><span class="w"> </span><span class="n">DBI</span><span class="o">-</span><span class="mf">1.625</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nv">$</span><span class="w"> </span><span class="nv">perl</span><span class="w"> </span><span class="n">Makefile</span><span class="o">.</span><span class="n">PL</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="nv">$</span><span class="w"> </span><span class="nv">make</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nv">$</span><span class="w"> </span><span class="nv">make</span><span class="w"> </span><span class="n">install</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">如果您需要为 DBI 安装 SQLite 驱动程序，那么可按照以下步骤进行安装：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nv">$</span><span class="w"> </span><span class="nv">wget</span><span class="w"> </span><span class="n">http:</span><span class="sr">//s</span><span class="n">earch</span><span class="o">.</span><span class="n">cpan</span><span class="o">.</span><span class="n">org</span><span class="sr">/CPAN/</span><span class="n">authors</span><span class="sr">/id/</span><span class="n">M</span><span class="sr">/MS/</span><span class="n">MSERGEANT</span><span class="o">/</span><span class="n">DBD</span><span class="o">-</span><span class="n">SQLite</span><span class="o">-</span><span class="mf">1.11</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nv">$</span><span class="w"> </span><span class="nv">tar</span><span class="w"> </span><span class="n">xvfz</span><span class="w"> </span><span class="n">DBD</span><span class="o">-</span><span class="n">SQLite</span><span class="o">-</span><span class="mf">1.11</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nv">$</span><span class="w"> </span><span class="nv">cd</span><span class="w"> </span><span class="n">DBD</span><span class="o">-</span><span class="n">SQLite</span><span class="o">-</span><span class="mf">1.11</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nv">$</span><span class="w"> </span><span class="nv">perl</span><span class="w"> </span><span class="n">Makefile</span><span class="o">.</span><span class="n">PL</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="nv">$</span><span class="w"> </span><span class="nv">make</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="nv">$</span><span class="w"> </span><span class="nv">make</span><span class="w"> </span><span class="n">install</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="dbi-接口-api"><font style="color:rgb(51, 51, 51);">DBI 接口 API</font><a class="headerlink" href="#dbi-接口-api" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">以下是重要的 DBI 程序，可以满足您在 Perl 程序中使用 SQLite 数据库的需求。如果您需要了解更多细节，请查看 Perl DBI 官方文档。</font></p>
+<table>
+<thead>
+<tr>
+<th><font style="color:rgb(254, 254, 254);">序号</font></th>
+<th><font style="color:rgb(254, 254, 254);">API &amp; 描述</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">1</font></td>
+<td><strong><font style="color:rgb(51, 51, 51);">DBI-&gt;connect($data_source, "", "", \%attr)</font></strong><font style="color:rgb(51, 51, 51);">   </font><br/><font style="color:rgb(51, 51, 51);">建立一个到被请求的 $data_source 的数据库连接或者 session。如果连接成功，则返回一个数据库处理对象。</font><br/><font style="color:rgb(51, 51, 51);">数据源形式如下所示：</font><strong><font style="color:rgb(51, 51, 51);">DBI:SQLite:dbname='test.db'</font></strong><font style="color:rgb(51, 51, 51);">。其中，SQLite 是 SQLite 驱动程序名称，test.db 是 SQLite 数据库文件的名称。如果文件名</font><font style="color:rgb(51, 51, 51);"> </font><em><font style="color:rgb(51, 51, 51);">filename</font></em><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">赋值为</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">':memory:'</font></strong><font style="color:rgb(51, 51, 51);">，那么它将会在 RAM 中创建一个内存数据库，这只会在 session 的有效时间内持续。</font><br/><font style="color:rgb(51, 51, 51);">如果文件名 filename 为实际的设备文件名称，那么它将使用这个参数值尝试打开数据库文件。如果该名称的文件不存在，那么将创建一个新的命名为该名称的数据库文件。</font><br/><font style="color:rgb(51, 51, 51);">您可以保留第二个和第三个参数为空白字符串，最后一个参数用于传递各种属性，详见下面的示例讲解。</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">2</font></td>
+<td><strong><font style="color:rgb(51, 51, 51);"><span class="arithmatex">\(dbh-&gt;do(\)</span>sql)</font></strong><font style="color:rgb(51, 51, 51);">   </font><br/><font style="color:rgb(51, 51, 51);">该例程准备并执行一个简单的 SQL 语句。返回受影响的行数，如果发生错误则返回 undef。返回值 -1 意味着行数未知，或不适用 ，或不可用。在这里，$dbh 是由 DBI-&gt;connect() 调用返回的处理。</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">3</font></td>
+<td><strong><font style="color:rgb(51, 51, 51);"><span class="arithmatex">\(dbh-&gt;prepare(\)</span>sql)</font></strong><font style="color:rgb(51, 51, 51);">   </font><br/><font style="color:rgb(51, 51, 51);">该例程为数据库引擎后续执行准备一个语句，并返回一个语句处理对象。</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">4</font></td>
+<td>**<font style="color:rgb(51, 51, 51);"><span class="arithmatex">\(sth-&gt;execute()&lt;/font&gt;**&lt;font style="color:rgb(51, 51, 51);"&gt;   &lt;/font&gt;&lt;br/&gt;&lt;font style="color:rgb(51, 51, 51);"&gt;该例程执行任何执行预准备的语句需要的处理。如果发生错误则返回 undef。如果成功执行，则无论受影响的行数是多少，总是返回 true。在这里，\)</span>sth 是由 <span class="arithmatex">\(dbh-&gt;prepare(\)</span>sql) 调用返回的语句处理。</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">5</font></td>
+<td><strong><font style="color:rgb(51, 51, 51);">$sth-&gt;fetchrow_array()</font></strong><font style="color:rgb(51, 51, 51);">   </font><br/><font style="color:rgb(51, 51, 51);">该例程获取下一行数据，并以包含各字段值的列表形式返回。在该列表中，Null 字段将作为 undef 值返回。</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">6</font></td>
+<td><strong><font style="color:rgb(51, 51, 51);">$DBI::err</font></strong><font style="color:rgb(51, 51, 51);">   </font><br/><font style="color:rgb(51, 51, 51);">这相当于 <span class="arithmatex">\(h-&gt;err。其中，\)</span>h 是任何的处理类型，比如 <span class="arithmatex">\(dbh、\)</span>sth 或 $drh。该程序返回最后调用的驱动程序（driver）方法的数据库引擎错误代码。</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">7</font></td>
+<td><strong><font style="color:rgb(51, 51, 51);">$DBI::errstr</font></strong><font style="color:rgb(51, 51, 51);">   </font><br/><font style="color:rgb(51, 51, 51);">这相当于 <span class="arithmatex">\(h-&gt;errstr。其中，\)</span>h 是任何的处理类型，比如 <span class="arithmatex">\(dbh、\)</span>sth 或 $drh。该程序返回最后调用的 DBI 方法的数据库引擎错误消息。</font></td>
+</tr>
+<tr>
+<td><font style="color:rgb(51, 51, 51);">8</font></td>
+<td><strong><font style="color:rgb(51, 51, 51);">$dbh-&gt;disconnect()</font></strong><font style="color:rgb(51, 51, 51);">   </font><br/><font style="color:rgb(51, 51, 51);">该例程关闭之前调用 DBI-&gt;connect() 打开的数据库连接。</font></td>
+</tr>
+</tbody>
+</table>
+<h2 id="连接数据库"><font style="color:rgb(51, 51, 51);">连接数据库</font><a class="headerlink" href="#连接数据库" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">下面的 Perl 代码显示了如何连接到一个现有的数据库。如果数据库不存在，那么它就会被创建，最后将返回一个数据库对象。</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="ch">#!/usr/bin/perl</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">use</span><span class="w"> </span><span class="nn">DBI</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">use</span><span class="w"> </span><span class="nn">strict</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">my</span><span class="w"> </span><span class="nv">$driver</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SQLite&quot;</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="k">my</span><span class="w"> </span><span class="nv">$database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test.db&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DBI:$driver:dbname=$database&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="k">my</span><span class="w"> </span><span class="nv">$userid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">my</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dbh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">DBI</span><span class="o">-&gt;</span><span class="nb">connect</span><span class="p">(</span><span class="nv">$dsn</span><span class="p">,</span><span class="w"> </span><span class="nv">$userid</span><span class="p">,</span><span class="w"> </span><span class="nv">$password</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">RaiseError</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">})</span><span class="w"> </span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">                      </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Opened database successfully\n&quot;</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">现在，让我们来运行上面的程序，在当前目录中创建我们的数据库</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">test.db</font></strong><font style="color:rgb(51, 51, 51);">。您可以根据需要改变路径。保存上面代码到 sqlite.pl 文件中，并按如下所示执行。如果数据库成功创建，那么会显示下面所示的消息：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nv">$</span><span class="w"> </span><span class="nv">chmod</span><span class="w"> </span><span class="o">+</span><span class="n">x</span><span class="w"> </span><span class="n">sqlite</span><span class="o">.</span><span class="n">pl</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nv">$</span><span class="w"> </span><span class="err">./</span><span class="nv">sqlite</span><span class="o">.</span><span class="n">pl</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">Open</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">successfully</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="创建表"><font style="color:rgb(51, 51, 51);">创建表</font><a class="headerlink" href="#创建表" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">下面的 Perl 代码段将用于在先前创建的数据库中创建一个表：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="ch">#!/usr/bin/perl</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">use</span><span class="w"> </span><span class="nn">DBI</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">use</span><span class="w"> </span><span class="nn">strict</span><span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="k">my</span><span class="w"> </span><span class="nv">$driver</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SQLite&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="k">my</span><span class="w"> </span><span class="nv">$database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test.db&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DBI:$driver:dbname=$database&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="k">my</span><span class="w"> </span><span class="nv">$userid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="k">my</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dbh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">DBI</span><span class="o">-&gt;</span><span class="nb">connect</span><span class="p">(</span><span class="nv">$dsn</span><span class="p">,</span><span class="w"> </span><span class="nv">$userid</span><span class="p">,</span><span class="w"> </span><span class="nv">$password</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">RaiseError</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">                      </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Opened database successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="k">my</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(CREATE TABLE COMPANY</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="sx">      (ID INT PRIMARY KEY     NOT NULL,</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="sx">       NAME           TEXT    NOT NULL,</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="sx">       AGE            INT     NOT NULL,</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="sx">       ADDRESS        CHAR(50),</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="sx">       SALARY         REAL);)</span><span class="p">;</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="k">my</span><span class="w"> </span><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="k">do</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">);</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="k">if</span><span class="p">(</span><span class="nv">$rv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;Table created successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="p">}</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">disconnect</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">上述程序执行时，它会在</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">test.db</font></strong><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">中创建 COMPANY 表，并显示下面所示的消息：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">Opened</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">successfully</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">Table</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">successfully</span>
+</code></pre></div></td></tr></table></div>
+<p><strong><font style="color:rgb(51, 51, 51);">注意：</font></strong><font style="color:rgb(51, 51, 51);">如果您在任何操作中遇到了下面的错误： in case you see following error in any of the operation:</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nn">DBD::SQLite::</span><span class="n">st</span><span class="w"> </span><span class="n">execute</span><span class="w"> </span><span class="n">failed:</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">error</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">dbdimp</span><span class="o">.</span><span class="n">c</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">398</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">在这种情况下，您已经在 DBD-SQLite 安装中打开了可用的 dbdimp.c 文件，找到</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">sqlite3_prepare()</font></strong><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">函数，并把它的第三个参数 0 改为 -1。最后使用</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">make</font></strong><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">和</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">make install</font></strong><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">安装 DBD::SQLite，即可解决问题。 in this case you will have open dbdimp.c file available in DBD-SQLite installation and find out</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">sqlite3_prepare()</font></strong><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">function and change its third argument to -1 instead of 0. Finally install DBD::SQLite using</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">make</font></strong><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">and do</font><font style="color:rgb(51, 51, 51);"> </font><strong><font style="color:rgb(51, 51, 51);">make install</font></strong><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">to resolve the problem.</font></p>
+<h2 id="insert-操作"><font style="color:rgb(51, 51, 51);">INSERT 操作</font><a class="headerlink" href="#insert-操作" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">下面的 Perl 程序显示了如何在上面创建的 COMPANY 表中创建记录：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="ch">#!/usr/bin/perl</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">use</span><span class="w"> </span><span class="nn">DBI</span><span class="p">;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">use</span><span class="w"> </span><span class="nn">strict</span><span class="p">;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="k">my</span><span class="w"> </span><span class="nv">$driver</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SQLite&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">my</span><span class="w"> </span><span class="nv">$database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test.db&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DBI:$driver:dbname=$database&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">my</span><span class="w"> </span><span class="nv">$userid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="k">my</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dbh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">DBI</span><span class="o">-&gt;</span><span class="nb">connect</span><span class="p">(</span><span class="nv">$dsn</span><span class="p">,</span><span class="w"> </span><span class="nv">$userid</span><span class="p">,</span><span class="w"> </span><span class="nv">$password</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">RaiseError</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">                      </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Opened database successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="k">my</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="sx">      VALUES (1, &#39;Paul&#39;, 32, &#39;California&#39;, 20000.00 ))</span><span class="p">;</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="k">my</span><span class="w"> </span><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="k">do</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="sx">      VALUES (2, &#39;Allen&#39;, 25, &#39;Texas&#39;, 15000.00 ))</span><span class="p">;</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="k">do</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="sx">      VALUES (3, &#39;Teddy&#39;, 23, &#39;Norway&#39;, 20000.00 ))</span><span class="p">;</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="k">do</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a><span class="sx">      VALUES (4, &#39;Mark&#39;, 25, &#39;Rich-Mond &#39;, 65000.00 );)</span><span class="p">;</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="k">do</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Records created successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">disconnect</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">上述程序执行时，它会在 COMPANY 表中创建给定记录，并会显示以下两行：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">Opened</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">successfully</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">Records</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">successfully</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="select-操作"><font style="color:rgb(51, 51, 51);">SELECT 操作</font><a class="headerlink" href="#select-操作" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">下面的 Perl 程序显示了如何从前面创建的 COMPANY 表中获取并显示记录：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="ch">#!/usr/bin/perl</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">use</span><span class="w"> </span><span class="nn">DBI</span><span class="p">;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">use</span><span class="w"> </span><span class="nn">strict</span><span class="p">;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="k">my</span><span class="w"> </span><span class="nv">$driver</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SQLite&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="k">my</span><span class="w"> </span><span class="nv">$database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test.db&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DBI:$driver:dbname=$database&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="k">my</span><span class="w"> </span><span class="nv">$userid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="k">my</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dbh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">DBI</span><span class="o">-&gt;</span><span class="nb">connect</span><span class="p">(</span><span class="nv">$dsn</span><span class="p">,</span><span class="w"> </span><span class="nv">$userid</span><span class="p">,</span><span class="w"> </span><span class="nv">$password</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">RaiseError</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">                      </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Opened database successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="k">my</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(SELECT id, name, address, salary  from COMPANY;)</span><span class="p">;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="k">my</span><span class="w"> </span><span class="nv">$sth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">prepare</span><span class="p">(</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="p">);</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="k">my</span><span class="w"> </span><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$sth</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">()</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="k">if</span><span class="p">(</span><span class="nv">$rv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="p">}</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="k">while</span><span class="p">(</span><span class="k">my</span><span class="w"> </span><span class="nv">@row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$sth</span><span class="o">-&gt;</span><span class="n">fetchrow_array</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;ID = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;NAME = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;ADDRESS = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;SALARY =  &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="p">}</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Operation done successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">disconnect</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">上述程序执行时，它会产生以下结果：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">Opened</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">successfully</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paul</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">California</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">20000</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Allen</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Texas</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">15000</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Teddy</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Norway</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">20000</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mark</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rich</span><span class="o">-</span><span class="n">Mond</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">65000</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="n">Operation</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">successfully</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="update-操作"><font style="color:rgb(51, 51, 51);">UPDATE 操作</font><a class="headerlink" href="#update-操作" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">下面的 Perl 代码显示了如何使用 UPDATE 语句来更新任何记录，然后从 COMPANY 表中获取并显示更新的记录：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span>
+<span class="normal"><a href="#__codelineno-11-22">22</a></span>
+<span class="normal"><a href="#__codelineno-11-23">23</a></span>
+<span class="normal"><a href="#__codelineno-11-24">24</a></span>
+<span class="normal"><a href="#__codelineno-11-25">25</a></span>
+<span class="normal"><a href="#__codelineno-11-26">26</a></span>
+<span class="normal"><a href="#__codelineno-11-27">27</a></span>
+<span class="normal"><a href="#__codelineno-11-28">28</a></span>
+<span class="normal"><a href="#__codelineno-11-29">29</a></span>
+<span class="normal"><a href="#__codelineno-11-30">30</a></span>
+<span class="normal"><a href="#__codelineno-11-31">31</a></span>
+<span class="normal"><a href="#__codelineno-11-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="ch">#!/usr/bin/perl</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">use</span><span class="w"> </span><span class="nn">DBI</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="k">use</span><span class="w"> </span><span class="nn">strict</span><span class="p">;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="k">my</span><span class="w"> </span><span class="nv">$driver</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SQLite&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="k">my</span><span class="w"> </span><span class="nv">$database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test.db&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DBI:$driver:dbname=$database&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="k">my</span><span class="w"> </span><span class="nv">$userid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="k">my</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dbh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">DBI</span><span class="o">-&gt;</span><span class="nb">connect</span><span class="p">(</span><span class="nv">$dsn</span><span class="p">,</span><span class="w"> </span><span class="nv">$userid</span><span class="p">,</span><span class="w"> </span><span class="nv">$password</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">RaiseError</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">                      </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Opened database successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="k">my</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(UPDATE COMPANY set SALARY = 25000.00 where ID=1;)</span><span class="p">;</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="k">my</span><span class="w"> </span><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="k">do</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="nv">$rv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">){</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;Total number of rows updated : $rv\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="p">}</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(SELECT id, name, address, salary  from COMPANY;)</span><span class="p">;</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20"></a><span class="k">my</span><span class="w"> </span><span class="nv">$sth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">prepare</span><span class="p">(</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="p">);</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21"></a><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$sth</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">()</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22"></a><span class="k">if</span><span class="p">(</span><span class="nv">$rv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="p">}</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25"></a><span class="k">while</span><span class="p">(</span><span class="k">my</span><span class="w"> </span><span class="nv">@row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$sth</span><span class="o">-&gt;</span><span class="n">fetchrow_array</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;ID = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;NAME = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;ADDRESS = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;SALARY =  &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30"></a><span class="p">}</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Operation done successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32"></a><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">disconnect</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">上述程序执行时，它会产生以下结果：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="n">Opened</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">successfully</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="n">Total</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">rows</span><span class="w"> </span><span class="n">updated</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paul</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">California</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">25000</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Allen</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Texas</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">15000</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Teddy</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Norway</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">20000</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mark</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rich</span><span class="o">-</span><span class="n">Mond</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">65000</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a><span class="n">Operation</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">successfully</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="delete-操作"><font style="color:rgb(51, 51, 51);">DELETE 操作</font><a class="headerlink" href="#delete-操作" title="Permanent link">&para;</a></h2>
+<p><font style="color:rgb(51, 51, 51);">下面的 Perl 代码显示了如何使用 DELETE 语句删除任何记录，然后从 COMPANY 表中获取并显示剩余的记录：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span>
+<span class="normal"><a href="#__codelineno-13-21">21</a></span>
+<span class="normal"><a href="#__codelineno-13-22">22</a></span>
+<span class="normal"><a href="#__codelineno-13-23">23</a></span>
+<span class="normal"><a href="#__codelineno-13-24">24</a></span>
+<span class="normal"><a href="#__codelineno-13-25">25</a></span>
+<span class="normal"><a href="#__codelineno-13-26">26</a></span>
+<span class="normal"><a href="#__codelineno-13-27">27</a></span>
+<span class="normal"><a href="#__codelineno-13-28">28</a></span>
+<span class="normal"><a href="#__codelineno-13-29">29</a></span>
+<span class="normal"><a href="#__codelineno-13-30">30</a></span>
+<span class="normal"><a href="#__codelineno-13-31">31</a></span>
+<span class="normal"><a href="#__codelineno-13-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="ch">#!/usr/bin/perl</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="k">use</span><span class="w"> </span><span class="nn">DBI</span><span class="p">;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="k">use</span><span class="w"> </span><span class="nn">strict</span><span class="p">;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="k">my</span><span class="w"> </span><span class="nv">$driver</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SQLite&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="k">my</span><span class="w"> </span><span class="nv">$database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test.db&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DBI:$driver:dbname=$database&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="k">my</span><span class="w"> </span><span class="nv">$userid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="k">my</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="k">my</span><span class="w"> </span><span class="nv">$dbh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">DBI</span><span class="o">-&gt;</span><span class="nb">connect</span><span class="p">(</span><span class="nv">$dsn</span><span class="p">,</span><span class="w"> </span><span class="nv">$userid</span><span class="p">,</span><span class="w"> </span><span class="nv">$password</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">RaiseError</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="w">                      </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Opened database successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="k">my</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(DELETE from COMPANY where ID=2;)</span><span class="p">;</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="k">my</span><span class="w"> </span><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="k">do</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="nv">$rv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">){</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;Total number of rows deleted : $rv\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="p">}</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19"></a><span class="nv">$stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">qq(SELECT id, name, address, salary  from COMPANY;)</span><span class="p">;</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20"></a><span class="k">my</span><span class="w"> </span><span class="nv">$sth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">prepare</span><span class="p">(</span><span class="w"> </span><span class="nv">$stmt</span><span class="w"> </span><span class="p">);</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21"></a><span class="nv">$rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$sth</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">()</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nb">die</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22"></a><span class="k">if</span><span class="p">(</span><span class="nv">$rv</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23"></a><span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="nv">$</span><span class="nn">DBI::</span><span class="nv">errstr</span><span class="p">;</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24"></a><span class="p">}</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25"></a><span class="k">while</span><span class="p">(</span><span class="k">my</span><span class="w"> </span><span class="nv">@row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$sth</span><span class="o">-&gt;</span><span class="n">fetchrow_array</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;ID = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;NAME = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;ADDRESS = &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29"></a><span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s">&quot;SALARY =  &quot;</span><span class="o">.</span><span class="w"> </span><span class="nv">$row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">.</span><span class="s">&quot;\n\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30"></a><span class="p">}</span>
+<a id="__codelineno-13-31" name="__codelineno-13-31"></a><span class="k">print</span><span class="w"> </span><span class="s">&quot;Operation done successfully\n&quot;</span><span class="p">;</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32"></a><span class="nv">$dbh</span><span class="o">-&gt;</span><span class="n">disconnect</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(51, 51, 51);">上述程序执行时，它会产生以下结果：</font></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Perl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="n">Opened</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">successfully</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="n">Total</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">rows</span><span class="w"> </span><span class="n">deleted</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paul</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">California</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">25000</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Teddy</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Norway</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">20000</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mark</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="n">ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rich</span><span class="o">-</span><span class="n">Mond</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="n">SALARY</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">65000</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="n">Operation</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">successfully</span>
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(133, 144, 166);background-color:rgb(251, 251, 251);"><br />
+</font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../SQLite%20PRAGMA/" class="md-footer__link md-footer__link--prev" aria-label="上一页: SQLite PRAGMA">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                SQLite PRAGMA
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../SQLite%20Python/" class="md-footer__link md-footer__link--next" aria-label="下一页: SQLite Python">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                SQLite Python
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
