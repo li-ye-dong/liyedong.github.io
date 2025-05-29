@@ -1,8 +1,11 @@
 # 知识库索引
 
-> 自动生成时间 2025-05-28 11:35
+> 自动生成时间 2025-05-29 23:28
 
 
+## 📂 go
+### 📂 golang
+ - [GO语言基础入门学习笔记](go/golang/GO语言基础入门学习笔记.md)
 ## ☸️ k8s和容器
 - [KubeSphere体验](k8s和容器/KubeSphere体验.md)
 - [基于EFK实现kubernetes集群的日志平台（扩展）](k8s和容器/基于EFK实现kubernetes集群的日志平台（扩展）.md)
