@@ -1,12 +1,12 @@
-## Git教程
-## <font style="color:rgb(51, 51, 51);">Git 安装</font>
+# Git教程
+# <font style="color:rgb(51, 51, 51);">Git 安装</font>
 <font style="color:rgb(51, 51, 51);">使用 Git 需要安装 Git 客户端。Git 支持 Linux、Unix、Mac和 Windows 等几乎所有平台。</font>
 
 <font style="color:rgb(51, 51, 51);">Git 各平台安装包下载地址为：http://git-scm.com/downloads。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. Linux 平台上安装 git</font>
+## <font style="color:rgb(51, 51, 51);">1. Linux 平台上安装 git</font>
 <font style="color:rgb(51, 51, 51);">各 Linux 系统可以使用其安装包管理工具（apt-get、yum 等）进行安装。</font>
 
 <font style="color:rgb(51, 51, 51);">由于Git 的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，需要先安装这些依赖工具。</font>
@@ -17,7 +17,7 @@
 ```bash
 $ yum -y install git
 
-## 验证安装是否成功
+# 验证安装是否成功
 $ git --version
 ```
 
@@ -33,7 +33,7 @@ $ yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
 ```bash
 $ apt-get -y install git
 
-## 验证安装是否成功
+# 验证安装是否成功
 $ git --version
 ```
 
@@ -48,36 +48,36 @@ $ apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-d
 
 ```bash
 ########### 下载源码 ###########
-## 安装 wget
+# 安装 wget
 $ yum install -y wget
 
-## 下载源码
+# 下载源码
 $ wget -o /tmp/git-2.21.0.tar.gz https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.21.0.tar.gz
 
 ########### 解压编译 ###########
-## 安装编译依赖
+# 安装编译依赖
 $ yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc automake autoconf libtool make perl-ExtUtils-MakeMaker
 
-## 解压
+# 解压
 $ tar -zxf /tmp/git-2.21.0.tar.gz -C /tmp/
 
 $ cd /tmp/git-2.21.0
 
-## 检验相关依赖，设置安装路径
+# 检验相关依赖，设置安装路径
 $ ./configure --prefix=/usr/local/git
 
-## 编译安装
+# 编译安装
 $ make && make install
 
 ########### 配置环境变量 ###########
-## 配置环境变量
+# 配置环境变量
 $ vi /etc/profile
 
-## GIT_HOME
+# GIT_HOME
 GIT_HOME=/usr/local/git
 export PATH=$PATH:$GIT_HOME/bin
 
-## 加载环境变量生效
+# 加载环境变量生效
 $ source /etc/profile
 ```
 
@@ -86,42 +86,42 @@ $ source /etc/profile
 
 ```bash
 ########### 下载源码 ###########
-## 安装 wget
+# 安装 wget
 $ apt-get install -y wget
 
-## 下载源码
+# 下载源码
 $ wget -o /tmp/git-2.21.0.tar.gz https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.21.0.tar.gz
 
 ########### 解压编译 ###########
-## 安装编译依赖
+# 安装编译依赖
 $ apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev build-essential
 
-## 解压
+# 解压
 $ tar -zxf /tmp/git-2.21.0.tar.gz -C /tmp/
 
 $ cd /tmp/git-2.21.0
 
-## 检验相关依赖，设置安装路径
+# 检验相关依赖，设置安装路径
 $ ./configure --prefix=/usr/local/git
 
-## 编译安装
+# 编译安装
 $ make && make install
 
 ########### 配置环境变量 ###########
-## 配置环境变量
+# 配置环境变量
 $ vi /etc/profile
 
-## GIT_HOME
+# GIT_HOME
 GIT_HOME=/usr/local/git
 export PATH=$PATH:$GIT_HOME/bin
 
-## 加载环境变量生效
+# 加载环境变量生效
 $ source /etc/profile
 ```
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. Windows 平台上安装 git</font>
+## <font style="color:rgb(51, 51, 51);">2. Windows 平台上安装 git</font>
 <font style="color:rgb(51, 51, 51);">在 Windows 平台上安装 Git 可以使用 msysGit，msysGit 项目提供了安装包，可以到 GitHub 的页面上下载 exe 安装文件并运行：</font>
 
 <font style="color:rgb(51, 51, 51);">安装包下载地址：https://gitforwindows.org/</font>
@@ -134,7 +134,7 @@ $ source /etc/profile
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. Mac 平台上安装 git</font>
+## <font style="color:rgb(51, 51, 51);">3. Mac 平台上安装 git</font>
 ### <font style="color:rgb(51, 51, 51);">1）命令行方式</font>
 <font style="color:rgb(51, 51, 51);">使用 Homebrew 安装 git 的命令如下：</font>
 
@@ -147,7 +147,7 @@ $ brew install git
 
 <font style="color:rgb(51, 51, 51);">http://sourceforge.net/projects/git-osx-installer/</font>
 
-## <font style="color:rgb(51, 51, 51);">Git 配置</font>
+# <font style="color:rgb(51, 51, 51);">Git 配置</font>
 <font style="color:rgb(51, 51, 51);">Git 提供了一个叫做 git config 的工具，专门用来配置或读取相应的工作环境变量。</font>
 
 <font style="color:rgb(51, 51, 51);">这些环境变量，决定了 Git 在各个环节的具体工作方式和行为。这些变量可以存放在以下三个不同的地方：</font>
@@ -162,7 +162,7 @@ $ brew install git
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. 用户信息</font>
+## <font style="color:rgb(51, 51, 51);">1. 用户信息</font>
 <font style="color:rgb(51, 51, 51);">配置个人的用户名称和电子邮件地址：</font>
 
 ```bash
@@ -176,7 +176,7 @@ $ git config --global user.email test@cainiaoplus.com
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 文本编辑器</font>
+## <font style="color:rgb(51, 51, 51);">2. 文本编辑器</font>
 <font style="color:rgb(51, 51, 51);">Git默认使用 Vi 或者 Vim文本编辑器。如果你有其他偏好，比如 Emacs 的话，可以重新设置：:</font>
 
 ```bash
@@ -185,7 +185,7 @@ $ git config --global core.editor emacs
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 差异分析工具</font>
+## <font style="color:rgb(51, 51, 51);">3. 差异分析工具</font>
 <font style="color:rgb(51, 51, 51);">还有一个比较常用的是，在解决合并冲突时使用哪种差异分析工具。比如要改用 vimdiff 的话：</font>
 
 ```bash
@@ -198,7 +198,7 @@ $ git config --global merge.tool vimdiff
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. 查看配置信息</font>
+## <font style="color:rgb(51, 51, 51);">4. 查看配置信息</font>
 <font style="color:rgb(51, 51, 51);">要检查已有的配置信息，可以使用 git config --list 命令：</font>
 
 ```bash
@@ -233,14 +233,14 @@ $ git config user.name
 cainiaoplus
 ```
 
-## <font style="color:rgb(51, 51, 51);">Git 工作流程</font>
+# <font style="color:rgb(51, 51, 51);">Git 工作流程</font>
 <font style="color:rgb(51, 51, 51);">团队协作的开发过程中，大家需要遵循一个合理、清晰的 Git使用流程，否则随着项目资源的不断提交，项目很快就会变得难以协调和维护。</font>
 
 <font style="color:rgb(51, 51, 51);">以下为我们通常使用 Git 的工作流程。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. Git 基本工作流程</font>
+## <font style="color:rgb(51, 51, 51);">1. Git 基本工作流程</font>
 1. <font style="color:rgb(51, 51, 51);">克隆远程资源到本地目录，作为工作目录。</font>
 2. <font style="color:rgb(51, 51, 51);">在本地的克隆资源上添加、修改或删除文件。</font>
 3. <font style="color:rgb(51, 51, 51);">如果远程资源有修改，需要同步远程的内容，更新本地的文件。</font>
@@ -250,10 +250,10 @@ cainiaoplus
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. Git 工作流程图</font>
+## <font style="color:rgb(51, 51, 51);">2. Git 工作流程图</font>
 ![](../../images/1731760988519-614ed738-114e-4123-a3e1-8cb4dc4cdb23.png)
 
-### <font style="color:rgb(51, 51, 51);">3. Git 常用命令</font>
+## <font style="color:rgb(51, 51, 51);">3. Git 常用命令</font>
 + [<font style="color:rgb(51, 51, 51);">git clone</font>](https://www.cainiaoplus.com/git/git-clone.html)<font style="color:rgb(51, 51, 51);">：克隆远程资源。</font>
 + [<font style="color:rgb(51, 51, 51);">git pull</font>](https://www.cainiaoplus.com/git/git-pull.html)<font style="color:rgb(51, 51, 51);">：拉取远程文件到本地。</font>
 + [<font style="color:rgb(51, 51, 51);">git status</font>](https://www.cainiaoplus.com/git/git-status.html)<font style="color:rgb(51, 51, 51);">：查看修改情况。</font>
@@ -263,14 +263,14 @@ cainiaoplus
 + [<font style="color:rgb(51, 51, 51);">git branch</font>](https://www.cainiaoplus.com/git/git-branch.html)<font style="color:rgb(51, 51, 51);">：查看当前使用的分支。</font>
 + [<font style="color:rgb(51, 51, 51);">git checkout</font>](https://www.cainiaoplus.com/git/git-branch.html)<font style="color:rgb(51, 51, 51);">：切换当前使用的分支。</font>
 
-## <font style="color:rgb(51, 51, 51);">Git init clone 创建仓库</font>
+# <font style="color:rgb(51, 51, 51);">Git init clone 创建仓库</font>
 <font style="color:rgb(51, 51, 51);">我们使用 Git 进行项目版本的管理，首先需要创建一个 Git 仓库。</font>
 
 <font style="color:rgb(51, 51, 51);">有两种方式可以创建版本库：使用 git init 初始化一个新仓库以及使用git clone 克隆一个已存在的仓库。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git init 初始化仓库</font>
+## <font style="color:rgb(51, 51, 51);">1. git init 初始化仓库</font>
 <font style="color:rgb(51, 51, 51);">我们可以使用一个已经存在的目录作为 Git 仓库。Git 使用</font><font style="color:rgb(51, 51, 51);"> </font>**<font style="color:rgb(51, 51, 51);">git init</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">命令来初始化一个 Git 仓库。</font>
 
 ```bash
@@ -299,7 +299,7 @@ $ git commit -m "初始化项目版本"
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git clone 克隆仓库</font>
+## <font style="color:rgb(51, 51, 51);">2. git clone 克隆仓库</font>
 <font style="color:rgb(51, 51, 51);">我们使用</font><font style="color:rgb(51, 51, 51);"> </font>**<font style="color:rgb(51, 51, 51);">git clone</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">从现有 Git 仓库中复制项目。</font>
 
 <font style="color:rgb(51, 51, 51);">克隆仓库的命令格式为：</font>
@@ -333,7 +333,7 @@ $ git clone git://github.com/schacon/grit.git mygrit
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. Git 仓库的配置</font>
+## <font style="color:rgb(51, 51, 51);">3. Git 仓库的配置</font>
 <font style="color:rgb(51, 51, 51);">git 的设置使用 git config 命令。</font>
 
 <font style="color:rgb(51, 51, 51);">显示当前的 git 配置信息：</font>
@@ -349,11 +349,11 @@ core.ignorecase=true
 core.precomposeunicode=true
 ```
 
-<font style="color:rgb(51, 51, 51);">编辑 git 配置文件:</font>$ git config -e    ## 针对当前仓库 
+<font style="color:rgb(51, 51, 51);">编辑 git 配置文件:</font>$ git config -e    # 针对当前仓库 
 
 <font style="color:rgb(51, 51, 51);">或者：</font>
 
-$ git config -e --global   ## 针对系统上所有仓库
+$ git config -e --global   # 针对系统上所有仓库
 
 <font style="color:rgb(51, 51, 51);">设置提交代码时的用户信息：</font>
 
@@ -364,7 +364,7 @@ $ git config --global user.email test@cainiaoplus.com
 
 <font style="color:rgb(51, 51, 51);">如果去掉 </font>**<font style="color:rgb(51, 51, 51);">--global</font>**<font style="color:rgb(51, 51, 51);"> 参数只对当前仓库有效。</font>
 
-## <font style="color:rgb(51, 51, 51);">Git 基本操作</font>
+# <font style="color:rgb(51, 51, 51);">Git 基本操作</font>
 <font style="color:rgb(51, 51, 51);">Git 的主要工作就是创建和保存项目的快照及以及对快照进行对比。</font>
 
 <font style="color:rgb(51, 51, 51);">Git 常用的是以下 6 个命令：</font>**<font style="color:rgb(51, 51, 51);">git clone</font>**<font style="color:rgb(51, 51, 51);">、</font>**<font style="color:rgb(51, 51, 51);">git add</font>**<font style="color:rgb(51, 51, 51);"> 、</font>**<font style="color:rgb(51, 51, 51);">git commit</font>**<font style="color:rgb(51, 51, 51);">、</font>**<font style="color:rgb(51, 51, 51);">git pull</font>**<font style="color:rgb(51, 51, 51);">、</font>**<font style="color:rgb(51, 51, 51);">git push</font>**<font style="color:rgb(51, 51, 51);">、</font>**<font style="color:rgb(51, 51, 51);">git checkout</font>**<font style="color:rgb(51, 51, 51);">。</font>
@@ -392,7 +392,7 @@ $ git commit
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. 创建仓库</font>
+## <font style="color:rgb(51, 51, 51);">1. 创建仓库</font>
 <font style="color:rgb(51, 51, 51);">使用 git 对项目进行版本管理，首先要创建 git 仓库。</font>
 
 <font style="color:rgb(51, 51, 51);">下表列出了 git 创建仓库的命令：</font>
@@ -405,7 +405,7 @@ $ git commit
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 修改提交</font>
+## <font style="color:rgb(51, 51, 51);">2. 修改提交</font>
 <font style="color:rgb(51, 51, 51);">Git 的工作就是创建和保存你的项目的快照及与之后的快照进行对比。</font>
 
 <font style="color:rgb(51, 51, 51);">下表列出了有关创建与提交你的项目的快照的命令：</font>
@@ -423,7 +423,7 @@ $ git commit
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 远程操作</font>
+## <font style="color:rgb(51, 51, 51);">3. 远程操作</font>
 | <font style="color:rgb(254, 254, 254);">命令</font> | <font style="color:rgb(254, 254, 254);">说明</font> |
 | --- | --- |
 | [<font style="color:rgb(51, 51, 51);">git remote</font>](https://www.cainiaoplus.com/git/git-remote.html) | <font style="color:rgb(51, 51, 51);">远程仓库操作</font> |
@@ -434,19 +434,19 @@ $ git commit
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. 查看日志</font>
+## <font style="color:rgb(51, 51, 51);">4. 查看日志</font>
 | <font style="color:rgb(254, 254, 254);">命令</font> | <font style="color:rgb(254, 254, 254);">说明</font> |
 | --- | --- |
 | [<font style="color:rgb(51, 51, 51);">git log</font>](https://www.cainiaoplus.com/git/git-commit-history.html) | <font style="color:rgb(51, 51, 51);">查看历史提交记录</font> |
 | [<font style="color:rgb(51, 51, 51);">git blame <file></font>](https://www.cainiaoplus.com/git/git-commit-history.html) | <font style="color:rgb(51, 51, 51);">以列表形式查看指定文件的历史修改记录</font> |
 
 
-## <font style="color:rgb(51, 51, 51);">Git branch 分支管理</font>
+# <font style="color:rgb(51, 51, 51);">Git branch 分支管理</font>
 <font style="color:rgb(51, 51, 51);">每一种版本控制系统都以某种形式支持分支，使用分支就可以从开发主线上分离开来，在不影响主线的同时继续工作。 Git 的分支管理包括：查看分支、创建分支、切换分支、删除分支以及合并分支等命令。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. 查看分支</font>
+## <font style="color:rgb(51, 51, 51);">1. 查看分支</font>
 <font style="color:rgb(51, 51, 51);">查看分支的命令：</font>
 
 git branch
@@ -468,7 +468,7 @@ develop
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 创建分支</font>
+## <font style="color:rgb(51, 51, 51);">2. 创建分支</font>
 <font style="color:rgb(51, 51, 51);">创建分支的命令：</font>
 
 ```bash
@@ -487,7 +487,7 @@ $ git branch hotfix
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 切换分支</font>
+## <font style="color:rgb(51, 51, 51);">3. 切换分支</font>
 ```bash
 git checkout (branchname)
 ```
@@ -504,7 +504,7 @@ Switched to branch 'hotfix'
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. 删除分支</font>
+## <font style="color:rgb(51, 51, 51);">4. 删除分支</font>
 <font style="color:rgb(51, 51, 51);">删除分支命令：</font>
 
 git branch -d (branchname)
@@ -529,7 +529,7 @@ $ git branch
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. 合并分支</font>
+## <font style="color:rgb(51, 51, 51);">5. 合并分支</font>
 <font style="color:rgb(51, 51, 51);">某分支修改完成后，一般会将它合并回到主分支。</font>
 
 <font style="color:rgb(51, 51, 51);">使用以下命令将其它分支合并到当前分支中：</font>
@@ -541,7 +541,7 @@ git merge (branchname)
 <font style="color:rgb(51, 51, 51);">我们在 hotfix 分支上创建一个了文件 test.txt，并将文件提交。</font>
 
 ```bash
-## 查看所有分支，当前分支为 hotfix
+# 查看所有分支，当前分支为 hotfix
 $ git branch
   master
 * hotfix
@@ -549,18 +549,18 @@ $ git branch
 $ ls
 test.txt
 
-## 当前分支切换到 master 分支
+# 当前分支切换到 master 分支
 $ git checkout master
 Switched to branch 'master'
 
-## 合并分支
+# 合并分支
 $ git merge hotfix
 Merge made by the 'recursive' strategy.
  test.txt | 1 +
  1 file changed, 1 insertion(+)
  create mode 100644 test.txt
 
-## 合并后，master 分支下多了 test.txt 文件。
+# 合并后，master 分支下多了 test.txt 文件。
 $ ls
 test.txt
 ```
@@ -572,7 +572,7 @@ $ git branch -d hotfix
 Deleted branch hotfix (was c1501a2).
 ```
 
-## <font style="color:rgb(51, 51, 51);">Git log 查看提交历史</font>
+# <font style="color:rgb(51, 51, 51);">Git log 查看提交历史</font>
 <font style="color:rgb(51, 51, 51);">查看 Git 提交历史常用两个命令：</font>
 
 + **<font style="color:rgb(51, 51, 51);">git log</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">- 查看总体历史提交记录。</font>
@@ -580,7 +580,7 @@ Deleted branch hotfix (was c1501a2).
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git log 查看提交记录</font>
+## <font style="color:rgb(51, 51, 51);">1. git log 查看提交记录</font>
 <font style="color:rgb(51, 51, 51);">在使用 Git 提交了若干更新之后，又或者克隆了某个项目，想回顾下提交历史，我们可以使用 git log 命令查看。</font>
 
 <font style="color:rgb(51, 51, 51);">针对我们前一章节的操作，使用 git log 命令列出历史提交记录如下：</font>
@@ -684,23 +684,23 @@ b6c8d2d Documentation/remote-helpers: Add invocation section
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git blame 查看提交记录</font>
+## <font style="color:rgb(51, 51, 51);">2. git blame 查看提交记录</font>
 <font style="color:rgb(51, 51, 51);">如果要查看指定文件的修改记录可以使用 git blame 命令，格式如下：</font>git blame <file>
 
 <font style="color:rgb(51, 51, 51);">git blame 命令是以列表形式显示修改记录，如下范例：</font>
 
 ```bash
 $ git blame README 
-^d2097aa (zhangsan 2020-08-25 14:59:25 +0800 1) ## 张三测试内容
-db9315b0 (lisi    2020-08-25 16:00:23 +0800 2) ## 李四测试内容
+^d2097aa (zhangsan 2020-08-25 14:59:25 +0800 1) # 张三测试内容
+db9315b0 (lisi    2020-08-25 16:00:23 +0800 2) # 李四测试内容
 ```
 
-## <font style="color:rgb(51, 51, 51);">Git tag 标签管理</font>
+# <font style="color:rgb(51, 51, 51);">Git tag 标签管理</font>
 <font style="color:rgb(51, 51, 51);">当开发工作达到一个重要的阶段，我们希望永远记住那个特别的提交快照，就可以使用 git tag 给它打上标签。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. Git 添加标签</font>
+## <font style="color:rgb(51, 51, 51);">1. Git 添加标签</font>
 <font style="color:rgb(51, 51, 51);">添加标签的语法：</font>
 
 ```bash
@@ -745,7 +745,7 @@ $ git log --oneline --decorate --graph
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. Git 查看标签</font>
+## <font style="color:rgb(51, 51, 51);">2. Git 查看标签</font>
 <font style="color:rgb(51, 51, 51);">如果我们要查看所有标签可以使用以下命令：</font>
 
 ```bash
@@ -763,7 +763,7 @@ v1.0
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. Git 指定标签信息</font>
+## <font style="color:rgb(51, 51, 51);">3. Git 指定标签信息</font>
 ```bash
 git tag -a (tagname) -m (message)
 ```
@@ -776,7 +776,7 @@ git tag -a v1.0 -m "cainiaoplus.com tag"
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. Git 删除标签</font>
+## <font style="color:rgb(51, 51, 51);">4. Git 删除标签</font>
 ```bash
 git tag -d (tagname)
 ```
@@ -789,17 +789,17 @@ $git tag -d v1.0
 Deleted tag 'v1.0' (was 403cd05)
 ```
 
-## <font style="color:rgb(51, 51, 51);">Git 工作区、暂存区和版本库</font>
+# <font style="color:rgb(51, 51, 51);">Git 工作区、暂存区和版本库</font>
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. 什么是工作区、暂存区和版本库</font>
+## <font style="color:rgb(51, 51, 51);">1. 什么是工作区、暂存区和版本库</font>
 + **<font style="color:rgb(51, 51, 51);">Working Tree 工作区：</font>**<font style="color:rgb(51, 51, 51);">当前的工作区域，也就是我们项目所在的目录。</font>
 + **<font style="color:rgb(51, 51, 51);">Index/Stage 暂存区：</font>**<font style="color:rgb(51, 51, 51);">一般存放在 .git 目录下的 index 文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。当我们执行 git add 后，会将这些改变的文件內容加入 index 中。</font>
 + **<font style="color:rgb(51, 51, 51);">Repository 版本库：</font>**<font style="color:rgb(51, 51, 51);">工作区有一个隐藏目录 .git，用来存放 Git 的版本库，也就是使用 git commit 提交后的结果</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 工作区、暂存区和版本库的关系</font>
+## <font style="color:rgb(51, 51, 51);">2. 工作区、暂存区和版本库的关系</font>
 <font style="color:rgb(51, 51, 51);">下面这个图展示了工作区、版本库中的暂存区和版本库之间的关系：</font>
 
 ![](../../images/1731761438400-b06a1b54-4c03-409d-a1b8-bfaf45bc9e30.png)
@@ -814,14 +814,14 @@ Deleted tag 'v1.0' (was 403cd05)
 + <font style="color:rgb(51, 51, 51);">当执行 git checkout . 或者 git checkout -- <file> 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</font>
 + <font style="color:rgb(51, 51, 51);">当执行 git checkout HEAD . 或者 git checkout HEAD <file> 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</font>
 
-## <font style="color:rgb(51, 51, 51);">Git 服务器搭建</font>
+# <font style="color:rgb(51, 51, 51);">Git 服务器搭建</font>
 <font style="color:rgb(51, 51, 51);">由于 Git 是一个分布式版本控制系统，所以任何一台安装了 Git 的机器都可以作为远程仓库，提供给项目协助者公共使用。</font>
 
 <font style="color:rgb(51, 51, 51);">我们将以 Centos 服务器为例搭建 Git 远程仓库。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1、安装Git</font>
+## <font style="color:rgb(51, 51, 51);">1、安装Git</font>
 <font style="color:rgb(51, 51, 51);">首先需要在 Centos 服务器上安装 Git。</font>
 
 ```bash
@@ -831,7 +831,7 @@ $ yum install git
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2、创建 Git 组和用户</font>
+## <font style="color:rgb(51, 51, 51);">2、创建 Git 组和用户</font>
 <font style="color:rgb(51, 51, 51);">接下来我们创建一个 git 用户组和用户，用来运行 git 服务。</font>
 
 ```bash
@@ -841,7 +841,7 @@ $ useradd git -g git
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3、创建证书登录</font>
+## <font style="color:rgb(51, 51, 51);">3、创建证书登录</font>
 <font style="color:rgb(51, 51, 51);">收集所有需要登录的用户的公钥，公钥位于id_rsa.pub文件中，把我们的公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。</font>
 
 <font style="color:rgb(51, 51, 51);">如果没有该文件创建它：</font>
@@ -856,7 +856,7 @@ $ chmod 644 .ssh/authorized_keys
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4、初始化 Git 仓库</font>
+## <font style="color:rgb(51, 51, 51);">4、初始化 Git 仓库</font>
 <font style="color:rgb(51, 51, 51);">首先我们选定一个目录作为Git仓库，假定是/home/gitrepo/cainiaoplus.git，在/home/gitrepo目录下输入命令：</font>
 
 ```bash
@@ -877,7 +877,7 @@ $ chown -R git:git cainiaoplus.git
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5、使用自建仓库</font>
+## <font style="color:rgb(51, 51, 51);">5、使用自建仓库</font>
 <font style="color:rgb(51, 51, 51);">假定 192.168.1.100 为 Git 服务器 ip，我们就可以使用该服务器克隆项目了。</font>
 
 ```bash
@@ -887,7 +887,7 @@ warning: You appear to have cloned an empty repository.
 Checking connectivity... done.
 ```
 
-## <font style="color:rgb(51, 51, 51);">git init 命令</font>
+# <font style="color:rgb(51, 51, 51);">git init 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git init 命令用来创建一个新的 Git 仓库。</font>
@@ -898,7 +898,7 @@ Checking connectivity... done.
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git init 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git init 命令的语法</font>
 ```bash
 git init [--bare][directory]
 ```
@@ -918,14 +918,14 @@ git init [--bare][directory]
 <font style="color:rgb(51, 51, 51);">首先执行 git init linux:</font>
 
 ```bash
-[root@CentOS ~]## git init linux
+[root@CentOS ~]# git init linux
 Initialized empty Git repository in /root/linux/.git/
-[root@CentOS ~]## ls -alt linux/
+[root@CentOS ~]# ls -alt linux/
 total 8
 dr-xr-x---. 5 root root 4096 Jun  2 12:53 ..
 drwxr-xr-x. 7 root root 4096 Jun  2 12:42 .git
 drwxr-xr-x. 3 root root   17 Jun  2 12:42 .
-[root@CentOS ~]## ls -alt linux/.git
+[root@CentOS ~]# ls -alt linux/.git
 total 20
 drwxr-xr-x. 7 root root 4096 Jun  2 12:42 .
 drwxr-xr-x. 4 root root   28 Jun  2 12:42 objects
@@ -942,9 +942,9 @@ drwxr-xr-x. 4 root root   29 Jun  2 12:42 refs
 <font style="color:rgb(51, 51, 51);">接着执行git init --bare bsd:</font>
 
 ```bash
-[root@CentOS ~]## git init --bare bsd
+[root@CentOS ~]# git init --bare bsd
 Initialized empty Git repository in /root/bsd/
-[root@CentOS ~]## ls -lt bsd
+[root@CentOS ~]# ls -lt bsd
 total 16
 drwxr-xr-x. 4 root root   28 Jun  2 13:01 objects
 -rw-r--r--. 1 root root   66 Jun  2 13:01 config
@@ -960,7 +960,7 @@ drwxr-xr-x. 4 root root   29 Jun  2 13:01 refs
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git init 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git init 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">例如我们在当前目录下创建一个名为 cainiaoplus 的项目：</font>
 
 ```bash
@@ -969,7 +969,7 @@ $ cd cainiaoplus
 $ git init
 
 Initialized empty Git repository in /root/cainiaoplus/.git/
-## 初始化空 Git 仓库完毕。
+# 初始化空 Git 仓库完毕。
 ```
 
 <font style="color:rgb(51, 51, 51);">在项目目录 cainiaoplus 中生成了 .git 子目录，这就是项目的 Git 仓库，有关项目的快照数据全部存放在 .git 目录中。</font>
@@ -981,14 +981,14 @@ $ ls -a
 .    ..    .git
 ```
 
-## <font style="color:rgb(51, 51, 51);">git clone 命令</font>
+# <font style="color:rgb(51, 51, 51);">git clone 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git clone 用于克隆一个远程仓库到本地，以便在本地查看或者修改。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git clone 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git clone 命令的语法</font>
  git clone [url] [directory]
 
 + <font style="color:rgb(51, 51, 51);">[url] 是要克隆的远程仓库地址。</font>
@@ -996,7 +996,7 @@ $ ls -a
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git clone 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git clone 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">克隆 Github 上的项目 https://github.com/owenliang/go-websocket：</font>
 
 ```bash
@@ -1045,14 +1045,14 @@ Unpacking objects: 100% (18/18), done.
 
 <font style="color:rgb(51, 51, 51);">拷贝完成后，在当前目录下会生成一个 go-myproject 目录。</font>
 
-## <font style="color:rgb(51, 51, 51);">git add 命令</font>
+# <font style="color:rgb(51, 51, 51);">git add 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git add 命令用于把修改后的文件添加到暂存区。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git add 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git add 命令的语法</font>
 ### <font style="color:rgb(51, 51, 51);">1）添加一个或多个文件到暂存区</font>
 ```bash
 git add [file1] [file2] ...
@@ -1070,12 +1070,12 @@ git add .
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git add 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git add 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">以下范例我们添加两个文件：</font>
 
 ```bash
-$ touch README      ## 创建文件 README
-$ touch hello.php   ## 创建文件 hello.php
+$ touch README      # 创建文件 README
+$ touch hello.php   # 创建文件 hello.php
 $ ls
 README        hello.php
 $ git status -s
@@ -1102,7 +1102,7 @@ A  hello.php
 
 <font style="color:rgb(51, 51, 51);">在项目中，我们经常使用</font><font style="color:rgb(51, 51, 51);"> </font>**<font style="color:rgb(51, 51, 51);">git add .</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">命令来添加新的文件或者修改过的文件。</font>
 
-## <font style="color:rgb(51, 51, 51);">git status 命令</font>
+# <font style="color:rgb(51, 51, 51);">git status 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git status 命令用于查看工作目录和暂存区的状态。</font>
@@ -1113,7 +1113,7 @@ A  hello.php
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git status 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git status 命令的语法</font>
 ```bash
 $ git status [options]
 ```
@@ -1122,7 +1122,7 @@ $ git status [options]
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git status 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git status 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">查看当前仓库的变动情况：</font>
 
 ```bash
@@ -1148,14 +1148,14 @@ A  hello.php
 
 <font style="color:rgb(51, 51, 51);">其中AM 状态的意思是这个文件在我们将它添加到缓存之后又有改动。</font>
 
-## <font style="color:rgb(51, 51, 51);">git diff 命令</font>
+# <font style="color:rgb(51, 51, 51);">git diff 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git diff 命令用于比较 git 工作区、暂存区和版本库中文件内容的差异。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. 查看工作区与暂存区的差异</font>
+## <font style="color:rgb(51, 51, 51);">1. 查看工作区与暂存区的差异</font>
 <font style="color:rgb(51, 51, 51);">git diff 不加参数，默认比较工作区与暂存区的所有文件的差异。</font>
 
 ```bash
@@ -1170,7 +1170,7 @@ git diff <filename>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 查看暂存区与 Git 仓库的差异</font>
+## <font style="color:rgb(51, 51, 51);">2. 查看暂存区与 Git 仓库的差异</font>
 <font style="color:rgb(51, 51, 51);">查看已经 add 进暂存区可是还没有 commit 的内容同最近一次 commit 时的内容的差异。</font>
 
 ```bash
@@ -1183,7 +1183,7 @@ git diff --cached <filename>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 查看工做目录与 Git 仓库的差异</font>
+## <font style="color:rgb(51, 51, 51);">3. 查看工做目录与 Git 仓库的差异</font>
 <font style="color:rgb(51, 51, 51);">查看工做目录同Git仓库指定 commit 的内容的差异。</font>
 
 ```bash
@@ -1194,7 +1194,7 @@ git diff <commit> <filename>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. 查看 Git 仓库与 Git 仓库的差异</font>
+## <font style="color:rgb(51, 51, 51);">4. 查看 Git 仓库与 Git 仓库的差异</font>
 <font style="color:rgb(51, 51, 51);">查看 Git 仓库任意两次 commit 之间的差异。</font>
 
 ```bash
@@ -1203,7 +1203,7 @@ git diff <commit> <commit>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. 常用约定和参数</font>
+## <font style="color:rgb(51, 51, 51);">5. 常用约定和参数</font>
 <font style="color:rgb(51, 51, 51);">以上命令能够不指定 <filename>，则对所有文件操做。 以上命令涉及和 Git仓库 对比的，都可指定 commit 的版本。</font>
 
 + <font style="color:rgb(51, 51, 51);">HEAD 表示最近一次 commit</font>
@@ -1212,7 +1212,7 @@ git diff <commit> <commit>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">6. diff 文件的解释</font>
+## <font style="color:rgb(51, 51, 51);">6. diff 文件的解释</font>
 <font style="color:rgb(51, 51, 51);">使用 git diff 命令，会产生 diff 格式的输出。例如：</font>
 
 ```bash
@@ -1240,14 +1240,14 @@ git diff <commit> <commit>
 
 <font style="color:rgb(51, 51, 51);">@@ 后面的 第一个 6,16 指的是下边列出的内容是修改前的文件从第 6 行开始，连续 16 行。第二个 6,16 只的是下边的内容是修改后的文件从第 6 行开始，连续 16 行。</font>
 
-## <font style="color:rgb(51, 51, 51);">git commit 命令</font>
+# <font style="color:rgb(51, 51, 51);">git commit 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git commit 命令将暂存区内容添加到本地仓库中。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git commit 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git commit 命令的语法</font>
 ### <font style="color:rgb(51, 51, 51);">1）提交暂存区的所有内容到本地本地仓库</font>
 ```bash
 git commit -m [message]
@@ -1269,7 +1269,7 @@ git commit -a
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 设置提交代码时的用户信息</font>
+## <font style="color:rgb(51, 51, 51);">2. 设置提交代码时的用户信息</font>
 <font style="color:rgb(51, 51, 51);">提交代码前，我们需要先设置提交的用户信息，包括用户名和邮箱：</font>
 
 ```bash
@@ -1281,7 +1281,7 @@ $ git config --global user.email admin@cainiaoplus.com
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. git commit 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">3. git commit 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">我们对 hello.php 的内容进行改动，然后将暂存区的内容修改，提交到本地仓库中。</font>
 
 <font style="color:rgb(51, 51, 51);">我们使用 -m 选项，在命令行中提供本次提交的注释。</font>
@@ -1302,7 +1302,7 @@ $ git commit -m '第一次版本提交'
 
 ```bash
 $ git status
-## On branch master
+# On branch master
 nothing to commit (working directory clean)
 ```
 
@@ -1311,13 +1311,13 @@ nothing to commit (working directory clean)
 <font style="color:rgb(51, 51, 51);">如果你没有设置 -m 选项，Git 会尝试为你打开一个编辑器以填写提交信息。 如果 Git 在你对它的配置中找不到相关信息，默认会打开 vim。屏幕会像这样：</font>
 
 ```bash
-## Please enter the commit message for your changes. Lines starting
-## with '#' will be ignored, and an empty message aborts the commit.
-## On branch master
-## Changes to be committed:
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
 #   (use "git reset HEAD <file>..." to unstage)
 #
-## modified:   hello.php
+# modified:   hello.php
 #
 ~
 ~
@@ -1346,14 +1346,14 @@ $ git commit -a -m '修改 hello.php 文件'
  1 file changed, 1 insertion(+)
 ```
 
-## <font style="color:rgb(51, 51, 51);">git rm 命令</font>
+# <font style="color:rgb(51, 51, 51);">git rm 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git rm 命令用于删除文件。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git 本地数据管理的分区</font>
+## <font style="color:rgb(51, 51, 51);">1. git 本地数据管理的分区</font>
 <font style="color:rgb(51, 51, 51);">git 的本地数据管理分为三个区：</font>
 
 + <font style="color:rgb(51, 51, 51);">工作区（Working Directory）：是可以直接编辑的地方。</font>
@@ -1364,7 +1364,7 @@ $ git commit -a -m '修改 hello.php 文件'
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. shell rm 命令</font>
+## <font style="color:rgb(51, 51, 51);">2. shell rm 命令</font>
 <font style="color:rgb(51, 51, 51);">用于删除工作区的文件。</font>
 
 ```bash
@@ -1402,7 +1402,7 @@ $ git commit -a -m "delete test"
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. git rm 命令</font>
+## <font style="color:rgb(51, 51, 51);">3. git rm 命令</font>
 <font style="color:rgb(51, 51, 51);">删除工作区文件，并且将这次删除放入暂存区。</font>
 
 **<font style="color:rgb(51, 51, 51);">注意</font>**<font style="color:rgb(51, 51, 51);">：要删除的文件必须没有经过修改，也就是说和当前版本库文件的内容相同，否则将会失败。</font>
@@ -1449,7 +1449,7 @@ error: the following file has local modifications:
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. git rm -f 命令</font>
+## <font style="color:rgb(51, 51, 51);">4. git rm -f 命令</font>
 <font style="color:rgb(51, 51, 51);">强制删除工作区和暂存区文件，并且将这次删除放入暂存区。</font>
 
 **<font style="color:rgb(51, 51, 51);">注意</font>**<font style="color:rgb(51, 51, 51);">：要删除的文件无论修改过还是未修改过，无论是在工作区还是暂存区，都会被强制删除。</font>
@@ -1483,7 +1483,7 @@ $ git commit -m "delete test"
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. git rm --cached 命令</font>
+## <font style="color:rgb(51, 51, 51);">5. git rm --cached 命令</font>
 <font style="color:rgb(51, 51, 51);">删除暂存区文件，但保留工作区的文件，并且将这次删除放入暂存区。</font>
 
 <font style="color:rgb(51, 51, 51);">执行删除命令：</font>
@@ -1522,14 +1522,14 @@ $ git commit -m "delete test"
 
 <font style="color:rgb(51, 51, 51);">如果文件有修改并 git add 到暂存区，再执行 git rm --cached 和 git commit，那么保留的工作区文件是修改后的文件，同时暂存区的修改文件和版本库的文件也被删了。</font>
 
-## <font style="color:rgb(51, 51, 51);">git mv 命令</font>
+# <font style="color:rgb(51, 51, 51);">git mv 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git mv 命令用于移动或重命名一个文件、目录或软连接。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git mv 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git mv 命令的语法</font>
 <font style="color:rgb(51, 51, 51);">git mv [file] [newfile]</font>
 
 <font style="color:rgb(51, 51, 51);">如果新但文件名已经存在，但还是要重命名它，可以使用 -f 参数：</font>
@@ -1542,7 +1542,7 @@ $ git commit -m "delete test"
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git mv 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git mv 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">我们可以添加一个 README 文件：</font>
 
 ```bash
@@ -1557,14 +1557,14 @@ $ ls
 README.md
 ```
 
-## <font style="color:rgb(51, 51, 51);">git remote 命令</font>
+# <font style="color:rgb(51, 51, 51);">git remote 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 **<font style="color:rgb(51, 51, 51);">git remote</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">命令用于一些对远程仓库的操作。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git remote 命令</font>
+## <font style="color:rgb(51, 51, 51);">1. git remote 命令</font>
 <font style="color:rgb(51, 51, 51);">git remote 命令可以查看当前配置中有哪些远程仓库，列出每个远程库的简短名字。</font>
 
 <font style="color:rgb(51, 51, 51);">在克隆完某个项目后，我们可以看到一个名为 origin 的远程库，git 默认使用这个名字来标识克隆的原始仓库。</font>
@@ -1575,7 +1575,7 @@ README.md
 $ git clone https://github.com/owenliang/go-websocket.git
 $ cd go-websocket
 
-## git remote 不带参数，列出已经存在的远程分支
+# git remote 不带参数，列出已经存在的远程分支
 
 $ git remote
 origin
@@ -1585,7 +1585,7 @@ origin
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git remote -v 命令</font>
+## <font style="color:rgb(51, 51, 51);">2. git remote -v 命令</font>
 <font style="color:rgb(51, 51, 51);">列出每个远程库的详细信息，在每一个名字后面列出其远程 url。</font>
 
 <font style="color:rgb(51, 51, 51);">我们查看一下本地配置中的远程仓库详细列表：</font>
@@ -1599,7 +1599,7 @@ origin	https://github.com/owenliang/go-websocket.git (push)
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. git remote add 命令</font>
+## <font style="color:rgb(51, 51, 51);">3. git remote add 命令</font>
 <font style="color:rgb(51, 51, 51);">用于添加本地配置中的一个远程仓库。</font>
 
 ```bash
@@ -1624,7 +1624,7 @@ origin	https://github.com/owenliang/go-websocket.git (push)
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. git remote rm 命令</font>
+## <font style="color:rgb(51, 51, 51);">4. git remote rm 命令</font>
 <font style="color:rgb(51, 51, 51);">用于删除本地配置中的一个远程仓库。</font>
 
 ```bash
@@ -1645,7 +1645,7 @@ origin	https://github.com/owenliang/go-websocket.git (push)
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. git remote rename 命令</font>
+## <font style="color:rgb(51, 51, 51);">5. git remote rename 命令</font>
 <font style="color:rgb(51, 51, 51);">用于重命名本地配置中的一个远程仓库。</font>
 
 ```bash
@@ -1668,7 +1668,7 @@ origin	https://github.com/owenliang/go-websocket.git (fetch)
 origin	https://github.com/owenliang/go-websocket.git (push)
 ```
 
-## <font style="color:rgb(51, 51, 51);">git fetch 命令</font>
+# <font style="color:rgb(51, 51, 51);">git fetch 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git fetch 命令用于从远程仓库的分支获取最新的版本。</font>
@@ -1677,7 +1677,7 @@ origin	https://github.com/owenliang/go-websocket.git (push)
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git fetch 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git fetch 命令的语法</font>
 <font style="color:rgb(51, 51, 51);">获取特定某个远程仓库的特定分支的更新。</font>
 
 ```bash
@@ -1696,36 +1696,36 @@ $ git fetch origin master
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git fetch 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git fetch 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">获取远程的 master 分支到本地的 temp 分支，对比后合并到本地的 master分支。</font>
 
 ```bash
-### 将远程 origin 仓库的 master 分支代码下载到本地新建的 temp 分支
+## 将远程 origin 仓库的 master 分支代码下载到本地新建的 temp 分支
 $ git fetch origin master:temp
 
-### 比较本地代码与刚刚从远程下载下来的代码的区别
+## 比较本地代码与刚刚从远程下载下来的代码的区别
 $ git diff temp
 
-### 合并 temp 分支到本地的 master 分支;
+## 合并 temp 分支到本地的 master 分支;
 $ git merge temp
 
-### 如果不想保留temp分支，删除;
+## 如果不想保留temp分支，删除;
 $ git branch -d temp
 ```
 
-## <font style="color:rgb(51, 51, 51);">git pull 命令</font>
+# <font style="color:rgb(51, 51, 51);">git pull 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 **<font style="color:rgb(51, 51, 51);">git pull</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">命令用于从远程获取代码并合并本地的版本。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git pull 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git pull 命令的语法</font>
 git pull <远程主机名> <远程分支名>:<本地分支名>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git pull 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git pull 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">1）拉取远程仓库，更新本地代码。</font>
 
 ```bash
@@ -1745,19 +1745,19 @@ git pull origin master:branch-test
 git pull origin master
 ```
 
-## <font style="color:rgb(51, 51, 51);">git push 命令</font>
+# <font style="color:rgb(51, 51, 51);">git push 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 **<font style="color:rgb(51, 51, 51);">git push</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">命令用于从将本地的分支版本上传到远程并合并。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git push 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git push 命令的语法</font>
 <font style="color:rgb(51, 51, 51);">git push <远程主机名> <本地分支名>:<远程分支名></font><font style="color:rgb(51, 51, 51);">如果本地分支名与远程分支名相同，则可以省略冒号：</font><font style="color:rgb(51, 51, 51);">git push <远程主机名> <本地分支名></font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git push 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git push 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">将本地的 master 分支推送到 origin 主机的 master 分支。</font>
 
 ```bash
@@ -1785,7 +1785,7 @@ git push origin --delete master
 <font style="color:rgb(51, 51, 51);">使用 git push的范例。</font>
 
 ```bash
-## 添加新文件
+# 添加新文件
 $ touch cainiaoplus-test.txt
 $ git add cainiaoplus-test.txt
 $ git commit -m "添加到远程"
@@ -1794,20 +1794,20 @@ master 69e702d] 添加到远程
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 runoob-test.txt
 
-## 推送到远程仓库
+# 推送到远程仓库
 $ git push origin master
 ```
 
 <font style="color:rgb(51, 51, 51);">将本地的 master 分支推送到 origin 主机的 master 分支。</font>
 
-## <font style="color:rgb(51, 51, 51);">git reset 命令</font>
+# <font style="color:rgb(51, 51, 51);">git reset 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git reset 命令用于回退版本，可以退回指定的某一次提交的版本。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git reset 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git reset 命令的语法</font>
 ```bash
 git reset [--soft | --mixed | --hard] [commit]
 ```
@@ -1816,7 +1816,7 @@ git reset [--soft | --mixed | --hard] [commit]
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git HEAD 提交点</font>
+## <font style="color:rgb(51, 51, 51);">2. git HEAD 提交点</font>
 <font style="color:rgb(51, 51, 51);">学习 git reset 命令之前，首先需要了解一个概念 HEAD。</font>
 
 <font style="color:rgb(51, 51, 51);">HEAD 是本地版本库中当前分支引用的指针，它总是指向该分支上的最后一次提交。</font>
@@ -1837,7 +1837,7 @@ git reset [--soft | --mixed | --hard] [commit]
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. git reset --mixed 命令</font>
+## <font style="color:rgb(51, 51, 51);">3. git reset --mixed 命令</font>
 <font style="color:rgb(51, 51, 51);">git reset –mixed 移动 HEAD 到指定的 commit，同时重置暂存区为指定 commit 的状态(将内容从 HEAD 复制到暂存区中)，但保留原先的工作目录，同时将添加暂存区的修改撤销到工作目录中。</font>
 
 <font style="color:rgb(51, 51, 51);">git reset --mixed 有 取消暂存文件 的效果。实际上它与 git add 所做的操作相反，可以用该命令撤销 add 到暂存区的修改到工作区。</font>
@@ -1847,31 +1847,31 @@ git reset [--soft | --mixed | --hard] [commit]
 <font style="color:rgb(51, 51, 51);">例如：</font>
 
 ```bash
-## 回退所有内容到上一个版本
+# 回退所有内容到上一个版本
 $ git reset HEAD^
 
-## 回退 hello.php 文件的版本到上一个版本    
+# 回退 hello.php 文件的版本到上一个版本    
 $ git reset HEAD^ hello.php
 
-## 回退到指定版本
+# 回退到指定版本
 $ git reset 052e
 ```
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. git reset --soft 命令</font>
+## <font style="color:rgb(51, 51, 51);">4. git reset --soft 命令</font>
 <font style="color:rgb(51, 51, 51);">git reset –soft 只移动 HEAD 到指定的 commit，但保留原先暂存区和工作目录的内容，同时会将指定 commit 之后提交的内容设置到暂存区中。</font>
 
 <font style="color:rgb(51, 51, 51);">git reset --soft</font><font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">可以用于压缩最近的提交，用该命令将 HEAD 移动到一个旧一点的提交上，然后再 commit 就可以将多个最近的提交压缩为一个。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. git reset --hard 命令</font>
+## <font style="color:rgb(51, 51, 51);">5. git reset --hard 命令</font>
 <font style="color:rgb(51, 51, 51);">移动 HEAD 到指定的 commit，同时重置暂存区和工作目录到指定 commit。</font>
 
 <font style="color:rgb(51, 51, 51);">这三个参数中，只有 soft 和 mixed 是安全的，hard 会令工作丢失，使用时应该小心。</font>
 
-## <font style="color:rgb(51, 51, 51);">git cherry-pick 命令</font>
+# <font style="color:rgb(51, 51, 51);">git cherry-pick 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git cherry-pick 命令用于将指定的提交（commit）应用于其他分支。</font>
@@ -1882,14 +1882,14 @@ $ git reset 052e
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git cherry-pick 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git cherry-pick 命令的语法</font>
 <font style="color:rgb(51, 51, 51);">git cherry-pick <commitHash></font>
 
 <font style="color:rgb(51, 51, 51);">上面命令就会将指定的提交 commitHash，应用于当前分支。这会在当前分支产生一个新的提交，当然它们的哈希值会不一样。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git cherry-pick 命令的范例</font>
+## <font style="color:rgb(51, 51, 51);">2. git cherry-pick 命令的范例</font>
 <font style="color:rgb(51, 51, 51);">举例来说，代码仓库有 master 和 feature 两个分支。</font>
 
 ```bash
@@ -1901,10 +1901,10 @@ a - b - c - d   Master
 <font style="color:rgb(51, 51, 51);">现在将提交 f 应用到 master 分支。</font>
 
 ```bash
-## 切换到 master 分支
+# 切换到 master 分支
 $ git checkout master
 
-## Cherry pick 操作
+# Cherry pick 操作
 $ git cherry-pick f
 ```
 
@@ -1928,7 +1928,7 @@ $ git cherry-pick feature
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 转移多个提交</font>
+## <font style="color:rgb(51, 51, 51);">3. 转移多个提交</font>
 <font style="color:rgb(51, 51, 51);">Cherry pick 支持一次转移多个提交。</font>
 
 ```bash
@@ -1953,7 +1953,7 @@ $ git cherry-pick A^..B
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. 配置项</font>
+## <font style="color:rgb(51, 51, 51);">4. 配置项</font>
 <font style="color:rgb(51, 51, 51);">git cherry-pick命令的常用配置项如下。</font>
 
 + <font style="color:rgb(51, 51, 51);">（1）-e，--edit  
@@ -1978,7 +1978,7 @@ $ git cherry-pick -m 1 <commitHash>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. 代码冲突</font>
+## <font style="color:rgb(51, 51, 51);">5. 代码冲突</font>
 <font style="color:rgb(51, 51, 51);">如果操作过程中发生代码冲突，Cherry pick 会停下来，让用户决定如何继续操作。</font>
 
 + <font style="color:rgb(51, 51, 51);">（1）--continue  
@@ -1995,7 +1995,7 @@ $ git cherry-pick --continue
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">6. 转移到另一个代码库</font>
+## <font style="color:rgb(51, 51, 51);">6. 转移到另一个代码库</font>
 <font style="color:rgb(51, 51, 51);">Cherry pick 也支持转移另一个代码库的提交，方法是先将该库加为远程仓库。</font>
 
 ```bash
@@ -2022,14 +2022,14 @@ $ git log target/master
 $ git cherry-pick <commitHash>
 ```
 
-## <font style="color:rgb(51, 51, 51);">git config 命令</font>
+# <font style="color:rgb(51, 51, 51);">git config 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git config 命令用于查看或者设置 git 仓库的配置信息。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git config 命令的语法</font>
+## <font style="color:rgb(51, 51, 51);">1. git config 命令的语法</font>
 ```bash
 git config [<file-option>] [--type=<type>] [--show-origin] [-z|--null] name [value [value_regex]]
 ```
@@ -2038,22 +2038,22 @@ git config [<file-option>] [--type=<type>] [--show-origin] [-z|--null] name [val
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 查看 git 配置信息</font>
+## <font style="color:rgb(51, 51, 51);">2. 查看 git 配置信息</font>
 ### <font style="color:rgb(51, 51, 51);">1）查看 git 全部配置信息：</font>
 ```bash
-## 查看全部配置信息
+# 查看全部配置信息
 git config --list --global
 
-## 或者
+# 或者
 git config -l --global
 ```
 
 ### <font style="color:rgb(51, 51, 51);">2）查看 git 某项的配置信息</font>
 ```bash
-## 查看 user.name 配置信息
+# 查看 user.name 配置信息
 git config --global user.name
 
-## 查看 user.email 配置信息
+# 查看 user.email 配置信息
 git config --global user.email
 ```
 
@@ -2069,7 +2069,7 @@ git config --global user.email
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 初始化或者设置配置参数</font>
+## <font style="color:rgb(51, 51, 51);">3. 初始化或者设置配置参数</font>
 <font style="color:rgb(51, 51, 51);">设置配置项的语法格式：</font>
 
 ```bash
@@ -2085,7 +2085,7 @@ git config --global user.email 'your email address'
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. 删除配置项</font>
+## <font style="color:rgb(51, 51, 51);">4. 删除配置项</font>
 <font style="color:rgb(51, 51, 51);">删除配置项的语法格式：</font>
 
 ```bash
@@ -2098,14 +2098,14 @@ git config [--local|--global|--system] --unset section.key
 git config --global --unset user.email 'your email address'
 ```
 
-## <font style="color:rgb(51, 51, 51);">git branch 命令</font>
+# <font style="color:rgb(51, 51, 51);">git branch 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 分支管理</font>](https://www.cainiaoplus.com/git/git-branch.html)
 
 <font style="color:rgb(51, 51, 51);">Git branch 命令包括：查看分支、新建分支、删除分支命令。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. 查看分支</font>
+## <font style="color:rgb(51, 51, 51);">1. 查看分支</font>
 ### <font style="color:rgb(51, 51, 51);">1）查看本地分支的命令</font>
 git branch
 
@@ -2132,7 +2132,7 @@ git branch -a
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 新建分支</font>
+## <font style="color:rgb(51, 51, 51);">2. 新建分支</font>
 ### <font style="color:rgb(51, 51, 51);">1）新建分支的命令</font>
 ```bash
 git branch (branchname)
@@ -2165,7 +2165,7 @@ git branch --set-upstream [branchname] [remote-branch]
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 删除分支</font>
+## <font style="color:rgb(51, 51, 51);">3. 删除分支</font>
 <font style="color:rgb(51, 51, 51);">删除分支命令：</font>
 
 git branch -d (branchname)
@@ -2188,14 +2188,14 @@ $ git branch
 
 <font style="color:rgb(51, 51, 51);">hotfix 分支已经被删除。</font>
 
-## <font style="color:rgb(51, 51, 51);">git checkout 命令</font>
+# <font style="color:rgb(51, 51, 51);">git checkout 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 分支管理</font>](https://www.cainiaoplus.com/git/git-branch.html)
 
 <font style="color:rgb(51, 51, 51);">git checkout 命令用于切换和创建分支。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. 切换分支</font>
+## <font style="color:rgb(51, 51, 51);">1. 切换分支</font>
 <font style="color:rgb(51, 51, 51);">git checkout 切换到指定分支，并更新工作区。</font>
 
 ```bash
@@ -2214,14 +2214,14 @@ Switched to branch 'hotfix'
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. 切换到上一个分支</font>
+## <font style="color:rgb(51, 51, 51);">2. 切换到上一个分支</font>
 <font style="color:rgb(51, 51, 51);">git checkout -</font>
 
 <font style="color:rgb(51, 51, 51);">类似于 shell 命令的 cd - ，回退到上一个分支。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. 创建并切换分支</font>
+## <font style="color:rgb(51, 51, 51);">3. 创建并切换分支</font>
 <font style="color:rgb(51, 51, 51);">git checkout -b [branch-name]</font>
 
 <font style="color:rgb(51, 51, 51);">如果 branch-name 分支存在则只切换分支，若不存在则创建并切换到 branch-name 分支。</font>
@@ -2234,14 +2234,14 @@ $ git checkout -b test-branch
 Switched to a new branch 'test-branch'
 ```
 
-## <font style="color:rgb(51, 51, 51);">git tag 命令</font>
+# <font style="color:rgb(51, 51, 51);">git tag 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git 可以给仓库历史中的某一个提交点打上标签，常常用于标记发布结点（ 比如：v1.0 、 v2.0 等）。在本节中，你将会学习如何列出已有的标签、如何创建和删除新的标签、以及不同类型的标签分别是什么。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. Git 查看标签</font>
+## <font style="color:rgb(51, 51, 51);">1. Git 查看标签</font>
 <font style="color:rgb(51, 51, 51);">如果我们要查看所有标签可以使用以下命令：</font>
 
 ```bash
@@ -2259,7 +2259,7 @@ v1.0
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. Git 添加标签</font>
+## <font style="color:rgb(51, 51, 51);">2. Git 添加标签</font>
 <font style="color:rgb(51, 51, 51);">添加标签的语法：</font>
 
 ```bash
@@ -2304,7 +2304,7 @@ $ git log --oneline --decorate --graph
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. Git 指定标签信息</font>
+## <font style="color:rgb(51, 51, 51);">3. Git 指定标签信息</font>
 ```bash
 git tag -a (tagname) -m (message)
 ```
@@ -2317,7 +2317,7 @@ git tag -a v1.0 -m "It is a cainiaoplus.com tag"
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. Git 删除标签</font>
+## <font style="color:rgb(51, 51, 51);">4. Git 删除标签</font>
 ```bash
 git tag -d (tagname)
 ```
@@ -2332,7 +2332,7 @@ Deleted tag 'v1.0' (was 403cd05)
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. Git 查看标签的详情</font>
+## <font style="color:rgb(51, 51, 51);">5. Git 查看标签的详情</font>
 ```bash
 git show (tagname)
 ```
@@ -2348,21 +2348,21 @@ Author: cainiaoplus
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">6. Git 推送标签</font>
+## <font style="color:rgb(51, 51, 51);">6. Git 推送标签</font>
 ```bash
 git push origin (tagname)
 ```
 
 <font style="color:rgb(51, 51, 51);">将 tagname 标签推送到远程版本库。</font>
 
-## <font style="color:rgb(51, 51, 51);">git log 命令</font>
+# <font style="color:rgb(51, 51, 51);">git log 命令</font>
 [<font style="color:rgb(51, 51, 51);">Git 基本操作</font>](https://www.cainiaoplus.com/git/git-basic-operations.html)
 
 <font style="color:rgb(51, 51, 51);">git 可以给仓库历史中的某一个提交点打上标签，常常用于标记发布结点（ 比如：v1.0 、 v2.0 等）。</font>
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">1. git log</font>
+## <font style="color:rgb(51, 51, 51);">1. git log</font>
 <font style="color:rgb(51, 51, 51);">git log 用于查看提交历史记录。</font>
 
 ```bash
@@ -2393,7 +2393,7 @@ Date:   Fri May 3 15:35:32 2019 +0800
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">2. git log --oneline</font>
+## <font style="color:rgb(51, 51, 51);">2. git log --oneline</font>
 <font style="color:rgb(51, 51, 51);">我们可以用 --oneline 选项来查看历史记录的简洁的版本。</font>
 
 ```bash
@@ -2410,7 +2410,7 @@ c1501a2 removed test.txt、add cainiaoplus.php
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">3. git log --graph</font>
+## <font style="color:rgb(51, 51, 51);">3. git log --graph</font>
 <font style="color:rgb(51, 51, 51);">我们还可以用 --graph 选项，查看历史中什么时候出现了分支、合并。以下为相同的命令，开启了拓扑图选项：</font>
 
 ```bash
@@ -2428,7 +2428,7 @@ c1501a2 removed test.txt、add cainiaoplus.php
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">4. git log --reverse</font>
+## <font style="color:rgb(51, 51, 51);">4. git log --reverse</font>
 <font style="color:rgb(51, 51, 51);">我们可以用</font><font style="color:rgb(51, 51, 51);"> </font>**<font style="color:rgb(51, 51, 51);">--reverse</font>**<font style="color:rgb(51, 51, 51);"> </font><font style="color:rgb(51, 51, 51);">参数来逆向显示所有日志。</font>
 
 ```bash
@@ -2443,7 +2443,7 @@ d5e9fc2 (HEAD -> master) Merge branch 'change_site'
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">5. git log --author</font>
+## <font style="color:rgb(51, 51, 51);">5. git log --author</font>
 <font style="color:rgb(51, 51, 51);">如果只想查找指定用户的提交日志可以使用命令：git log --author , 例如，比方说我们要找 Git 源码中 Linus 提交的部分：</font>
 
 ```bash
@@ -2457,7 +2457,7 @@ b532581 make "git unpack-file" a built-in
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">6. git log 指定日期</font>
+## <font style="color:rgb(51, 51, 51);">6. git log 指定日期</font>
 <font style="color:rgb(51, 51, 51);">如果你要指定日期，可以执行几个选项：--since 和 --before，但是你也可以用 --until 和 --after。</font>
 
 <font style="color:rgb(51, 51, 51);">例如，如果我要看 Git 项目中三周前且在四月十八日之后的所有提交，我可以执行这个（我还用了 --no-merges 选项以隐藏合并提交）：</font>
@@ -2477,7 +2477,7 @@ b6c8d2d Documentation/remote-helpers: Add invocation section
 
 <font style="color:rgb(51, 51, 51);"></font>
 
-### <font style="color:rgb(51, 51, 51);">7. git log -p</font>
+## <font style="color:rgb(51, 51, 51);">7. git log -p</font>
 <font style="color:rgb(51, 51, 51);">我们可以用 git log -p filepath 查看某个文件的详细修改。</font>
 
 ```bash

@@ -1,0 +1,3358 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Debian12/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/">
+      
+      
+        <link rel="prev" href="../%E6%8E%A2%E6%B5%8B%E6%9C%8D%E5%8A%A1%E5%AD%98%E6%B4%BB/">
+      
+      
+        <link rel="next" href="../../RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>网络配置 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#一查看网络状态" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              网络配置
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/ELK/alertmanager/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E5%BC%80%E5%8F%91/Django/Aliphe.js%E6%A1%86%E6%9E%B6/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%9C%B0%E5%9D%801/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E7%A7%91%E5%8D%8E%E5%B7%A5%E4%BD%9C/AD%E5%9F%9F%E5%AE%A1%E8%AE%A1%E9%85%8D%E7%BD%AE/" class="md-tabs__link">
+          
+  
+    
+  
+  科华工作
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/ELK/alertmanager/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../../%E5%BC%80%E5%8F%91/Django/Aliphe.js%E6%A1%86%E6%9E%B6/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            操作系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows文件复制带权限
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    报错处理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            报错处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/Sysprep%E5%A4%B1%E8%B4%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sysprep失败
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            操作系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AD%E5%9F%9F%E6%8E%A7%E6%9E%B6%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AD域控架构最佳实践
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ansible%20%E7%A6%BB%E7%BA%BF%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%95%B4%E7%AC%94%E8%AE%B0%EF%BC%88%E6%94%AF%E6%8C%81%20RHEL7%208%209%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible 离线部署完整笔记（支持 RHEL7 8 9）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Centos%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos安装docker和podman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Centos%E5%AE%89%E8%A3%85lnmp%E7%8E%AF%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos安装lnmp环境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux模板优化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linux%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%8A%A5Possible%20SYN%20flooding%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux系统日志报Possible SYN flooding处理方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RHEL8%E6%90%AD%E5%BB%BAdns%E6%9C%8D%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RHEL8搭建dns服务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RHEL%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RHEL网络管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systemd%E5%92%8Csupervisor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systemd和supervisor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ubuntu%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ubuntu安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ubuntu%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ubuntu安装docker和podman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Windows%20AD%E5%9F%9F%E7%8E%AF%E5%A2%83%E4%B8%AD%E4%BA%94%E5%A4%A7%E4%B8%BB%E6%9C%BA%E8%A7%92%E8%89%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows AD域环境中五大主机角色
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Zellij%E7%BB%88%E7%AB%AF%E5%A4%8D%E7%94%A8%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zellij终端复用器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../awk%20sed%20wc%E4%B8%89%E5%89%91%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Awk sed wc三剑客使用笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../crontab%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crontab定时任务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker%E5%AE%89%E8%A3%85MongoDB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker安装MongoDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker%E5%AE%89%E8%A3%85chemex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装chemex
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker%E5%AE%89%E8%A3%85mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装mysql
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker%E5%AE%89%E8%A3%85snipe-IT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker安装snipe IT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lshell%E5%91%BD%E4%BB%A4%E7%AE%A1%E6%8E%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lshell命令管控
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syslog%E9%85%8D%E7%BD%AE%E5%92%8Clogrotate%E6%97%A5%E5%BF%97%E8%BD%AE%E8%BD%AC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Syslog配置和logrotate日志轮转
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tmux%E7%BB%88%E7%AB%AF%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tmux终端多路复用器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows%E6%97%A0%E6%95%88%E5%9F%9F%E6%8E%A7%E6%B8%85%E9%99%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows无效域控清除
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows模板
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%85%8D%E7%BD%AElinux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置linux环境变量
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_26" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_26" id="__nav_8_3_26_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Debian12
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_26_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_3_26">
+            <span class="md-nav__icon md-icon"></span>
+            Debian12
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Debian%20%E5%8C%85%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debian 包管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Fail2ban%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fail2ban使用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ufw%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ufw防火墙管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B9%A0%E6%83%AF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些好的使用习惯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装和初始化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bdebian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    快速上手debian
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%8E%A2%E6%B5%8B%E6%9C%8D%E5%8A%A1%E5%AD%98%E6%B4%BB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    探测服务存活
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    网络配置
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    网络配置
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一查看网络状态" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、查看网络状态
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二临时调整重启或服务重启后失效" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、临时调整（重启或服务重启后失效）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三永久配置一etcnetworkinterfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、永久配置一：/etc/network/interfaces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四永久配置二systemd-networkd" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、永久配置二：systemd-networkd
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五dns-配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、DNS 配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、DNS 配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-使用-resolvconf推荐" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 使用 resolvconf（推荐）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-使用-systemd-resolveddebian-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 使用 systemd-resolved（Debian 12+）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六综合建议" class="md-nav__link">
+    <span class="md-ellipsis">
+      六、综合建议
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netplan配置ubuntu默认" class="md-nav__link">
+    <span class="md-ellipsis">
+      netplan配置（ubuntu默认）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#一简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、简介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二配置文件位置" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、配置文件位置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三基本命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、基本命令
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四yaml-结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、YAML 结构
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五静态地址配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、静态地址配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六高级示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      六、高级示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、高级示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-多网卡绑定bonding" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 多网卡绑定（Bonding）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-桥接bridge用于虚拟化" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 桥接（Bridge，用于虚拟化）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. VLAN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#七排查与调试" class="md-nav__link">
+    <span class="md-ellipsis">
+      七、排查与调试
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#八常见注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      八、常见注意事项
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    RHEL9
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    计算机维护
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机维护
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/ventoy%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E3%80%82/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ventoy启动失败。
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/ventoy%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ventoy启动盘制作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/%E5%90%84%E5%93%81%E7%89%8C%E4%B8%BB%E6%9D%BFbios%E6%8C%89%E9%94%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    各品牌主板bios按键
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%9C%B0%E5%9D%801/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E7%A7%91%E5%8D%8E%E5%B7%A5%E4%BD%9C/AD%E5%9F%9F%E5%AE%A1%E8%AE%A1%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科华工作
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>网络配置</h1>
+
+<p><font style="color:rgb(0, 0, 0);">电脑使用以太网卡时，必须以下列方法之一配置 IP 网络。最简单的方式是以 DHCP 动态配置，需要在本地网络有 DHCP 服务器。可能需要设置 </font><code>**&lt;font style="color:rgb(0, 0, 0);"&gt;hostname&lt;/font&gt;**</code><font style="color:rgb(0, 0, 0);"> 指定主机名称。DHCP 服务器就会送出适当的网络配置。</font></p>
+<p><strong><font style="color:rgb(0, 0, 0);">例 8.1. DHCP 配置</font></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>auto<span class="w"> </span>enp0s31f6
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>iface<span class="w"> </span>enp0s31f6<span class="w"> </span>inet<span class="w"> </span>dhcp
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span>hostname<span class="w"> </span>arrakis
+</code></pre></div></td></tr></table></div>
+<p><font style="color:rgb(0, 0, 0);">“静态” 配置必须以固定方式指明网络设置。至少包括 IP 网址及子网掩码；有时也列出网络及广播地址。链接外部的路由器作为网关。</font></p>
+<p><strong><font style="color:rgb(0, 0, 0);">例 8.2. 静态配置</font></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>auto<span class="w"> </span>enp0s31f6
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>iface<span class="w"> </span>enp0s31f6<span class="w"> </span>inet<span class="w"> </span>static
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">  </span>address<span class="w"> </span><span class="m">192</span>.168.0.3/24
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span>broadcast<span class="w"> </span><span class="m">192</span>.168.0.255
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span>network<span class="w"> </span><span class="m">192</span>.168.0.0
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">  </span>gateway<span class="w"> </span><span class="m">192</span>.168.0.1
+</code></pre></div></td></tr></table></div>
+<p>已思考 5 秒</p>
+<p>下面是仅针对服务器环境的 Debian 网络配置笔记，去除了与桌面或 Wi-Fi 相关的内容，便于在无 GUI 的纯服务器场景下快速配置和管理网络。</p>
+<hr />
+<h2 id="一查看网络状态">一、查看网络状态<a class="headerlink" href="#一查看网络状态" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看所有接口</td>
+<td><code>ip link show</code></td>
+<td>推荐替代过时的 <code>ifconfig -a</code></td>
+</tr>
+<tr>
+<td>查看 IP 地址</td>
+<td><code>ip addr show</code><br/> 或 <code>ip a</code></td>
+<td>列出接口对应的 IP、网络掩码等信息</td>
+</tr>
+<tr>
+<td>查看路由表</td>
+<td><code>ip route show</code><br/> 或 <code>ip r</code></td>
+<td>列出默认网关及静态路由</td>
+</tr>
+<tr>
+<td>查看链路状态</td>
+<td><code>ethtool eth0</code></td>
+<td>查看网卡速率、双工模式等硬件信息</td>
+</tr>
+<tr>
+<td>DHCP 客户端</td>
+<td><code>sudo dhclient -v eth0</code></td>
+<td>手动请求或刷新 DHCP 租约</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二临时调整重启或服务重启后失效">二、临时调整（重启或服务重启后失效）<a class="headerlink" href="#二临时调整重启或服务重启后失效" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启用/禁用接口</td>
+<td><code>sudo ip link set eth0 up</code><br/><code>sudo ip link set eth0 down</code></td>
+<td>手动启用或停用网口</td>
+</tr>
+<tr>
+<td>添加/删除 IP</td>
+<td><code>sudo ip addr add 192.168.1.100/24 dev eth0</code><br/><code>... del ...</code></td>
+<td>临时分配或撤销 IP</td>
+</tr>
+<tr>
+<td>添加路由</td>
+<td><code>sudo ip route add default via 192.168.1.1 dev eth0</code></td>
+<td>手动设置默认网关</td>
+</tr>
+<tr>
+<td>删除路由</td>
+<td><code>sudo ip route del default</code></td>
+<td>删除默认路由</td>
+</tr>
+<tr>
+<td>刷新 DNS 缓存</td>
+<td><code>sudo systemd-resolve --flush-caches</code></td>
+<td>针对 systemd-resolved</td>
+</tr>
+<tr>
+<td>修复依赖</td>
+<td><code>sudo apt -f install</code></td>
+<td>出现依赖冲突时尝试自动修复（间接影响网络）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三永久配置一etcnetworkinterfaces">三、永久配置一：<code>/etc/network/interfaces</code><a class="headerlink" href="#三永久配置一etcnetworkinterfaces" title="Permanent link">&para;</a></h2>
+<p>经典方式，适合 Debian 传统服务器环境。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># /etc/network/interfaces</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># 回环接口</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>auto<span class="w"> </span>lo
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>iface<span class="w"> </span>lo<span class="w"> </span>inet<span class="w"> </span>loopback
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1"># DHCP 自动获取 IP</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>auto<span class="w"> </span>eth0
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>iface<span class="w"> </span>eth0<span class="w"> </span>inet<span class="w"> </span>dhcp
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="c1"># 或者静态配置示例</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="c1"># auto eth0</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="c1"># iface eth0 inet static</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="c1">#     address 192.168.1.100</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="c1">#     netmask 255.255.255.0</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="c1">#     gateway 192.168.1.1</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="c1">#     dns-nameservers 8.8.8.8 114.114.114.114</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>配置完成后：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>sudo<span class="w"> </span>ifdown<span class="w"> </span>eth0<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>ifup<span class="w"> </span>eth0
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1"># 或者</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>networking
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>可将额外配置文件放在 <code>/etc/network/interfaces.d/</code> 目录，保持主配置简洁。</li>
+</ul>
+<hr />
+<h2 id="四永久配置二systemd-networkd">四、永久配置二：<code>systemd-networkd</code><a class="headerlink" href="#四永久配置二systemd-networkd" title="Permanent link">&para;</a></h2>
+<p>现代服务器推荐，轻量且与 <code>systemd</code> 深度集成。配置文件放在 <code>/etc/systemd/network/</code>。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># /etc/systemd/network/10-eth0.network</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="o">[</span>Match<span class="o">]</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="nv">Name</span><span class="o">=</span>eth0
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="o">[</span>Network<span class="o">]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c1"># DHCP</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="nv">DHCP</span><span class="o">=</span>ipv4
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="c1"># 或静态</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="c1"># Address=192.168.1.100/24</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="c1"># Gateway=192.168.1.1</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="c1"># DNS=8.8.8.8 114.114.114.114</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>启用并启动服务：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>systemd-networkd
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>查看状态：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>networkctl<span class="w"> </span>list
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>networkctl<span class="w"> </span>status<span class="w"> </span>eth0
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="五dns-配置">五、DNS 配置<a class="headerlink" href="#五dns-配置" title="Permanent link">&para;</a></h2>
+<h3 id="1-使用-resolvconf推荐">1. 使用 <code>resolvconf</code>（推荐）<a class="headerlink" href="#1-使用-resolvconf推荐" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># 编辑 /etc/resolvconf/resolv.conf.d/base</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>nameserver<span class="w"> </span><span class="m">8</span>.8.8.8
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>nameserver<span class="w"> </span><span class="m">114</span>.114.114.114
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="c1"># 更新生效</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>sudo<span class="w"> </span>resolvconf<span class="w"> </span>-u
+</code></pre></div></td></tr></table></div>
+<h3 id="2-使用-systemd-resolveddebian-12">2. 使用 <code>systemd-resolved</code>（Debian 12+）<a class="headerlink" href="#2-使用-systemd-resolveddebian-12" title="Permanent link">&para;</a></h3>
+<p>编辑 <code>/etc/systemd/resolved.conf</code>，添加或修改：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="o">[</span>Resolve<span class="o">]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nv">DNS</span><span class="o">=</span><span class="m">8</span>.8.8.8<span class="w"> </span><span class="m">114</span>.114.114.114
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1">#FallbackDNS=</span>
+</code></pre></div></td></tr></table></div>
+<p>重启服务：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>systemd-resolved
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="六综合建议">六、综合建议<a class="headerlink" href="#六综合建议" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>首选方式</strong>：<ul>
+<li>旧版 Debian 或习惯经典配置，使用 <code>/etc/network/interfaces</code>。</li>
+<li>Debian 10 及以上、或希望更现代管理，优先用 <code>systemd-networkd</code>。</li>
+</ul>
+</li>
+<li><strong>调试排查</strong>：<ol>
+<li><code>ip addr</code> / <code>ip route</code> 确认配置是否生效；</li>
+<li><code>journalctl -u networking</code> 或 <code>journalctl -u systemd-networkd</code> 查看日志；</li>
+<li>确认 DNS：<code>systemd-resolve --status</code> 或查看 <code>/etc/resolv.conf</code>；</li>
+</ol>
+</li>
+<li><strong>自动化</strong>：将以上配置文件纳入版本控制（如 Git），便于大规模服务器批量部署与回滚。</li>
+</ul>
+<p>以上即为专注于无 GUI 服务器环境下的 Debian 网络配置笔记，祝部署顺利！</p>
+<h2 id="netplan配置ubuntu默认">netplan配置（ubuntu默认）<a class="headerlink" href="#netplan配置ubuntu默认" title="Permanent link">&para;</a></h2>
+<p>下面是一份基于 Netplan 的网络管理使用笔记，帮助你在 Ubuntu 及其它采用 Netplan 的系统上快速配置和排查网络。</p>
+<hr />
+<h2 id="一简介">一、简介<a class="headerlink" href="#一简介" title="Permanent link">&para;</a></h2>
+<p>Netplan 是 Ubuntu 17.10 及以后版本默认的网络配置工具，采用 YAML 格式描述网络拓扑，底层通过 systemd-networkd 或 NetworkManager 实现。相比传统的 <code>/etc/network/interfaces</code>，它更加直观、统一。</p>
+<p><strong>意见</strong>：YAML 配置文件可读性强，适合团队协作，但要注意缩进和语法。配置前建议做好原有配置备份。</p>
+<hr />
+<h2 id="二配置文件位置">二、配置文件位置<a class="headerlink" href="#二配置文件位置" title="Permanent link">&para;</a></h2>
+<p>所有配置都放在 <code>/etc/netplan/</code> 目录下，默认为一个或多个 <code>.yaml</code> 文件。文件名可自定义，但必须以 <code>.yaml</code> 结尾。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>ls<span class="w"> </span>/etc/netplan/
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="c1"># 例如：01-netcfg.yaml  50-cloud-init.yaml</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="三基本命令">三、基本命令<a class="headerlink" href="#三基本命令" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>generate<span class="w">     </span><span class="c1"># 生成底层配置（systemd-networkd 或 NetworkManager）</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply<span class="w">        </span><span class="c1"># 立即应用配置</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>try<span class="w">          </span><span class="c1"># 试用新配置；30 秒内回退到旧配置</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>ip<span class="w"> </span>leases<span class="w">    </span><span class="c1"># 列出 DHCP 租约信息</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>generate</strong>：只生成，不改动运行时网络，适合先检查语法。</li>
+<li><strong>apply</strong>：应用并生效，可能会中断网络连接。</li>
+<li><strong>try</strong>：在可视化界面中确认后生效，断连会自动回退。</li>
+</ul>
+<p><strong>建议</strong>：远程操作时优先用 <code>netplan try</code>，避免误操作导致 SSH 断连。</p>
+<hr />
+<h2 id="四yaml-结构">四、YAML 结构<a class="headerlink" href="#四yaml-结构" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span>
+<span class="normal"><a href="#__codelineno-12-8">8</a></span>
+<span class="normal"><a href="#__codelineno-12-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># /etc/netplan/01-netcfg.yaml</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="nt">network</span><span class="p">:</span><span class="w">                         </span><span class="c1"># 顶级必须键</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">                     </span><span class="c1"># 配置版本，目前固定为 2</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span><span class="w">            </span><span class="c1"># 或 NetworkManager</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span><span class="w">                    </span><span class="c1"># 有线网卡配置</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span><span class="w">                      </span><span class="c1"># 网卡名称（ip link 查看）</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                </span><span class="c1"># 启用 IPv4 DHCP</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">      </span><span class="nt">dhcp6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">               </span><span class="c1"># 关闭 IPv6 DHCP</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">      </span><span class="nt">optional</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">             </span><span class="c1"># 如果网卡不存在也不报错</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>备注</strong>：缩进必须为两个空格，不能用 Tab。</p>
+<hr />
+<h2 id="五静态地址配置">五、静态地址配置<a class="headerlink" href="#五静态地址配置" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.100/24</span><span class="w">     </span><span class="c1"># 指定静态 IPv4 地址及掩码</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="w">      </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span><span class="w">    </span><span class="c1"># IPv4 默认网关</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span><span class="w">             </span><span class="c1"># DNS 服务器</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.8.8</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.4.4</span>
+</code></pre></div></td></tr></table></div>
+<p>保存后执行：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="六高级示例">六、高级示例<a class="headerlink" href="#六高级示例" title="Permanent link">&para;</a></h2>
+<h3 id="1-多网卡绑定bonding">1. 多网卡绑定（Bonding）<a class="headerlink" href="#1-多网卡绑定bonding" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">  </span><span class="nt">bonds</span><span class="p">:</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">    </span><span class="nt">bond0</span><span class="p">:</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">      </span><span class="nt">interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">enp0s3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">enp0s8</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 绑定的网卡</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">10.0.0.10/24</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">      </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">      </span><span class="nt">parameters</span><span class="p">:</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">active-backup</span><span class="w">      </span><span class="c1"># 备份模式</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">        </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enp0s3</span><span class="w">          </span><span class="c1"># 主网卡</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="2-桥接bridge用于虚拟化">2. 桥接（Bridge，用于虚拟化）<a class="headerlink" href="#2-桥接bridge用于虚拟化" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="w">  </span><span class="nt">bridges</span><span class="p">:</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">    </span><span class="nt">br0</span><span class="p">:</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">      </span><span class="nt">interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">enp0s3</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">192.168.122.50/24</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="w">      </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.122.1</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1.1.1.1</span><span class="p p-Indicator">]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="3-vlan">3. VLAN<a class="headerlink" href="#3-vlan" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">  </span><span class="nt">vlans</span><span class="p">:</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="w">    </span><span class="nt">vlan100</span><span class="p">:</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="w">      </span><span class="nt">link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enp0s3</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">172.16.100.2/24</span><span class="p p-Indicator">]</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="七排查与调试">七、排查与调试<a class="headerlink" href="#七排查与调试" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>语法校验</strong></li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>generate
+</code></pre></div></td></tr></table></div>
+<p>若有语法错误，命令会提示并退出，不会应用到网络。</p>
+<ol>
+<li><strong>查看 DHCP 租约</strong></li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>ip<span class="w"> </span>leases<span class="w"> </span>enp0s3
+</code></pre></div></td></tr></table></div>
+<ol>
+<li><strong>底层服务日志</strong><ul>
+<li>systemd-networkd:</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>systemd-networkd<span class="w"> </span>-b
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>- NetworkManager:
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>NetworkManager<span class="w"> </span>-b
+</code></pre></div></td></tr></table></div>
+<ol>
+<li><strong>实时监控接口状态</strong></li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>enp0s3
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a>ip<span class="w"> </span>route
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="八常见注意事项">八、常见注意事项<a class="headerlink" href="#八常见注意事项" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>文件顺序</strong>：如果有多个 YAML 文件，按文件名排序合并。名字前缀数字越小，优先级越高。</li>
+<li><strong>缩进严格</strong>：YAML 对缩进敏感，建议用两个空格，切勿混用 Tab。</li>
+<li><strong>渲染器选择</strong>：桌面环境建议 <code>NetworkManager</code>；服务器常用 <code>networkd</code>。</li>
+<li><strong>回滚保护</strong>：远程操作前总用 <code>netplan try</code> 测试配置。</li>
+<li><strong>版本兼容</strong>：Ubuntu 20.04+ 推荐版本为 <code>version: 2</code>，如果出现不识别的字段，请检查系统版本和 Netplan 版本。</li>
+</ul>
+<hr />
+<p>通过上述笔记，你可以快速掌握 Netplan 的核心用法，并根据需求灵活扩展到 Bonding、Bridge、VLAN 等场景。测试环境中多试几种组合，熟悉后上线即可。祝你配置顺利！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../%E6%8E%A2%E6%B5%8B%E6%9C%8D%E5%8A%A1%E5%AD%98%E6%B4%BB/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 探测服务存活">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                探测服务存活
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-footer__link md-footer__link--next" aria-label="下一页: RHEL9-RHCE学习">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                RHEL9-RHCE学习
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

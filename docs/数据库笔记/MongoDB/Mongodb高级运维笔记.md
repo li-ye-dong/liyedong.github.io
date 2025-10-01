@@ -1,7 +1,7 @@
-## Mongodb高级运维笔记
-## **<font style="color:rgb(51,51,51);">1.MongoDB常见架构</font>**![](../../images/1713955896839-ee98993a-8318-44ef-8539-592753a13c8f.png)
-## **<font style="color:rgb(51,51,51);">2.分片集群机制及原理</font>**
-### **<font style="color:rgb(51,51,51);">2.1 为什么使用分片集群</font>**
+# Mongodb高级运维笔记
+# **<font style="color:rgb(51,51,51);">1.MongoDB常见架构</font>**![](../../images/1713955896839-ee98993a-8318-44ef-8539-592753a13c8f.png)
+# **<font style="color:rgb(51,51,51);">2.分片集群机制及原理</font>**
+## **<font style="color:rgb(51,51,51);">2.1 为什么使用分片集群</font>**
 ```shell
 • 数据容量日益增大，访问性能日渐降低，怎么破？
 • 新品上线异常火爆，如何支撑更多的并发用户？
@@ -9,7 +9,7 @@
 • 地理分布数据
 ```
 
-### **<font style="color:rgb(51,51,51);">2.2 如何解决以上问题 </font>**
+## **<font style="color:rgb(51,51,51);">2.2 如何解决以上问题 </font>**
 **<font style="color:rgb(51,51,51);">原始结构</font>**
 
 ```shell
@@ -25,7 +25,7 @@
 
 ![](../../images/1713955987831-763899f1-d428-4351-bf20-3e48af9a1f36.png)
 
-### **<font style="color:rgb(51,51,51);">2.3 分片架构介绍</font>**
+## **<font style="color:rgb(51,51,51);">2.3 分片架构介绍</font>**
 ![](../../images/1713956009228-61d8bb02-c345-4c36-bba9-aec254859fbe.png)
 
 ```shell
@@ -50,7 +50,7 @@
 
 
 
-### **<font style="color:rgb(51,51,51);">2.4 MongoDB 分片集群特点</font>**
+## **<font style="color:rgb(51,51,51);">2.4 MongoDB 分片集群特点</font>**
 ```shell
 • 应用全透明，无特殊处理
 • 数据自动均衡
@@ -60,7 +60,7 @@
 
 **<font style="color:rgb(51,51,51);"> </font>**
 
-### **<font style="color:rgb(51,51,51);">2.5 分片集群数据分布方式</font>**
+## **<font style="color:rgb(51,51,51);">2.5 分片集群数据分布方式</font>**
 ```shell
 • 基于范围
 • 基于 Hash
@@ -79,8 +79,8 @@
 
 
 
-## **<font style="color:rgb(51,51,51);">3. 分片集群搭建及扩容 </font>**
-### **<font style="color:rgb(51,51,51);">3.1 分片规划</font>**
+# **<font style="color:rgb(51,51,51);">3. 分片集群搭建及扩容 </font>**
+## **<font style="color:rgb(51,51,51);">3.1 分片规划</font>**
 ```shell
 10个实例：38017-38026
 (1)configserver:
@@ -92,7 +92,7 @@ sh2：38024-26 （1主两从，其中一个节点为arbiter，复制集名字sh2
 38017
 ```
 
-### **<font style="color:rgb(51,51,51);">3.2 配置过程 </font>**
+## **<font style="color:rgb(51,51,51);">3.2 配置过程 </font>**
 ```shell
 a. shard复制集配置：
 1. 创建：
@@ -276,7 +276,7 @@ mongos -f /mongodb/38017/conf/mongos.conf
 d. 分片集群操作：
 连接到其中一个mongos（10.0.0.51），做以下配置
 （1）连接到mongs的admin数据库
-## su - mongod
+# su - mongod
 $ mongo 10.0.0.51:38017/admin
 （2）添加分片
 db.runCommand( { addshard :
@@ -395,8 +395,8 @@ sh.getBalancerWindow()
 sh.status()
 ```
 
-## **<font style="color:rgb(51,51,51);">4. 企业中分片集群设计 </font>**
-### **<font style="color:rgb(51,51,51);">4.1分片的基本标准</font>**
+# **<font style="color:rgb(51,51,51);">4. 企业中分片集群设计 </font>**
+## **<font style="color:rgb(51,51,51);">4.1分片的基本标准</font>**
 ```shell
 • 关于数据：数据量不超过3TB，尽可能保持在2TB一个片；
 • 关于索引：常用索引必须容纳进内存；
@@ -404,12 +404,12 @@ sh.status()
 出现瓶颈时，都可以通过添加更多分片来解决。
 ```
 
-### **<font style="color:rgb(51,51,51);">4.2 如何粗略判断需要多少分片</font>**
+## **<font style="color:rgb(51,51,51);">4.2 如何粗略判断需要多少分片</font>**
 ![](../../images/1713956500741-8765bde7-4a2b-4d82-ba48-aa81bad757b4.png)
 
 <font style="color:rgb(51,51,51);">分片数量 = max(A, B, C)+D =? </font>
 
-### **<font style="color:rgb(51,51,51);">4.3 额外的考量 </font>**
+## **<font style="color:rgb(51,51,51);">4.3 额外的考量 </font>**
 ```shell
 考虑分片的分布：
 • 是否需要跨机房分布分片？
@@ -417,7 +417,7 @@ sh.status()
 • 高可用的要求如何?
 ```
 
-### **<font style="color:rgb(51,51,51);">4.4 选择片键的正确姿势</font>**
+## **<font style="color:rgb(51,51,51);">4.4 选择片键的正确姿势</font>**
 ![](../../images/1713956543455-5ed3276e-0c7e-4994-99bb-a281a32f473b.png)
 
 ```shell
@@ -478,7 +478,7 @@ attachments: []
 
 ![](../../images/1713956769913-ced6b45f-6bd8-4a0d-b5e4-1227417d347b.png)
 
-### **<font style="color:rgb(51,51,51);">4.5 如何规划硬件</font>**
+## **<font style="color:rgb(51,51,51);">4.5 如何规划硬件</font>**
 ```shell
 • mongos 与 config 通常消耗很少的资源，可以选择低规格虚拟机；
 • 资源的重点在于 shard 服务器：
@@ -493,28 +493,28 @@ attachments: []
 • 均衡需要资源，如果资源即将或已经耗尽，均衡也是会很低效的。
 ```
 
-## **<font style="color:rgb(51,51,51);">5. 高级集群设计：两地三中心 </font>**
-### **<font style="color:rgb(51,51,51);">5.1 容灾级别</font>**
+# **<font style="color:rgb(51,51,51);">5. 高级集群设计：两地三中心 </font>**
+## **<font style="color:rgb(51,51,51);">5.1 容灾级别</font>**
 ![](../../images/1713956828209-04ca190c-c0ac-431e-a173-e46866968fd1.png)
 
-### **<font style="color:rgb(51,51,51);">5.2 MongoDB 两地三中心集群实现</font>**![](../../images/1713956843476-25c4e9db-036b-4168-b57c-c4c36eab20a0.png)
-### **<font style="color:rgb(51,51,51);">5.3 两地三中心规划及实施</font>**
+## **<font style="color:rgb(51,51,51);">5.2 MongoDB 两地三中心集群实现</font>**![](../../images/1713956843476-25c4e9db-036b-4168-b57c-c4c36eab20a0.png)
+## **<font style="color:rgb(51,51,51);">5.3 两地三中心规划及实施</font>**
 ![](../../images/1713956863512-8d0a07c2-8825-4063-9d53-471be480778e.png)
 
 **<font style="color:rgb(51,51,51);">a. 准备虚拟机及数据库实例</font>**
 
 ```shell
 1. 规划
-## 10.0.0.51
+# 10.0.0.51
 primary:10.0.0.51:10001
 s1 :10.0.0.51:10002
-## 10.0.0.52
+# 10.0.0.52
 s3 :10.0.0.52:10003
 s4 :10.0.0.52:10004
-## 10.0.53
+# 10.0.53
 s5 :10.0.53:10005
 2. 准备实例
-## 配置文件-db01
+# 配置文件-db01
 su - mongod
 mkdir -p /mongodb/10001/conf /mongodb/10001/data /mongodb/10001/log
 mkdir -p /mongodb/10002/conf /mongodb/10002/data /mongodb/10002/log
@@ -550,7 +550,7 @@ EOF
 sed 's#10001#10002#g' /mongodb/10002/conf/mongod.conf -i
 mongod -f /mongodb/10001/conf/mongod.conf
 mongod -f /mongodb/10002/conf/mongod.conf
-## 配置文件-db02
+# 配置文件-db02
 su - mongod
 mkdir -p /mongodb/10003/conf /mongodb/10003/data /mongodb/10003/log
 mkdir -p /mongodb/10004/conf /mongodb/10004/data /mongodb/10004/log
@@ -586,7 +586,7 @@ EOF
 sed 's#10003#10004#g' /mongodb/10004/conf/mongod.conf -i
 mongod -f /mongodb/10003/conf/mongod.conf
 mongod -f /mongodb/10004/conf/mongod.conf
-## 配置文件-db03
+# 配置文件-db03
 su - mongod
 mkdir -p /mongodb/10005/conf /mongodb/10005/data /mongodb/10005/log
 cat > /mongodb/10005/conf/mongod.conf <<EOF
@@ -642,7 +642,7 @@ rs.reconfig(cfg)
 **<font style="color:rgb(51,51,51);">c. 复制集安全加固</font>**
 
 ```shell
-## db01
+# db01
 openssl rand -base64 756 > /mongodb/10001/conf/keyfile
 cp -a /mongodb/10001/conf/keyfile /mongodb/10002/conf
 chmod 600 /mongodb/10001/conf/keyfile /mongodb/10002/conf/keyfile
@@ -702,11 +702,11 @@ my_repl:PRIMARY> db.auth("root1",passwordPrompt())
 Enter password:
 ```
 
-## **<font style="color:rgb(51,51,51);">6. 高级集群设计：全球多写</font>**
+# **<font style="color:rgb(51,51,51);">6. 高级集群设计：全球多写</font>**
 ![](../../images/1713958780837-b1ddc71b-1c4f-4510-a598-1c09ae288db2.png)
 
 ```shell
-## db01:
+# db01:
 su - mongod
 mkdir -p /mongodb/20001/conf /mongodb/20001/data /mongodb/20001/log
 mkdir -p /mongodb/20002/conf /mongodb/20002/data /mongodb/20002/log
@@ -748,7 +748,7 @@ sed 's#20001#20003#g' /mongodb/20003/conf/mongod.conf -i
 mongod -f /mongodb/20001/conf/mongod.conf
 mongod -f /mongodb/20002/conf/mongod.conf
 mongod -f /mongodb/20003/conf/mongod.conf
-## db02:
+# db02:
 su - mongod
 mkdir -p /mongodb/20001/conf /mongodb/20001/data /mongodb/20001/log
 mkdir -p /mongodb/20002/conf /mongodb/20002/data /mongodb/20002/log
@@ -790,7 +790,7 @@ sed 's#20001#20003#g' /mongodb/20003/conf/mongod.conf -i
 mongod -f /mongodb/20001/conf/mongod.conf
 mongod -f /mongodb/20002/conf/mongod.conf
 mongod -f /mongodb/20003/conf/mongod.conf
-## db01:
+# db01:
 mkdir -p /mongodb/20004/conf /mongodb/20004/data /mongodb/20004/log
 mkdir -p /mongodb/20005/conf /mongodb/20005/data /mongodb/20005/log
 mkdir -p /mongodb/20006/conf /mongodb/20006/data /mongodb/20006/log
@@ -850,7 +850,7 @@ config = {_id: 'config', members: [
 {_id: 2, host: '10.0.0.51:20006'}]
 }
 rs.initiate(config)
-## mongos配置
+# mongos配置
 mkdir -p /mongodb/20010/conf /mongodb/20010/log
 cat > /mongodb/20010/conf/mongos.conf<<EOF
 systemLog:
@@ -906,14 +906,14 @@ sh.addTagRange( "crm.orders",
 "AMERICA" )
 ```
 
-## **<font style="color:rgb(51,51,51);">7. MongoDB 备份与恢复及迁移 </font>**
-### **<font style="color:rgb(51,51,51);">7.1 备份恢复工具介绍：</font>**
+# **<font style="color:rgb(51,51,51);">7. MongoDB 备份与恢复及迁移 </font>**
+## **<font style="color:rgb(51,51,51);">7.1 备份恢复工具介绍：</font>**
 ```shell
 （1）** mongoexport/mongoimport
 （2）***** mongodump/mongorestore
 ```
 
-### **<font style="color:rgb(51,51,51);">7.2 备份工具区别在哪里？</font>**
+## **<font style="color:rgb(51,51,51);">7.2 备份工具区别在哪里？</font>**
 ```shell
 mongoexport/mongoimport 导入/导出的是JSON格式或者CSV格式，
 mongodump/mongorestore导入/导出的是BSON格式。
@@ -925,7 +925,7 @@ mongodump/mongorestore
 日常备份恢复时使用.
 ```
 
-### **<font style="color:rgb(51,51,51);">7.3 导出工具mongoexport</font>**
+## **<font style="color:rgb(51,51,51);">7.3 导出工具mongoexport</font>**
 ```shell
 Mongodb中的mongoexport工具可以把一个collection导出成JSON格式或CSV格式的文件。
 可以通过参数指定导出的数据项，也可以根据指定的条件导出数据。
@@ -956,7 +956,7 @@ mongoexport -uroot -proot123 --port 27017 --authenticationDatabase admin -
 d test -c log --type=csv -f uid,name,age,date -o /mongodb/log.csv
 ```
 
-### **<font style="color:rgb(51,51,51);">7.4 导入工具mongoimport</font>**
+## **<font style="color:rgb(51,51,51);">7.4 导入工具mongoimport</font>**
 ```shell
 Mongodb中的mongoimport工具可以把一个特定格式文件中的内容导入到指定的collection中。该
 工具可以导入JSON格式数据，也可以导入CSV格式数据。具体使用如下所示：
@@ -1041,7 +1041,7 @@ total 256
 [mongod@db01 backup]$ sh import.sh
 ```
 
-### **<font style="color:rgb(51,51,51);">7.5 mongodump和mongorestore </font>**
+## **<font style="color:rgb(51,51,51);">7.5 mongodump和mongorestore </font>**
 **<font style="color:rgb(51,51,51);">a. 介绍</font>**
 
 ```shell
@@ -1106,7 +1106,7 @@ admin -d test --drop /mongodb/backup/test
 注意：这是replica set模式专用
 --oplog
 use oplog for taking a point-in-time snapshot
-## oplog介绍
+# oplog介绍
 在replica set中oplog是一个定容集合（capped collection），它的默认大小是磁盘空间的
 5%（可以通过--oplogSizeMB参数修改）.
 位于local库的db.oplog.rs，有兴趣可以看看里面到底有些什么内容。
@@ -1134,7 +1134,7 @@ log length start to end: 423849secs (117.74hrs) <--预计窗口覆盖时间
 oplog first event time: Wed Sep 09 2015 17:39:50 GMT+0800 (CST)
 oplog last event time: Mon Sep 14 2015 15:23:59 GMT+0800 (CST)
 now: Mon Sep 14 2015 16:37:30 GMT+0800 (CST)
-## oplog企业级应用
+# oplog企业级应用
 （1）实现热备，在备份时使用--oplog选项
 注：为了演示效果我们在备份过程，模拟数据插入
 （2）准备测试数据
@@ -1228,8 +1228,8 @@ PSS
 PSA
 ```
 
-## **<font style="color:rgb(51,51,51);">9. MongoDB 监控实践 </font>**
-### **<font style="color:rgb(51,51,51);">9.1 常用的监控工具及手段</font>**
+# **<font style="color:rgb(51,51,51);">9. MongoDB 监控实践 </font>**
+## **<font style="color:rgb(51,51,51);">9.1 常用的监控工具及手段</font>**
 <font style="color:rgb(51,51,51);">• MongoDB Ops Manager </font>
 
 <font style="color:rgb(51,51,51);">• Percona </font>
@@ -1238,7 +1238,7 @@ PSA
 
 <font style="color:rgb(51,51,51);">• 程序脚本</font>
 
-### **<font style="color:rgb(51,51,51);">9.2 如何获取监控数据</font>**
+## **<font style="color:rgb(51,51,51);">9.2 如何获取监控数据</font>**
 <font style="color:rgb(51,51,51);">监控信息的来源： </font>
 
 <font style="color:rgb(51,51,51);">• db.serverStatus()</font><font style="color:rgb(51,51,51);">（主要） </font>
@@ -1249,7 +1249,7 @@ PSA
 
 <font style="color:rgb(51,51,51);">说明：db.serverStatus() 包含的监控信息是从上次开机到现在为止的累计数据.</font>
 
-### **<font style="color:rgb(51,51,51);">9.3 serverStatus() Output</font>**
+## **<font style="color:rgb(51,51,51);">9.3 serverStatus() Output</font>**
 ```shell
 • host
 • version
@@ -1284,7 +1284,7 @@ PSA
 • wiredTiger
 ```
 
-### **<font style="color:rgb(51,51,51);">9.4 serverStatus() 主要信息</font>**
+## **<font style="color:rgb(51,51,51);">9.4 serverStatus() 主要信息</font>**
 ```shell
 • connections: 关于连接数的信息；
 • locks: 关于 MongoDB 使用的锁情况；
@@ -1299,7 +1299,7 @@ concurrentTransactions: Ticket 使用情况；
 • metrics: 一系列性能指标统计信息；
 ```
 
-### **<font style="color:rgb(51,51,51);">9.5 监控报警的考量</font>**
+## **<font style="color:rgb(51,51,51);">9.5 监控报警的考量</font>**
 ```shell
 • 具备一定的容错机制以减少误报的发生；
 • 总结应用各指标峰值；
@@ -1307,23 +1307,23 @@ concurrentTransactions: Ticket 使用情况；
 • 留出足够的处理时间；
 ```
 
-### **<font style="color:rgb(51,51,51);">9.6 建议监控指标说明</font>**
+## **<font style="color:rgb(51,51,51);">9.6 建议监控指标说明</font>**
 ![](../../images/1713959473625-3b0a7dd2-ee40-4f90-bbf3-2b756c3b75d5.png)
 
-## **<font style="color:rgb(51,51,51);">10.MongoDB 索引管理 </font>**
-### **<font style="color:rgb(51,51,51);">10.1 Index/Key/DataPage——索引/键/数据页？</font>**
+# **<font style="color:rgb(51,51,51);">10.MongoDB 索引管理 </font>**
+## **<font style="color:rgb(51,51,51);">10.1 Index/Key/DataPage——索引/键/数据页？</font>**
 ![](../../images/1713959497307-63bdbb7b-99fa-40c5-959d-d80732844a60.png)
 
-### **<font style="color:rgb(51,51,51);">10.2 Covered Query</font>**
+## **<font style="color:rgb(51,51,51);">10.2 Covered Query</font>**
 ![](../../images/1713959515259-a8834f54-b1da-4fae-975c-ee7752bf081b.png)
 
-### **<font style="color:rgb(51,51,51);">10.3 IXSCAN/COLLSCAN</font>**
+## **<font style="color:rgb(51,51,51);">10.3 IXSCAN/COLLSCAN</font>**
 ![](../../images/1713959527770-685f83aa-06e9-4692-80a6-0f691439bf09.png)
 
-### **<font style="color:rgb(51,51,51);">10.4 复合索引</font>**
+## **<font style="color:rgb(51,51,51);">10.4 复合索引</font>**
 ![](../../images/1713959544418-069bfb25-e339-4a13-8ec3-e564e55683b9.png)
 
-### **<font style="color:rgb(51,51,51);">10.5 Selectivity——过滤性</font>**
+## **<font style="color:rgb(51,51,51);">10.5 Selectivity——过滤性</font>**
 ```shell
 在一个有10000条记录的集合中：
 • 满足 gender= F 的记录有4000 条
@@ -1337,13 +1337,13 @@ ln=10 city=SZ gender=F
 
 ```
 
-### **<font style="color:rgb(51,51,51);">10.6 获取执行计划</font>**
+## **<font style="color:rgb(51,51,51);">10.6 获取执行计划</font>**
 ![](../../images/1713959584215-661d339b-4583-4cb3-b26b-845ba46da016.png)
 
-### **<font style="color:rgb(51,51,51);">10.7 优化后的执行计划</font>**
+## **<font style="color:rgb(51,51,51);">10.7 优化后的执行计划</font>**
 ![](../../images/1713959623126-f87c128d-4570-4a5f-bead-38384d6ae8cb.png)
 
-### **<font style="color:rgb(51,51,51);">10.8 组合索引的最佳方式：ESR原则</font>**
+## **<font style="color:rgb(51,51,51);">10.8 组合索引的最佳方式：ESR原则</font>**
 ```shell
 组合索引的最佳方式：ESR原则
 • 精确（Equal）匹配的字段放最前面
@@ -1361,11 +1361,11 @@ db.members.find({ gender: “F”， age: {$gte: 18}}).sort(“join_date:1”)
 这么多候选的，用哪一个？
 ```
 
-### **<font style="color:rgb(51,51,51);">10.9 部分索引</font>**
+## **<font style="color:rgb(51,51,51);">10.9 部分索引</font>**
 ![](../../images/1713959674687-808b10bd-f58c-41bf-8957-3ed4da55bd2b.png)
 
-## **<font style="color:rgb(51,51,51);">11.MongoDB 性能诊断 </font>**
-### **<font style="color:rgb(51,51,51);">11.1 问题诊断工具 - mongostat</font>**
+# **<font style="color:rgb(51,51,51);">11.MongoDB 性能诊断 </font>**
+## **<font style="color:rgb(51,51,51);">11.1 问题诊断工具 - mongostat</font>**
 ![](../../images/1713959702255-7055c956-c26d-477f-9e65-f999be257e14.png)
 
 ```shell
@@ -1379,10 +1379,10 @@ used：
 qrw: 排队的请求数量，超过10以上，需要关注下积压的操作是什么（慢查询、锁等）。
 ```
 
-### **<font style="color:rgb(51,51,51);">11.2 问题诊断工具 - mongotop</font>**
+## **<font style="color:rgb(51,51,51);">11.2 问题诊断工具 - mongotop</font>**
 ![](../../images/1713959724615-541e9b3c-6641-411b-887b-c13b95bfd4a3.png)
 
-### **<font style="color:rgb(51,51,51);">11.3 问题诊断 – mongod 慢日志</font>**
+## **<font style="color:rgb(51,51,51);">11.3 问题诊断 – mongod 慢日志</font>**
 ```shell
 配置方法：
 方法一：启动命令行
@@ -1406,8 +1406,8 @@ db.system.profile.find( { millis : { $gt : 100 } } )
 
 ![](../../images/1713959745168-785e2571-9d41-4334-93f1-d4e601adfcc7.png)
 
-## **<font style="color:rgb(51,51,51);">12. MongoDB的生产上线及版本升级 </font>**
-### **<font style="color:rgb(51,51,51);">12.1 上线前：性能测试</font>**
+# **<font style="color:rgb(51,51,51);">12. MongoDB的生产上线及版本升级 </font>**
+## **<font style="color:rgb(51,51,51);">12.1 上线前：性能测试</font>**
 ```shell
 模拟真实压力，对集群完成充分的性能测试，了解集群概况。
 性能测试的输出：
@@ -1416,7 +1416,7 @@ db.system.profile.find( { millis : { $gt : 100 } } )
 • 根据压测结果按需调整硬件资源；
 ```
 
-### **<font style="color:rgb(51,51,51);">12.2 上线前：环境检查</font>**
+## **<font style="color:rgb(51,51,51);">12.2 上线前：环境检查</font>**
 ```shell
 按照最佳实践要求对生产环境所使用的操作系统进行检查和调整。最常见的需要调整的参数包括：
 • 禁用 NUMA，否则在某些情况下会引起突发大量swap交换；
@@ -1426,7 +1426,7 @@ db.system.profile.find( { millis : { $gt : 100 } } )
 • 关闭 atime，提高数据文件访问效率；
 ```
 
-### **<font style="color:rgb(51,51,51);">12.3 上线后</font>**
+## **<font style="color:rgb(51,51,51);">12.3 上线后</font>**
 ```shell
 性能监控
 为防止突发状况，应对常见性能指标进行监控以及时发现问题。
@@ -1437,21 +1437,21 @@ db.system.profile.find( { millis : { $gt : 100 } } )
 ● MongoDB 配置是否有变动；
 ```
 
-### **<font style="color:rgb(51,51,51);">12.4 MongoDB 版本发布规律</font>**
+## **<font style="color:rgb(51,51,51);">12.4 MongoDB 版本发布规律</font>**
 ![](../../images/1713959798988-d10a0514-6547-41fe-955f-e8c83b6e6548.png)
 
-### **<font style="color:rgb(51,51,51);">12.5 主版本升级流程</font>**
+## **<font style="color:rgb(51,51,51);">12.5 主版本升级流程</font>**
 ![](../../images/1713959812282-159eca15-4e7c-47bb-aae8-c239e689a20e.png)
 
 ```shell
 参考 ： https://docs.mongodb.com/ecosystem/drivers/driver-compatibilityreference/
 ```
 
-### **<font style="color:rgb(51,51,51);">12.6 MongoDB 单机升级流程</font>**
+## **<font style="color:rgb(51,51,51);">12.6 MongoDB 单机升级流程</font>**
 ![](../../images/1713959830357-f21448de-e8e9-4caf-8e09-0c90b4880686.png)
 
 ```shell
-## 升级模拟4.0.18升级4.2.8版本
+# 升级模拟4.0.18升级4.2.8版本
 1. 安装高版本软件至/data/app/mongodb
 2. 停低版本实例
 [mongod@db01 ~]$ /opt/mongodb/bin/mongod -f /data/mongo40/conf/mongo.conf -
@@ -1472,7 +1472,7 @@ child process started successfully, parent exiting
 { "featureCompatibilityVersion" : { "version" : "4.2" }, "ok" : 1 }
 ```
 
-### **<font style="color:rgb(51,51,51);">12.7 MongoDB 复制集升级流程</font>**
+## **<font style="color:rgb(51,51,51);">12.7 MongoDB 复制集升级流程</font>**
 ![](../../images/1713959853059-32ea418a-d575-419e-a84e-c41b6d49a95a.png)
 
 ```shell
@@ -1489,7 +1489,7 @@ rs.stepdown()
 { "featureCompatibilityVersion" : { "version" : "4.4" }, "ok" : 1 }
 ```
 
-### **<font style="color:rgb(51,51,51);">12.8 MongoDB 分片集群升级流程</font>**
+## **<font style="color:rgb(51,51,51);">12.8 MongoDB 分片集群升级流程</font>**
 ![](../../images/1713959880615-fbfdd076-5918-438b-bd12-aee7a4852d39.png)
 
 ```shell
@@ -1505,7 +1505,7 @@ sh.stopBalancer()
 sh.startBalancer()
 ```
 
-### **<font style="color:rgb(51,51,51);">12.9 版本升级：在线升级注意</font>**
+## **<font style="color:rgb(51,51,51);">12.9 版本升级：在线升级注意</font>**
 ```shell
 MongoDB支持在线升级，即升级过程中不需要间断服务；
 升级过程中虽然会发生主从节点切换，存在短时间不可用，但是：
@@ -1519,7 +1519,7 @@ MongoDB支持在线升级，即升级过程中不需要间断服务；
 • 有一些升级内部数据格式如密码加密字段，需要在升级过程中由mongo进行转换
 ```
 
-### **<font style="color:rgb(51,51,51);">12.10 降级</font>**
+## **<font style="color:rgb(51,51,51);">12.10 降级</font>**
 ```shell
 • 如果升级无论因何种原因失败，则需要降级到原有旧版本。在降级过程中：
 • 滚动降级过程中集群可以保持在线，仅在切换节点时会产生一定的不可写时间；
@@ -1529,8 +1529,8 @@ NumberDecimal 的文档先去除该字段；
 • FCV 设置完成后再滚动替换为旧版本。
 ```
 
-## **<font style="color:rgb(51,51,51);">13、异构平台在线迁移 </font>**
-### **<font style="color:rgb(51,51,51);">13.1 为什么要迁移至MongoDB </font>**
+# **<font style="color:rgb(51,51,51);">13、异构平台在线迁移 </font>**
+## **<font style="color:rgb(51,51,51);">13.1 为什么要迁移至MongoDB </font>**
 ### **<font style="color:rgb(51,51,51);">13.1.1 MongoDB数据库定位</font>**
 ```shell
 ● OLTP /OLAP 数据库
@@ -1546,7 +1546,7 @@ NumberDecimal 的文档先去除该字段；
 ### **<font style="color:rgb(51,51,51);">13.1.3 基于场景选择 MongoDB</font>**
 ![](../../images/1713959969955-32566b85-459b-4d59-8b6f-f116f62249ef.png)
 
-### **<font style="color:rgb(51,51,51);">13.2 迁移痛点</font>**
+## **<font style="color:rgb(51,51,51);">13.2 迁移痛点</font>**
 ```shell
 关系型到关系型 – 相对简单
 • Oracle -> MySQL, Oracle – PostgreSQL
@@ -1584,7 +1584,7 @@ MongoDB 不支持SQL的增删改，结果集也不是 ResultSet
 等..
 ```
 
-### **<font style="color:rgb(51,51,51);">13.3 DBA主要关注--数据迁移 </font>**
+## **<font style="color:rgb(51,51,51);">13.3 DBA主要关注--数据迁移 </font>**
 **<font style="color:rgb(51,51,51);">迁移方式</font>**
 
 ```shell
@@ -1642,6 +1642,6 @@ mongoimport 将 CSV 或者 JSON 文件导入 MongoDB 数据库
 - 为保证不遗漏数据，仍然先要执行一次批量同步
 ```
 
-### **<font style="color:rgb(51,51,51);">13.4 实时同步方案-TPDATA应用</font>**
+## **<font style="color:rgb(51,51,51);">13.4 实时同步方案-TPDATA应用</font>**
 **<font style="color:rgb(51,51,51);"></font>**![](../../images/1713960137638-271a3d4a-4faa-4888-ad9b-ce3fca775bae.png)
 

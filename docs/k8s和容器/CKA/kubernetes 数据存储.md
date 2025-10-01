@@ -392,7 +392,27 @@ access.log  error.log
 
 
 
+#### StorageClass PV PVC之间的关系
++ **StorageClass**：存储类型 & PV 生产方式的定义。
++ **PV**：实际的存储卷，可以静态写死，也可以根据 StorageClass 动态生成。
++ **PVC**：Pod 用来申请存储，PVC 指定 StorageClass 时，才会触发 **动态创建 PV**。
 
+一个典型流程
+
+1. 管理员：写好 `fast-ssd` StorageClass。
+2. 用户：
+
+```plain
+kind: PersistentVolumeClaim
+spec:
+  storageClassName: fast-ssd
+  resources:
+    requests:
+      storage: 10Gi
+```
+
+3. 系统：看到 PVC → 用 `fast-ssd` → 动态创建 PV → 绑定 PVC。
+4. Pod 挂载 PVC，用户拿到存储。
 
 #### PV与PVC之间的关系
 + pv提供存储资源(生产者)

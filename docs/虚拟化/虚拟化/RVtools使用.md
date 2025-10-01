@@ -1,4 +1,10 @@
-<font style="color:rgb(89, 97, 114);">RVTools 当前最新</font>[版本](https://www.robware.net/versionInfo)<font style="color:rgb(89, 97, 114);">为 </font>[RVTools 4.6.1](https://resources.robware.net/resources/prod/RVTools4.6.1.msi)<font style="color:rgb(89, 97, 114);">，支持 vSphere 5.x、6.x、7.x、8.x 版本，Windows 安装环境需要 </font>[.NET 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462)<font style="color:rgb(89, 97, 114);"> 支持。RVTools 默认安装在“C:\Program Files (x86)\Dell\RVTools”文件夹，如果是自定义安装那找到自行设置的文件夹即可，打开文件资源管理器导航到该文件夹后可以看到如下图内容。</font>
+<font style="color:rgb(89, 97, 114);">参考</font>
+
+[【VMware vSphere】使用RVTools中的PowerShell脚本创建导出vSphere环境信息的自动化任务。 - JUNIOR_MU - 博客园](https://www.cnblogs.com/juniormu/p/18260908)
+
+<font style="color:rgb(89, 97, 114);">RVTools 当前最新</font>[版本](https://www.robware.net/versionInfo)<font style="color:rgb(89, 97, 114);">为 4.7.1，支持 vSphere 5.x、6.x、7.x、8.x 版本，Windows 安装环境需要 </font>[.NET 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462)<font style="color:rgb(89, 97, 114);"> 支持。RVTools 默认安装在“C:\Program Files (x86)\Dell\RVTools”文件夹，如果是自定义安装那找到自行设置的文件夹即可，打开文件资源管理器导航到该文件夹后可以看到如下图内容。</font>
+
+[RVTools （英语） |安装程序 |4.7.1 安装程序 | Dell 中国](https://www.dell.com/support/kbdoc/zh-cn/000325532/rvtools-%E8%8B%B1%E8%AF%AD-%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F-4-7-1-%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F)
 
 <font style="color:rgb(89, 97, 114);">我后面就不再使用文件资源管理器进行查看，全部通过 PowerShell 查看，你可以打开 PowerShell 使用下面命令进入到 RVTools 的安装文件夹。</font>
 

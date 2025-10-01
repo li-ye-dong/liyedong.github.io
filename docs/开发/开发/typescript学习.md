@@ -1,10 +1,10 @@
-## typescript学习
+# typescript学习
 ```powershell
 npm install typescript -g
 ```
 
-## 类型
-### <font style="color:rgb(77, 77, 77);">基础类型：</font>
+# 类型
+## <font style="color:rgb(77, 77, 77);">基础类型：</font>
 <font style="color:rgb(77, 77, 77);">Boolean、Number、String、null、undefined 以及 </font><font style="color:rgb(254, 44, 36);">ES6</font><font style="color:rgb(77, 77, 77);"> 的  </font>[Symbol](http://es6.ruanyifeng.com/#docs/symbol)<font style="color:rgb(77, 77, 77);"> 和 </font><font style="color:rgb(254, 44, 36);">ES10</font><font style="color:rgb(77, 77, 77);"> 的 </font>[BigInt](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt)<font style="color:rgb(77, 77, 77);">。</font>
 
 <font style="color:rgb(77, 77, 77);">其中 ` 用来定义 </font>[<font style="color:rgb(77, 77, 77);">ES6 中的模板字符串</font>](http://es6.ruanyifeng.com/#docs/string%23%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2)<font style="color:rgb(77, 77, 77);">，${expr} 用来在模板字符串中嵌入表达式。</font>
@@ -17,7 +17,7 @@ let a: string = '123'
 let str: string = `dddd${a}`
 ```
 
-### 任意类型
+## 任意类型
 ### <font style="color:rgb(79, 79, 79);">Any 类型 和 unknown 顶级类型</font>
 ```plain
 nodejs 环境执行ts
@@ -31,7 +31,7 @@ anys = '123'
 anys = true
 ```
 
-### <font style="color:rgb(34, 34, 38);">接口和对象类型</font>
+## <font style="color:rgb(34, 34, 38);">接口和对象类型</font>
 <font style="color:rgb(77, 77, 77);">在</font>[typescript](https://so.csdn.net/so/search?from=pc_blog_highlight&q=typescript)<font style="color:rgb(77, 77, 77);">中，我们定义对象的方式要用关键字</font>**<font style="color:rgb(77, 77, 77);">interface</font>**<font style="color:rgb(77, 77, 77);">（接口），我的理解是使用</font>**<font style="color:rgb(77, 77, 77);">interface</font>**<font style="color:rgb(77, 77, 77);">来定义一种约束，让数据的结构满足约束的格式。定义方式如下：</font>
 
 ```powershell
@@ -101,7 +101,7 @@ const person: Person = {
 }
 ```
 
-### <font style="color:rgb(34, 34, 38);">数组类型</font>
+## <font style="color:rgb(34, 34, 38);">数组类型</font>
 ```typescript
 
 //类型加中括号
@@ -160,7 +160,7 @@ let list: any[] = ['test', 1, [],{a:1}]
 
 
 
-### <font style="color:rgb(79, 79, 79);">函数的类型</font>
+## <font style="color:rgb(79, 79, 79);">函数的类型</font>
 ```typescript
 //注意，参数不能多传，也不能少传 必须按照约定的类型来
 const fn = (name: string, age:number): string => {
@@ -236,8 +236,8 @@ fn(123)
 fn('123',456)
 ```
 
-## <font style="color:rgb(34, 34, 38);">类型断言 | 联合类型 | 交叉类型</font>
-### <font style="color:rgb(79, 79, 79);">联合类型</font>
+# <font style="color:rgb(34, 34, 38);">类型断言 | 联合类型 | 交叉类型</font>
+## <font style="color:rgb(79, 79, 79);">联合类型</font>
 ```typescript
 //例如我们的手机号通常是13XXXXXXX 为数字类型 这时候产品说需要支持座机
 //所以我们就可以使用联合类型支持座机字符串
@@ -256,7 +256,7 @@ const fn = (something:number | boolean):boolean => {
 }
 ```
 
-### <font style="color:rgb(79, 79, 79);">交叉类型</font>
+## <font style="color:rgb(79, 79, 79);">交叉类型</font>
 <font style="color:rgb(77, 77, 77);">多种类型的集合，联合对象将具有所联合类型的所有成员</font>
 
 ```typescript
@@ -275,7 +275,7 @@ const xiaoman = (man: People & Man) => {
 xiaoman({age: 18,height: 180,sex: 'male'});
 ```
 
-### <font style="color:rgb(79, 79, 79);">类型断言</font>
+## <font style="color:rgb(79, 79, 79);">类型断言</font>
 
 
 ```typescript
@@ -338,7 +338,7 @@ a1.unshift(30); // 错误，此时已经断言字面量为[10, 20],数据无法�
 a2.unshift(30); // 通过，没有修改指针
 ```
 
-## <font style="color:rgb(34, 34, 38);">内置对象</font>
+# <font style="color:rgb(34, 34, 38);">内置对象</font>
 <font style="color:rgb(77, 77, 77);">JavaScript 中有很多</font>[内置对象](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)<font style="color:rgb(77, 77, 77);">，它们可以直接在 </font>[TypeScript](https://so.csdn.net/so/search?q=TypeScript&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);"> 中当做定义好了的类型。</font>
 
 ### <font style="color:rgb(79, 79, 79);">ECMAScript 的内置对象</font>
@@ -493,7 +493,7 @@ interface HTMLElementTagNameMap {
 }
 ```
 
-### <font style="color:rgb(79, 79, 79);">定义Promise</font>
+## <font style="color:rgb(79, 79, 79);">定义Promise</font>
 <font style="color:rgb(77, 77, 77);">如果我们不指定返回的类型TS是推断不出来返回的是什么类型</font>
 
 <font style="color:rgb(77, 77, 77);">指定返回的类型</font>
@@ -512,7 +512,7 @@ promise().then(res=>{
 })
 ```
 
-## <font style="color:rgb(34, 34, 38);">Class类</font>
+# <font style="color:rgb(34, 34, 38);">Class类</font>
 <font style="color:rgb(77, 77, 77);">ES6提供了更接近传统语言的写法，引入了Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。基本上，ES6的class可以看作只是一个</font>[语法糖](https://so.csdn.net/so/search?q=%E8%AF%AD%E6%B3%95%E7%B3%96&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">，它的绝大部分功能，ES5都可以做到，新的class写法只是让对象原型的写法更加清晰、更像</font>[面向对象编程](https://so.csdn.net/so/search?q=%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">的语法而已。上面的代码用ES6的“类”改写，就是下面这样。</font>
 
 ```typescript
@@ -538,7 +538,7 @@ class Person {
 }
 ```
 
-### <font style="color:rgb(79, 79, 79);">类的修饰符</font>
+## <font style="color:rgb(79, 79, 79);">类的修饰符</font>
 ### <font style="color:rgb(79, 79, 79);">总共有三个 public private protected</font>
 ```typescript
 class Person {
@@ -569,7 +569,7 @@ let man = new Man()
 man.some//保护属性  无法直接访问
 ```
 
-### <font style="color:rgb(79, 79, 79);">static 静态属性 和 静态方法</font>
+## <font style="color:rgb(79, 79, 79);">static 静态属性 和 静态方法</font>
 ```typescript
 class Person {
     public name:string
@@ -607,7 +607,7 @@ let man = new Man()
 man.some//保护属性  无法直接访问
 ```
 
-### <font style="color:rgb(79, 79, 79);">interface 定义 类</font>
+## <font style="color:rgb(79, 79, 79);">interface 定义 类</font>
 ```typescript
  
 interface PersonClass {
@@ -641,7 +641,7 @@ class Person extends A implements PersonClass,PersonClass2 {
 }
 ```
 
-### <font style="color:rgb(79, 79, 79);">抽象类 </font>
+## <font style="color:rgb(79, 79, 79);">抽象类 </font>
 <font style="color:rgb(77, 77, 77);">应用场景如果你写的类实例化之后毫无用处此时我可以把他定义为抽象类</font>
 
 <font style="color:rgb(77, 77, 77);">或者你也可以把他作为一个基类-> 通过继承一个派生类去实现基类的一些方法</font>
@@ -849,7 +849,7 @@ const v = new Vue({
 </html>
 ```
 
-## <font style="color:rgb(34, 34, 38);">元组类型</font>
+# <font style="color:rgb(34, 34, 38);">元组类型</font>
 **<font style="color:rgb(77, 77, 77);">元组（Tuple）是固定数量的不同类型的元素的组合</font>**<font style="color:rgb(77, 77, 77);">。</font>
 
 ```typescript
@@ -865,13 +865,13 @@ let arr2: readonly [number,boolean,string,undefined] = [1,true,'sring',undefined
 let a:[x:number,y?:boolean] = [1]
 ```
 
-### <font style="color:rgb(79, 79, 79);">越界元素</font>
+## <font style="color:rgb(79, 79, 79);">越界元素</font>
 ```typescript
 let arr:[number,string] = [1,'string']
 arr.push(true)//error
 ```
 
-### **<font style="color:rgb(79, 79, 79);">应用场景 例如定义excel返回的数据</font>**
+## **<font style="color:rgb(79, 79, 79);">应用场景 例如定义excel返回的数据</font>**
 ```typescript
 let excel: [string, string, number, string][] = [
     ['title', 'name', 1, '123'],
@@ -882,7 +882,7 @@ let excel: [string, string, number, string][] = [
 ]
 ```
 
-## <font style="color:rgb(34, 34, 38);">枚举类型</font>
+# <font style="color:rgb(34, 34, 38);">枚举类型</font>
 ### <font style="color:rgb(79, 79, 79);">数字枚举</font>
 <font style="color:rgb(77, 77, 77);">例如 红绿蓝 Red = 0 Green = 1 Blue= 2 分别代表红色0 绿色为1 蓝色为2</font>
 
@@ -990,7 +990,7 @@ let nameOfA = Enum[a];
 console.log(nameOfA); //fall
 ```
 
-## <font style="color:rgb(34, 34, 38);">类型推论|类型别名</font>
+# <font style="color:rgb(34, 34, 38);">类型推论|类型别名</font>
 ### <font style="color:rgb(79, 79, 79);">什么是类型推论</font>
 ```typescript
 let str = "小满zs"
@@ -1004,7 +1004,7 @@ let str = "小满zs"
 
 <font style="color:rgb(77, 77, 77);">2.如果你声明变量没有定义类型也没有赋值这时候TS会推断成any类型可以进行任何操作</font>
 
-### <font style="color:rgb(79, 79, 79);">类型别名</font>
+## <font style="color:rgb(79, 79, 79);">类型别名</font>
 <font style="color:rgb(77, 77, 77);">type 关键字（可以给一个类型定义一个名字）多用于复合类型</font>
 
 <font style="color:rgb(77, 77, 77);">定义类型别名</font>
@@ -1077,7 +1077,7 @@ type a = 1 extends unknow ? 1 : 0 //1
 type a = 1 extends never ? 1 : 0 //0
 ```
 
-## <font style="color:rgb(34, 34, 38);">never类型</font>
+# <font style="color:rgb(34, 34, 38);">never类型</font>
 [TypeScript](https://so.csdn.net/so/search?q=TypeScript&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);"> 将使用 never 类型来表示不应该存在的状态(很抽象是不是)</font>
 
 
@@ -1165,7 +1165,7 @@ function isXiaoMan(value:A) {
 
 <font style="color:rgb(77, 77, 77);">由于任何类型都不能赋值给 never 类型的变量，所以当存在进入 default 分支的可能性时，TS的类型检查会及时帮我们发现这个问题</font>
 
-## <font style="color:rgb(34, 34, 38);">symbol类型</font>
+# <font style="color:rgb(34, 34, 38);">symbol类型</font>
 <font style="color:rgb(79, 79, 79);">自ECMAScript 2015起，</font>**<font style="color:rgb(79, 79, 79);">symbol</font>**<font style="color:rgb(79, 79, 79);">成为了一种新的原生类型，就像</font>**<font style="color:rgb(79, 79, 79);">number</font>**<font style="color:rgb(79, 79, 79);">和</font>**<font style="color:rgb(79, 79, 79);">string</font>**<font style="color:rgb(79, 79, 79);">一样。</font>
 
 <font style="color:rgb(77, 77, 77);">symbol</font><font style="color:rgb(77, 77, 77);">类型的值是通过</font><font style="color:rgb(77, 77, 77);">Symbol</font><font style="color:rgb(77, 77, 77);">构造函数创建的。</font>
@@ -1377,7 +1377,7 @@ for (let val of obj) {
 **<font style="color:rgb(77, 77, 77);">Symbol.unscopables</font>**<font style="color:rgb(77, 77, 77);">  
 </font><font style="color:rgb(77, 77, 77);">对象，它自己拥有的属性会被with作用域排除在外。</font>
 
-## <font style="color:rgb(34, 34, 38);">泛型</font>
+# <font style="color:rgb(34, 34, 38);">泛型</font>
 [泛型](https://so.csdn.net/so/search?q=%E6%B3%9B%E5%9E%8B&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">在TypeScript 是很重要的东西 例如vue3 是用ts编写的 里面用到了非常多的泛型</font>
 
 <font style="color:rgb(77, 77, 77);">ok:我们看一个小例子</font>
@@ -1518,7 +1518,7 @@ str.attr = ['1','2','3']
 str.add('123')
 ```
 
-## <font style="color:rgb(34, 34, 38);">tsconfig.json配置文件</font>
+# <font style="color:rgb(34, 34, 38);">tsconfig.json配置文件</font>
 ### <font style="color:rgb(79, 79, 79);">生成tsconfig.json 文件</font>
 <font style="color:rgb(77, 77, 77);">这个文件是通过tsc --init命令生成的</font>
 
@@ -1590,37 +1590,37 @@ str.add('123')
 
 <font style="color:rgb(77, 77, 77);">介绍几个常用的</font>
 
-### <font style="color:rgb(79, 79, 79);">1.include</font>
+## <font style="color:rgb(79, 79, 79);">1.include</font>
 <font style="color:rgb(77, 77, 77);">指定编译文件默认是编译当前目录下所有的ts文件</font>
 
-### <font style="color:rgb(79, 79, 79);">2.exclude</font>
+## <font style="color:rgb(79, 79, 79);">2.exclude</font>
 <font style="color:rgb(77, 77, 77);">指定排除的文件</font>
 
-### <font style="color:rgb(79, 79, 79);">3.target</font>
+## <font style="color:rgb(79, 79, 79);">3.target</font>
 <font style="color:rgb(77, 77, 77);">指定编译js 的版本例如</font>[es5](https://so.csdn.net/so/search?q=es5&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">  es6</font>
 
-### <font style="color:rgb(79, 79, 79);">4.allowJS</font>
+## <font style="color:rgb(79, 79, 79);">4.allowJS</font>
 <font style="color:rgb(77, 77, 77);">是否允许编译js文件</font>
 
-### <font style="color:rgb(79, 79, 79);">5.removeComments</font>
+## <font style="color:rgb(79, 79, 79);">5.removeComments</font>
 <font style="color:rgb(77, 77, 77);">是否在</font>[编译过程](https://so.csdn.net/so/search?q=%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">中删除文件中的注释</font>
 
-### <font style="color:rgb(79, 79, 79);">6.rootDir</font>
+## <font style="color:rgb(79, 79, 79);">6.rootDir</font>
 <font style="color:rgb(77, 77, 77);">编译文件的目录</font>
 
-### <font style="color:rgb(79, 79, 79);">7.outDir</font>
+## <font style="color:rgb(79, 79, 79);">7.outDir</font>
 <font style="color:rgb(77, 77, 77);">输出的目录</font>
 
-### <font style="color:rgb(79, 79, 79);">8.sourceMap</font>
+## <font style="color:rgb(79, 79, 79);">8.sourceMap</font>
 <font style="color:rgb(77, 77, 77);">代码源文件</font>
 
-### <font style="color:rgb(79, 79, 79);">9.strict</font>
+## <font style="color:rgb(79, 79, 79);">9.strict</font>
 [严格模式](https://so.csdn.net/so/search?q=%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F&spm=1001.2101.3001.7020)
 
-### <font style="color:rgb(79, 79, 79);">10.module</font>
+## <font style="color:rgb(79, 79, 79);">10.module</font>
 <font style="color:rgb(77, 77, 77);">默认common.js  可选es6模式 amd  umd 等</font>
 
-## <font style="color:rgb(34, 34, 38);">namespace命名空间</font>
+# <font style="color:rgb(34, 34, 38);">namespace命名空间</font>
 <font style="color:rgb(77, 77, 77);">我们在工作中无法避免</font>[全局变量](https://so.csdn.net/so/search?q=%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">造成的污染，TypeScript提供了namespace 避免这个问题出现</font>
 
 + <font style="color:rgb(51, 51, 51);">内部模块，主要用于组织代码，避免命名冲突。</font>
@@ -1711,7 +1711,7 @@ import X = A.B.C
 console.log(X);
 ```
 
-## <font style="color:rgb(34, 34, 38);">模块解析</font>
+# <font style="color:rgb(34, 34, 38);">模块解析</font>
 <font style="color:rgb(77, 77, 77);">前端</font>[模块化规范](https://so.csdn.net/so/search?q=%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">是有非常多的</font>
 
 <font style="color:rgb(77, 77, 77);">在</font>[es6模块化](https://so.csdn.net/so/search?q=es6%E6%A8%A1%E5%9D%97%E5%8C%96&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">规范之前有</font>
@@ -1828,8 +1828,8 @@ if(true){
 }
 ```
 
-## <font style="color:rgb(34, 34, 38);">声明文件d.ts</font>
-### <font style="color:rgb(79, 79, 79);">声明文件 declare  </font>
+# <font style="color:rgb(34, 34, 38);">声明文件d.ts</font>
+## <font style="color:rgb(79, 79, 79);">声明文件 declare  </font>
 <font style="color:rgb(77, 77, 77);">当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。</font>
 
 ```javascript
@@ -1868,7 +1868,7 @@ interface 和 type 声明全局类型
 
 <font style="color:rgb(13, 0, 22);">名称.d.ts 创建一个文件去声明</font>
 
-### <font style="color:rgb(79, 79, 79);">案例手写声明文件</font>
+## <font style="color:rgb(79, 79, 79);">案例手写声明文件</font>
 <font style="color:rgb(77, 77, 77);">index.ts</font>
 
 ```javascript
@@ -1914,10 +1914,10 @@ declare module 'express' {
 }
 ```
 
-### <font style="color:rgb(79, 79, 79);">关于这些第三发的声明文件包都收录到了 </font>[npm](https://www.npmjs.com/~types?activeTab=packages)
+## <font style="color:rgb(79, 79, 79);">关于这些第三发的声明文件包都收录到了 </font>[npm](https://www.npmjs.com/~types?activeTab=packages)
 <font style="color:rgb(77, 77, 77);">npm js</font>
 
-## <font style="color:rgb(34, 34, 38);">Mixins混入</font>
+# <font style="color:rgb(34, 34, 38);">Mixins混入</font>
 [TypeScript](https://so.csdn.net/so/search?q=TypeScript&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);"> 混入 Mixins 其实vue也有mixins这个东西 你可以把他看作为合并</font>
 
 ### <font style="color:rgb(79, 79, 79);">1.对象混入</font>
@@ -1994,7 +1994,7 @@ function Mixins(curCls: any, itemCls: any[]) {
 }
 ```
 
-## <font style="color:rgb(34, 34, 38);">装饰器Decorator</font>
+# <font style="color:rgb(34, 34, 38);">装饰器Decorator</font>
 ### <font style="color:rgb(79, 79, 79);">Decorator 装饰器是一项实验性特性，在未来的版本中可能会发生改变</font>
 <font style="color:rgb(77, 77, 77);">它们不仅增加了代码的可读性，清晰地表达了意图，而且提供一种方便的手段，增加或修改类的功能</font>
 
@@ -2265,8 +2265,8 @@ const http = new Http() as any
 // console.log(http.base)
 ```
 
-## <font style="color:rgb(34, 34, 38);">webpack构建ts+vue3项目</font>
-### <font style="color:rgb(79, 79, 79);">构建项目目录</font>
+# <font style="color:rgb(34, 34, 38);">webpack构建ts+vue3项目</font>
+## <font style="color:rgb(79, 79, 79);">构建项目目录</font>
 + <font style="color:rgb(51, 51, 51);">src</font>
 + <font style="color:rgb(51, 51, 51);">-- main.ts</font>
 + <font style="color:rgb(51, 51, 51);">-- App.vue</font>
@@ -2276,7 +2276,7 @@ const http = new Http() as any
 + <font style="color:rgb(51, 51, 51);">package.json</font>
 + <font style="color:rgb(51, 51, 51);">tsconfig.json</font>
 
-### <font style="color:rgb(79, 79, 79);">基础构建</font>
+## <font style="color:rgb(79, 79, 79);">基础构建</font>
 ```typescript
 
 npm install webpack -D
@@ -2328,7 +2328,7 @@ module.exports = config
   
  
 
-### <font style="color:rgb(79, 79, 79);">支持TypeScript </font>
+## <font style="color:rgb(79, 79, 79);">支持TypeScript </font>
 <font style="color:rgb(77, 77, 77);">增加依赖</font>
 
 ```javascript
@@ -2362,7 +2362,7 @@ const config = {
 module.exports = config
 ```
 
-### <font style="color:rgb(79, 79, 79);">支持vue</font>
+## <font style="color:rgb(79, 79, 79);">支持vue</font>
 <font style="color:rgb(77, 77, 77);">安装依赖</font>
 
 ```javascript
@@ -2454,7 +2454,7 @@ const config = {
 module.exports = config
 ```
 
-### <font style="color:rgb(79, 79, 79);">支持css + less</font>
+## <font style="color:rgb(79, 79, 79);">支持css + less</font>
 <font style="color:rgb(77, 77, 77);">安装依赖</font>
 
 ```bash
@@ -2513,7 +2513,7 @@ const config = {
 module.exports = config
 ```
 
-### <font style="color:rgb(79, 79, 79);">代码分包</font>
+## <font style="color:rgb(79, 79, 79);">代码分包</font>
 <font style="color:rgb(77, 77, 77);">性能优化 默认把所有代码打包到一个js文件体积太大了我们可以进行代码分包减少体积</font>
 
 ```javascript
@@ -2585,7 +2585,7 @@ const config = {
 module.exports = config
 ```
 
-### <font style="color:rgb(79, 79, 79);">单独提取css</font>
+## <font style="color:rgb(79, 79, 79);">单独提取css</font>
 <font style="color:rgb(77, 77, 77);">目前是通过js动态插入style标签的方式进行的，但是我们希望通过link标签引入</font>
 
 <font style="color:rgb(77, 77, 77);">安装依赖</font>
@@ -2665,7 +2665,7 @@ const config = {
 module.exports = config
 ```
 
-## <font style="color:rgb(34, 34, 38);">实战TS编写发布订阅模式</font>
+# <font style="color:rgb(34, 34, 38);">实战TS编写发布订阅模式</font>
 概述
 
 
@@ -2686,7 +2686,7 @@ module.exports = config
 
 在 Vue 2 中，可以使用事件总线（Event Bus）机制来实现组件之间的通信。
 
-### <font style="color:rgb(79, 79, 79);">具体代码</font>
+## <font style="color:rgb(79, 79, 79);">具体代码</font>
 <font style="color:rgb(77, 77, 77);">on订阅/监听</font>
 
 <font style="color:rgb(77, 77, 77);">emit 发布/注册</font>
@@ -2773,7 +2773,7 @@ interface EventFace {
   o.emit('abc', 2, true, '小满');
 ```
 
-## <font style="color:rgb(34, 34, 38);">weakMap，weakSet，set，map</font>
+# <font style="color:rgb(34, 34, 38);">weakMap，weakSet，set，map</font>
 在es5的时候常用的Array object ，在es6又新增了两个类型，Set和Map，类似于数组和对象。
 
 
@@ -2878,7 +2878,7 @@ setTimeout(()=>{
 },500)
 ```
 
-## <font style="color:rgb(34, 34, 38);">TS进阶用法proxy & Reflect</font>
+# <font style="color:rgb(34, 34, 38);">TS进阶用法proxy & Reflect</font>
 学习proxy对象代理
 
 
@@ -3049,7 +3049,7 @@ autorun(()=>{
 person.attr = '威猛个捶捶'
 ```
 
-## <font style="color:rgb(34, 34, 38);">TypeScript类型守卫</font>
+# <font style="color:rgb(34, 34, 38);">TypeScript类型守卫</font>
 #### <font style="color:rgb(79, 79, 79);">类型守卫</font>
 <font style="color:rgb(77, 77, 77);">在 TypeScript 中，类型守卫（</font><font style="color:rgb(199, 37, 78);background-color:rgb(249, 242, 244);">Type Guards</font><font style="color:rgb(77, 77, 77);">）是一种用于在运行时检查类型的机制。它们允许你在代码中执行特定的检查，以确定变量的类型，并在需要时执行相应的操作。</font>
 
@@ -3272,7 +3272,7 @@ fn(obj)
 
 ```
 
-## <font style="color:rgb(34, 34, 38);">TypeScript进阶类型兼容</font>
+# <font style="color:rgb(34, 34, 38);">TypeScript进阶类型兼容</font>
 <font style="color:rgb(77, 77, 77);">所谓的类型兼容性，就是用于确定一个类型是否能赋值给其他的类型。</font>[typeScript](https://so.csdn.net/so/search?q=typeScript&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">中的类型兼容性是基于</font>**<font style="color:rgb(77, 77, 77);">结构类型</font>**<font style="color:rgb(77, 77, 77);">的（也就是形状），如果A要兼容B 那么A至少具有B相同的属性。</font>
 
 ### <font style="color:rgb(79, 79, 79);">1.协变 也可以叫鸭子类型</font>
@@ -3357,8 +3357,8 @@ fnb = fna //正确
 ### <font style="color:rgb(79, 79, 79);">3.双向协变</font>
 <font style="color:rgb(77, 77, 77);">tsconfig strictFunctionTypes 设置为false 支持双向协变 fna fnb 随便可以来回赋值</font>![](../../images/1714897800493-52909e4a-46ee-47f1-b281-c673a8652b70.png)![](../../images/1714897806986-37e90c7c-9c92-49f4-bfba-d4ee123cdded.png)
 
-## <font style="color:rgb(34, 34, 38);">TS进阶用法-泛型工具</font>
-### <font style="color:rgb(79, 79, 79);">TypeScript 泛型工具：提升类型灵活性和重用性</font>
+# <font style="color:rgb(34, 34, 38);">TS进阶用法-泛型工具</font>
+## <font style="color:rgb(79, 79, 79);">TypeScript 泛型工具：提升类型灵活性和重用性</font>
 <font style="color:rgb(77, 77, 77);">泛型工具是一组预定义的泛型类型和操作符，用于操作和转换类型。它们可以帮助我们编写更灵活、更通用的代码，并提高代码的可读性和可维护性。</font>
 
 #### <font style="color:rgb(79, 79, 79);">Partial 和 Required</font>
@@ -3471,8 +3471,8 @@ type test = {
 }
 ```
 
-## <font style="color:rgb(34, 34, 38);">TS进阶用法-泛型工具2</font>
-### <font style="color:rgb(79, 79, 79);">Record</font>
+# <font style="color:rgb(34, 34, 38);">TS进阶用法-泛型工具2</font>
+## <font style="color:rgb(79, 79, 79);">Record</font>
 [泛型](https://so.csdn.net/so/search?q=%E6%B3%9B%E5%9E%8B&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">工具Record接受两个泛型K,T</font>
 
 <font style="color:rgb(77, 77, 77);">Record</font><font style="color:rgb(77, 77, 77);">工具类型有两个类型参数K和T，其中：</font>
@@ -3529,7 +3529,7 @@ let obj: CustomRecord<Key, Record<Key, Value>> = {
 }
 ```
 
-### <font style="color:rgb(79, 79, 79);">ReturnType<Fn></font>
+## <font style="color:rgb(79, 79, 79);">ReturnType<Fn></font>
 <font style="color:rgb(77, 77, 77);">这个工具主要适用于函数，能够</font>[提取函数](https://so.csdn.net/so/search?q=%E6%8F%90%E5%8F%96%E5%87%BD%E6%95%B0&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">所返回的类型。</font>
 
 ```typescript
@@ -3547,8 +3547,8 @@ type num = ReturnType<typeof fn>;
 type CustomFn<F extends Function>  = F extends (...args:any[])=> infer Res  ? Res :never;
 ```
 
-## <font style="color:rgb(34, 34, 38);">TS进阶用法infer</font>
-### <font style="color:rgb(79, 79, 79);">infer</font>
+# <font style="color:rgb(34, 34, 38);">TS进阶用法infer</font>
+## <font style="color:rgb(79, 79, 79);">infer</font>
 <font style="color:rgb(77, 77, 77);">言简意赅，infer就是</font>**<font style="color:rgb(77, 77, 77);">推导泛型参数</font>**
 
 <font style="color:rgb(254, 44, 36);">infer声明只能出现在extends子语句中</font>
@@ -3627,7 +3627,7 @@ type T = FnType<{a:(args:number)=>void,b:(args:string)=>void}>
 #### <font style="color:rgb(79, 79, 79);">总结</font>
 <font style="color:rgb(77, 77, 77);">在</font><font style="color:rgb(13, 0, 22);">协变</font><font style="color:rgb(77, 77, 77);">位置上同一个类型变量的多个候选类型会被推断为联合类型；在逆变位置上，同一个类型变量的多个候选类型则会被推断为交叉类型</font>
 
-## <font style="color:rgb(34, 34, 38);">infer 类型提取</font>
+# <font style="color:rgb(34, 34, 38);">infer 类型提取</font>
 <font style="color:rgb(77, 77, 77);">我们用infer 实现四个简单的例子</font>
 
 #### <font style="color:rgb(79, 79, 79);">1.提取头部元素</font>
@@ -3672,7 +3672,7 @@ type a = First<Arr>
 
 <font style="color:rgb(77, 77, 77);">道理一样的 反过来就行了</font>
 
-## <font style="color:rgb(34, 34, 38);">infer 递归</font>
+# <font style="color:rgb(34, 34, 38);">infer 递归</font>
 <font style="color:rgb(77, 77, 77);">有这么一个类型</font>
 
 ```typescript
@@ -3697,14 +3697,14 @@ type Res = ReveArr<Arr>
 
 ![](../../images/1714898368602-2a946665-9b75-453a-b477-4b2bf5d83e7d.png)<font style="color:rgb(77, 77, 77);">具体思路 首先使用</font>[泛型](https://so.csdn.net/so/search?q=%E6%B3%9B%E5%9E%8B&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">约束 约束只能传入数组类型的东西  然后从数组中提取第一个，放入新数组的末尾，反复此操作，形成递归 满足结束条件返回该类型</font>
 
-## <font style="color:rgb(34, 34, 38);">typescript封装LocalStorage并支持过期时间</font>
-### <font style="color:rgb(79, 79, 79);">思考</font>
+# <font style="color:rgb(34, 34, 38);">typescript封装LocalStorage并支持过期时间</font>
+## <font style="color:rgb(79, 79, 79);">思考</font>
 <font style="color:rgb(77, 77, 77);">在我们使用</font><font style="color:rgb(77, 77, 77);">cookie</font><font style="color:rgb(77, 77, 77);">的时候是可以设置有效期的，但是</font><font style="color:rgb(77, 77, 77);">localStorage</font><font style="color:rgb(77, 77, 77);">本身是没有该机制的，只能人为的手动删除，否则会一直存放在浏览器当中，可不可以跟cookie一样设置一个有效期。如果一直存放在浏览器又感觉有点浪费，那我们可以把</font><font style="color:rgb(77, 77, 77);">localStorage</font><font style="color:rgb(77, 77, 77);">进行二次封装实现该方案。</font>
 
-### <font style="color:rgb(79, 79, 79);">实现思路</font>
+## <font style="color:rgb(79, 79, 79);">实现思路</font>
 <font style="color:rgb(77, 77, 77);">在存储的时候设置一个过期时间，并且存储的数据进行格式化方便统一校验，在读取的时候</font>[获取当前时间](https://so.csdn.net/so/search?q=%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4&spm=1001.2101.3001.7020)<font style="color:rgb(77, 77, 77);">进行判断是否过期，如果过期进行删除即可。</font>
 
-### <font style="color:rgb(79, 79, 79);">代码实现</font>
+## <font style="color:rgb(79, 79, 79);">代码实现</font>
 **<font style="color:rgb(77, 77, 77);">目录结构</font>**![](../../images/1714898463843-3c715e08-85a5-434e-a571-2cce0ede902d.png)
 
 <font style="color:rgb(77, 77, 77);">enum ts 定义枚举</font>
@@ -3838,7 +3838,7 @@ export default {
 }
 ```
 
-### <font style="color:rgb(79, 79, 79);">代码测试</font>
+## <font style="color:rgb(79, 79, 79);">代码测试</font>
 ```typescript
 <!DOCTYPE html>
 <html lang="en">

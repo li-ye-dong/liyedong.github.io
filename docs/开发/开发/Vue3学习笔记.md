@@ -1,5 +1,5 @@
-## Vue3学习笔记
-### nvm安装和使用
+# Vue3学习笔记
+## nvm安装和使用
 
 
 ```plain
@@ -24,7 +24,7 @@ nvm version	查看当前的版本
 
 ```
 
-### npm和pnpm修改国内源
+## npm和pnpm修改国内源
 
 
 ```plain
@@ -35,7 +35,7 @@ pnpm config set registry https://registry.npmmirror.com
 
 
 
-### vue3项目创建
+## vue3项目创建
 
 
 > 前提条件
@@ -85,12 +85,12 @@ Done. Now run:
 
 
 
-### vue-router使用
+## vue-router使用
 ```plain
 
 ```
 
-### vue-pinia使用
+## vue-pinia使用
 
 
 main.js引入使用

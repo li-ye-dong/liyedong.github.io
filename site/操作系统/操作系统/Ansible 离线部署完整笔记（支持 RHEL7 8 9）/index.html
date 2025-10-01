@@ -1,0 +1,3128 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Ansible%20%E7%A6%BB%E7%BA%BF%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%95%B4%E7%AC%94%E8%AE%B0%EF%BC%88%E6%94%AF%E6%8C%81%20RHEL7%208%209%EF%BC%89/">
+      
+      
+        <link rel="prev" href="../AD%E5%9F%9F%E6%8E%A7%E6%9E%B6%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+      
+      
+        <link rel="next" href="../Centos%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Ansible 离线部署完整笔记（支持 RHEL7 8 9） - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#一miniconda-方式部署-ansible" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ansible 离线部署完整笔记（支持 RHEL7 8 9）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/ELK/alertmanager/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%BC%80%E5%8F%91/Django/Aliphe.js%E6%A1%86%E6%9E%B6/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%9C%B0%E5%9D%801/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%A7%91%E5%8D%8E%E5%B7%A5%E4%BD%9C/AD%E5%9F%9F%E5%AE%A1%E8%AE%A1%E9%85%8D%E7%BD%AE/" class="md-tabs__link">
+          
+  
+    
+  
+  科华工作
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../k8s%E5%92%8C%E5%AE%B9%E5%99%A8/Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/ELK/alertmanager/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E5%BC%80%E5%8F%91/Django/Aliphe.js%E6%A1%86%E6%9E%B6/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            操作系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows文件复制带权限
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    报错处理
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            报错处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/Sysprep%E5%A4%B1%E8%B4%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sysprep失败
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            操作系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AD%E5%9F%9F%E6%8E%A7%E6%9E%B6%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AD域控架构最佳实践
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Ansible 离线部署完整笔记（支持 RHEL7 8 9）
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Ansible 离线部署完整笔记（支持 RHEL7 8 9）
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一miniconda-方式部署-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、Miniconda 方式部署 Ansible
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、Miniconda 方式部署 Ansible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#打包整个虚拟环境部署ansible推荐" class="md-nav__link">
+    <span class="md-ellipsis">
+      打包整个虚拟环境部署ansible(推荐)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二初始化脚本inventory--hosts-配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、初始化脚本（inventory + hosts 配置）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、初始化脚本（inventory + hosts 配置）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init-ansible-envsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      init-ansible-env.sh
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三playbook-示例playbookssiteyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、playbook 示例：playbooks/site.yml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、playbook 示例：playbooks/site.yml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#安装-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 nginx
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四systemd-自动化服务ansible-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、systemd 自动化服务（ansible-pull）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、systemd 自动化服务（ansible-pull）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etcsystemdsystemansible-pullservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      /etc/systemd/system/ansible-pull.service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#启用服务" class="md-nav__link">
+    <span class="md-ellipsis">
+      启用服务
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五扩展介绍" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、扩展介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、扩展介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 ansible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ansible-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 ansible-core
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ansible-lint" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 ansible-lint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-moleculedocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 molecule[docker]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-netaddr" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 netaddr
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-jmespath" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 jmespath
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-总结建议用途分类" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 总结（建议用途分类）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Centos%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos安装docker和podman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Centos%E5%AE%89%E8%A3%85lnmp%E7%8E%AF%E5%A2%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Centos安装lnmp环境
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux模板优化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%8A%A5Possible%20SYN%20flooding%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux系统日志报Possible SYN flooding处理方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RHEL8%E6%90%AD%E5%BB%BAdns%E6%9C%8D%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RHEL8搭建dns服务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RHEL%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RHEL网络管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Systemd%E5%92%8Csupervisor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systemd和supervisor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ubuntu%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ubuntu安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ubuntu%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ubuntu安装docker和podman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Windows%20AD%E5%9F%9F%E7%8E%AF%E5%A2%83%E4%B8%AD%E4%BA%94%E5%A4%A7%E4%B8%BB%E6%9C%BA%E8%A7%92%E8%89%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows AD域环境中五大主机角色
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Zellij%E7%BB%88%E7%AB%AF%E5%A4%8D%E7%94%A8%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zellij终端复用器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk%20sed%20wc%E4%B8%89%E5%89%91%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Awk sed wc三剑客使用笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crontab%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crontab定时任务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85MongoDB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker安装MongoDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85chemex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装chemex
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装mysql
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker%E5%AE%89%E8%A3%85snipe-IT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker安装snipe IT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lshell%E5%91%BD%E4%BB%A4%E7%AE%A1%E6%8E%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lshell命令管控
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../syslog%E9%85%8D%E7%BD%AE%E5%92%8Clogrotate%E6%97%A5%E5%BF%97%E8%BD%AE%E8%BD%AC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Syslog配置和logrotate日志轮转
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmux%E7%BB%88%E7%AB%AF%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tmux终端多路复用器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows%E6%97%A0%E6%95%88%E5%9F%9F%E6%8E%A7%E6%B8%85%E9%99%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows无效域控清除
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows模板
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%85%8D%E7%BD%AElinux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置linux环境变量
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../Debian12/Debian%20%E5%8C%85%E7%AE%A1%E7%90%86/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Debian12
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../RHEL9/RHEL9-RHCE%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    RHEL9
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    计算机维护
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            计算机维护
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/ventoy%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E3%80%82/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ventoy启动失败。
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/ventoy%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ventoy启动盘制作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%B4%E6%8A%A4/%E5%90%84%E5%93%81%E7%89%8C%E4%B8%BB%E6%9D%BFbios%E6%8C%89%E9%94%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    各品牌主板bios按键
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%9C%B0%E5%9D%801/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E7%A7%91%E5%8D%8E%E5%B7%A5%E4%BD%9C/AD%E5%9F%9F%E5%AE%A1%E8%AE%A1%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科华工作
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Ansible 离线部署完整笔记（支持 RHEL7 8 9）</h1>
+
+<p>本笔记涵盖两种方式部署 Ansible：</p>
+<ul>
+<li>使用 Miniconda</li>
+<li>使用 Rye（现代 Python 工具链）</li>
+</ul>
+<p>最终目标为实现：</p>
+<ul>
+<li>在无网环境下安装完整 Ansible 生态</li>
+<li>包含 molecule 测试框架与 ansible-lint 等工具</li>
+<li>内置 playbook 示例</li>
+<li>提供一键初始化与 systemd 自动执行能力</li>
+</ul>
+<hr />
+<h2 id="一miniconda-方式部署-ansible">一、Miniconda 方式部署 Ansible<a class="headerlink" href="#一miniconda-方式部署-ansible" title="Permanent link">&para;</a></h2>
+<h3 id="打包整个虚拟环境部署ansible推荐">打包整个虚拟环境部署ansible(推荐)<a class="headerlink" href="#打包整个虚拟环境部署ansible推荐" title="Permanent link">&para;</a></h3>
+<p>在线搭建虚拟环境</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span>
+<span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>mkdir<span class="w"> </span>ansible<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ansible
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1"># 安装 Miniconda 到本地目录</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>curl<span class="w"> </span>-LO<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>bash<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-b<span class="w"> </span>-p<span class="w"> </span>./miniconda
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1"># 初始化 conda 环境</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="nb">source</span><span class="w"> </span>./miniconda/bin/activate
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>ansible-env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>conda<span class="w"> </span>activate<span class="w"> </span>ansible-env
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span><span class="nv">ansible</span><span class="o">==</span><span class="m">8</span>.7.0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">  </span>ansible-core<span class="o">==</span><span class="m">2</span>.15.13<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">  </span>ansible-lint<span class="o">==</span><span class="m">6</span>.22.2<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">  </span>molecule<span class="o">[</span>docker<span class="o">]==</span><span class="m">6</span>.0.3<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">  </span><span class="nv">docker</span><span class="o">==</span><span class="m">7</span>.1.0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">  </span><span class="nv">netaddr</span><span class="o">==</span><span class="m">1</span>.3.0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">  </span><span class="nv">jmespath</span><span class="o">==</span><span class="m">1</span>.0.1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">  </span><span class="nv">requests</span><span class="o">==</span><span class="m">2</span>.32.3<span class="w"> </span>-i<span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn/simple
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>conda-pack
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>conda-pack<span class="w"> </span>-o<span class="w"> </span>ansible-env.tar.gz
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>mkdir<span class="w"> </span>ansible
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>ansible-env.tar.gz<span class="w"> </span>-C<span class="w"> </span>ansible/
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="nb">cd</span><span class="w"> </span>ansible
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>ansible.cfg<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="s">[defaults]</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="s">inventory = /opt/ansible/inventory.ini</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="s">EOF</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>inventory.ini<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="s">[master]</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="s">master ansible_host=192.168.107.101 ansible_user=root</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="s">[slave]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="s">slave01 ansible_host=192.168.107.101 ansible_user=root</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="s">slave02 ansible_host=192.168.107.101 ansible_user=root</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="s">EOF</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>tee<span class="w"> </span>/etc/profile.d/ansible_path.sh<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="s">export PATH=/opt/ansible/bin:$PATH</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="s">EOF</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export ANSIBLE_CONFIG=/opt/ansible/ansible.cfg&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>ansible_cfg_path.sh
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>tar<span class="w"> </span>-czvf<span class="w">  </span>ansible.tar.gz<span class="w"> </span>ansible/*
+</code></pre></div></td></tr></table></div>
+<p>部署虚拟环境到其他机器</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1">#部署</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/ansible-env
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/ansible
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>ansible-env.tar.gz<span class="w"> </span>-C<span class="w"> </span>/opt/ansible-env
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="nb">cd</span><span class="w"> </span>/opt/ansible-env
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=/opt/ansible/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/profile.d/ansible_path.sh
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export ANSIBLE_CONFIG=/etc/ansible/ansible.cfg&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/profile.d/ansible_cfg_path.sh
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="nb">source</span><span class="w"> </span>/etc/profile.d/ansible_path.sh
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="nb">source</span><span class="w"> </span>/etc/profile.d/ansible_cfg_path.sh
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>ln<span class="w"> </span>-s<span class="w"> </span>/opt/ansible-env<span class="w"> </span>/opt/ansible
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>ansible<span class="w"> </span>--version
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#指定默认的ansible配置文件</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/ansible/ansible.cfg<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="s">[defaults]</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="s">inventory = /etc/ansible/inventory.ini</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="s">host_key_checking = False</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="s">EOF</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>touch<span class="w"> </span>/etc/ansible/inventory.ini
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>ansible.tar.gz<span class="w"> </span>-C<span class="w"> </span>/opt/
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>cp<span class="w"> </span>/opt/ansible/*.sh<span class="w"> </span>/etc/profile.d/
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>tee<span class="w"> </span>/etc/profile.d/ansible_path.sh<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="s">export PATH=/opt/ansible/bin:$PATH</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="s">EOF</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="nb">source</span><span class="w"> </span>/etc/profile.d/ansible_path.sh
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="nb">source</span><span class="w"> </span>/etc/profile.d/ansible_cfg_path.sh
+</code></pre></div></td></tr></table></div>
+<h2 id="二初始化脚本inventory--hosts-配置">二、初始化脚本（inventory + hosts 配置）<a class="headerlink" href="#二初始化脚本inventory--hosts-配置" title="Permanent link">&para;</a></h2>
+<h3 id="init-ansible-envsh"><code>init-ansible-env.sh</code><a class="headerlink" href="#init-ansible-envsh" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nb">set</span><span class="w"> </span>-e
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1"># 配置 hosts 文件</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/hosts<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="s">192.168.107.101 node1</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="s">192.168.107.102 node2</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="s">EOF</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/opt/ansible/inventory.ini<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="s">[node_group]</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="s">node01 ansible_host=192.168.107.101 ansible_user=root</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="s">node02 ansible_host=192.168.107.102 ansible_user=root</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="s">EOF</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="c1"># 测试 ping</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="三playbook-示例playbookssiteyml">三、playbook 示例：<code>playbooks/site.yml</code><a class="headerlink" href="#三playbook-示例playbookssiteyml" title="Permanent link">&para;</a></h2>
+<h3 id="安装-nginx">安装 nginx<a class="headerlink" href="#安装-nginx" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">安装 nginx 并启动</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node_group</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">安装 nginx</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">启动 nginx</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">started</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="四systemd-自动化服务ansible-pull">四、systemd 自动化服务（ansible-pull）<a class="headerlink" href="#四systemd-自动化服务ansible-pull" title="Permanent link">&para;</a></h2>
+<h3 id="etcsystemdsystemansible-pullservice"><code>/etc/systemd/system/ansible-pull.service</code><a class="headerlink" href="#etcsystemdsystemansible-pullservice" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">TOML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">[Unit]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">Description</span><span class="o">=</span><span class="err">Run Ansible Pull</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">After</span><span class="o">=</span><span class="err">network.target</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="k">[Service]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">Type</span><span class="o">=</span><span class="err">oneshot</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">ExecStart</span><span class="o">=</span><span class="err">/root/miniconda/envs/ansible-env/bin/ansible-pull -i /opt/ansible/inventory.ini -U file:///opt/ansible/playbooks -C master -d /tmp/ansible</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="k">[Install]</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">WantedBy</span><span class="o">=</span><span class="err">multi-user.target</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="启用服务">启用服务<a class="headerlink" href="#启用服务" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>systemctl<span class="w"> </span>daemon-reexec
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>ansible-pull.service
+</code></pre></div></td></tr></table></div>
+<hr />
+<p>这份笔记可以作为内部交付、离线部署文档或 Git 项目模板，后续我也可以帮你封装一键打包脚本或完整打包压缩包。</p>
+<h2 id="五扩展介绍">五、扩展介绍<a class="headerlink" href="#五扩展介绍" title="Permanent link">&para;</a></h2>
+<h3 id="-ansible">📦 <code>ansible</code><a class="headerlink" href="#-ansible" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>核心工具</strong>：包含完整的 Ansible CLI（如 <code>ansible</code>、<code>ansible-playbook</code> 等）。</li>
+<li>已包含 <code>ansible-core</code>，是最常用的包。</li>
+<li>推荐直接安装它，而不是单独安装 <code>ansible-core</code>。</li>
+</ul>
+<hr />
+<h3 id="-ansible-core">📦 <code>ansible-core</code><a class="headerlink" href="#-ansible-core" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ansible 的最基础组件</strong>，包括：<ul>
+<li>命令解析器</li>
+<li>模块运行引擎</li>
+<li>插件机制等</li>
+</ul>
+</li>
+<li>如果你只做二次开发或需要极简版本才需要单独安装。</li>
+</ul>
+<p>✅ 正常使用只需装 <code>ansible</code>，它会自动依赖 <code>ansible-core</code>。</p>
+<hr />
+<h3 id="-ansible-lint">📦 <code>ansible-lint</code><a class="headerlink" href="#-ansible-lint" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ansible 语法规范检查工具</strong>。</li>
+<li>可自动识别：<ul>
+<li>YAML 格式错误</li>
+<li>变量未定义</li>
+<li>模块使用不规范</li>
+</ul>
+</li>
+<li>是 DevOps 团队中非常常见的质量保障工具。</li>
+</ul>
+<hr />
+<h3 id="-moleculedocker">📦 <code>molecule[docker]</code><a class="headerlink" href="#-moleculedocker" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>测试 Ansible Role/Playbook 的标准框架</strong>。</li>
+<li><code>molecule</code> 本身支持多种 provider，这里 <code>[docker]</code> 是启用 Docker backend 的支持。</li>
+<li>可以用来在本地容器里运行 playbook 做验证（尤其适合开发时测试角色 role）。</li>
+</ul>
+<hr />
+<h3 id="-docker">📦 <code>docker</code><a class="headerlink" href="#-docker" title="Permanent link">&para;</a></h3>
+<ul>
+<li>是 Python 的 Docker SDK，给 <code>molecule[docker]</code> 使用的。</li>
+<li>也可以用来编写自动化脚本，控制 Docker 镜像和容器。</li>
+</ul>
+<hr />
+<h3 id="-netaddr">📦 <code>netaddr</code><a class="headerlink" href="#-netaddr" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用于处理 IP 地址、CIDR、网段等操作。</li>
+<li>Ansible 中的某些网络模块或过滤器（如 <code>ipaddr()</code>）依赖此包。</li>
+</ul>
+<hr />
+<h3 id="-jmespath">📦 <code>jmespath</code><a class="headerlink" href="#-jmespath" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用于对 JSON/YAML 数据结构执行查询（在 playbook 中经常用于 <code>json_query</code> filter）。</li>
+<li>类似于 jq 的语法，Ansible 自带支持，但可以指定版本。</li>
+</ul>
+<hr />
+<h3 id="-requests">📦 <code>requests</code><a class="headerlink" href="#-requests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>常用的 Python HTTP 客户端库。</li>
+<li>虽然不是 Ansible 的直接依赖，但很多模块（如 <code>uri</code>、某些自定义模块）使用它访问 API。</li>
+</ul>
+<hr />
+<h3 id="-总结建议用途分类">✅ 总结（建议用途分类）<a class="headerlink" href="#-总结建议用途分类" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>作用分类</th>
+<th>推荐场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ansible</code></td>
+<td>核心工具</td>
+<td>必装</td>
+</tr>
+<tr>
+<td><code>ansible-core</code></td>
+<td>可选核心</td>
+<td>特殊需求可选（如容器极简）</td>
+</tr>
+<tr>
+<td><code>ansible-lint</code></td>
+<td>代码规范</td>
+<td>开发/团队协作建议装</td>
+</tr>
+<tr>
+<td><code>molecule[docker]</code></td>
+<td>测试框架</td>
+<td>开发、CI/CD 场景</td>
+</tr>
+<tr>
+<td><code>docker</code></td>
+<td>容器控制</td>
+<td>molecule、自动化运维</td>
+</tr>
+<tr>
+<td><code>netaddr</code></td>
+<td>网络工具</td>
+<td>复杂网络配置 playbook</td>
+</tr>
+<tr>
+<td><code>jmespath</code></td>
+<td>数据查询</td>
+<td>使用 <code>json_query</code><br/> 时必须</td>
+</tr>
+<tr>
+<td><code>requests</code></td>
+<td>通用依赖</td>
+<td>编写 API 自动化任务时有用</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../AD%E5%9F%9F%E6%8E%A7%E6%9E%B6%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-footer__link md-footer__link--prev" aria-label="上一页: AD域控架构最佳实践">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                AD域控架构最佳实践
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Centos%E5%AE%89%E8%A3%85docker%E5%92%8Cpodman/" class="md-footer__link md-footer__link--next" aria-label="下一页: Centos安装docker和podman">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Centos安装docker和podman
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

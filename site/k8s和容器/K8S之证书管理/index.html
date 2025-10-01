@@ -1,0 +1,4378 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="美少男">
+      
+      
+        <meta name="author" content="李烨栋">
+      
+      
+        <link rel="canonical" href="https://li-ye-dong.github.io/k8s%E5%92%8C%E5%AE%B9%E5%99%A8/K8S%E4%B9%8B%E8%AF%81%E4%B9%A6%E7%AE%A1%E7%90%86/">
+      
+      
+        <link rel="prev" href="../Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/">
+      
+      
+        <link rel="next" href="../KubeSphere%E4%BD%93%E9%AA%8C/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>K8S之证书管理 - 李烨栋的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../static/stylesheets/google_font.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#证书介绍" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="李烨栋的博客" class="md-header__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            李烨栋的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              K8S之证书管理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="日间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="日间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="夜间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="夜间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  知识库索引
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  K8s和容器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E4%B8%AD%E9%97%B4%E4%BB%B6/ELK/alertmanager/" class="md-tabs__link">
+          
+  
+    
+  
+  中间件
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-tabs__link">
+          
+  
+    
+  
+  分享
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  安全
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+    
+  
+  工具使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%BC%80%E5%8F%91/Django/Aliphe.js%E6%A1%86%E6%9E%B6/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-tabs__link">
+          
+  
+    
+  
+  操作系统
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-tabs__link">
+          
+  
+    
+  
+  数据库笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%9C%B0%E5%9D%801/" class="md-tabs__link">
+          
+  
+    
+  
+  浏览器书签收藏
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-tabs__link">
+          
+  
+    
+  
+  监控
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%A7%91%E5%8D%8E%E5%B7%A5%E4%BD%9C/AD%E5%9F%9F%E5%AE%A1%E8%AE%A1%E9%85%8D%E7%BD%AE/" class="md-tabs__link">
+          
+  
+    
+  
+  科华工作
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+          
+  
+    
+  
+  虚拟化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-tabs__link">
+          
+  
+    
+  
+  认证相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="李烨栋的博客" class="md-nav__button md-logo" aria-label="李烨栋的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    李烨栋的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/li-ye-dong/liyedong.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    li-ye-dong.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识库索引
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    K8s和容器
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            K8s和容器
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helm 日常使用与封装自定义应用发布笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    K8S之证书管理
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    K8S之证书管理
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="在这个页面">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      在这个页面
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#证书介绍" class="md-nav__link">
+    <span class="md-ellipsis">
+      证书介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="证书介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-1-kubernetes-核心组件证书控制平面" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 1. Kubernetes 核心组件证书（控制平面）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-2-etcd-相关证书" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 2. etcd 相关证书：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubeadm证书续签" class="md-nav__link">
+    <span class="md-ellipsis">
+      kubeadm证书续签
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="kubeadm证书续签">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#方式-1使用-kubeadm-certs-renew推荐" class="md-nav__link">
+    <span class="md-ellipsis">
+      方式 1：使用 kubeadm certs renew（推荐）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubelet-证书自动续签k8s119之后" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubelet 证书自动续签(k8s1.19之后)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubelet 证书自动续签(k8s1.19之后)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#配置kube-controller-manager组件" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置kube-controller-manager组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#配置kubelet组件" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置kubelet组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#测试" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ca证书续签" class="md-nav__link">
+    <span class="md-ellipsis">
+      CA证书续签
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CA证书续签">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-检查-ca-证书" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ 检查 CA 证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-续签-ca-证书的注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      2️⃣ 续签 CA 证书的注意事项
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-如果必须续签-ca高级操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      3️⃣ 如果必须续签 CA（高级操作）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-更安全的方案" class="md-nav__link">
+    <span class="md-ellipsis">
+      4️⃣ 更安全的方案
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KubeSphere%E4%BD%93%E9%AA%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    在 Kubernetes 上快速安装 KubeSphere
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dockerc%E6%89%93%E5%8C%85%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockerc打包可执行文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k3s%E9%83%A8%E7%BD%B2%28%E5%9F%BA%E4%BA%8Edebian%29/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K3s部署(基于debian)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubeadm%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubeadm离线安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubeadm%E9%83%A8%E7%BD%B2k8s%EF%BC%88%E9%9C%80%E8%A6%81%E9%AD%94%E6%B3%95%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubeadm部署k8s（需要魔法）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubeasz%E7%A6%BB%E7%BA%BF%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubeasz离线部署高可用kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9F%BA%E4%BA%8EEFK%E5%AE%9E%E7%8E%B0kubernetes%E9%9B%86%E7%BE%A4%E7%9A%84%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0%EF%BC%88%E6%89%A9%E5%B1%95%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于EFK实现kubernetes集群的日志平台（扩展）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86%E6%95%B4%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试经历整理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CICD
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            CICD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/Drone%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drone流水线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/Fastapi%2Bvue%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastapi+vue流水线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/Gitea%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gitea安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/Gogs%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gogs安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/Harbor%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Harbor仓库搭建
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/golang%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Golang流水线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/java%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java流水线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/python%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python流水线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CICD/%E5%89%8D%E7%AB%AF%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前端流水线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CKA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            CKA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Deploy%20Pod%E6%95%B0%E9%87%8F%E6%89%A9%E7%BC%A9%E5%AE%B9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Pod数量扩缩容
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Deploy%20Pod%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Pod版本回退
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Deploy%20Pod%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Pod版本更新策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/K8s%20Ingress%20%E4%B8%83%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s Ingress 七层负载均衡
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/K8s%20Service%20%E5%9B%9B%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s Service 四层负载均衡
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/K8s%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%20Namespace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s资源管理 Namespace
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/K8s%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%20Pod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s资源管理 Pod
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/K8s%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E4%B9%8BLabel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s资源管理之Label
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Kubernerts%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernerts资源清单概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Kubernetes%20Dashboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes Dashboard
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Kubernetes%E8%AE%A4%E8%AF%81%E4%B8%8E%E6%8E%88%E6%9D%83/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes认证与授权
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/NetworkPolicy%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NetworkPolicy网络策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E4%BA%B2%E5%92%8C%E6%80%A7%E5%92%8C%E5%8F%8D%E4%BA%B2%E5%92%8C%E6%80%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 亲和性和反亲和性
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E5%AE%9A%E5%90%91%E8%B0%83%E5%BA%A6%20NodeSelector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 定向调度 NodeSelector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E5%AE%9A%E5%90%91%E8%B0%83%E5%BA%A6NodeName/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 定向调度NodeName
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E5%AE%B9%E5%99%A8%E6%8E%A2%E6%B5%8B%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 容器探测介绍
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E5%AE%B9%E5%99%A8%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 容器重启策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20DaemonSet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 DaemonSet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20Deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20HPA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 HPA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%20ReplicaSet%EF%BC%88RS%EF%BC%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器 ReplicaSet（RS）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 控制器概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%B1%A1%E7%82%B9%20Taints%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 污点 Taints概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%B1%A1%E7%82%B9%E4%B9%8B%20NoSchedule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 污点之 NoSchedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E6%B1%A1%E7%82%B9%E4%B9%8B%20PreferNoSchedule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 污点之 PreferNoSchedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E8%B0%83%E5%BA%A6%E5%AE%B9%E5%BF%8D%20Toleration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 调度容忍 Toleration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/Pod%20%E8%B0%83%E5%BA%A6%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 调度概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/etcd%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Etcd备份还原
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/k8s%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E9%93%BE%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    部署相关
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/kubectl%E5%91%BD%E4%BB%A4%E5%92%8C%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubectl命令和技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/kubelet%E3%80%81kubeadm%E3%80%81kubectl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubelet、kubeadm、kubectl
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/kubernetes%20%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kubernetes 数据存储
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKA/%E4%BD%BF%E7%94%A8kubeam%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主机硬件配置说明
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CKAD
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            CKAD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/ConfigMap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ConfigMap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/Containers%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers安全上下文
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/CronJob%E5%92%8CJob%E8%B5%84%E6%BA%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CronJob和Job资源
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/Dockerfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockerfile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/Pod%20%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5%20livenessProbe%E5%92%8CreadinessProbe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod 健康检查 livenessProbe和readinessProbe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/Pod%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod资源限额
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/Secret/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secret
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/%E5%8D%87%E7%BA%A7%E5%92%8C%E5%9B%9E%E6%BB%9A/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    升级和回滚
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKAD/%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    金丝雀部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CKS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            CKS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/API%20server%20%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API server 身份验证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/Cilium%20%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cilium 网络策略
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/Docker%20%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 守护进程安全
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/Dockerfile%E5%AE%89%E5%85%A8%E5%92%8C%E5%AE%B9%E5%99%A8%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dockerfile安全和容器安全上下文
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/Falco%E5%AE%89%E5%85%A8%E7%9B%91%E6%B5%8B%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Falco安全监测工具
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/TSL%20Secret/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSL Secret
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/bom%20%E5%B7%A5%E5%85%B7%E7%94%9F%E6%88%90%20SPDX%20%E6%96%87%E6%A1%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bom 工具生成 SPDX 文档
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/kubelet%20%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubelet 相关参数配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/%E4%BD%BF%E7%94%A8%20ingress%20%E5%85%AC%E5%BC%80%20https%20%E6%9C%8D%E5%8A%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 ingress 公开 https 服务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/%E5%85%B3%E9%97%AD%20API%20%E5%87%AD%E6%8D%AE%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关闭 API 凭据自动挂载
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E7%AD%96%E7%95%A5%20ImagePolicyWebhook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    容器镜像策略 ImagePolicyWebhook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/%E6%97%A5%E5%BF%97%E5%AE%A1%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    日志审计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5%20Deny%20%E5%92%8C%20Allow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络策略 Deny 和 Allow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CKS/%E9%99%90%E5%88%B6%E6%80%A7%20Pod%20%E5%AE%89%E5%85%A8%E6%A0%87%E5%87%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    限制性 Pod 安全标准
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_15" id="__nav_2_15_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/Django%E5%BA%94%E7%94%A8%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Django应用容器化实践
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/Docker%E5%AE%89%E8%A3%85-APT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装 APT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/Docker%E5%AE%89%E8%A3%85-RPM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker安装 RPM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/Docker%E5%B0%8F%E7%BB%93/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker小结
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/Docker%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/Docker%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/Dokcer%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dokcer实现原理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_16" id="__nav_2_16_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Ceph
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_16">
+            <span class="md-nav__icon md-icon"></span>
+            Ceph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ceph/Ceph%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ceph学习和部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E4%B8%AD%E9%97%B4%E4%BB%B6/ELK/alertmanager/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    中间件
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%88%86%E4%BA%AB/1.ai%E6%95%B0%E5%AD%97%E4%BA%BA/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分享
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%AE%89%E5%85%A8/Burp%20Suite%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    安全
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2024%E5%B9%B46%E6%9C%88%E6%80%BB%E7%BB%93/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具使用
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E5%BC%80%E5%8F%91/Django/Aliphe.js%E6%A1%86%E6%9E%B6/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%B8%A6%E6%9D%83%E9%99%90/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%94%E8%AE%B0/Elasticsearch%20%E6%95%99%E7%A8%8B/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库笔记
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E6%94%B6%E8%97%8F/%E5%9C%B0%E5%9D%801/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    浏览器书签收藏
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E7%9B%91%E6%8E%A7/zabbix%E7%9B%91%E6%8E%A74.2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    监控
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E7%A7%91%E5%8D%8E%E5%B7%A5%E4%BD%9C/AD%E5%9F%9F%E5%AE%A1%E8%AE%A1%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    科华工作
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../%E8%99%9A%E6%8B%9F%E5%8C%96/%E8%99%9A%E6%8B%9F%E5%8C%96/RVtools%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    虚拟化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A4%E8%AF%81%E7%9B%B8%E5%85%B3/credly%E6%9F%A5%E7%9C%8B%E5%8B%8B%E7%AB%A0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    认证相关
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>K8S之证书管理</h1>
+
+<h2 id="证书介绍">证书介绍<a class="headerlink" href="#证书介绍" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>K8s证书一般分为两套：K8s组件（apiserver）和Etcd
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>假如按角色来分，证书分为管理节点和工作节点。
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>•<span class="w"> </span>管理节点：如果是kubeadm部署则自动生成，如果是二进制部署一般由cfssl或者openssl生成。
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>•<span class="w"> </span>工作节点：工作节点主要是指kubelet连接apiserver所需的客户端证书，这个证书由controller-manager组件自动颁发，默认
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>是一年，如果到期，kubelet将无法使用过期的证书连接apiserver，从而导致无法正常工作，日志会给出证书过期错误（x509:<span class="w"> </span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>certificate<span class="w"> </span>has<span class="w"> </span>expired<span class="w"> </span>or<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>yet<span class="w"> </span>valid）
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="../../images/1746795844407-2d113758-ed0d-4f65-ac1f-b5c73f483465.png" /></p>
+<h3 id="-1-kubernetes-核心组件证书控制平面">✅ 1. Kubernetes 核心组件证书（控制平面）：<a class="headerlink" href="#-1-kubernetes-核心组件证书控制平面" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>证书文件</th>
+<th>路径示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kube-apiserver</td>
+<td><code>apiserver.crt</code><br/> / <code>apiserver.key</code></td>
+<td><code>/etc/kubernetes/pki/</code></td>
+</tr>
+<tr>
+<td>kube-controller-manager</td>
+<td><code>controller-manager.crt</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>kube-scheduler</td>
+<td><code>scheduler.crt</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>kubelet</td>
+<td><code>kubelet.crt</code></td>
+<td><code>/var/lib/kubelet/pki/</code></td>
+</tr>
+<tr>
+<td>集群 CA</td>
+<td><code>ca.crt</code><br/> / <code>ca.key</code></td>
+<td><code>/etc/kubernetes/pki/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="-2-etcd-相关证书">✅ 2. etcd 相关证书：<a class="headerlink" href="#-2-etcd-相关证书" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>证书</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>etcd/ca.crt</code><br/> / <code>ca.key</code></td>
+<td>etcd 的 CA 证书</td>
+</tr>
+<tr>
+<td><code>etcd/server.crt</code><br/> / <code>server.key</code></td>
+<td>etcd 对外通信</td>
+</tr>
+<tr>
+<td><code>etcd/peer.crt</code><br/> / <code>peer.key</code></td>
+<td>etcd 节点间通信（集群）</td>
+</tr>
+<tr>
+<td><code>etcd/healthcheck-client.crt</code><br/> / <code>client.crt</code></td>
+<td>kube-apiserver 访问 etcd</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kubeadm证书续签">kubeadm证书续签<a class="headerlink" href="#kubeadm证书续签" title="Permanent link">&para;</a></h2>
+<h3 id="方式-1使用-kubeadm-certs-renew推荐">方式 1：使用 <code>kubeadm certs renew</code>（<strong>推荐</strong>）<a class="headerlink" href="#方式-1使用-kubeadm-certs-renew推荐" title="Permanent link">&para;</a></h3>
+<p>如果你是用 <code>kubeadm</code> 部署的 Kubernetes，可以用这个命令批量更新证书：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>certs<span class="w"> </span>renew<span class="w"> </span>all
+</code></pre></div></td></tr></table></div>
+<p>更新指定证书：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>certs<span class="w"> </span>renew<span class="w"> </span>apiserver
+</code></pre></div></td></tr></table></div>
+<p>更新后，<strong>重启相关组件</strong>（kubelet 会自动识别，但 docker 或 containerd 环境中组件可能需手动重启）：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>kubelet
+</code></pre></div></td></tr></table></div>
+<p>证书默认有效期为 <strong>1年</strong>，从 Kubernetes 1.19 起支持自动续期 kubelet 客户端证书（kubelet 自动轮换）。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="o">[</span>root@k8s-master<span class="w"> </span>pki<span class="o">]</span><span class="c1"># kubeadm certs renew all</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="o">[</span>renew<span class="o">]</span><span class="w"> </span>Reading<span class="w"> </span>configuration<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;kubeadm-config&quot;</span><span class="w"> </span>ConfigMap<span class="w"> </span><span class="k">in</span><span class="w"> </span>namespace<span class="w"> </span><span class="s2">&quot;kube-system&quot;</span>...
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="o">[</span>renew<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span><span class="s1">&#39;kubeadm init phase upload-config --config your-config.yaml&#39;</span><span class="w"> </span>to<span class="w"> </span>re-upload<span class="w"> </span>it.
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>certificate<span class="w"> </span>embedded<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>kubeconfig<span class="w"> </span>file<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>admin<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>and<span class="w"> </span><span class="k">for</span><span class="w"> </span>kubeadm<span class="w"> </span>itself<span class="w"> </span>renewed
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>certificate<span class="w"> </span><span class="k">for</span><span class="w"> </span>serving<span class="w"> </span>the<span class="w"> </span>Kubernetes<span class="w"> </span>API<span class="w"> </span>renewed
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>certificate<span class="w"> </span>the<span class="w"> </span>apiserver<span class="w"> </span>uses<span class="w"> </span>to<span class="w"> </span>access<span class="w"> </span>etcd<span class="w"> </span>renewed
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>certificate<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>API<span class="w"> </span>server<span class="w"> </span>to<span class="w"> </span>connect<span class="w"> </span>to<span class="w"> </span>kubelet<span class="w"> </span>renewed
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>certificate<span class="w"> </span>embedded<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>kubeconfig<span class="w"> </span>file<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>controller<span class="w"> </span>manager<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>renewed
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>certificate<span class="w"> </span><span class="k">for</span><span class="w"> </span>liveness<span class="w"> </span>probes<span class="w"> </span>to<span class="w"> </span>healthcheck<span class="w"> </span>etcd<span class="w"> </span>renewed
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>certificate<span class="w"> </span><span class="k">for</span><span class="w"> </span>etcd<span class="w"> </span>nodes<span class="w"> </span>to<span class="w"> </span>communicate<span class="w"> </span>with<span class="w"> </span>each<span class="w"> </span>other<span class="w"> </span>renewed
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>certificate<span class="w"> </span><span class="k">for</span><span class="w"> </span>serving<span class="w"> </span>etcd<span class="w"> </span>renewed
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>certificate<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>front<span class="w"> </span>proxy<span class="w"> </span>client<span class="w"> </span>renewed
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>certificate<span class="w"> </span>embedded<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>kubeconfig<span class="w"> </span>file<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>scheduler<span class="w"> </span>manager<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>renewed
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a>certificate<span class="w"> </span>embedded<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>kubeconfig<span class="w"> </span>file<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>super-admin<span class="w"> </span>renewed
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a>Done<span class="w"> </span>renewing<span class="w"> </span>certificates.<span class="w"> </span>You<span class="w"> </span>must<span class="w"> </span>restart<span class="w"> </span>the<span class="w"> </span>kube-apiserver,<span class="w"> </span>kube-controller-manager,<span class="w"> </span>kube-scheduler<span class="w"> </span>and<span class="w"> </span>etcd,<span class="w"> </span>so<span class="w"> </span>that<span class="w"> </span>they<span class="w"> </span>can<span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>new<span class="w"> </span>certificates.
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="o">[</span>renew<span class="o">]</span><span class="w"> </span>正在从<span class="w"> </span>kube-system<span class="w"> </span>命名空间中的<span class="w"> </span><span class="s2">&quot;kubeadm-config&quot;</span><span class="w"> </span>ConfigMap<span class="w"> </span>读取配置...
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="o">[</span>renew<span class="o">]</span><span class="w"> </span>若要重新上传配置文件，请使用命令<span class="w"> </span><span class="s1">&#39;kubeadm init phase upload-config --config your-config.yaml&#39;</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a>用于<span class="w"> </span>admin<span class="w"> </span>的<span class="w"> </span>kubeconfig<span class="w"> </span>文件中的证书已更新
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a>用于<span class="w"> </span>Kubernetes<span class="w"> </span>API<span class="w"> </span>的服务证书已更新
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a>apiserver<span class="w"> </span>访问<span class="w"> </span>etcd<span class="w"> </span>所用的证书已更新
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a>apiserver<span class="w"> </span>与<span class="w"> </span>kubelet<span class="w"> </span>通信所用证书已更新
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a>controller<span class="w"> </span>manager<span class="w"> </span>使用的<span class="w"> </span>kubeconfig<span class="w"> </span>中嵌入的证书已更新
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a>用于<span class="w"> </span>etcd<span class="w"> </span>健康检查的<span class="w"> </span>liveness<span class="w"> </span>探针证书已更新
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a>etcd<span class="w"> </span>节点间通信所用的证书已更新
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a>etcd<span class="w"> </span>对外服务的证书已更新
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a>用于前端代理客户端（front-proxy）的证书已更新
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a>scheduler<span class="w"> </span>使用的<span class="w"> </span>kubeconfig<span class="w"> </span>中嵌入的证书已更新
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a>super-admin（管理员）使用的<span class="w"> </span>kubeconfig<span class="w"> </span>中嵌入的证书已更新
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a>证书更新完成。你必须<span class="w"> </span>重启<span class="w"> </span>kube-apiserver、kube-controller-manager、kube-scheduler<span class="w"> </span>和<span class="w"> </span>etcd，以便它们生效。
+</code></pre></div></td></tr></table></div>
+<p>查看证书状态</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="o">[</span>root@k8s-master<span class="w"> </span>pki<span class="o">]</span><span class="c1"># kubeadm certs check-expiration</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="o">[</span>check-expiration<span class="o">]</span><span class="w"> </span>Reading<span class="w"> </span>configuration<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;kubeadm-config&quot;</span><span class="w"> </span>ConfigMap<span class="w"> </span><span class="k">in</span><span class="w"> </span>namespace<span class="w"> </span><span class="s2">&quot;kube-system&quot;</span>...
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="o">[</span>check-expiration<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span><span class="s1">&#39;kubeadm init phase upload-config --config your-config.yaml&#39;</span><span class="w"> </span>to<span class="w"> </span>re-upload<span class="w"> </span>it.
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>CERTIFICATE<span class="w">                </span>EXPIRES<span class="w">                  </span>RESIDUAL<span class="w"> </span>TIME<span class="w">   </span>CERTIFICATE<span class="w"> </span>AUTHORITY<span class="w">   </span>EXTERNALLY<span class="w"> </span>MANAGED
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>admin.conf<span class="w">                 </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>ca<span class="w">                      </span>no<span class="w">      </span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>apiserver<span class="w">                  </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>ca<span class="w">                      </span>no<span class="w">      </span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>apiserver-etcd-client<span class="w">      </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>etcd-ca<span class="w">                 </span>no<span class="w">      </span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>apiserver-kubelet-client<span class="w">   </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>ca<span class="w">                      </span>no<span class="w">      </span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>controller-manager.conf<span class="w">    </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>ca<span class="w">                      </span>no<span class="w">      </span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>etcd-healthcheck-client<span class="w">    </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>etcd-ca<span class="w">                 </span>no<span class="w">      </span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>etcd-peer<span class="w">                  </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>etcd-ca<span class="w">                 </span>no<span class="w">      </span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>etcd-server<span class="w">                </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>etcd-ca<span class="w">                 </span>no<span class="w">      </span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>front-proxy-client<span class="w">         </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>front-proxy-ca<span class="w">          </span>no<span class="w">      </span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>scheduler.conf<span class="w">             </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>ca<span class="w">                      </span>no<span class="w">      </span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>super-admin.conf<span class="w">           </span>Apr<span class="w"> </span><span class="m">22</span>,<span class="w"> </span><span class="m">2026</span><span class="w"> </span><span class="m">15</span>:01<span class="w"> </span>UTC<span class="w">   </span>364d<span class="w">            </span>ca<span class="w">                      </span>no<span class="w">      </span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>CERTIFICATE<span class="w"> </span>AUTHORITY<span class="w">   </span>EXPIRES<span class="w">                  </span>RESIDUAL<span class="w"> </span>TIME<span class="w">   </span>EXTERNALLY<span class="w"> </span>MANAGED
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>ca<span class="w">                      </span>Apr<span class="w"> </span><span class="m">12</span>,<span class="w"> </span><span class="m">2035</span><span class="w"> </span><span class="m">02</span>:30<span class="w"> </span>UTC<span class="w">   </span>9y<span class="w">              </span>no<span class="w">      </span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>etcd-ca<span class="w">                 </span>Apr<span class="w"> </span><span class="m">12</span>,<span class="w"> </span><span class="m">2035</span><span class="w"> </span><span class="m">02</span>:30<span class="w"> </span>UTC<span class="w">   </span>9y<span class="w">              </span>no<span class="w">      </span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>front-proxy-ca<span class="w">          </span>Apr<span class="w"> </span><span class="m">12</span>,<span class="w"> </span><span class="m">2035</span><span class="w"> </span><span class="m">02</span>:30<span class="w"> </span>UTC<span class="w">   </span>9y<span class="w">              </span>no
+</code></pre></div></td></tr></table></div>
+<p>查看apiserver证书有效期</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="o">[</span>root@k8s-master<span class="w"> </span>pki<span class="o">]</span><span class="c1"># openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text | grep &#39;Not After&#39;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">            </span>Not<span class="w"> </span>After<span class="w"> </span>:<span class="w"> </span>Apr<span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">15</span>:01:39<span class="w"> </span><span class="m">2026</span><span class="w"> </span>GMT
+</code></pre></div></td></tr></table></div>
+<p>重启kubelet</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>kubelet
+</code></pre></div></td></tr></table></div>
+<p>重启apiserver etcd kube-controller-manager kube-scheduler</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="se">\ </span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>etcd-k8s-master.liyedong.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>kube-apiserver-k8s-master.liyedong.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>kube-controller-manager-k8s-master.liyedong.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>kube-scheduler-k8s-master.liyedong.com
+</code></pre></div></td></tr></table></div>
+<h3 id="kubelet-证书自动续签k8s119之后"><strong><font style="color:rgb(44,63,81);">Kubelet 证书自动续签(k8s1.19之后)</font></strong><a class="headerlink" href="#kubelet-证书自动续签k8s119之后" title="Permanent link">&para;</a></h3>
+<h4 id="配置kube-controller-manager组件"><strong><font style="color:rgb(44,63,81);">配置kube-controller-manager组件</font></strong><a class="headerlink" href="#配置kube-controller-manager组件" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>vim<span class="w"> </span>/etc/kubernetes/manifests/kube-controller-manager.yaml
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>spec:<span class="w"> </span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>containers:<span class="w"> </span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>-<span class="w"> </span>command:<span class="w"> </span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>-<span class="w"> </span>kube-controller-manager<span class="w"> </span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>-<span class="w"> </span>--experimental-cluster-signing-duration<span class="o">=</span>87600h0m0s<span class="w"> </span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>-<span class="w"> </span>--feature-gates<span class="o">=</span><span class="nv">RotateKubeletServerCertificate</span><span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>...
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>添加上述两个参数：
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>•<span class="w"> </span>experimental-cluster-signing-duration<span class="o">=</span>87600h0m0s<span class="w"> </span>为kubelet客户端证书颁发有效期10年
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>•<span class="w"> </span>feature-gates<span class="o">=</span><span class="nv">RotateKubeletServerCertificate</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>启用server证书颁发
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>配置完成后，重建pod使之生效：
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>kube-controller-manager-k8s-master<span class="w"> </span>-n<span class="w"> </span>kube-system
+</code></pre></div></td></tr></table></div>
+<h4 id="配置kubelet组件"><strong><font style="color:rgb(44,63,81);">配置kubelet组件</font></strong><a class="headerlink" href="#配置kubelet组件" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>默认kubelet证书轮转已启用：
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="c1"># vi /var/lib/kubelet/config.yaml </span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>...<span class="w"> </span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>rotateCertificates:<span class="w"> </span><span class="nb">true</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="测试">测试<a class="headerlink" href="#测试" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>找一台节点测试，先查看现有客户端证书有效期：
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="c1"># cd /var/lib/kubelet/pki</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1"># openssl x509 -in kubelet-client-current.pem -noout -dates</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="nv">notBefore</span><span class="o">=</span>May<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">09</span>:01:24<span class="w"> </span><span class="m">2020</span><span class="w"> </span>GMT
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="nv">notAfter</span><span class="o">=</span>May<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">09</span>:01:24<span class="w"> </span><span class="m">2021</span><span class="w"> </span>GMT
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>修改服务器时间，模拟证书即将到期：
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="c1"># date -s &quot;2021-5-20&quot;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="c1"># systemctl restart kubelet</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>再查看证书有效期，可以看到已经是十年：
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="c1"># openssl x509 -in kubelet-client-current.pem -noout -dates </span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="nv">notBefore</span><span class="o">=</span>Aug<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">15</span>:44:55<span class="w"> </span><span class="m">2020</span><span class="w"> </span>GMT<span class="w"> </span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="nv">notAfter</span><span class="o">=</span>May<span class="w"> </span><span class="m">23</span><span class="w"> </span><span class="m">09</span>:05:30<span class="w"> </span><span class="m">2030</span><span class="w"> </span>GMT
+</code></pre></div></td></tr></table></div>
+<h2 id="ca证书续签">CA证书续签<a class="headerlink" href="#ca证书续签" title="Permanent link">&para;</a></h2>
+<p>在 Kubernetes 中，<strong>CA 证书</strong>（比如 <code>ca.crt</code>、<code>etcd-ca.crt</code>、<code>front-proxy-ca.crt</code>）的续签与普通 kubeadm 生成的服务证书不同，因为它们是整个集群信任链的根。如果直接更新 CA，会导致已经签发的证书失效，所以一般不推荐随意续签根 CA，而是 <strong>在根 CA 到期前计划升级集群或重新生成证书</strong>。</p>
+<hr />
+<h3 id="1-检查-ca-证书"><strong>1️⃣</strong><strong> 检查 CA 证书</strong><a class="headerlink" href="#1-检查-ca-证书" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubeadm<span class="w"> </span>certs<span class="w"> </span>check-expiration
+</code></pre></div></td></tr></table></div>
+<p>你已经执行过，会显示 CA 证书的到期时间（你这里还有 9 年）。</p>
+<hr />
+<h3 id="2-续签-ca-证书的注意事项"><strong>2️⃣</strong><strong> 续签 CA 证书的注意事项</strong><a class="headerlink" href="#2-续签-ca-证书的注意事项" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Kubernetes 官方建议 <strong>不直接续签 CA 证书</strong>，除非：<ul>
+<li>集群根 CA 已过期或即将过期。</li>
+<li>你有完整的集群备份。</li>
+</ul>
+</li>
+<li>更新根 CA 的步骤非常谨慎，因为：<ul>
+<li>所有由这个 CA 签发的证书（apiserver、etcd、kubelet 等）都会失效。</li>
+<li>需要重新生成所有组件证书并重新部署。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="3-如果必须续签-ca高级操作"><strong>3️⃣</strong><strong> 如果必须续签 CA（高级操作）</strong><a class="headerlink" href="#3-如果必须续签-ca高级操作" title="Permanent link">&para;</a></h3>
+<p>仅当集群即将到期，且有完全备份时操作：</p>
+<ol>
+<li><strong>生成新的 CA</strong></li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>ca
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>etcd-ca
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>front-proxy-ca
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>这会在 <code>/etc/kubernetes/pki/</code> 下生成新的 CA 文件（<code>*.crt</code> / <code>*.key</code>）。</li>
+<li><strong>备份旧 CA</strong></li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/k8s-pki-backup
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>cp<span class="w"> </span>-r<span class="w"> </span>/etc/kubernetes/pki/*<span class="w"> </span>~/k8s-pki-backup/
+</code></pre></div></td></tr></table></div>
+<ol>
+<li><strong>重新生成依赖 CA 的证书</strong></li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>apiserver
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>apiserver-kubelet-client
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>controller-manager
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>scheduler
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>etcd-server
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>etcd-peer
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a>kubeadm<span class="w"> </span>init<span class="w"> </span>phase<span class="w"> </span>certs<span class="w"> </span>etcd-healthcheck-client
+</code></pre></div></td></tr></table></div>
+<ol>
+<li><strong>重新部署组件</strong></li>
+<li>可能需要重启 kube-apiserver、controller-manager、scheduler、etcd。</li>
+</ol>
+<hr />
+<h3 id="4-更安全的方案"><strong>4️⃣</strong><strong> 更安全的方案</strong><a class="headerlink" href="#4-更安全的方案" title="Permanent link">&para;</a></h3>
+<ul>
+<li>如果 CA 证书还有几年有效期（像你现在的情况 9 年），<strong>无需操作</strong>。</li>
+<li>平时只需关注 <strong>kubeadm 管理的服务证书</strong>（apiserver、kubelet 等），这些可以单独续签：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubeadm<span class="w"> </span>certs<span class="w"> </span>renew<span class="w"> </span>all
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>这样 CA 不动，服务证书更新完成。</li>
+</ul>
+<hr />
+<p>✅ <strong>总结</strong>：</p>
+<ul>
+<li><strong>CA 证书续签非常敏感</strong>，直接操作风险大。</li>
+<li>正常情况下只续签服务证书即可。</li>
+<li>你当前 CA 证书还有 9 年，不需要立即续签。</li>
+<li>当 CA 真的到期时，需要备份集群并计划完整的 CA 替换和证书重新生成。</li>
+</ul>
+<hr />
+<p>如果你需要，我可以帮你写一份 <strong>仅续签 Kubernetes 服务证书而不动 CA 的安全命令集合</strong>，保证 apiserver、etcd、kubelet 等证书更新而集群不停机。</p>
+<p>你希望我直接写吗？</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../Helm%20%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B0%81%E8%A3%85%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E5%8F%91%E5%B8%83%E7%AC%94%E8%AE%B0/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Helm 日常使用与封装自定义应用发布笔记">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Helm 日常使用与封装自定义应用发布笔记
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../KubeSphere%E4%BD%93%E9%AA%8C/" class="md-footer__link md-footer__link--next" aria-label="下一页: 在 Kubernetes 上快速安装 KubeSphere">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                在 Kubernetes 上快速安装 KubeSphere
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 李烨栋
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "announce.dismiss", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
